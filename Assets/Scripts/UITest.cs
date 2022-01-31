@@ -24,34 +24,42 @@ public class UITest : MonoBehaviour
         //Reference to the Bullets GameObject
         public GameObject BulletObject;
 
-        //List of GameObjects for Bullets
-        List<GameObject> Bullets = new List<GameObject>();
+        //Array of GameObjects for Bullets
+        [SerializeField] private GameObject[] Bullets = new GameObject[6];
 
         //Reference to the Pause Menu panel (used for pausing/Game Over)
         public GameObject pausePanel;
 
     //VARIABLES//
 
-        //HEALTH//
-            //The current health which the player has
-            public int curHealth;
+    //HEALTH//
+        //The current health which the player has
+        [SerializeField] private int curHealth;
 
-            //The maximum health which the player can have (same as the max value on the slider)
-            public int maxHealth;
+        //The maximum health which the player can have (same as the max value on the slider)
+        [SerializeField] private int maxHealth;
 
             //The value of the HealthSlider
             private int healthSliderValue;
 
     //AMMO//
         //The current amount of bullets which the player can shoot 
-        public int curBullets;
+        [SerializeField] private int curBullets;
 
         //The maximum amount of bullets which the player can have in their cylinder,
         //Which decreases by 2 every time they reload their gun
-        public int maxBullets;
+        [SerializeField] private int maxBullets;
         
         //Build index of the current scene (will be more important once more scenes are added)
-        private int curSceneIndex;
+       [SerializeField] private int curSceneIndex;
+
+    ////TEMPORARY (UNOPTIMAL) solution for instantiating the bullet UI prefabs//
+    //[SerializeField] private GameObject bullet1Prefab;
+    //[SerializeField] private GameObject bullet2Prefab;
+    //[SerializeField] private GameObject bullet3Prefab;
+    //[SerializeField] private GameObject bullet4Prefab;
+    //[SerializeField] private GameObject bullet5Prefab;
+    //[SerializeField] private GameObject bullet6Prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -64,9 +72,9 @@ public class UITest : MonoBehaviour
         healthSliderValue = (int) healthSlider.value;
         curStateText.SetText("");
         pausePanel.SetActive(false);
-        for(int i = 0; i < BulletObject.transform.childCount -1; i++)
+        for(int i = 0; i < 6; i++)
         {
-            Bullets.Add(BulletObject.transform.GetChild(i));
+            Bullets[i].GetComponentInChildren<Image>().enabled = true;
         }
     }
 
@@ -95,19 +103,13 @@ public class UITest : MonoBehaviour
                 curBullets--;
                 //For each child in the Bullets GameObject,
                 //Hide the bottom-most element when a bullet is shot
-                for(int i = 0; i < maxBullets - 1; i++)
-                {
-
-                }
-                //if(curBullets == 0)
-                //{
-                //    Reload();
-                //}
+                Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
+                Debug.Log("Bullet has been fired");
             }
         }
 
         //After right-clicking, call the Reload() method to reload your weapon (cooldown/animation will be added later)
-        else if(Input.GetMouseButtonDown(1) && (curBullets < maxBullets))
+        else if(Input.GetMouseButtonDown(1) && (curBullets == 0))
         {
             Reload();
         }
@@ -162,6 +164,25 @@ public class UITest : MonoBehaviour
         curStateText.SetText("");
         curBullets = maxBullets - 2;
         maxBullets = maxBullets - 2;
+
+        if(maxBullets == 4)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                Bullets[i].GetComponentInChildren<Image>().enabled = true;
+            }
+        }
+
+        else if (maxBullets == 2)
+        {
+            Bullets[0].GetComponentInChildren<Image>().enabled = true;
+            Bullets[1].GetComponentInChildren<Image>().enabled = true;
+        }
+
+        else if(maxBullets <= 0)
+        {
+            curStateText.SetText("Out of Ammo");
+        }
     }
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//
 

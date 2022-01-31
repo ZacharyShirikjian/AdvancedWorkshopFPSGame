@@ -21,20 +21,35 @@ public class UITest : MonoBehaviour
         //Reference to Game Over UI Text
         public TextMeshProUGUI curStateText;
 
+        //Reference to the Bullets GameObject
+        public GameObject BulletObject;
+
+        //List of GameObjects for Bullets
+        List<GameObject> Bullets = new List<GameObject>();
+
         //Reference to the Pause Menu panel (used for pausing/Game Over)
         public GameObject pausePanel;
 
     //VARIABLES//
 
-        //The current health which the player has
-        public int curHealth;
+        //HEALTH//
+            //The current health which the player has
+            public int curHealth;
 
-        //The maximum health which the player can have (same as the max value on the slider)
-        public int maxHealth;
+            //The maximum health which the player can have (same as the max value on the slider)
+            public int maxHealth;
 
-        //The value of the HealthSlider
-        private int healthSliderValue;
+            //The value of the HealthSlider
+            private int healthSliderValue;
 
+    //AMMO//
+        //The current amount of bullets which the player can shoot 
+        public int curBullets;
+
+        //The maximum amount of bullets which the player can have in their cylinder,
+        //Which decreases by 2 every time they reload their gun
+        public int maxBullets;
+        
         //Build index of the current scene (will be more important once more scenes are added)
         private int curSceneIndex;
 
@@ -43,19 +58,65 @@ public class UITest : MonoBehaviour
     {
         curHealth = 30;
         maxHealth = 30;
+        curBullets = 6;
+        maxBullets = 6;
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         healthSliderValue = (int) healthSlider.value;
         curStateText.SetText("");
         pausePanel.SetActive(false);
+        for(int i = 0; i < BulletObject.transform.childCount -1; i++)
+        {
+            Bullets.Add(BulletObject.transform.GetChild(i));
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Test method for lowering the health UI slider, will get adjusted once damage is implemented;
-        //If the player presses the X key,
-        //The player's health decreases by 10
-        //If the player loses all of their health, the game is over 
+        /*
+         * Test method for updating the ammo counter UI;
+         * If the player Left Clicks,
+         * They shoot a bullet, so hide/remove the bottom-most child of the Bullet GameObjects.
+         * If the player Right-Clicks,
+         * They reload their gun, 
+         * 
+         * If the player is out of ammo, 
+         * The curStateText UI lets them know they've run out of ammo
+         */
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(curBullets <=0)
+            {
+                curStateText.SetText("Out of Ammo");
+            }
+
+            else if(curBullets > 0)
+            {
+                curBullets--;
+                //For each child in the Bullets GameObject,
+                //Hide the bottom-most element when a bullet is shot
+                for(int i = 0; i < maxBullets - 1; i++)
+                {
+
+                }
+                //if(curBullets == 0)
+                //{
+                //    Reload();
+                //}
+            }
+        }
+
+        //After right-clicking, call the Reload() method to reload your weapon (cooldown/animation will be added later)
+        else if(Input.GetMouseButtonDown(1) && (curBullets < maxBullets))
+        {
+            Reload();
+        }
+        /*
+         *  Test method for lowering the health UI slider, will get adjusted once damage is implemented;
+         *  If the player presses the X key,
+         *  The player's health decreases by 10
+         *  If the player loses all of their health, the game is over 
+         */
         if(Input.GetKeyDown(KeyCode.X) && curHealth > 0)
         {
             curHealth -= 10;
@@ -91,7 +152,17 @@ public class UITest : MonoBehaviour
         }
     }
 
-
+    //This method gets called when the player Right-Clicks with their weapon,
+    //Or when they've run out of ammo in a single cylinder.
+    //Reload the ammo cylinder, reducing the max bullets they can hold by 2.
+    //1st Reload = 4 Max Bullets, 2nd Reload = 2 Max Bullets
+    //Add/subtract the Bullet sprites accordingly
+    public void Reload()
+    {
+        curStateText.SetText("");
+        curBullets = maxBullets - 2;
+        maxBullets = maxBullets - 2;
+    }
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//
 
     //Reloads the current scene the player is on 

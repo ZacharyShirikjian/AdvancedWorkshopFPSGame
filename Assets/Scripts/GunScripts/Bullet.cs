@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("bullet collided");
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyParent enemy = collision.gameObject.GetComponent<EnemyParent>();

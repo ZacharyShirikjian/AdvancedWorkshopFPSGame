@@ -11,15 +11,28 @@ public class PlayerController : MonoBehaviour
 
     public Gun gun;
 
+    private Vector3 moveDirection = Vector3.zero;
+
+    private Camera playerCamera;
+    private CharacterController playerController;
+
+    public float speed = 5.0f;
 
     public void Start()
     {
         //Animator animator = GetComponent<Animator>();
+        playerCamera = Camera.main;
+        playerController = GetComponent<CharacterController>();
     }
 
 
     public void Update()
     {
+
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+        moveDirection = playerCamera.transform.rotation * moveDirection;
+        playerController.Move(moveDirection * speed * Time.deltaTime);
+
         if (Input.GetButtonDown("Fire1"))
         {
             gun.Shoot();

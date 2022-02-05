@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     private ShootState shootState = ShootState.Ready;
 
     private Vector3 spawnPoint;
-    private float shotInterval = 2.0f;
+    private float shotInterval = 1.0f;
     private float reloadTime = 5.0f;
 
     private float nextShootTime = 0;
@@ -47,13 +47,15 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if(shootState == ShootState.Ready && remainingAmmo > 0)
+        if(remainingAmmo > 0)
         {
-            Instantiate(bullet, spawnPoint, transform.rotation);        //FIXME: all stand in spawn variables
+            Debug.Log("Bullet shot");
+            Instantiate(bullet, new Vector3(0,1,0), transform.rotation);        //FIXME: all stand in spawn variables
             nextShootTime = Time.time + shotInterval;
             shootState = ShootState.Shooting;
+            remainingAmmo--;
         }
-        remainingAmmo--;
+        
 
         //else
         //FIXME

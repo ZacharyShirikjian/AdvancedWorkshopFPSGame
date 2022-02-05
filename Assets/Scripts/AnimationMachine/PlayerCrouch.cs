@@ -52,6 +52,6 @@ public class PlayerCrouch : StateMachineBehaviour
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection = playerCamera.transform.rotation * moveDirection;
-        playerController.Move(moveDirection * crouchSpeed * Time.deltaTime);
+        //playerController.Move(moveDirection * crouchSpeed * Time.deltaTime);
     }
 }

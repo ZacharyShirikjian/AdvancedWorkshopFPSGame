@@ -24,7 +24,7 @@ public class TitleScreen : MonoBehaviour
     //}
 
     //This method is used for loading the main scene of the game,
-    //ZachTestScene2 (which may get changed later).
+    //ZachTestScene3 (which may get changed later).
     //Which has a build index of 1 in the Project's Build Settings.
     //For now, the TitleScreen scene (ZachTestScene) has a build index of 0.
     public void PlayGame()

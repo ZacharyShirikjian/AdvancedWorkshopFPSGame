@@ -13,6 +13,12 @@ using TMPro;
 */
 public class UITest : MonoBehaviour
 {
+    //REFERENCE TO TINA'S GUN SCRIPT//
+    public Gun gunReference;
+
+    //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
+    public PlayerController playerRef; 
+
     //REFERENCES//
 
         //Reference to the Health UI Slider
@@ -31,16 +37,17 @@ public class UITest : MonoBehaviour
         public GameObject pausePanel;
 
     //VARIABLES//
-
+    //Checks if Game Over is true, if true enemies can't track player anymore
+    public bool gameOver = false;
     //HEALTH//
         //The current health which the player has
-        [SerializeField] private int curHealth;
+        [SerializeField] private float curHealth;
 
         //The maximum health which the player can have (same as the max value on the slider)
-        [SerializeField] private int maxHealth;
+        [SerializeField] private float maxHealth;
 
             //The value of the HealthSlider
-            private int healthSliderValue;
+            private float healthSliderValue;
 
     //AMMO//
         //The current amount of bullets which the player can shoot 
@@ -53,25 +60,20 @@ public class UITest : MonoBehaviour
         //Build index of the current scene (will be more important once more scenes are added)
        [SerializeField] private int curSceneIndex;
 
-    ////TEMPORARY (UNOPTIMAL) solution for instantiating the bullet UI prefabs//
-    //[SerializeField] private GameObject bullet1Prefab;
-    //[SerializeField] private GameObject bullet2Prefab;
-    //[SerializeField] private GameObject bullet3Prefab;
-    //[SerializeField] private GameObject bullet4Prefab;
-    //[SerializeField] private GameObject bullet5Prefab;
-    //[SerializeField] private GameObject bullet6Prefab;
-
     // Start is called before the first frame update
     void Start()
     {
-        curHealth = 30;
-        maxHealth = 30;
-        curBullets = 6;
-        maxBullets = 6;
-        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        healthSliderValue = (int) healthSlider.value;
+        Time.timeScale = 1f;
+        curHealth = playerRef.health;
+        maxHealth = playerRef.maxHealth;
+        curBullets = gunReference.ammo;
+        maxBullets = gunReference.ammo;
+        healthSlider.value = maxHealth;
+        healthSliderValue = healthSlider.value;
         curStateText.SetText("");
+        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
+        gameOver = false;
         for(int i = 0; i < 6; i++)
         {
             Bullets[i].GetComponentInChildren<Image>().enabled = true;
@@ -81,80 +83,39 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    //This method gets called when a player shoots a bullet, called from the PlayerControllerScript
+
+    public void UpdateAmmoUI()
+    {
         /*
-         * Test method for updating the ammo counter UI;
-         * If the player Left Clicks,
-         * They shoot a bullet, so hide/remove the bottom-most child of the Bullet GameObjects.
-         * If the player Right-Clicks,
-         * They reload their gun, 
-         * 
-         * If the player is out of ammo, 
-         * The curStateText UI lets them know they've run out of ammo
-         */
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(curBullets <=0)
-            {
-                curStateText.SetText("Out of Ammo");
-            }
+            * Test method for updating the ammo counter UI;
+            * If the player Left Clicks,
+            * They shoot a bullet, so hide/remove the bottom-most child of the Bullet GameObjects.
+            * If the player Right-Clicks,
+            * They reload their gun, 
+            * 
+            * If the player is out of ammo, 
+            * The curStateText UI lets them know they've run out of ammo
+        */
 
-            else if(curBullets > 0)
-            {
-                curBullets--;
-                //For each child in the Bullets GameObject,
-                //Hide the bottom-most element when a bullet is shot
-                Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
-                Debug.Log("Bullet has been fired");
-            }
+        if (curBullets <= 0)
+        {
+            curStateText.SetText("Out of Ammo");
         }
 
-        //After right-clicking, call the Reload() method to reload your weapon (cooldown/animation will be added later)
-        else if(Input.GetMouseButtonDown(1) && (curBullets == 0))
+        else if (curBullets > 0)
         {
-            Reload();
-        }
-        /*
-         *  Test method for lowering the health UI slider, will get adjusted once damage is implemented;
-         *  If the player presses the X key,
-         *  The player's health decreases by 10
-         *  If the player loses all of their health, the game is over 
-         */
-        if(Input.GetKeyDown(KeyCode.X) && curHealth > 0)
-        {
-            curHealth -= 10;
-            healthSliderValue = curHealth;
-            healthSlider.value = (int)healthSliderValue;
-            if (curHealth <= 0)
-            {
-                curStateText.SetText("GameOver");
-
-                //Activate the Pause Panel during a Game Over
-                pausePanel.SetActive(true);
-            }
-        }
-
-        //Test method for increasing the health UI slider, will get adjusted once healing is implemented;
-        //If the player presses the S key,
-        //The player's health increases by 30
-        //If the player has max health, they can't increase it any more
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (curHealth >= 30)
-            {
-                curStateText.SetText("Health Maxed Out");
-            }
-
-            else if (curHealth < 30)
-            {
-                curHealth += 10;
-                healthSliderValue = curHealth;
-                healthSlider.value = (int)healthSliderValue;
-            }
-
+            curBullets--;
+            //For each child in the Bullets GameObject,
+            //Hide the bottom-most element when a bullet is shot
+            Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
+            Debug.Log("Bullet has been fired");
         }
     }
 
-    //This method gets called when the player Right-Clicks with their weapon,
+    //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
     //Or when they've run out of ammo in a single cylinder.
     //Reload the ammo cylinder, reducing the max bullets they can hold by 2.
     //1st Reload = 4 Max Bullets, 2nd Reload = 2 Max Bullets
@@ -165,9 +126,9 @@ public class UITest : MonoBehaviour
         curBullets = maxBullets - 2;
         maxBullets = maxBullets - 2;
 
-        if(maxBullets == 4)
+        if (maxBullets == 4)
         {
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
@@ -179,13 +140,48 @@ public class UITest : MonoBehaviour
             Bullets[1].GetComponentInChildren<Image>().enabled = true;
         }
 
-        else if(maxBullets <= 0)
+        else if (maxBullets <= 0)
         {
             curStateText.SetText("Out of Ammo");
         }
     }
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//
 
+    //This method gets called when the player takes damage, from Tina's PlayerController script//
+    //The player takes X damage, where X is based on the value when the method gets called//
+
+    public void UpdateHealthUI()
+    {
+        curHealth = playerRef.health;
+        healthSliderValue = curHealth;
+        healthSlider.value = healthSliderValue; 
+      
+        if (curHealth >= maxHealth)
+        {
+            curStateText.SetText("Health Maxed Out");
+        }
+
+        else if (curHealth <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    //Called when player gets a GameOver//
+    public void GameOver()
+    {
+        gameOver = true;
+        playerRef.gameObject.SetActive(false);
+        BulletObject.SetActive(false);
+        healthSlider.gameObject.SetActive(false);
+        curStateText.SetText("GameOver");
+
+        //Activate the Pause Panel during a Game Over
+        pausePanel.SetActive(true);
+
+        //Freeze the game by setting timescale to 1 (temporary) 
+        Time.timeScale = 0f;
+    }
     //Reloads the current scene the player is on 
     public void RestartGame()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class ZachPlayerController : MonoBehaviour
 {
 
     public float health;
@@ -17,6 +17,14 @@ public class PlayerController : MonoBehaviour
     private CharacterController playerController;
 
     public float speed = 5.0f;
+
+    //REFERENCE TO THE UI SCRIPT//
+    /*
+     * Tina, I had to add in this reference in order to correctly update the UI
+     * When the player takes damage or heal. -Zach
+     */
+
+    public UITest uiRef;
 
     public void Start()
     {
@@ -33,14 +41,19 @@ public class PlayerController : MonoBehaviour
         moveDirection = playerCamera.transform.rotation * moveDirection;
         playerController.Move(moveDirection * speed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Fire1"))
+        if(uiRef.gameOver == false)
         {
-            gun.Shoot();
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                gun.Shoot();
+                uiRef.UpdateAmmoUI();
+            }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            gun.Reload();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                gun.Reload();
+                uiRef.Reload();
+            }
         }
     }
 
@@ -51,11 +64,14 @@ public class PlayerController : MonoBehaviour
         if(health > 0 && dmg <= health)
         {
             health = health - dmg;
+            uiRef.UpdateHealthUI(); //cals the method in the UI reference to update the health UI 
         }
 
         else if (health > 0 && dmg > health)
         {
             health = 0;
+            uiRef.UpdateHealthUI();
+            //end game or respawn
         }
 
         
@@ -67,11 +83,13 @@ public class PlayerController : MonoBehaviour
         if (health < maxHealth && (health + healPack <= maxHealth))
         {
             health = health + healPack;
+            uiRef.UpdateHealthUI();
         }
 
         else if (health + healPack > maxHealth)
         {
             health = maxHealth;
+            uiRef.UpdateHealthUI();
         }
 
     }

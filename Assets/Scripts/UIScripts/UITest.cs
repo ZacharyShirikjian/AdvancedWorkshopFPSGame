@@ -17,7 +17,7 @@ public class UITest : MonoBehaviour
     public Gun gunReference;
 
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
-    public PlayerController playerRef; 
+    public ZachPlayerController playerRef; 
 
     //REFERENCES//
 

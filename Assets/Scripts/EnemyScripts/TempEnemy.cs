@@ -46,7 +46,7 @@ public class TempEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            ZachPlayerController playerController = collision.gameObject.GetComponent<ZachPlayerController>();
             playerController.TakeDamage(dmg);
         }
     }

@@ -27,6 +27,9 @@ public class UITest : MonoBehaviour
         //Reference to Game Over UI Text
         public TextMeshProUGUI curStateText;
 
+        //Reference to the InteractPrompt Text
+        public TextMeshProUGUI interactPromptText;
+
         //Reference to the Bullets GameObject
         public GameObject BulletObject;
 
@@ -37,8 +40,11 @@ public class UITest : MonoBehaviour
         public GameObject pausePanel;
 
     //VARIABLES//
-    //Checks if Game Over is true, if true enemies can't track player anymore
-    public bool gameOver = false;
+        //Checks if Game Over is true, if true enemies can't track player anymore
+        public bool gameOver = false;
+        //Checks if player is interacting with an object, if true, disable interactPrompt text
+       // public bool interacting = false;
+
     //HEALTH//
         //The current health which the player has
         [SerializeField] private float curHealth;
@@ -71,6 +77,7 @@ public class UITest : MonoBehaviour
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
         curStateText.SetText("");
+        interactPromptText.SetText("");
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
         gameOver = false;
@@ -83,8 +90,23 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
     }
 
+    //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
+    public void UpdateInteractPromptUI(string prompt)
+    {
+        if(prompt != "")
+        {
+            interactPromptText.SetText("Press [SPACE] to " + prompt.ToString());
+        }
+
+        else
+        {
+            interactPromptText.SetText("");
+        }
+    }
     //This method gets called when a player shoots a bullet, called from the PlayerControllerScript
 
     public void UpdateAmmoUI()

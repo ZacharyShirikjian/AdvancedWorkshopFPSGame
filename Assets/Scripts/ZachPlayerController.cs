@@ -40,7 +40,6 @@ public class ZachPlayerController : MonoBehaviour
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection = playerCamera.transform.rotation * moveDirection;
         playerController.Move(moveDirection * speed * Time.deltaTime);
-
         if(uiRef.gameOver == false)
         {
             if (Input.GetButtonDown("Fire1"))

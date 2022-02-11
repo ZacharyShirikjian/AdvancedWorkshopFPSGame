@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
+
 /*
  * This script is used for the Title Screen, 
  * Including methods for Loading the Main Game Scene (For now, ZachTestScene2),
@@ -11,17 +14,37 @@ using UnityEngine.SceneManagement;
  */
 public class TitleScreen : MonoBehaviour
 {
+
+    //REFERENCE TO THE "PRESS ANY BUTTON TO START" TEXT
+    [SerializeField] private TextMeshProUGUI promptText;
+
+    //Checks if player pressed a button on title screen yet, once it = true, the press any button text goes away and stays away
+    [SerializeField] private bool buttonPressed = false;
+
+    //Reference to Menu Buttons 
+    public GameObject Buttons;
+
     //// Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
+    void Start()
+    {
+        buttonPressed = false;
+        promptText.SetText("Press Any Button");
+        Buttons.SetActive(false);
+
+    }
 
     //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
+    void Update()
+    {
+        //If you press any key, open up the options buttons
+        if(Input.anyKeyDown && buttonPressed == false)
+        {
+            Buttons.SetActive(true);
+            promptText.SetText("");
+            buttonPressed = true;
+        }
+
+    }
 
     //This method is used for loading the main scene of the game,
     //ZachTestScene3 (which may get changed later).
@@ -37,33 +60,5 @@ public class TitleScreen : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    /*
-     * Additional methods to quickly load other people's scenes from the Title Screen,
-     * Which may be temporary.
-     * These methods get called when clicking on the appropriate button,
-     * Eg, to load David's scene, click on the "David's Scene" button,
-     * Which calls the LoadDavidScene method.
-     */
-
-    public void LoadDavidScene()
-    {
-        SceneManager.LoadScene("DavidTestScene");
-    }
-
-    public void LoadKalynnScene()
-    {
-        SceneManager.LoadScene("KalynnTestScene");
-    }
-
-    public void LoadTinaScene()
-    {
-        SceneManager.LoadScene("TinaTestScene");
-    }
-
-    public void LoadSeanScene()
-    {
-        SceneManager.LoadScene("SeanTestScene");
     }
 }

@@ -42,8 +42,9 @@ public class UITest : MonoBehaviour
     //VARIABLES//
         //Checks if Game Over is true, if true enemies can't track player anymore
         public bool gameOver = false;
-        //Checks if player is interacting with an object, if true, disable interactPrompt text
-       // public bool interacting = false;
+
+        //Checks if game is paused 
+        public bool paused = false;
 
     //HEALTH//
         //The current health which the player has
@@ -90,8 +91,34 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //For Pausing
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(paused)
+            {
+                UnPauseGame();
+            }
 
+            else if(!paused)
+            {
+                PauseGame();
+            }
+        }
+    }
 
+    //For Pausing/Unpausing Game
+    public void PauseGame()
+    {
+        paused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
+        paused = false;
+        pausePanel.SetActive(false);
     }
 
     //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)

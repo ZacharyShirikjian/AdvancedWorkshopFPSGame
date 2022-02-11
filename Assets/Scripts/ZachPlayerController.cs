@@ -18,6 +18,8 @@ public class ZachPlayerController : MonoBehaviour
 
     public float speed = 5.0f;
 
+    private bool canShoot = true;
+
     //REFERENCE TO THE UI SCRIPT//
     /*
      * Tina, I had to add in this reference in order to correctly update the UI
@@ -31,6 +33,7 @@ public class ZachPlayerController : MonoBehaviour
         //Animator animator = GetComponent<Animator>();
         playerCamera = Camera.main;
         playerController = GetComponent<CharacterController>();
+        canShoot = true;
     }
 
 
@@ -40,20 +43,27 @@ public class ZachPlayerController : MonoBehaviour
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection = playerCamera.transform.rotation * moveDirection;
         playerController.Move(moveDirection * speed * Time.deltaTime);
-        if(uiRef.gameOver == false)
+        if (uiRef.paused == true || uiRef.gameOver == true)
         {
-            if (Input.GetButtonDown("Fire1"))
+            canShoot = false;
+        }
+
+       else if (uiRef.paused == false || uiRef.gameOver == false)
+        {
+            canShoot = true;
+            if (Input.GetMouseButtonDown(0))
             {
                 gun.Shoot();
                 uiRef.UpdateAmmoUI();
             }
 
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetMouseButtonDown(1))
             {
                 gun.Reload();
                 uiRef.Reload();
             }
         }
+
     }
 
 

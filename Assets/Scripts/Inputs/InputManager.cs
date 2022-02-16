@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
     Controls controls;
     Controls.MovementActions movement;
-
+    Controls.MenusActions menu;
     [SerializeField] PlayerController playCon;
     [SerializeField] MouseLook mouseLook;
 
@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     {
         controls = new Controls();
         movement = controls.Movement;
+        menu = controls.Menus;
 
         movement.Move.performed += ctx => inputVector = ctx.ReadValue<Vector2>();
         movement.Crouch.performed += _ => playCon.OnCrouchPressed();

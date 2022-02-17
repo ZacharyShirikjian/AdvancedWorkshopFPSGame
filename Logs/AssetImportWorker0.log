@@ -11,19 +11,19 @@ C:\Program Files\Unity\Hub\Editor\2020.3.15f2\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/zshirikj/Documents/GitHub/AdvancedWorkshopFPSGame
+C:/Users/zshirikj/Documents/GitHub/TrainOutbreak/AdvancedWorkshopFPSGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60274
-Successfully changed project path to: C:/Users/zshirikj/Documents/GitHub/AdvancedWorkshopFPSGame
-C:/Users/zshirikj/Documents/GitHub/AdvancedWorkshopFPSGame
+62893
+Successfully changed project path to: C:/Users/zshirikj/Documents/GitHub/TrainOutbreak/AdvancedWorkshopFPSGame
+C:/Users/zshirikj/Documents/GitHub/TrainOutbreak/AdvancedWorkshopFPSGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 38.46 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 45.29 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.15f2 (6cf78cb77498)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/zshirikj/Documents/GitHub/AdvancedWorkshopFPSGame/Assets
+[Subsystems] Discovering subsystems at path C:/Users/zshirikj/Documents/GitHub/TrainOutbreak/AdvancedWorkshopFPSGame/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -35,7 +35,7 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56388
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56496
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
@@ -43,37 +43,37 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.15f2/
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.15f2/Editor/Data/PlaybackEngines/LuminSupport/UnityEditor.Lumin.Extensions.dll
-Registered in 0.004810 seconds.
+Registered in 0.004751 seconds.
 Native extension for Lumin target not found
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 47.45 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 34.26 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.453 seconds
+- Completed reload, in  2.459 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2454ms)
-		BeginReloadAssembly (81ms)
+	ReloadAssembly (2459ms)
+		BeginReloadAssembly (66ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (437ms)
-			LoadAssemblies (81ms)
+		EndReloadAssembly (442ms)
+			LoadAssemblies (66ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (138ms)
+			SetupTypeCache (144ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (56ms)
-			SetupLoadedEditorAssemblies (179ms)
+			RebuildScriptCaches (51ms)
+			SetupLoadedEditorAssemblies (167ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (13ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (48ms)
-				BeforeProcessingInitializeOnLoad (12ms)
-				ProcessInitializeOnLoadAttributes (83ms)
+				InitializePlatformSupportModulesInManaged (9ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (34ms)
+				BeforeProcessingInitializeOnLoad (13ms)
+				ProcessInitializeOnLoadAttributes (87ms)
 				ProcessInitializeOnLoadMethodAttributes (23ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
@@ -81,55 +81,55 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008970 seconds.
+Registered in 0.008979 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for Lumin target not found
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 33.26 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 30.47 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.222 seconds
+- Completed reload, in  1.234 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1223ms)
-		BeginReloadAssembly (156ms)
+	ReloadAssembly (1235ms)
+		BeginReloadAssembly (180ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
+			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (28ms)
-		EndReloadAssembly (1010ms)
-			LoadAssemblies (98ms)
+			CreateAndSetChildDomain (44ms)
+		EndReloadAssembly (996ms)
+			LoadAssemblies (110ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (253ms)
+			SetupTypeCache (262ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (50ms)
-			SetupLoadedEditorAssemblies (503ms)
+			RebuildScriptCaches (49ms)
+			SetupLoadedEditorAssemblies (486ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (7ms)
+				InitializePlatformSupportModulesInManaged (6ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (33ms)
-				BeforeProcessingInitializeOnLoad (103ms)
-				ProcessInitializeOnLoadAttributes (348ms)
-				ProcessInitializeOnLoadMethodAttributes (3ms)
+				RefreshPlugins (31ms)
+				BeforeProcessingInitializeOnLoad (98ms)
+				ProcessInitializeOnLoadAttributes (339ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
 				AfterProcessingInitializeOnLoad (8ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (9ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.15 seconds
-Refreshing native plugins compatible for Editor in 0.46 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.29 seconds
+Refreshing native plugins compatible for Editor in 0.75 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1751 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 79.9 MB.
 System memory in use after: 80.0 MB.
 
 Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2187.
-Total: 3.922400 ms (FindLiveObjects: 0.330000 ms CreateObjectMapping: 0.080800 ms MarkObjects: 3.428000 ms  DeleteObjects: 0.081600 ms)
+Total: 3.132300 ms (FindLiveObjects: 0.217300 ms CreateObjectMapping: 0.044700 ms MarkObjects: 2.793400 ms  DeleteObjects: 0.076000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -143,326 +143,148 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/InputSystem.inputsettings.asset
-  artifactKey: Guid(821bf03adabca7b4fb0adc8a9182a738) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/InputSystem.inputsettings.asset using Guid(821bf03adabca7b4fb0adc8a9182a738) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be5c3d7963800b69ec18a3d2135b49ef') in 0.028984 seconds 
-  Import took 0.031557 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 20.814258 seconds.
-  path: Packages/com.unity.inputsystem/InputSystem
-  artifactKey: Guid(7be622e2320c433e83fcfd2dbb7bd468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.inputsystem/InputSystem using Guid(7be622e2320c433e83fcfd2dbb7bd468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f2161e1f1973479f590b3481340f97e') in 0.008838 seconds 
-  Import took 0.016451 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.855650 seconds.
-  path: Packages/com.unity.inputsystem
-  artifactKey: Guid(77f6a1a5fdaf4eb381a13f21eadbbce0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.inputsystem using Guid(77f6a1a5fdaf4eb381a13f21eadbbce0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e491535fe12cde1f569ee0de5a3db332') in 0.008171 seconds 
-  Import took 0.015755 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 22.460631 seconds.
   path: Assets/Scenes/ZachTestScene3.unity
   artifactKey: Guid(b30b375a36fee544a865795bf6391ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ZachTestScene3.unity using Guid(b30b375a36fee544a865795bf6391ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5222aa9044b94edcc6dc801893080672') in 0.004249 seconds 
-  Import took 0.007957 seconds .
+Start importing Assets/Scenes/ZachTestScene3.unity using Guid(b30b375a36fee544a865795bf6391ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52d58428599d4e723b773d15dd037c81') in 0.011384 seconds 
+  Import took 0.013935 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 4.778709 seconds.
-  path: Assets/Scripts/Inputs
-  artifactKey: Guid(8ed873aaec7fbb447b8326940bc3dd96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Inputs using Guid(8ed873aaec7fbb447b8326940bc3dd96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67abc4d09779fae2982577bec0df55e5') in 0.002975 seconds 
-  Import took 0.005987 seconds .
+  Time since last request: 662.062435 seconds.
+  path: Assets/Art/UI
+  artifactKey: Guid(2372d982cdd0fcf45b86afbc48a75079) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI using Guid(2372d982cdd0fcf45b86afbc48a75079) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69f0a6e70f0be1560171e88be993ce74') in 0.004066 seconds 
+  Import took 0.008008 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 129.738953 seconds.
-  path: Assets/Scripts/ZachPlayerController.cs
-  artifactKey: Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/ZachPlayerController.cs using Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46cd4846f014e6e4e5bda292247360f9') in 0.007313 seconds 
-  Import took 0.010665 seconds .
+  Time since last request: 901.640624 seconds.
+  path: Assets/Art/UI/JukeboxUI
+  artifactKey: Guid(c75247c1f321f4742a14f71e5adb6d51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI using Guid(c75247c1f321f4742a14f71e5adb6d51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d647ed92b108d5785f0f67431e12c5e') in 0.006929 seconds 
+  Import took 0.011878 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000425 seconds.
-  path: Assets/Scripts/ZachPlayerController.cs
-  artifactKey: Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/ZachPlayerController.cs using Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46cd4846f014e6e4e5bda292247360f9') in 0.002583 seconds 
-  Import took 0.005620 seconds .
+  Time since last request: 1.677739 seconds.
+  path: Assets/Art/UI/JukeboxUI_BG.png
+  artifactKey: Guid(f2c6d017c6d157c48a8fb9c0e2d822ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI_BG.png using Guid(f2c6d017c6d157c48a8fb9c0e2d822ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1f0ccc2a137548b03ccceafa63a79a5') in 0.057749 seconds 
+  Import took 0.061003 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 66.314219 seconds.
-  path: Assets/Scenes/ZachTestScene(Title).unity
-  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ZachTestScene(Title).unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8275a1cf927b9b4d1611d261616ede7') in 0.004139 seconds 
-  Import took 0.008398 seconds .
+  Time since last request: 0.012805 seconds.
+  path: Assets/Art/UI/JukeboxUI_BG.png
+  artifactKey: Guid(f2c6d017c6d157c48a8fb9c0e2d822ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI_BG.png using Guid(f2c6d017c6d157c48a8fb9c0e2d822ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1f0ccc2a137548b03ccceafa63a79a5') in 0.015909 seconds 
+  Import took 0.019478 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 11.523249 seconds.
-  path: Assets/Scripts/PlayerInteract.cs
-  artifactKey: Guid(26e5030cf634bab4cae64ab9f579e313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayerInteract.cs using Guid(26e5030cf634bab4cae64ab9f579e313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e43061791a4a5e4d3b6a31d325ca5aab') in 0.003898 seconds 
-  Import took 0.007858 seconds .
+  Time since last request: 15.287915 seconds.
+  path: Assets/Art/UI/Jukebox_AmmoButton.png
+  artifactKey: Guid(c37d5e67334b57a4b907b4ff6d3ef46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/Jukebox_AmmoButton.png using Guid(c37d5e67334b57a4b907b4ff6d3ef46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '522d5f743890bd71440728a3c5aa1800') in 0.038203 seconds 
+  Import took 0.041852 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001958 seconds.
-  path: Assets/Scripts/PlayerInteract.cs
-  artifactKey: Guid(26e5030cf634bab4cae64ab9f579e313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayerInteract.cs using Guid(26e5030cf634bab4cae64ab9f579e313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e43061791a4a5e4d3b6a31d325ca5aab') in 0.003544 seconds 
-  Import took 0.008304 seconds .
+  Time since last request: 0.439524 seconds.
+  path: Assets/Art/UI/Jukebox_HealthButton.png
+  artifactKey: Guid(bba1efea2540e3a498ba84a6b62a4061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/Jukebox_HealthButton.png using Guid(bba1efea2540e3a498ba84a6b62a4061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35c3dba5eb041381c332d74eff8fe9cd') in 0.018223 seconds 
+  Import took 0.022370 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 4.354886 seconds.
-  path: Assets/Scripts/UIScripts/SettingsSlider.cs
-  artifactKey: Guid(71d79d7ea3d7dc14a8fd0bbd172062fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UIScripts/SettingsSlider.cs using Guid(71d79d7ea3d7dc14a8fd0bbd172062fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef55a63954e99fea48b565d574ec4870') in 0.004475 seconds 
-  Import took 0.008308 seconds .
+  Time since last request: 0.357905 seconds.
+  path: Assets/Art/UI/JukeboxMenuButtonUI.psd
+  artifactKey: Guid(615b435df012d3147a4d527e40fa650e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxMenuButtonUI.psd using Guid(615b435df012d3147a4d527e40fa650e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2e5290faeaf909d8b7e271a511df49d') in 0.023825 seconds 
+  Import took 0.027955 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000589 seconds.
-  path: Assets/Scripts/UIScripts/SettingsSlider.cs
-  artifactKey: Guid(71d79d7ea3d7dc14a8fd0bbd172062fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UIScripts/SettingsSlider.cs using Guid(71d79d7ea3d7dc14a8fd0bbd172062fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef55a63954e99fea48b565d574ec4870') in 0.003591 seconds 
-  Import took 0.007272 seconds .
+  Time since last request: 15.493028 seconds.
+  path: Assets/Art/UI/JukeboxUI/Jukebox_HealthButton.png
+  artifactKey: Guid(bba1efea2540e3a498ba84a6b62a4061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI/Jukebox_HealthButton.png using Guid(bba1efea2540e3a498ba84a6b62a4061) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c31a07393a474619f811d16142185d4e') in 0.087598 seconds 
+  Import took 0.092657 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.483059 seconds.
-  path: Assets/Scripts/UIScripts/Settings.cs
-  artifactKey: Guid(fce82ebd50180444ca5d913288f90185) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UIScripts/Settings.cs using Guid(fce82ebd50180444ca5d913288f90185) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a56b5fc0c532b19320d2a6542791bdd0') in 0.003881 seconds 
-  Import took 0.007677 seconds .
+  Time since last request: 41.159843 seconds.
+  path: Assets/Art/UI/JukeboxUI/JukeboxUI_BG.png
+  artifactKey: Guid(f2c6d017c6d157c48a8fb9c0e2d822ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI/JukeboxUI_BG.png using Guid(f2c6d017c6d157c48a8fb9c0e2d822ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c082fe7b82ba9a41564bba3c06c742a') in 0.039312 seconds 
+  Import took 0.042732 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001355 seconds.
-  path: Assets/Scripts/UIScripts/Settings.cs
-  artifactKey: Guid(fce82ebd50180444ca5d913288f90185) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UIScripts/Settings.cs using Guid(fce82ebd50180444ca5d913288f90185) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a56b5fc0c532b19320d2a6542791bdd0') in 0.003152 seconds 
-  Import took 0.006410 seconds .
+  Time since last request: 410.485377 seconds.
+  path: Assets/Art/UI/JukeboxUI/Jukebox_HealthUpgradeButton.png
+  artifactKey: Guid(3e6b1fd2a8e9ed44abffc51c45b6dd56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI/Jukebox_HealthUpgradeButton.png using Guid(3e6b1fd2a8e9ed44abffc51c45b6dd56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '511e6d5ec4b6a46da03031ea8443bb9e') in 0.018699 seconds 
+  Import took 0.023547 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 559.636797 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001123 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.005049 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.023921 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000941 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.005075 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.019612 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001293 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007434 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017881 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001246 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007282 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017467 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001232 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007215 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017073 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001306 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007197 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017680 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001218 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007167 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017881 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001235 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007385 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.016847 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001259 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007371 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.028881 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001071 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.006212 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017080 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000880 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.005175 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.019001 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000792 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.004562 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.020174 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000573 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.003120 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.014763 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000543 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.004019 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.015414 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000980 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.005954 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.017689 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001199 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007118 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.016825 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.001195 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.007207 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.019422 seconds.
-  path: Assets/Scenes/TinaTestScene.unity
-  artifactKey: Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TinaTestScene.unity using Guid(617484dafa5c03048bb4a74b2812e0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.000563 seconds  code(4) message(Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z')
-  ERROR: Build asset version error: assets/scenes/tinatestscene.unity in SourceAssetDB has modification time of '2022-02-17T19:55:09.2392465Z' while content on disk has modification time of '2022-02-17T19:59:22.2125634Z'
-  Import took 0.003096 seconds .
+  Time since last request: 6.397153 seconds.
+  path: Assets/Art/UI/JukeboxUI/Jukebox_HealthUpgradeButton.png
+  artifactKey: Guid(3e6b1fd2a8e9ed44abffc51c45b6dd56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/UI/JukeboxUI/Jukebox_HealthUpgradeButton.png using Guid(3e6b1fd2a8e9ed44abffc51c45b6dd56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '713501615809310aea6f855b54c24cc9') in 0.050737 seconds 
+  Import took 0.056646 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.006730 seconds.
+Registered in 0.006307 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for Lumin target not found
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.43 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.129 seconds
+- Completed reload, in  1.110 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1130ms)
-		BeginReloadAssembly (143ms)
+	ReloadAssembly (1111ms)
+		BeginReloadAssembly (159ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (10ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (51ms)
-		EndReloadAssembly (927ms)
-			LoadAssemblies (105ms)
+			CreateAndSetChildDomain (50ms)
+		EndReloadAssembly (896ms)
+			LoadAssemblies (93ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (258ms)
+			SetupTypeCache (262ms)
 			ReleaseScriptCaches (1ms)
 			RebuildScriptCaches (37ms)
-			SetupLoadedEditorAssemblies (443ms)
+			SetupLoadedEditorAssemblies (421ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (7ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (0ms)
 				BeforeProcessingInitializeOnLoad (91ms)
-				ProcessInitializeOnLoadAttributes (333ms)
+				ProcessInitializeOnLoadAttributes (313ms)
 				ProcessInitializeOnLoadMethodAttributes (3ms)
-				AfterProcessingInitializeOnLoad (8ms)
+				AfterProcessingInitializeOnLoad (7ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.72 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.75 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1727 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 78.5 MB.
-System memory in use after: 78.6 MB.
+Unloading 1731 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 81.7 MB.
+System memory in use after: 81.8 MB.
 
-Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 2186.
-Total: 2.688300 ms (FindLiveObjects: 0.232000 ms CreateObjectMapping: 0.047600 ms MarkObjects: 2.379100 ms  DeleteObjects: 0.028600 ms)
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2199.
+Total: 3.013700 ms (FindLiveObjects: 0.232700 ms CreateObjectMapping: 0.041100 ms MarkObjects: 2.717600 ms  DeleteObjects: 0.020600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -474,75 +296,3 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 88.832745 seconds.
-  path: Assets/Scripts/ZachPlayerController.cs
-  artifactKey: Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/ZachPlayerController.cs using Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa4f00aa65fa36d31ffd6b85e5f05f14') in 0.007595 seconds 
-  Import took 0.013012 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.016765 seconds.
-  path: Assets/Scripts/ZachPlayerController.cs
-  artifactKey: Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/ZachPlayerController.cs using Guid(a59b4343e3e83f3478c5169d62eea08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa4f00aa65fa36d31ffd6b85e5f05f14') in 0.004167 seconds 
-  Import took 0.009016 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.898089 seconds.
-  path: Assets/Scripts/Inputs/PlayerController.cs
-  artifactKey: Guid(35b53e900a41f364685387373d22ca9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Inputs/PlayerController.cs using Guid(35b53e900a41f364685387373d22ca9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b32fedd53b8513dd5a79386cb2535a92') in 0.002933 seconds 
-  Import took 0.005902 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000355 seconds.
-  path: Assets/Scripts/Inputs/PlayerController.cs
-  artifactKey: Guid(35b53e900a41f364685387373d22ca9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Inputs/PlayerController.cs using Guid(35b53e900a41f364685387373d22ca9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b32fedd53b8513dd5a79386cb2535a92') in 0.002734 seconds 
-  Import took 0.005696 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.237646 seconds.
-  path: Assets/Scenes/ZachTestScene3.unity
-  artifactKey: Guid(b30b375a36fee544a865795bf6391ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ZachTestScene3.unity using Guid(b30b375a36fee544a865795bf6391ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d08c74007133b92eaf91c5f3b480521') in 0.011482 seconds 
-  Import took 0.015086 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.379804 seconds.
-  path: Assets/Scenes/ZachTestScene2.unity
-  artifactKey: Guid(b88b2dbd2ad50fb4b919d8cde9edec97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ZachTestScene2.unity using Guid(b88b2dbd2ad50fb4b919d8cde9edec97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85b73cc6873104f747f96c30769653af') in 0.004742 seconds 
-  Import took 0.008675 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.690926 seconds.
-  path: Assets/Input/Controls.inputactions
-  artifactKey: Guid(de487a9b750e1c449835a979764d5846) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Input/Controls.inputactions using Guid(de487a9b750e1c449835a979764d5846) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1d291da58b9f552b401ba68abf91179') in 0.014660 seconds 
-  Import took 0.018044 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.224335 seconds.
-  path: Assets/Scenes/ZachTestScene(Title).unity
-  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ZachTestScene(Title).unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36a18c1ac0d8c6455821d50476d7490d') in 0.004160 seconds 
-  Import took 0.007682 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 40.500268 seconds.
-  path: Assets/Scripts/UIScripts/TitleScreen.cs
-  artifactKey: Guid(93ee77b711646f94bb87536aa14cf939) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/UIScripts/TitleScreen.cs using Guid(93ee77b711646f94bb87536aa14cf939) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4fe0816d9947c53a65ef054bc6887a7') in 0.002932 seconds 
-  Import took 0.006122 seconds .
-

@@ -13,6 +13,11 @@ using TMPro;
 */
 public class UITest : MonoBehaviour
 {
+    //FOR MOUSE INPUT//
+    [SerializeField] float sensitivityX = 8f;
+    [SerializeField] float sensitivityY = 0.5f;
+    float mouseX, mouseY;
+
     //REFERENCE TO TINA'S GUN SCRIPT//
     public Gun gunReference;
 
@@ -80,9 +85,22 @@ public class UITest : MonoBehaviour
         }
     }
 
+    //FOR MOUSE INPUT//
+    public void ReceiveInput(Vector2 mouseInput)
+    {
+        mouseX = mouseInput.x * sensitivityX;
+        mouseY = mouseInput.y * sensitivityY;
+    }
+
     // Update is called once per frame
     void Update()
     {
+    }
+
+    //Reference to Input Manager
+    public void OnSelect()
+    {
+        
     }
 
     //This method gets called when a player shoots a bullet, called from the PlayerControllerScript

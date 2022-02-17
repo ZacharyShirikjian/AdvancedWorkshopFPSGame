@@ -181,14 +181,30 @@ public class @Controls : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Menus"",
-            ""id"": ""711b9304-1ec0-429f-aaee-87705e895f3e"",
+            ""name"": ""MainMenu"",
+            ""id"": ""36599a95-ae51-4cff-8fa4-238308b5ff2b"",
             ""actions"": [
                 {
                     ""name"": ""Select"",
                     ""type"": ""Button"",
-                    ""id"": ""34b0c48b-a913-4842-a7b0-216a5452274c"",
+                    ""id"": ""bd9bd0e1-a0b6-421c-80d3-484d064c43f7"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseX"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0248dd60-f612-493c-b8fb-b824f1217ae9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseY"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f8116ce0-b93f-48ff-8cc2-2cee748f04ac"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -196,12 +212,34 @@ public class @Controls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""71225fb0-1775-44b1-bbd5-3d17f85dc1e0"",
+                    ""id"": ""b6c7a4f5-0722-4642-ab3c-4b85cd5658eb"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b32354c-bf16-4860-8bf2-ecccf8f60691"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ffe118b-bc95-4ad0-b027-b70fe0c5f7bd"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -218,9 +256,11 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Movement_MouseY = m_Movement.FindAction("MouseY", throwIfNotFound: true);
         m_Movement_Shoot = m_Movement.FindAction("Shoot", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
-        // Menus
-        m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
-        m_Menus_Select = m_Menus.FindAction("Select", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_Select = m_MainMenu.FindAction("Select", throwIfNotFound: true);
+        m_MainMenu_MouseX = m_MainMenu.FindAction("MouseX", throwIfNotFound: true);
+        m_MainMenu_MouseY = m_MainMenu.FindAction("MouseY", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -340,38 +380,54 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public MovementActions @Movement => new MovementActions(this);
 
-    // Menus
-    private readonly InputActionMap m_Menus;
-    private IMenusActions m_MenusActionsCallbackInterface;
-    private readonly InputAction m_Menus_Select;
-    public struct MenusActions
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private IMainMenuActions m_MainMenuActionsCallbackInterface;
+    private readonly InputAction m_MainMenu_Select;
+    private readonly InputAction m_MainMenu_MouseX;
+    private readonly InputAction m_MainMenu_MouseY;
+    public struct MainMenuActions
     {
         private @Controls m_Wrapper;
-        public MenusActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Select => m_Wrapper.m_Menus_Select;
-        public InputActionMap Get() { return m_Wrapper.m_Menus; }
+        public MainMenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select => m_Wrapper.m_MainMenu_Select;
+        public InputAction @MouseX => m_Wrapper.m_MainMenu_MouseX;
+        public InputAction @MouseY => m_Wrapper.m_MainMenu_MouseY;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MenusActions set) { return set.Get(); }
-        public void SetCallbacks(IMenusActions instance)
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMainMenuActions instance)
         {
-            if (m_Wrapper.m_MenusActionsCallbackInterface != null)
+            if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
             {
-                @Select.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnSelect;
-                @Select.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnSelect;
-                @Select.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnSelect;
+                @Select.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnSelect;
+                @MouseX.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnMouseX;
+                @MouseX.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnMouseX;
+                @MouseX.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnMouseX;
+                @MouseY.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnMouseY;
+                @MouseY.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnMouseY;
+                @MouseY.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnMouseY;
             }
-            m_Wrapper.m_MenusActionsCallbackInterface = instance;
+            m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @MouseX.started += instance.OnMouseX;
+                @MouseX.performed += instance.OnMouseX;
+                @MouseX.canceled += instance.OnMouseX;
+                @MouseY.started += instance.OnMouseY;
+                @MouseY.performed += instance.OnMouseY;
+                @MouseY.canceled += instance.OnMouseY;
             }
         }
     }
-    public MenusActions @Menus => new MenusActions(this);
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -381,8 +437,10 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
     }
-    public interface IMenusActions
+    public interface IMainMenuActions
     {
         void OnSelect(InputAction.CallbackContext context);
+        void OnMouseX(InputAction.CallbackContext context);
+        void OnMouseY(InputAction.CallbackContext context);
     }
 }

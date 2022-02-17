@@ -13,11 +13,6 @@ using TMPro;
 */
 public class UITest : MonoBehaviour
 {
-    //FOR MOUSE INPUT//
-    [SerializeField] float sensitivityX = 8f;
-    [SerializeField] float sensitivityY = 0.5f;
-    float mouseX, mouseY;
-
     //REFERENCE TO TINA'S GUN SCRIPT//
     public Gun gunReference;
 
@@ -32,6 +27,9 @@ public class UITest : MonoBehaviour
         //Reference to Game Over UI Text
         public TextMeshProUGUI curStateText;
 
+        //Reference to the InteractPrompt Text
+        public TextMeshProUGUI interactPromptText;
+
         //Reference to the Bullets GameObject
         public GameObject BulletObject;
 
@@ -42,8 +40,12 @@ public class UITest : MonoBehaviour
         public GameObject pausePanel;
 
     //VARIABLES//
-    //Checks if Game Over is true, if true enemies can't track player anymore
-    public bool gameOver = false;
+        //Checks if Game Over is true, if true enemies can't track player anymore
+        public bool gameOver = false;
+
+        //Checks if game is paused 
+        public bool paused = false;
+
     //HEALTH//
         //The current health which the player has
         [SerializeField] private float curHealth;
@@ -76,6 +78,7 @@ public class UITest : MonoBehaviour
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
         curStateText.SetText("");
+        interactPromptText.SetText("");
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
         gameOver = false;
@@ -85,24 +88,52 @@ public class UITest : MonoBehaviour
         }
     }
 
-    //FOR MOUSE INPUT//
-    public void ReceiveInput(Vector2 mouseInput)
-    {
-        mouseX = mouseInput.x * sensitivityX;
-        mouseY = mouseInput.y * sensitivityY;
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //For Pausing
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(paused)
+            {
+                UnPauseGame();
+            }
+
+            else if(!paused)
+            {
+                PauseGame();
+            }
+        }
     }
 
-    //Reference to Input Manager
-    public void OnSelect()
+    //For Pausing/Unpausing Game
+    public void PauseGame()
     {
-        
+        paused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
+        paused = false;
+        pausePanel.SetActive(false);
+    }
+
+    //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
+    public void UpdateInteractPromptUI(string prompt)
+    {
+        if(prompt != "")
+        {
+            interactPromptText.SetText("Press [SPACE] to " + prompt.ToString());
+        }
+
+        else
+        {
+            interactPromptText.SetText("");
+        }
+    }
     //This method gets called when a player shoots a bullet, called from the PlayerControllerScript
 
     public void UpdateAmmoUI()

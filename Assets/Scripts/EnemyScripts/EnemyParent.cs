@@ -40,8 +40,8 @@ public class EnemyParent : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-           // PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-           // playerController.TakeDamage(dmg);
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            playerController.TakeDamage(dmg);
         }
     }
 

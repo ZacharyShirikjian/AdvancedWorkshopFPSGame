@@ -39,9 +39,12 @@ public class UITest : MonoBehaviour
         //Reference to the Pause Menu panel (used for pausing/Game Over)
         public GameObject pausePanel;
 
+    //REFERENCE TO JUKEBOX MENU PANEL
+    [SerializeField] private GameObject jukeboxMenu;
+
     //VARIABLES//
-        //Checks if Game Over is true, if true enemies can't track player anymore
-        public bool gameOver = false;
+    //Checks if Game Over is true, if true enemies can't track player anymore
+    public bool gameOver = false;
 
         //Checks if game is paused 
         public bool paused = false;
@@ -81,6 +84,7 @@ public class UITest : MonoBehaviour
         interactPromptText.SetText("");
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
+        jukeboxMenu.SetActive(false);
         gameOver = false;
         for(int i = 0; i < 6; i++)
         {
@@ -120,6 +124,20 @@ public class UITest : MonoBehaviour
         paused = false;
         pausePanel.SetActive(false);
     }
+
+    //FOR JUKEBOX UI//
+    public void JukeboxUI()
+    {
+        jukeboxMenu.SetActive(true);
+        //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
+    }
+
+    //TEMP? method; closes out jukebox menu after a second
+    public void closeJukeboxUI()
+    {
+        jukeboxMenu.SetActive(false);
+    }
+
 
     //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)

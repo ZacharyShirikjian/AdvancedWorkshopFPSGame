@@ -8,6 +8,9 @@ public class PlayerInteract : MonoBehaviour
     public GameObject currentInteractable = null;
     public TestInteractableScript interactableScript = null;
 
+    public GameObject curJukebox = null;
+    public JukeboxScript curJukeboxScript = null;
+
     public bool canInteract;
 
     //Reference to UI
@@ -28,6 +31,15 @@ public class PlayerInteract : MonoBehaviour
             canInteract = false;
             interactableScript.interactedBefore = true;
             //currentInteractable.GetComponent<TestInteractableScript>().enabled = true;
+            uiRef.UpdateInteractPromptUI("");
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Space) && curJukebox && canInteract == true)
+        {
+            canInteract = false;
+            curJukeboxScript.interactedBefore = true;
+            curJukeboxScript.enabled = true;
+            uiRef.JukeboxUI();
             uiRef.UpdateInteractPromptUI("");
         }
     }

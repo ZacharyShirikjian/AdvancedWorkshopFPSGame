@@ -65,6 +65,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""19e2fff6-701a-45a5-b255-4e24300b6e6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,6 +185,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f25a776b-43f3-42f3-a80a-c9fef61b022d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -218,6 +237,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Movement_MouseY = m_Movement.FindAction("MouseY", throwIfNotFound: true);
         m_Movement_Shoot = m_Movement.FindAction("Shoot", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
+        m_Movement_Reload = m_Movement.FindAction("Reload", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Select = m_Menus.FindAction("Select", throwIfNotFound: true);
@@ -276,6 +296,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Movement_MouseY;
     private readonly InputAction m_Movement_Shoot;
     private readonly InputAction m_Movement_Crouch;
+    private readonly InputAction m_Movement_Reload;
     public struct MovementActions
     {
         private @Controls m_Wrapper;
@@ -286,6 +307,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MouseY => m_Wrapper.m_Movement_MouseY;
         public InputAction @Shoot => m_Wrapper.m_Movement_Shoot;
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
+        public InputAction @Reload => m_Wrapper.m_Movement_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,6 +335,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Crouch.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnCrouch;
+                @Reload.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -335,6 +360,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -380,6 +408,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMouseY(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

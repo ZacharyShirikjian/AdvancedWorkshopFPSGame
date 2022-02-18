@@ -7,68 +7,112 @@ public class PlayerController : MonoBehaviour
 #pragma warning disable 649
 
     public float health;
-
     public float maxHealth;
 
+    public Camera playerCam;
     [SerializeField] CharacterController controller;
     [SerializeField] float speed = 11f;
     Vector2 inputVector;
 
-    //[SerializeField] float jumpHeight = 3.5f;
+    //public bool isGrounded; //holds variable for if player is collided on ground object
+    public bool shoot;      //holds bool for shoot mechanic, if left click is pressed
+    public bool crouch;     //holds bool for crouch
+    public bool reload;     //holds bool for reload state
 
-    //public bool jump;
-    public bool shoot;
-    public bool crouch;
+    public Vector3 standPosition;
+    public Vector3 crouchPosition;
+    public float crouchHeight = 1.5f;
+    public float standHeight = 3.0f;
+    public float smooth = 5.0f;
 
-    [SerializeField] float gravity = -30f;
-    Vector3 verticalVelocity = Vector3.zero;
-    [SerializeField] LayerMask groundMask;
+    //[SerializeField] float gravity = -30f;
+    //Vector3 verticalVelocity = Vector3.zero;
+    //[SerializeField] LayerMask groundMask;
 
-    public bool isGrounded;
+    public RaycastShoot rayShoot;
+    private float nextFire;
+    public float fireRate = 0.25f;      //how often the gun can shoot
+    public float ammo = 6;
+    public GameObject gun;
 
-    private void Update()
+    public void Awake()
     {
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
+        rayShoot = GetComponentInChildren<RaycastShoot>();
+        controller.height = standHeight;
+    }
 
 
-        //if (isGrounded)
-        //{
-        //    verticalVelocity.y = 0;
-        //}
+    public void Update()
+    {
 
-        //if (jump)
-        //{
-        //    Debug.Log("jumped");
-        //    if (isGrounded)
-        //    {
-        //        verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
-        //    }
-        //    jump = false;
-        //}
+        //check if player is on a "ground" tagged object
+        //isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
 
-        if (shoot)
+        if (shoot && Time.time > nextFire && ammo > 0)
         {
+
+            ammo--;
+
+            // Update the time when our player can fire next
+            nextFire = Time.time + fireRate;
+            rayShoot.Shoot();
+
+
+            //play audio here
+            //include animation
+
+            shoot = false;
+            
             Debug.Log("pew pew");
+            
         }
 
         if (crouch)
         {
             Debug.Log("Crouch activated");
+
+            controller.height = crouchHeight;
+
+            crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
+
+            playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
+
         }
+        else if (!crouch)
+        {
+            controller.height = standHeight;
+
+            standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
+            
+            playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
+        }
+  
 
 
+        //FIXME:: lineRenderer activates when reloading
+        
+        if (reload)
+        {
+            //play animation here
+            //add audio
+            shoot = false;
+
+            ammo = 6;
+
+            reload = false;
+
+        }
 
         Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;
         controller.Move(horzVel * Time.deltaTime);
 
-        verticalVelocity.y += gravity * Time.deltaTime;
-        controller.Move(verticalVelocity * Time.deltaTime);
+        //verticalVelocity.y += gravity * Time.deltaTime;
+        //controller.Move(verticalVelocity * Time.deltaTime);
     }
 
     public void ReceiveInput(Vector2 _groundMovement)
     {
-        inputVector = _groundMovement;
-        
+        inputVector = _groundMovement;   
     }
 
 
@@ -79,9 +123,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnCrouchPressed()
     {
-        crouch = true;
+        if (!crouch)
+        {
+            crouch = true;
+        }
+        else
+        {
+            crouch = false;
+        }
     }
 
+
+    public void OnReloadPressed()
+    {
+        reload = true;
+    }
 
     public void TakeDamage(float dmg)
     {
@@ -95,7 +151,6 @@ public class PlayerController : MonoBehaviour
         {
             health = 0;
         }
-
 
     }
 

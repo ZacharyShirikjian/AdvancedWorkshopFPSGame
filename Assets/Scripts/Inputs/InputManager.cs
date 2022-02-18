@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
         movement.Move.performed += ctx => inputVector = ctx.ReadValue<Vector2>();
         movement.Crouch.performed += _ => playCon.OnCrouchPressed();
         movement.Shoot.performed += _ => playCon.OnShootPressed();
+        movement.Reload.performed += _ => playCon.OnReloadPressed();
 
 
         //movement.Jump.performed += _ => playCon.OnJumpPressed();

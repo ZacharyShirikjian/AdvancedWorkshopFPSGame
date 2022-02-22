@@ -226,6 +226,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""77223fdc-1b02-427b-9696-9b6cb9ff52d0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Adjust"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f778e95b-a27f-4c60-bf81-0677f3abb8ff"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MousePointer"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""458b9db2-84c1-4a16-ae48-5370f1fb1795"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -305,6 +329,39 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""885ecfbf-02c1-4d16-a028-e2755c19cfcb"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae54802d-296d-439f-ab85-9aa1c69455f1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Adjust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e91523ce-53d4-4b2f-9927-4f90b0b15784"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePointer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -325,6 +382,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menus_Select = m_Menus.FindAction("Select", throwIfNotFound: true);
         m_Menus_Navigate = m_Menus.FindAction("Navigate", throwIfNotFound: true);
         m_Menus_Pause = m_Menus.FindAction("Pause", throwIfNotFound: true);
+        m_Menus_Cancel = m_Menus.FindAction("Cancel", throwIfNotFound: true);
+        m_Menus_Adjust = m_Menus.FindAction("Adjust", throwIfNotFound: true);
+        m_Menus_MousePointer = m_Menus.FindAction("MousePointer", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -458,6 +518,9 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menus_Select;
     private readonly InputAction m_Menus_Navigate;
     private readonly InputAction m_Menus_Pause;
+    private readonly InputAction m_Menus_Cancel;
+    private readonly InputAction m_Menus_Adjust;
+    private readonly InputAction m_Menus_MousePointer;
     public struct MenusActions
     {
         private @Controls m_Wrapper;
@@ -465,6 +528,9 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_Menus_Select;
         public InputAction @Navigate => m_Wrapper.m_Menus_Navigate;
         public InputAction @Pause => m_Wrapper.m_Menus_Pause;
+        public InputAction @Cancel => m_Wrapper.m_Menus_Cancel;
+        public InputAction @Adjust => m_Wrapper.m_Menus_Adjust;
+        public InputAction @MousePointer => m_Wrapper.m_Menus_MousePointer;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -483,6 +549,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnPause;
+                @Cancel.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnCancel;
+                @Adjust.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnAdjust;
+                @Adjust.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnAdjust;
+                @Adjust.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnAdjust;
+                @MousePointer.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnMousePointer;
+                @MousePointer.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnMousePointer;
+                @MousePointer.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnMousePointer;
             }
             m_Wrapper.m_MenusActionsCallbackInterface = instance;
             if (instance != null)
@@ -496,6 +571,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+                @Adjust.started += instance.OnAdjust;
+                @Adjust.performed += instance.OnAdjust;
+                @Adjust.canceled += instance.OnAdjust;
+                @MousePointer.started += instance.OnMousePointer;
+                @MousePointer.performed += instance.OnMousePointer;
+                @MousePointer.canceled += instance.OnMousePointer;
             }
         }
     }
@@ -515,5 +599,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnAdjust(InputAction.CallbackContext context);
+        void OnMousePointer(InputAction.CallbackContext context);
     }
 }

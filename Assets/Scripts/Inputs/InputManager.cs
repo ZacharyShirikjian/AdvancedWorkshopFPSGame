@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     Controls.MenusActions menu;
     [SerializeField] PlayerController playCon;
     [SerializeField] MouseLook mouseLook;
+    [SerializeField] UITest uiScript;
 
     Vector2 inputVector;
     Vector2 mouseInput;
@@ -24,17 +25,30 @@ public class InputManager : MonoBehaviour
         movement.Shoot.performed += _ => playCon.OnShootPressed();
         movement.Reload.performed += _ => playCon.OnReloadPressed();
 
+        menu.Pause.performed += ctx => PauseGame();
+
 
         //movement.Jump.performed += _ => playCon.OnJumpPressed();
 
         movement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+
+        //MENU//
+        menu.Select.performed += _ => uiScript.OnSelectPressed();
+        //menu.Pause.performed += _ => uiScript.OnPausePressed();
+
     }
 
     private void Update()
     {
         playCon.ReceiveInput(inputVector);
         mouseLook.ReceiveInput(mouseInput);
+        uiScript.ReceiveInput();
+    }
+
+    void PauseGame()
+    {
+
     }
 
     private void OnEnable()

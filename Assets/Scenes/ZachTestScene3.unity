@@ -1417,6 +1417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 390495943}
   - component: {fileID: 390495942}
+  - component: {fileID: 390495947}
   - component: {fileID: 390495941}
   - component: {fileID: 390495945}
   - component: {fileID: 390495944}
@@ -1526,6 +1527,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 68
   m_CollisionDetection: 0
+--- !u!114 &390495947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390495940}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9911ecf0101b4d742b479c814009a3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  maxHealth: 30
+  playerCam: {fileID: 963194227}
+  controller: {fileID: 390495941}
+  speed: 11
+  shoot: 0
+  crouch: 0
+  reload: 0
+  standPosition: {x: 0, y: 0, z: 0}
+  crouchPosition: {x: 0, y: 0, z: 0}
+  crouchHeight: 1.5
+  standHeight: 3
+  smooth: 5
+  rayShoot: {fileID: 0}
+  fireRate: 0.25
+  ammo: 6
+  gun: {fileID: 773794725}
 --- !u!1 &403683215
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,7 +3448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1183172773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5297,9 +5327,11 @@ MonoBehaviour:
   - {fileID: 310889810}
   - {fileID: 499146907}
   pausePanel: {fileID: 1987474414}
-  jukeboxMenu: {fileID: 0}
+  jukeboxMenu: {fileID: 1183172772}
   gameOver: 0
   paused: 0
+  selected: 0
+  pausePress: 0
   curHealth: 1
   maxHealth: 1
   curBullets: 0

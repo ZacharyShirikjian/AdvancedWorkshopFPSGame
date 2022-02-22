@@ -49,6 +49,11 @@ public class UITest : MonoBehaviour
         //Checks if game is paused 
         public bool paused = false;
 
+    //FOR NEW INPUT SYSTEM TEST
+    public bool selected;
+    public bool pausePress;
+
+
     //HEALTH//
         //The current health which the player has
         [SerializeField] private float curHealth;
@@ -96,7 +101,7 @@ public class UITest : MonoBehaviour
     void Update()
     {
         //For Pausing
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(pausePress)
         {
             if(paused)
             {
@@ -108,6 +113,23 @@ public class UITest : MonoBehaviour
                 PauseGame();
             }
         }
+    }
+
+    //FOR NEW INPUT SYSTEM SELECT//
+    public void OnSelectPressed()
+    {
+        selected = true;
+    }
+
+    //FOR NEW INPUT SYSTEM PAUSE//
+    public void OnPausePressed()
+    {
+        pausePress = true;
+    }
+
+    public void ReceiveInput()
+    {
+
     }
 
     //For Pausing/Unpausing Game

@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
 
+            gun.transform.position = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
+
         }
         else if (!crouch)
         {
@@ -85,6 +87,8 @@ public class PlayerController : MonoBehaviour
             standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
             
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
+
+            gun.transform.position = new Vector3(gun.transform.position.x, 1.5f, gun.transform.position.z);
         }
   
 

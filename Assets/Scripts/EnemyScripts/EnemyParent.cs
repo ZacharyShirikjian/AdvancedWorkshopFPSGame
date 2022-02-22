@@ -6,15 +6,18 @@ using UnityEngine.AI;
 public class EnemyParent : MonoBehaviour
 {
     //both variables set by child classes
-    public float health;
+    public float health = 2;
     public float dmg;
 
     public GameObject player;
+
+    private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

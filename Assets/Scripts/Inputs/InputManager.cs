@@ -7,12 +7,19 @@ public class InputManager : MonoBehaviour
     Controls controls;
     Controls.MovementActions movement;
     Controls.MenusActions menu;
-    [SerializeField] PlayerController playCon;
-    [SerializeField] MouseLook mouseLook;
-    [SerializeField] UITest uiScript;
+    private PlayerController playCon;
+    private MouseLook mouseLook;
+    private UITest uiScript;
 
     Vector2 inputVector;
     Vector2 mouseInput;
+
+    private void Start()
+    {
+        playCon = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
+        mouseLook = GameObject.Find("PlayerObject").GetComponentInChildren<MouseLook>();
+        uiScript = this.gameObject.GetComponent<UITest>();
+    }
 
     private void Awake()
     {
@@ -25,8 +32,6 @@ public class InputManager : MonoBehaviour
         movement.Shoot.performed += _ => playCon.OnShootPressed();
         movement.Reload.performed += _ => playCon.OnReloadPressed();
 
-        menu.Pause.performed += ctx => PauseGame();
-
 
         //movement.Jump.performed += _ => playCon.OnJumpPressed();
 
@@ -34,8 +39,8 @@ public class InputManager : MonoBehaviour
         movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
 
         //MENU//
-        menu.Select.performed += _ => uiScript.OnSelectPressed();
-        //menu.Pause.performed += _ => uiScript.OnPausePressed();
+        //menu.Select.performed += _ => uiScript.OnSelectPressed();
+        menu.Pause.performed += _ => uiScript.PauseGame();
 
     }
 
@@ -43,13 +48,7 @@ public class InputManager : MonoBehaviour
     {
         playCon.ReceiveInput(inputVector);
         mouseLook.ReceiveInput(mouseInput);
-        uiScript.ReceiveInput();
-    }
-
-    void PauseGame()
-    {
-        Debug.Log("PAUSED");
-        uiScript.PauseGame();
+        //uiScript.ReceiveInput();
     }
 
     private void OnEnable()

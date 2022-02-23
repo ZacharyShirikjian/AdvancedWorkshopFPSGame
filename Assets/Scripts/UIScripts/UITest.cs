@@ -47,8 +47,8 @@ public class UITest : MonoBehaviour
     //Checks if Game Over is true, if true enemies can't track player anymore
     public bool gameOver = false;
 
-        //Checks if game is paused 
-        public bool paused = false;
+    //Checks if game is paused 
+    public bool paused;
 
     //FOR NEW INPUT SYSTEM TEST
     public bool selected;
@@ -92,6 +92,7 @@ public class UITest : MonoBehaviour
         pausePanel.SetActive(false);
         jukeboxMenu.SetActive(false);
         gameOver = false;
+        paused = false; 
         for(int i = 0; i < 6; i++)
         {
             Bullets[i].GetComponentInChildren<Image>().enabled = true;
@@ -101,31 +102,22 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //For Pausing
-        if(pausePress)
-        {
-            if(paused)
-            {
-                UnPauseGame();
-            }
+        //////For Pausing
+        //if (!paused)
+        //{
+        //    PauseGame();
+        //}
 
-            else if(!paused)
-            {
-                PauseGame();
-            }
-        }
+        //else if (paused)
+        //{
+        //    UnPauseGame();
+        //}
     }
 
     //FOR NEW INPUT SYSTEM SELECT//
     public void OnSelectPressed()
     {
         selected = true;
-    }
-
-    //FOR NEW INPUT SYSTEM PAUSE//
-    public void OnPausePressed()
-    {
-        pausePress = true;
     }
 
     public void ReceiveInput()
@@ -136,17 +128,27 @@ public class UITest : MonoBehaviour
     //For Pausing/Unpausing Game
     public void PauseGame()
     {
-        paused = true;
-        pausePanel.SetActive(true);
-        Time.timeScale = 0f;
+        if(paused)
+        {
+            Time.timeScale = 1f;
+            paused = false;
+            pausePanel.SetActive(false);
+        }
+        else if(!paused)
+        {
+            Debug.Log("testestets");
+            //pausePress = true;
+            paused = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
     }
 
-    public void UnPauseGame()
-    {
-        Time.timeScale = 1f;
-        paused = false;
-        pausePanel.SetActive(false);
-    }
+    //public void UnPauseGame()
+    //{
+
+    //}
 
     //FOR JUKEBOX UI//
     public void JukeboxUI()

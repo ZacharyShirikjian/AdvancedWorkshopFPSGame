@@ -25,7 +25,7 @@ public class TitleScreen : MonoBehaviour
     private GameObject creditsPanel;
 
     //REFERENCE TO OPTIONS PANEL IN SCENE//
-    private GameObject optionsPanel;
+    //private GameObject optionsPanel;
 
     //REFERENCE TO THE "PRESS ANY BUTTON TO START" TEXT
     [SerializeField] private TextMeshProUGUI promptText;
@@ -40,9 +40,9 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         creditsPanel = GameObject.Find("CreditsPanel");
-        optionsPanel = GameObject.Find("OptionsPanel");
+        //optionsPanel = GameObject.Find("OptionsPanel");
         creditsPanel.SetActive(false);
-        optionsPanel.SetActive(false);
+        //optionsPanel.SetActive(false);
         buttonPressed = false;
         promptText.SetText("Press Any Button");
         Buttons.SetActive(false);
@@ -90,20 +90,20 @@ public class TitleScreen : MonoBehaviour
         Buttons.SetActive(true);
     }
 
-    //This method is used for opening up the Options Panel in the Title Screen.
-    //Temporarily hide the other menu elements, and bring them back once the Options Panel is closed.
-    public void OpenOptions()
-    {
-        optionsPanel.SetActive(true);
-        Buttons.SetActive(false);
-    }
+    ////This method is used for opening up the Options Panel in the Title Screen.
+    ////Temporarily hide the other menu elements, and bring them back once the Options Panel is closed.
+    //public void OpenOptions()
+    //{
+    //    optionsPanel.SetActive(true);
+    //    Buttons.SetActive(false);
+    //}
 
-    //Called when clicking on the Back/Close button on the Options panel when it's opened.
-    public void CloseOptions()
-    {
-        optionsPanel.SetActive(false);
-        Buttons.SetActive(true);
-    }
+    ////Called when clicking on the Back/Close button on the Options panel when it's opened.
+    //public void CloseOptions()
+    //{
+    //    optionsPanel.SetActive(false);
+    //    Buttons.SetActive(true);
+    //}
 
     //This method is used for loading the main scene of the game,
     //ZachTestScene3 (which may get changed later).

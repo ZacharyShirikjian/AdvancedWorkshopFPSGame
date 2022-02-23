@@ -41,6 +41,7 @@ public class InputManager : MonoBehaviour
         //MENU//
         //menu.Select.performed += _ => uiScript.OnSelectPressed();
         menu.Pause.performed += _ => uiScript.PauseGame();
+        //movement.Interact.performed += _ uiScript.OpenJukebox();
 
     }
 

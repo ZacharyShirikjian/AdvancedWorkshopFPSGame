@@ -25,7 +25,7 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //CHANGE TO NEW INPUT SYSTEM
         if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
         {
             canInteract = false;
@@ -33,27 +33,39 @@ public class PlayerInteract : MonoBehaviour
             //currentInteractable.GetComponent<TestInteractableScript>().enabled = true;
             uiRef.UpdateInteractPromptUI("");
         }
+    }
 
-        else if (Input.GetKeyDown(KeyCode.Space) && curJukebox && canInteract == true)
+    //CALLED W/ INPUT MANAGER TO INTERACT OR BRING UP JUKEBOX MENU/
+    public void Interact()
+    {
+        //FOR OTHER INTERACTABLES, ETC
+        if(canInteract && currentInteractable != null)
+        {
+
+        }
+
+        //FOR JUKEBOX MENU//
+        //Open up Jukebox Menu, disable player movement
+        else if(canInteract && curJukebox != null)
         {
             canInteract = false;
             curJukeboxScript.interactedBefore = true;
             curJukeboxScript.enabled = true;
             uiRef.JukeboxUI();
-            uiRef.UpdateInteractPromptUI("");
         }
     }
-
 
     //If player enters trigger zone of interactable object
     //Call UITest's InteractPrompt method,
     //And update that text to be what that interactable is
+
+    //RE USE SAME METHOD FOR INTERACTING W/ JUKEBOXES//
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Interactable"))
         {
             Debug.Log("test");
-            if(other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
+            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
             {
                 currentInteractable = other.gameObject;
                 interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
@@ -65,6 +77,25 @@ public class PlayerInteract : MonoBehaviour
             {
                 currentInteractable = other.gameObject;
                 interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                canInteract = false;
+            }
+        }
+
+        if (other.gameObject.CompareTag("Jukebox"))
+        {
+            Debug.Log("test");
+            if (other.gameObject.GetComponent<JukeboxScript>().interactedBefore == false)
+            {
+                curJukebox = other.gameObject;
+                curJukeboxScript = curJukebox.GetComponent<JukeboxScript>();
+                canInteract = true;
+                uiRef.UpdateInteractPromptUI("use Jukebox");
+            }
+
+            else if (other.gameObject.GetComponent<JukeboxScript>().interactedBefore == true)
+            {
+                curJukebox = other.gameObject;
+                curJukeboxScript = curJukebox.GetComponent<JukeboxScript>();
                 canInteract = false;
             }
         }
@@ -81,10 +112,21 @@ public class PlayerInteract : MonoBehaviour
         {
             canInteract = false;
             uiRef.UpdateInteractPromptUI("");
-            if(other.gameObject == currentInteractable)
+            if (other.gameObject == currentInteractable)
             {
                 currentInteractable = null;
                 interactableScript = null;
+            }
+        }
+
+        if (other.CompareTag("Jukebox"))
+        {
+            canInteract = false;
+            uiRef.UpdateInteractPromptUI("");
+            if (other.gameObject == curJukebox)
+            {
+                curJukebox = null;
+                curJukeboxScript = null;
             }
         }
     }

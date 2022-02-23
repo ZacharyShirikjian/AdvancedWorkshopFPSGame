@@ -73,6 +73,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""9280d652-38b9-426c-8254-566544878a42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -194,6 +202,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""290eeca4-8d4a-4d47-a169-4dc857ea612c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -396,6 +415,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Movement_Shoot = m_Movement.FindAction("Shoot", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
         m_Movement_Reload = m_Movement.FindAction("Reload", throwIfNotFound: true);
+        m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Select = m_Menus.FindAction("Select", throwIfNotFound: true);
@@ -461,6 +481,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Movement_Shoot;
     private readonly InputAction m_Movement_Crouch;
     private readonly InputAction m_Movement_Reload;
+    private readonly InputAction m_Movement_Interact;
     public struct MovementActions
     {
         private @Controls m_Wrapper;
@@ -472,6 +493,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Movement_Shoot;
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
         public InputAction @Reload => m_Wrapper.m_Movement_Reload;
+        public InputAction @Interact => m_Wrapper.m_Movement_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -502,6 +524,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Reload.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnReload;
+                @Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -527,6 +552,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -621,6 +649,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

@@ -52,7 +52,7 @@ public class UITest : MonoBehaviour
 
     //FOR NEW INPUT SYSTEM TEST
     public bool selected;
-    public bool pausePress;
+    public bool jukeboxOpen;
 
 
     //HEALTH//
@@ -92,8 +92,9 @@ public class UITest : MonoBehaviour
         pausePanel.SetActive(false);
         jukeboxMenu.SetActive(false);
         gameOver = false;
-        paused = false; 
-        for(int i = 0; i < 6; i++)
+        paused = false;
+        jukeboxOpen = false;
+        for (int i = 0; i < 6; i++)
         {
             Bullets[i].GetComponentInChildren<Image>().enabled = true;
         }
@@ -145,15 +146,14 @@ public class UITest : MonoBehaviour
 
     }
 
-    //public void UnPauseGame()
-    //{
-
-    //}
-
     //FOR JUKEBOX UI//
     public void JukeboxUI()
     {
+        if(jukeboxOpen)
+        UpdateInteractPromptUI("");
         jukeboxMenu.SetActive(true);
+        Time.timeScale = 0f;
+        playerRef.enabled = false;
         //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
     }
 

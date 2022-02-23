@@ -35,10 +35,14 @@ public class PlayerController : MonoBehaviour
     public float ammo = 6;
     public GameObject gun;
 
+    //REFERENCE TO UI SCRIPT//
+    private UITest uiRef;
+
     public void Awake()
     {
         rayShoot = GetComponentInChildren<RaycastShoot>();
         controller.height = standHeight;
+        uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
     }
 
 
@@ -64,6 +68,9 @@ public class PlayerController : MonoBehaviour
             shoot = false;
             
             Debug.Log("pew pew");
+
+            //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
+            uiRef.UpdateAmmoUI();
             
         }
 
@@ -104,6 +111,9 @@ public class PlayerController : MonoBehaviour
             ammo = 6;
 
             reload = false;
+
+            //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
+            uiRef.Reload();
 
         }
 

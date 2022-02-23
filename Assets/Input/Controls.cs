@@ -236,18 +236,26 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Adjust"",
+                    ""name"": ""Point"",
                     ""type"": ""PassThrough"",
                     ""id"": ""f778e95b-a27f-4c60-bf81-0677f3abb8ff"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""MousePointer"",
+                    ""name"": ""LeftClick"",
                     ""type"": ""PassThrough"",
                     ""id"": ""458b9db2-84c1-4a16-ae48-5370f1fb1795"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""13448640-9b67-42f1-89ee-987c2297e3e3"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -344,22 +352,33 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ae54802d-296d-439f-ab85-9aa1c69455f1"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Adjust"",
+                    ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""e91523ce-53d4-4b2f-9927-4f90b0b15784"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MousePointer"",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15e18e44-eb63-4dce-8096-f729ce546769"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -383,8 +402,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menus_Navigate = m_Menus.FindAction("Navigate", throwIfNotFound: true);
         m_Menus_Pause = m_Menus.FindAction("Pause", throwIfNotFound: true);
         m_Menus_Cancel = m_Menus.FindAction("Cancel", throwIfNotFound: true);
-        m_Menus_Adjust = m_Menus.FindAction("Adjust", throwIfNotFound: true);
-        m_Menus_MousePointer = m_Menus.FindAction("MousePointer", throwIfNotFound: true);
+        m_Menus_Point = m_Menus.FindAction("Point", throwIfNotFound: true);
+        m_Menus_LeftClick = m_Menus.FindAction("LeftClick", throwIfNotFound: true);
+        m_Menus_ScrollWheel = m_Menus.FindAction("ScrollWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -519,8 +539,9 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menus_Navigate;
     private readonly InputAction m_Menus_Pause;
     private readonly InputAction m_Menus_Cancel;
-    private readonly InputAction m_Menus_Adjust;
-    private readonly InputAction m_Menus_MousePointer;
+    private readonly InputAction m_Menus_Point;
+    private readonly InputAction m_Menus_LeftClick;
+    private readonly InputAction m_Menus_ScrollWheel;
     public struct MenusActions
     {
         private @Controls m_Wrapper;
@@ -529,8 +550,9 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Navigate => m_Wrapper.m_Menus_Navigate;
         public InputAction @Pause => m_Wrapper.m_Menus_Pause;
         public InputAction @Cancel => m_Wrapper.m_Menus_Cancel;
-        public InputAction @Adjust => m_Wrapper.m_Menus_Adjust;
-        public InputAction @MousePointer => m_Wrapper.m_Menus_MousePointer;
+        public InputAction @Point => m_Wrapper.m_Menus_Point;
+        public InputAction @LeftClick => m_Wrapper.m_Menus_LeftClick;
+        public InputAction @ScrollWheel => m_Wrapper.m_Menus_ScrollWheel;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -552,12 +574,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Cancel.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnCancel;
-                @Adjust.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnAdjust;
-                @Adjust.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnAdjust;
-                @Adjust.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnAdjust;
-                @MousePointer.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnMousePointer;
-                @MousePointer.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnMousePointer;
-                @MousePointer.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnMousePointer;
+                @Point.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnPoint;
+                @LeftClick.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnLeftClick;
+                @LeftClick.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnLeftClick;
+                @LeftClick.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnLeftClick;
+                @ScrollWheel.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnScrollWheel;
             }
             m_Wrapper.m_MenusActionsCallbackInterface = instance;
             if (instance != null)
@@ -574,12 +599,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
-                @Adjust.started += instance.OnAdjust;
-                @Adjust.performed += instance.OnAdjust;
-                @Adjust.canceled += instance.OnAdjust;
-                @MousePointer.started += instance.OnMousePointer;
-                @MousePointer.performed += instance.OnMousePointer;
-                @MousePointer.canceled += instance.OnMousePointer;
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
+                @LeftClick.started += instance.OnLeftClick;
+                @LeftClick.performed += instance.OnLeftClick;
+                @LeftClick.canceled += instance.OnLeftClick;
+                @ScrollWheel.started += instance.OnScrollWheel;
+                @ScrollWheel.performed += instance.OnScrollWheel;
+                @ScrollWheel.canceled += instance.OnScrollWheel;
             }
         }
     }
@@ -600,7 +628,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnNavigate(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
-        void OnAdjust(InputAction.CallbackContext context);
-        void OnMousePointer(InputAction.CallbackContext context);
+        void OnPoint(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
     }
 }

@@ -223,18 +223,26 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Adjust",
+                    "name": "Point",
                     "type": "PassThrough",
                     "id": "f778e95b-a27f-4c60-bf81-0677f3abb8ff",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "MousePointer",
+                    "name": "LeftClick",
                     "type": "PassThrough",
                     "id": "458b9db2-84c1-4a16-ae48-5370f1fb1795",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ScrollWheel",
+                    "type": "PassThrough",
+                    "id": "13448640-9b67-42f1-89ee-987c2297e3e3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -331,22 +339,33 @@
                 {
                     "name": "",
                     "id": "ae54802d-296d-439f-ab85-9aa1c69455f1",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Adjust",
+                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "e91523ce-53d4-4b2f-9927-4f90b0b15784",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MousePointer",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15e18e44-eb63-4dce-8096-f729ce546769",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

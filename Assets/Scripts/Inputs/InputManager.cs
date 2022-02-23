@@ -48,7 +48,8 @@ public class InputManager : MonoBehaviour
 
     void PauseGame()
     {
-
+        Debug.Log("PAUSED");
+        uiScript.PauseGame();
     }
 
     private void OnEnable()

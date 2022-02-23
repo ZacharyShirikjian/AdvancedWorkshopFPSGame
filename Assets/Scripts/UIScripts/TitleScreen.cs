@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 /*
  * This script is used for the Title Screen, 
@@ -14,6 +16,11 @@ using UnityEngine.UI;
  */
 public class TitleScreen : MonoBehaviour
 {
+    public GameObject Canvas;
+    //GraphicRaycaster Raycaster;
+    //PointerEventData clickData;
+    //List<RaycastResult> clickResults;
+
     //REFERENCE TO CREDITS PANEL IN SCENE//
     private GameObject creditsPanel;
 
@@ -40,11 +47,14 @@ public class TitleScreen : MonoBehaviour
         promptText.SetText("Press Any Button");
         Buttons.SetActive(false);
 
+        //Raycaster = Canvas.GetComponent<GraphicRaycaster>();
+        //clickData = new Pointer(EventSystem.current);
     }
 
     //// Update is called once per frame
     void Update()
     {
+        //FIX THIS METHOD TO WORK W/ NEW INPUT SYSTEM LATER?
         //If you press any key, open up the options buttons
         if(Input.anyKeyDown && buttonPressed == false)
         {
@@ -53,7 +63,17 @@ public class TitleScreen : MonoBehaviour
             buttonPressed = true;
         }
 
+        //if(Mouse.current.leftButton.wasReleasedThisFrame)
+        //{
+        //    GetUIElementsClicked();
+        //}
+
     }
+
+    //void GetUIElementsClicked()
+    //{
+
+    //}
 
     //This method is used for opening up the Credits Panel in the Title Screen.
     //Temporarily hide the other menu elements, and bring them back once the Credits Panel is closed.

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 //Script used to handle the jukebox
-public class JukeboxScript : MonoBehaviour
+public class JukeboxScript : MonoBehaviour, ISelectHandler //required for OnSelect
 {
     //ALGORITHM//
     //Algorithm
@@ -25,6 +26,9 @@ public class JukeboxScript : MonoBehaviour
     //Checks if button has been selected or not, if true then press space to close out of jukebox menu
     public bool selected = false;
 
+    //ATTACHED TO EACH BUTTON IN JUKEBOX,ref to current button selected
+    public GameObject currentButton;
+
     [SerializeField] private TextMeshProUGUI jukeboxHeaderText;
     [SerializeField] private TextMeshProUGUI selectPromptText;
 
@@ -37,6 +41,9 @@ public class JukeboxScript : MonoBehaviour
     //REFERNECE TO PLAYER
     private PlayerController playRef;
 
+    //LIST OF BUTTONS//
+    public GameObject[] jukeboxButtons = new GameObject[4];
+
     void Start()
     {
         playRef = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
@@ -46,16 +53,40 @@ public class JukeboxScript : MonoBehaviour
         selectPromptText.SetText("SELECT");
         canvasGroup = GameObject.Find("JukeboxMenu").GetComponent<CanvasGroup>();
         canvasGroup.interactable = true;
+        currentButton = null;
     }
 
     private void Update()
     {
     }
 
+    //FOR WHEN A BUTTON IN JUKEBOX MENU IS SELECTED
+    public void OnSelect(BaseEventData eventdata)
+    {
+        currentButton = EventSystem.current.currentSelectedGameObject;
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        currentButton = eventdata.selectedObject;
+        Debug.Log(currentButton);
+        //DISABLE EVERY OTHER BUTTON THAT IS NOT CURRENTLY SELECTED//
+        for (int i = 0; i < 4; i++)
+        {
+            if (jukeboxButtons[i] != currentButton)
+            {
+                jukeboxButtons[i].GetComponent<Button>().interactable = false;
+            }
+
+            else
+            {
+                jukeboxButtons[i].GetComponent<Button>().interactable = true;
+            }
+
+        }
+    }
+
     ///UPGRADES/REFILLS///
 
-        //CALL HEALTH PACK METHOD OF PLAYER TO HEAL PLAYER (VALUE TBD, LET'S SAY 50% FOR NOW)
-        public void HealPlayer()
+    //CALL HEALTH PACK METHOD OF PLAYER TO HEAL PLAYER (VALUE TBD, LET'S SAY 50% FOR NOW)
+    public void HealPlayer()
         {
             if(selected == true)
             {
@@ -133,6 +164,7 @@ public class JukeboxScript : MonoBehaviour
             jukeboxHeaderText.SetText("");
             selectPromptText.SetText("Is this ok?");
             selected = true;
+
         }
 
         else if (selected == true)

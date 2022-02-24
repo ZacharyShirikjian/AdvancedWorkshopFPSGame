@@ -115,11 +115,6 @@ public class UITest : MonoBehaviour
         healthSlider.value = healthSliderValue;
     }
 
-    //FOR CANCELING OUT AN OPTION
-    public void Cancel()
-    {
-
-    }
     //For Pausing/Unpausing Game
     public void PauseGame()
     {

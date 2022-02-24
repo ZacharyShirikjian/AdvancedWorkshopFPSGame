@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 //Script used to handle the jukebox
-public class JukeboxScript : MonoBehaviour, ISelectHandler //required for OnSelect
+public class JukeboxScript : MonoBehaviour //required for OnSelect
 {
     //ALGORITHM//
     //Algorithm
@@ -60,12 +60,25 @@ public class JukeboxScript : MonoBehaviour, ISelectHandler //required for OnSele
     {
     }
 
-    //FOR WHEN A BUTTON IN JUKEBOX MENU IS SELECTED
-    public void OnSelect(BaseEventData eventdata)
+    //FOR CANCELING OUT AN OPTION IN THE JUKEBOX
+    public void CancelOption()
     {
+        currentButton = null;
+        selected = false;
+        selectPromptText.SetText("SELECT");
+        jukeboxHeaderText.SetText("");
+        for (int i = 0; i < 4; i++)
+        {
+            jukeboxButtons[i].GetComponent<Button>().interactable = true;
+        }
+    }
+
+    //FOR WHEN A BUTTON IN JUKEBOX MENU IS SELECTED
+    public void DisableButtons()
+    {
+        //EventSystem.current.currentSelectedGameObject => currently selected button in the game scene
         currentButton = EventSystem.current.currentSelectedGameObject;
         Debug.Log(EventSystem.current.currentSelectedGameObject);
-        currentButton = eventdata.selectedObject;
         Debug.Log(currentButton);
         //DISABLE EVERY OTHER BUTTON THAT IS NOT CURRENTLY SELECTED//
         for (int i = 0; i < 4; i++)

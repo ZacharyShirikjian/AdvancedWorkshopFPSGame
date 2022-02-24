@@ -31,44 +31,117 @@ public class JukeboxScript : MonoBehaviour
     //Reference to Jukebox Panel
     private UITest uiRef;
 
-    ////Reference to Player
-    //[SerializeField] private ZachPlayerController playerControlRef;
+    //Reference to Canvas group to make all elements not interactable
+    private CanvasGroup canvasGroup;
 
+    //REFERNECE TO PLAYER
+    private PlayerController playRef;
 
     void Start()
     {
+        playRef = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
         interactedBefore = false;
         jukeboxHeaderText.SetText("");
-        selectPromptText.SetText("S E L E C T");
-        //playerControlRef = GameObject.FindWithTag("Player").GetComponent<ZachPlayerController>();
+        selectPromptText.SetText("SELECT");
+        canvasGroup = GameObject.Find("JukeboxMenu").GetComponent<CanvasGroup>();
+        canvasGroup.interactable = true;
     }
 
     private void Update()
     {
-        //If enter is pressed, disable all of the other buttons//
-        if(Input.GetKeyDown(KeyCode.Space) && selected == true)
-        {
-            selectPromptText.SetText("SELECTED");
-            //TO DO: ADD CHA-CHING SFX 
-            StartCoroutine(closeJukeboxMenu());
-        }
     }
+
+    ///UPGRADES/REFILLS///
+
+        //CALL HEALTH PACK METHOD OF PLAYER TO HEAL PLAYER (VALUE TBD, LET'S SAY 50% FOR NOW)
+        public void HealPlayer()
+        {
+            if(selected == true)
+            {
+                playRef.Heal(playRef.maxHealth / 2);
+                uiRef.UpdateHealthUI();
+                JukeboxButtonSelected();
+            }
+
+            else if(selected == false)
+            {
+                JukeboxButtonSelected();
+            }
+        }
+
+    //RELOAD 2 BULLETS (IF NOT AT 6 ALREADY)
+    public void ReloadAmmo()
+    {
+        if (selected == true)
+        {
+            playRef.ammo = playRef.ammo + 2;
+
+            //TO DO: CHANGE THIS WHEN RESERVE AMMO IS ADDED
+            if (playRef.ammo > 6)
+            {
+                playRef.ammo = 6;
+            }
+            uiRef.UpdateAmmoUI();
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+
+    }
+
+        //VALUES TO BE CHANGED/DECIDED LATER!!!
+        public void MaxHealthUp()
+        {
+            playRef.maxHealth += 10;
+            playRef.health += 5;
+        }
+
+        public void MaxAmmoUp()
+        {
+            playRef.ammo += 2;
+            uiRef.curBullets += 2;
+            uiRef.maxBullets += 2;
+        }
+
+
+    /// MODS//// (ADD LATER ONCE WE HAVE MODS)
 
     //This method gets called when jukebox is active & button in jukebox is pressed
     public void JukeboxButtonSelected()
     {
-        jukeboxHeaderText.SetText("");
-        selectPromptText.SetText("Is this ok?");
-        selected = true;
+
+        if (selected == false)
+        {
+            jukeboxHeaderText.SetText("");
+            selectPromptText.SetText("Is this ok?");
+            selected = true;
+        }
+
+        else if (selected == true)
+        {
+            selectPromptText.SetText("SELECTED");
+            //canvasGroup.interactable = false;
+            //TO DO: ADD CHA-CHING SFX 
+            Time.timeScale = 1f;
+            canvasGroup.interactable = false;
+            StartCoroutine(closeJukeboxMenu());
+        }
+
+
     }
 
     //Coroutine for closing out of jukebox menu after a second (temp)
     public IEnumerator closeJukeboxMenu()
     {
-        yield return new WaitForSeconds(2.0f);
-        //TO DO: FIND EVERY OTHER BUTTON THAT WASN'T SELECTED & SET INTERACTIVE = FALSE TO DISABLE THEM
-        uiRef.closeJukeboxUI();
+        yield return new WaitForSeconds(1.0f);
+        //DISABLE EVERY BUTTON IN THE JUKEBOX MENU TEMPORARILY//
+        uiRef.jukeboxOpen = false;
+        uiRef.JukeboxUI();
+        Debug.Log("Jukebox menu closing...");
     }
 
 }

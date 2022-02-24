@@ -14,11 +14,8 @@ using TMPro;
 */
 public class UITest : MonoBehaviour
 {
-    //REFERENCE TO TINA'S GUN SCRIPT//
-    public Gun gunReference;
-
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
-    public ZachPlayerController playerRef; 
+    private PlayerController playerRef; 
 
     //REFERENCES//
 
@@ -67,23 +64,29 @@ public class UITest : MonoBehaviour
 
     //AMMO//
         //The current amount of bullets which the player can shoot 
-        [SerializeField] private int curBullets;
+        [SerializeField] public int curBullets;
 
         //The maximum amount of bullets which the player can have in their cylinder,
         //Which decreases by 2 every time they reload their gun
-        [SerializeField] private int maxBullets;
+        [SerializeField] public int maxBullets;
         
         //Build index of the current scene (will be more important once more scenes are added)
        [SerializeField] private int curSceneIndex;
+
+    //Reference to reserve ammo (when players have > 6 bullets at a time) 
+    [SerializeField] public int extraBullets;
+    public TextMeshProUGUI extraAmmoUI;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
+        playerRef = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
-        curBullets = gunReference.ammo;
-        maxBullets = gunReference.ammo;
+        curBullets = (int) playerRef.ammo;
+        maxBullets = (int) playerRef.ammo;
+
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
         curStateText.SetText("");
@@ -98,32 +101,24 @@ public class UITest : MonoBehaviour
         {
             Bullets[i].GetComponentInChildren<Image>().enabled = true;
         }
+
+        extraAmmoUI.SetText("0");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //////For Pausing
-        //if (!paused)
-        //{
-        //    PauseGame();
-        //}
-
-        //else if (paused)
-        //{
-        //    UnPauseGame();
-        //}
+        curBullets = (int) playerRef.ammo;
+        //maxBullets = (int)playerRef.ammo; //TO DO: ADJUST SO THIS IS = TO MAX BULLETS IN PLAYER CONTROLLER
+        curHealth = playerRef.health;
+        healthSliderValue = curHealth;
+        healthSlider.value = healthSliderValue;
     }
 
     //FOR NEW INPUT SYSTEM SELECT//
     public void OnSelectPressed()
     {
         selected = true;
-    }
-
-    public void ReceiveInput()
-    {
-
     }
 
     //For Pausing/Unpausing Game
@@ -150,20 +145,22 @@ public class UITest : MonoBehaviour
     public void JukeboxUI()
     {
         if(jukeboxOpen)
-        UpdateInteractPromptUI("");
-        jukeboxMenu.SetActive(true);
-        Time.timeScale = 0f;
-        playerRef.enabled = false;
-        //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
+        {
+            UpdateInteractPromptUI("");
+            jukeboxMenu.SetActive(true);
+            Time.timeScale = 0f;
+            playerRef.enabled = false;
+            //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
+        }
+
+        //RENABLE PLAYER MOVEMENT ONCE JUKEBOX MENU IS CLOSED
+        else if(!jukeboxOpen)
+        {
+            jukeboxMenu.SetActive(false);
+            playerRef.enabled = true;
+        }
+
     }
-
-    //TEMP? method; closes out jukebox menu after a second
-    public void closeJukeboxUI()
-    {
-        jukeboxMenu.SetActive(false);
-    }
-
-
     //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)
     {
@@ -192,21 +189,32 @@ public class UITest : MonoBehaviour
             * The curStateText UI lets them know they've run out of ammo
         */
 
-        if (curBullets <= 0)
+        //IF JUKEBOX IS CLOSED OR PLAYER DIDN'T GET AMMO REFILL
+        if(!jukeboxOpen)
         {
-            curStateText.SetText("Out of Ammo");
+            if (curBullets <= 0)
+            {
+                curStateText.SetText("Out of Ammo");
+            }
+
+            else if (curBullets > 0)
+            {
+                curBullets--;
+                //For each child in the Bullets GameObject,
+                //Hide the bottom-most element when a bullet is shot
+                Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
+            }
         }
 
-        else if (curBullets > 0)
+        //FOR REFILLING PLAYER AMMO BY 2 BULLETS (TEMP SOLUTION)
+        else if(jukeboxOpen && (curBullets != maxBullets))
         {
-            curBullets--;
-            //For each child in the Bullets GameObject,
-            //Hide the bottom-most element when a bullet is shot
-            Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
-            Debug.Log("Bullet has been fired");
+            Debug.Log("REFILL AMMO UI");
+            Bullets[curBullets + 1].GetComponentInChildren<Image>().enabled = true;
+            Bullets[curBullets].GetComponentInChildren<Image>().enabled = true;
         }
+
     }
-
     //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
     //Or when they've run out of ammo in a single cylinder.
     //Reload the ammo cylinder, reducing the max bullets they can hold by 2.

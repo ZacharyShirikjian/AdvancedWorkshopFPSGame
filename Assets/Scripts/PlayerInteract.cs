@@ -41,16 +41,23 @@ public class PlayerInteract : MonoBehaviour
         //FOR OTHER INTERACTABLES, ETC
         if(canInteract && currentInteractable != null)
         {
-
+            Debug.Log("[OBJECT]");
+            canInteract = false;
+            interactableScript.interactedBefore = true;
+            interactableScript.enabled = true;
+            uiRef.UpdateInteractPromptUI("");
+            //TO DO: call the specific interactable script to do specific action (eg climb, heal, etc)
         }
 
         //FOR JUKEBOX MENU//
         //Open up Jukebox Menu, disable player movement
         else if(canInteract && curJukebox != null)
         {
+            Debug.Log("[JUKEBOX]");
             canInteract = false;
             curJukeboxScript.interactedBefore = true;
             curJukeboxScript.enabled = true;
+            uiRef.jukeboxOpen = true;
             uiRef.JukeboxUI();
         }
     }

@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     private PlayerController playCon;
     private MouseLook mouseLook;
     private UITest uiScript;
+    private PlayerInteract playInteract;
 
     Vector2 inputVector;
     Vector2 mouseInput;
@@ -17,6 +18,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         playCon = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
+        playInteract = GameObject.Find("PlayerObject").GetComponentInChildren<PlayerInteract>();
         mouseLook = GameObject.Find("PlayerObject").GetComponentInChildren<MouseLook>();
         uiScript = this.gameObject.GetComponent<UITest>();
     }
@@ -41,7 +43,7 @@ public class InputManager : MonoBehaviour
         //MENU//
         //menu.Select.performed += _ => uiScript.OnSelectPressed();
         menu.Pause.performed += _ => uiScript.PauseGame();
-        //movement.Interact.performed += _ uiScript.OpenJukebox();
+        movement.Interact.performed += _ => playInteract.Interact();
 
     }
 

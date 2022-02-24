@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 /*
@@ -51,6 +52,8 @@ public class UITest : MonoBehaviour
     public bool selected;
     public bool jukeboxOpen;
 
+    //Event Systems
+    public EventSystem eventSystem;
 
     //HEALTH//
         //The current health which the player has
@@ -81,6 +84,7 @@ public class UITest : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        //eventSystem.firstSelectedGameObject = null;
         playerRef = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
@@ -113,24 +117,44 @@ public class UITest : MonoBehaviour
         curHealth = playerRef.health;
         healthSliderValue = curHealth;
         healthSlider.value = healthSliderValue;
+
+        /*
+        if (paused)
+        {
+            eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
+            if (jukeboxMenu.activeSelf)
+            {
+                //jukeboxMenu.SetActive(false);
+            }
+        } 
+        else if (!paused)
+        {
+            eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
+
+        }
+        */
     }
 
     //For Pausing/Unpausing Game
     public void PauseGame()
     {
-        if(paused)
+        if (paused)
         {
             Time.timeScale = 1f;
             paused = false;
             pausePanel.SetActive(false);
         }
-        else if(!paused)
+        else if(!paused && jukeboxOpen == false)
         {
-            Debug.Log("testestets");
+
+            Debug.Log("PAUSE BUTTONS ACTIVATED");
             //pausePress = true;
             paused = true;
             pausePanel.SetActive(true);
-            Time.timeScale = 0f;
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject);
+            Debug.Log(eventSystem.currentSelectedGameObject);
+            //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
+            //Time.timeScale = 0f;
         }
 
     }
@@ -142,9 +166,12 @@ public class UITest : MonoBehaviour
         {
             UpdateInteractPromptUI("");
             jukeboxMenu.SetActive(true);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             playerRef.enabled = false;
+            eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).gameObject);
+            Debug.Log(eventSystem.currentSelectedGameObject);
             //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
+            //eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
         }
 
         //RENABLE PLAYER MOVEMENT ONCE JUKEBOX MENU IS CLOSED
@@ -152,6 +179,7 @@ public class UITest : MonoBehaviour
         {
             jukeboxMenu.SetActive(false);
             playerRef.enabled = true;
+            //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
         }
 
     }

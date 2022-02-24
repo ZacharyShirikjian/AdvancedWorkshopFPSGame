@@ -142,14 +142,21 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         //VALUES TO BE CHANGED/DECIDED LATER!!!
         public void MaxHealthUp()
         {
-            playRef.maxHealth += 10;
-            playRef.health += 5;
+
             if (selected == false)
             {
+                playRef.maxHealth += 10;
+                playRef.health += 5;
+                uiRef.UpdateHealthUI();
                 JukeboxButtonSelected();
-                jukeboxHeaderText.SetText("UPGRADE HEALTH \nIncreases your maximum health by 10 points.");
-
             }
+
+            else if (selected == false)
+                {
+                    JukeboxButtonSelected();
+                    jukeboxHeaderText.SetText("UPGRADE HEALTH \nIncreases your maximum health by 10 points.");
+
+                }
         }
 
         public void MaxAmmoUp()

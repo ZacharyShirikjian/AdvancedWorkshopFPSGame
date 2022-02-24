@@ -115,12 +115,11 @@ public class UITest : MonoBehaviour
         healthSlider.value = healthSliderValue;
     }
 
-    //FOR NEW INPUT SYSTEM SELECT//
-    public void OnSelectPressed()
+    //FOR CANCELING OUT AN OPTION
+    public void Cancel()
     {
-        selected = true;
-    }
 
+    }
     //For Pausing/Unpausing Game
     public void PauseGame()
     {

@@ -67,6 +67,7 @@ public class JukeboxScript : MonoBehaviour
             else if(selected == false)
             {
                 JukeboxButtonSelected();
+                jukeboxHeaderText.SetText("REFILL HEALTH \nRefills 1/3 of your health.");
             }
         }
 
@@ -89,6 +90,7 @@ public class JukeboxScript : MonoBehaviour
         else if (selected == false)
         {
             JukeboxButtonSelected();
+            jukeboxHeaderText.SetText("REFILL AMMO \nReloads 2 bullets.");
         }
 
     }
@@ -98,6 +100,12 @@ public class JukeboxScript : MonoBehaviour
         {
             playRef.maxHealth += 10;
             playRef.health += 5;
+            if (selected == false)
+            {
+                JukeboxButtonSelected();
+                jukeboxHeaderText.SetText("UPGRADE HEALTH \nIncreases your maximum health by 10 points.");
+
+            }
         }
 
         public void MaxAmmoUp()
@@ -105,6 +113,12 @@ public class JukeboxScript : MonoBehaviour
             playRef.ammo += 2;
             uiRef.curBullets += 2;
             uiRef.maxBullets += 2;
+            if (selected == false)
+            {
+               
+                JukeboxButtonSelected();
+                jukeboxHeaderText.SetText("UPGRADE HEALTH \nIncreases your maximum ammo by 2.");
+            }
         }
 
 

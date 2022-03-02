@@ -18,9 +18,9 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        playCon = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
-        playInteract = GameObject.Find("PlayerObject").GetComponentInChildren<PlayerInteract>();
-        mouseLook = GameObject.Find("PlayerObject").GetComponentInChildren<MouseLook>();
+        playCon = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        playInteract = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerInteract>();
+        mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         uiScript = this.gameObject.GetComponent<UITest>();
         jukeboxRef = GameObject.FindWithTag("Jukebox").GetComponent<JukeboxScript>();
     }

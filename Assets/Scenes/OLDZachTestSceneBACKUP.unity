@@ -851,6 +851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 6239929424462989361, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6239929424462989362, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -898,10 +902,14 @@ PrefabInstance:
     - target: {fileID: 6239929424462989363, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
       propertyPath: rayShoot
       value: 
-      objectReference: {fileID: 412492718}
+      objectReference: {fileID: 0}
     - target: {fileID: 6239929424462989372, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239929424626209980, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6239929424462989372, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
@@ -1547,25 +1555,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &412492718 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6239929424626209983, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
-  m_PrefabInstance: {fileID: 169838882}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3820f07bfcfbcee48aea56cc77178c31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &480424198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6239929424462989361, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
-  m_PrefabInstance: {fileID: 169838882}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &480424202 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6239929424462989362, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
   m_PrefabInstance: {fileID: 169838882}
   m_PrefabAsset: {fileID: 0}
 --- !u!54 &480424203
@@ -2251,69 +2243,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &801590007
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 801590008}
-  - component: {fileID: 801590010}
-  - component: {fileID: 801590009}
-  m_Layer: 0
-  m_Name: InteractCollider
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &801590008
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801590007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 480424202}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &801590009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801590007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e5030cf634bab4cae64ab9f579e313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentInteractable: {fileID: 0}
-  interactableScript: {fileID: 0}
-  curJukebox: {fileID: 0}
-  curJukeboxScript: {fileID: 0}
-  canInteract: 0
-  uiRef: {fileID: 2044747142}
---- !u!65 &801590010
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801590007}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 1.35, y: 1.5, z: 2.76}
 --- !u!1 &814393022
 GameObject:
   m_ObjectHideFlags: 0
@@ -3753,7 +3682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  dmg: 0
+  dmg: 1
   player: {fileID: 0}
 --- !u!65 &1561227596
 BoxCollider:
@@ -5415,7 +5344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  dmg: 0
+  dmg: 1
   player: {fileID: 0}
 --- !u!65 &2049017020
 BoxCollider:

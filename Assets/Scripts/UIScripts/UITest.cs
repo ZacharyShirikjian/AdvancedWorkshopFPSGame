@@ -85,7 +85,7 @@ public class UITest : MonoBehaviour
     {
         Time.timeScale = 1f;
         //eventSystem.firstSelectedGameObject = null;
-        playerRef = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
+        playerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
         curBullets = (int) playerRef.ammo;

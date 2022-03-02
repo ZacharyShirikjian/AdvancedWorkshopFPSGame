@@ -46,7 +46,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     void Start()
     {
-        playRef = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
+        playRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
         interactedBefore = false;
         jukeboxHeaderText.SetText("");

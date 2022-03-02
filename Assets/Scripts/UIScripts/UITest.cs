@@ -113,7 +113,7 @@ public class UITest : MonoBehaviour
     void Update()
     {
         curBullets = (int) playerRef.ammo;
-        //maxBullets = (int)playerRef.ammo; //TO DO: ADJUST SO THIS IS = TO MAX BULLETS IN PLAYER CONTROLLER
+        maxBullets = (int)playerRef.maxAmmo; 
         curHealth = playerRef.health;
         healthSliderValue = curHealth;
         healthSlider.value = healthSliderValue;

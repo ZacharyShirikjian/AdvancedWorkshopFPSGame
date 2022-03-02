@@ -119,11 +119,10 @@ public class PlayerController : MonoBehaviour
                 ammo = 0;
             }
 
-            reload = false;
 
             //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
+            reload = false;
             uiRef.Reload();
-
         }
 
         Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;

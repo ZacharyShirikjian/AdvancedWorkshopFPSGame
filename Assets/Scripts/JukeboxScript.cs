@@ -36,7 +36,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     private UITest uiRef;
 
     //Reference to Canvas group to make all elements not interactable
-    private CanvasGroup canvasGroup;
+    //private CanvasGroup canvasGroup;
 
     //REFERNECE TO PLAYER
     private PlayerController playRef;
@@ -51,8 +51,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         interactedBefore = false;
         jukeboxHeaderText.SetText("");
         selectPromptText.SetText("SELECT");
-        canvasGroup = GameObject.Find("JukeboxMenu").GetComponent<CanvasGroup>();
-        canvasGroup.interactable = true;
+        //canvasGroup = GameObject.Find("JukeboxMenu").GetComponent<CanvasGroup>();
+        //canvasGroup.interactable = true;
         currentButton = null;
     }
 
@@ -193,7 +193,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             //canvasGroup.interactable = false;
             //TO DO: ADD CHA-CHING SFX 
             Time.timeScale = 1f;
-            canvasGroup.interactable = false;
+            //canvasGroup.interactable = false;
             StartCoroutine(closeJukeboxMenu());
         }
 

@@ -108,7 +108,10 @@ public class PlayerController : MonoBehaviour
             //add audio
             shoot = false;
 
-            ammo = 6;
+            if(ammo > 2)
+            {
+                ammo = ammo - 2;
+            }
 
             reload = false;
 

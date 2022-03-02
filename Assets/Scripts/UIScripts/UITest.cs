@@ -89,7 +89,7 @@ public class UITest : MonoBehaviour
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
         curBullets = (int) playerRef.ammo;
-        maxBullets = (int) playerRef.ammo;
+        maxBullets = (int) playerRef.maxAmmo;
 
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private float nextFire;
     public float fireRate = 0.25f;      //how often the gun can shoot
     public float ammo = 6;
+    public float maxAmmo = 6;
     public GameObject gun;
 
     //REFERENCE TO UI SCRIPT//
@@ -40,6 +41,9 @@ public class PlayerController : MonoBehaviour
 
     public void Awake()
     {
+        ammo = 6;
+        maxAmmo = 6;
+
         rayShoot = GetComponentInChildren<RaycastShoot>();
         controller.height = standHeight;
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
@@ -108,9 +112,11 @@ public class PlayerController : MonoBehaviour
             //add audio
             shoot = false;
 
-            if(ammo > 2)
+            ammo = maxAmmo - 2;
+            maxAmmo = ammo;
+            if(ammo <= 0)
             {
-                ammo = ammo - 2;
+                ammo = 0;
             }
 
             reload = false;

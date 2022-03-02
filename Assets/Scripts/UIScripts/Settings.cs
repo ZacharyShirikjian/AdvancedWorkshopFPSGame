@@ -12,8 +12,8 @@ public class Settings : MonoBehaviour
         volume = value;
     }
 
-    public static void ChangeSensitivity(int value)
+    public static void ChangeSensitivity(int sensValue)
     {
-        sensitivity = value;
+        sensitivity = sensValue;
     }
 }

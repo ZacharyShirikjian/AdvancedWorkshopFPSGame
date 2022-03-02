@@ -6,34 +6,34 @@ public class PlayerController : MonoBehaviour
 {
 #pragma warning disable 649
 
-    public float health;
-    public float maxHealth;
+    public float health;                //holds player current health
+    public float maxHealth;             //holds player max health
 
-    public Camera playerCam;
-    [SerializeField] CharacterController controller;
-    [SerializeField] float speed = 11f;
-    Vector2 inputVector;
+    public Camera playerCam;                                //holds main camera(playerCamera)
+    [SerializeField] CharacterController controller;        //pulls character controller component from player
+    [SerializeField] float speed = 11f;                     //speed variable for character movement
+    Vector2 inputVector;        
 
     //public bool isGrounded; //holds variable for if player is collided on ground object
     public bool shoot;      //holds bool for shoot mechanic, if left click is pressed
     public bool crouch;     //holds bool for crouch
     public bool reload;     //holds bool for reload state
 
-    public Vector3 standPosition;
-    public Vector3 crouchPosition;
-    public float crouchHeight = 1.5f;
-    public float standHeight = 3.0f;
-    public float smooth = 5.0f;
+    public Vector3 standPosition;       //holds stand position
+    public Vector3 crouchPosition;      //holds crouch position
+    public float crouchHeight = 1.5f;   //crouchheight for character
+    public float standHeight = 3.0f;    //standheight for character
+    public float smooth = 5.0f;         //value for smooth object transform during crouch
 
     //[SerializeField] float gravity = -30f;
     //Vector3 verticalVelocity = Vector3.zero;
     //[SerializeField] LayerMask groundMask;
 
-    public RaycastShoot rayShoot;
-    private float nextFire;
+    public RaycastShoot rayShoot;       //script that runs raycast hitscan
+    private float nextFire;             //float to delay gun fire
     public float fireRate = 0.25f;      //how often the gun can shoot
-    public float ammo = 6;
-    public GameObject gun;
+    public float ammo = 6;              //amount of ammo when full
+    public GameObject gun;              //gun game object
 
     public void Awake()
     {
@@ -76,7 +76,8 @@ public class PlayerController : MonoBehaviour
             crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
 
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
-
+            
+            //FIXME: add Lerp to gun transforms
             gun.transform.position = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
 
         }

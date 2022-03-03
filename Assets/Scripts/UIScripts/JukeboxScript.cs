@@ -62,18 +62,13 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     private void Update()
     {
         ////UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN SELECTING//
-        //if(EventSystem.current.currentSelectedGameObject != exitButton)
-        //{
-        if(currentButton != null || currentButton != exitButton)
+
+        if (currentButton != null || currentButton != exitButton)
         {
-            if(jukeboxHeaderText.text == null)
-            {
-                jukeboxHeaderText.SetText(currentButton.GetComponent<JukeboxButton>().upgradeName.ToString());
-            }
-
-
+            jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
         }
-        //}
+
+        Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
     }
 
     //FOR CANCELING OUT AN OPTION IN THE JUKEBOX

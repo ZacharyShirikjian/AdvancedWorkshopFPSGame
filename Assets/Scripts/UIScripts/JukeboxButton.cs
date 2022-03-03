@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 //ATTACHED TO EVERY BUTTON/OPTION in the jukebox
 //ADJUST THE PRICING IN THE INSPECTOR
 public class JukeboxButton : MonoBehaviour

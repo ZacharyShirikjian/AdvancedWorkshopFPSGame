@@ -1177,11 +1177,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 361141358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b3ae3a24a6faa4582a83c9b8c0687b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a1f410c41e404d49a5d4545ad27b354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 2
   buttonUsed: 0
+  upgradeName: REFILL HEALTH
+  upgradeDescription: Fully refills your health.
 --- !u!1 &361907968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,9 +2195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'REFILL HEALTH
-
-    REFILLS YOUR HEALTH BY  1/3'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b73b6a0a381b3574b83c817a69067f5f, type: 2}
   m_sharedMaterial: {fileID: -4944133319090090736, guid: b73b6a0a381b3574b83c817a69067f5f, type: 2}
@@ -2891,11 +2891,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 821087674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b3ae3a24a6faa4582a83c9b8c0687b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a1f410c41e404d49a5d4545ad27b354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 4
   buttonUsed: 0
+  upgradeName: REFILL AMMO
+  upgradeDescription: Fully refills your ammo.
 --- !u!1 &841203115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,11 +3340,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1086378827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b3ae3a24a6faa4582a83c9b8c0687b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a1f410c41e404d49a5d4545ad27b354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 8
   buttonUsed: 0
+  upgradeName: UPGRADE AMMO
+  upgradeDescription: Increases your maximum ammo capacity by 2 bullets.
 --- !u!1001 &1096082586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4724,14 +4728,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540097709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 265ba677cdb0b76488b8cc7c6128c37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactedBefore: 0
   selected: 0
-  buttonUsed: 0
   currentButton: {fileID: 0}
   exitButton: {fileID: 566262260}
   jukeboxHeaderText: {fileID: 649469355}
@@ -5489,11 +5492,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838601009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b3ae3a24a6faa4582a83c9b8c0687b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a1f410c41e404d49a5d4545ad27b354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 6
   buttonUsed: 0
+  upgradeName: UPGRADE HEALTH
+  upgradeDescription: Increases your maximum health by 10.
 --- !u!1 &1858434759
 GameObject:
   m_ObjectHideFlags: 0

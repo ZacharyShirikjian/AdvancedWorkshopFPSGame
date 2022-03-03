@@ -1181,6 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 2
+  buttonUsed: 0
 --- !u!1 &361907968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +2895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 4
+  buttonUsed: 0
 --- !u!1 &841203115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,6 +3342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 8
+  buttonUsed: 0
 --- !u!1001 &1096082586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4730,6 +4733,7 @@ MonoBehaviour:
   selected: 0
   buttonUsed: 0
   currentButton: {fileID: 0}
+  exitButton: {fileID: 566262260}
   jukeboxHeaderText: {fileID: 649469355}
   selectPromptText: {fileID: 776773644}
   jukeboxButtons:
@@ -5489,6 +5493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 6
+  buttonUsed: 0
 --- !u!1 &1858434759
 GameObject:
   m_ObjectHideFlags: 0

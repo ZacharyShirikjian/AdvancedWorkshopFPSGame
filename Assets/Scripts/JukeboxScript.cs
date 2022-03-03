@@ -26,6 +26,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     //Checks if button has been selected or not, if true then press space to close out of jukebox menu
     public bool selected = false;
 
+    public bool buttonUsed = false;
+
     //ATTACHED TO EACH BUTTON IN JUKEBOX,ref to current button selected
     public GameObject currentButton;
 
@@ -58,6 +60,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     private void Update()
     {
+        //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN SELECTING//
+
     }
 
     //FOR CANCELING OUT AN OPTION IN THE JUKEBOX
@@ -77,23 +81,46 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     public void DisableButtons()
     {
         //EventSystem.current.currentSelectedGameObject => currently selected button in the game scene
-        currentButton = EventSystem.current.currentSelectedGameObject;
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
-        Debug.Log(currentButton);
-        //DISABLE EVERY OTHER BUTTON THAT IS NOT CURRENTLY SELECTED//
-        for (int i = 0; i < 4; i++)
+        //currentButton = EventSystem.current.currentSelectedGameObject;
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
+        //Debug.Log(currentButton);
+        if (buttonUsed == false && selected == true)
         {
-            if (jukeboxButtons[i] != currentButton)
+            //DISABLE EVERY OTHER BUTTON THAT IS NOT CURRENTLY SELECTED//
+            for (int i = 0; i < 4; i++)
             {
-                jukeboxButtons[i].GetComponent<Button>().interactable = false;
-            }
+                if (jukeboxButtons[i] != currentButton)
+                {
+                    jukeboxButtons[i].GetComponent<Button>().interactable = false;
+                }
 
-            else
-            {
-                jukeboxButtons[i].GetComponent<Button>().interactable = true;
-            }
+                else
+                {
+                    jukeboxButtons[i].GetComponent<Button>().interactable = true;
+                }
 
+            }
         }
+
+        else if(buttonUsed == true)
+        {
+            Debug.Log("TESET");
+            for (int i = 0; i < 4; i++)
+            {
+                if (jukeboxButtons[i] != currentButton)
+                {
+                    jukeboxButtons[i].GetComponent<Button>().interactable = true;
+                }
+
+                else if(jukeboxButtons[i] == currentButton)
+                {
+                    jukeboxButtons[i].GetComponent<Button>().interactable = false;
+                }
+
+            }
+        }
+
+       
     }
 
     ///UPGRADES/REFILLS///
@@ -103,7 +130,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         {
             if(selected == true)
             {
-                playRef.Heal(playRef.maxHealth / 2);
+                playRef.Heal(playRef.maxHealth);
                 uiRef.UpdateHealthUI();
                 JukeboxButtonSelected();
             }
@@ -111,7 +138,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             else if(selected == false)
             {
                 JukeboxButtonSelected();
-                jukeboxHeaderText.SetText("REFILL HEALTH \nRefills 1/3 of your health.");
+                jukeboxHeaderText.SetText("REFILL HEALTH \nRefills all of your health.");
             }
         }
 
@@ -140,28 +167,30 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     }
 
         //VALUES TO BE CHANGED/DECIDED LATER!!!
+        
         public void MaxHealthUp()
         {
 
             if (selected == false)
             {
                 playRef.maxHealth += 10;
-                playRef.health += 5;
+                playRef.health = playRef.maxHealth;
                 uiRef.UpdateHealthUI();
                 JukeboxButtonSelected();
             }
 
             else if (selected == false)
-                {
+            {
                     JukeboxButtonSelected();
                     jukeboxHeaderText.SetText("UPGRADE HEALTH \nIncreases your maximum health by 10 points.");
 
-                }
+            }
         }
 
         public void MaxAmmoUp()
         {
-            playRef.ammo += 2;
+            playRef.maxAmmo += 2;
+            playRef.ammo = playRef.maxAmmo;
             uiRef.curBullets += 2;
             uiRef.maxBullets += 2;
             if (selected == false)
@@ -181,33 +210,56 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         if (selected == false)
         {
-            jukeboxHeaderText.SetText("");
-            selectPromptText.SetText("Is this ok?");
-            selected = true;
+            currentButton = EventSystem.current.currentSelectedGameObject;
+            Debug.Log(EventSystem.current.currentSelectedGameObject);
+            Debug.Log(currentButton);
+            if (uiRef.numCoins >= currentButton.GetComponent<JukeboxPurchaseCost>().cost)
+            {
+                selectPromptText.SetText("Is this ok?");
+                selected = true;
+            }
+            else if(uiRef.numCoins < currentButton.GetComponent<JukeboxPurchaseCost>().cost)
+            {
+                selectPromptText.SetText("Not enough coins");
+            }
+
 
         }
 
         else if (selected == true)
         {
             selectPromptText.SetText("SELECTED");
+            uiRef.numCoins = uiRef.numCoins - currentButton.GetComponent<JukeboxPurchaseCost>().cost; 
+            //currentButton.GetComponent<Button>().interactable = false;
+            buttonUsed = true;
+
             //canvasGroup.interactable = false;
             //TO DO: ADD CHA-CHING SFX 
-            Time.timeScale = 1f;
-            //canvasGroup.interactable = false;
-            StartCoroutine(closeJukeboxMenu());
+            //Time.timeScale = 1f;
+            ////canvasGroup.interactable = false;
+            //closeJukeboxMenu();
         }
 
 
     }
 
     //Coroutine for closing out of jukebox menu after a second (temp)
-    public IEnumerator closeJukeboxMenu()
+    public void closeJukeboxMenu()
     {
-        yield return new WaitForSeconds(1.0f);
+        //yield return new WaitForSeconds(1.0f);
         //DISABLE EVERY BUTTON IN THE JUKEBOX MENU TEMPORARILY//
+        currentButton = null;
+        selected = false;
+        selectPromptText.SetText("SELECT");
+        jukeboxHeaderText.SetText("");
+        for (int i = 0; i < 4; i++)
+        {
+            jukeboxButtons[i].GetComponent<Button>().interactable = true;
+        }
         uiRef.jukeboxOpen = false;
         uiRef.JukeboxUI();
         Debug.Log("Jukebox menu closing...");
+
     }
 
 }

@@ -55,7 +55,7 @@ public class PlayerInteract : MonoBehaviour
         {
             Debug.Log("[JUKEBOX]");
             canInteract = false;
-            curJukeboxScript.interactedBefore = true;
+            //curJukeboxScript.interactedBefore = true;
             curJukeboxScript.enabled = true;
             uiRef.jukeboxOpen = true;
             uiRef.JukeboxUI();
@@ -69,6 +69,13 @@ public class PlayerInteract : MonoBehaviour
     //RE USE SAME METHOD FOR INTERACTING W/ JUKEBOXES//
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.CompareTag("Coin"))
+        {
+            Debug.Log("COIN PICKUP");
+            uiRef.numCoins++;
+            Destroy(other.gameObject);
+        }
+
         if (other.gameObject.CompareTag("Interactable"))
         {
             Debug.Log("test");

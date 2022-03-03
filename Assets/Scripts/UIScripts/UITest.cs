@@ -29,6 +29,10 @@ public class UITest : MonoBehaviour
         //Reference to the InteractPrompt Text
         public TextMeshProUGUI interactPromptText;
 
+    //Reference to Coin UI text
+    public TextMeshProUGUI coinText;
+    public int numCoins;
+
         //Reference to the Bullets GameObject
         public GameObject BulletObject;
 
@@ -85,6 +89,7 @@ public class UITest : MonoBehaviour
     {
         Time.timeScale = 1f;
         //eventSystem.firstSelectedGameObject = null;
+        numCoins = 0;
         playerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
@@ -115,8 +120,10 @@ public class UITest : MonoBehaviour
         curBullets = (int) playerRef.ammo;
         maxBullets = (int)playerRef.maxAmmo; 
         curHealth = playerRef.health;
+        maxHealth = playerRef.maxHealth;
         healthSliderValue = curHealth;
         healthSlider.value = healthSliderValue;
+        coinText.SetText(numCoins.ToString());
 
         /*
         if (paused)
@@ -182,6 +189,12 @@ public class UITest : MonoBehaviour
             //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
         }
 
+    }
+
+    public void CloseJukeboxUI()
+    {
+        jukeboxMenu.SetActive(false);
+        playerRef.enabled = true;
     }
     //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)

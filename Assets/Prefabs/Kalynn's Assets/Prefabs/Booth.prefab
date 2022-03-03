@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 762338016605266092}
   - component: {fileID: 4412267552899034889}
   - component: {fileID: 1936392532587420611}
+  - component: {fileID: 3340416636394922252}
+  - component: {fileID: 2399101951313073848}
   m_Layer: 0
   m_Name: Booth
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134983535906273814}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6, y: 0, z: 9}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
@@ -81,3 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3340416636394922252
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134983535906273814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 66.452644, z: 151.41904}
+  m_Center: {x: 0, y: 33.226322, z: 24.290483}
+--- !u!65 &2399101951313073848
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134983535906273814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 185.8875, z: 51.047134}
+  m_Center: {x: 0, y: 92.94375, z: 74.47643}

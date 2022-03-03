@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2011768036829317274}
   - component: {fileID: 3189929297896621887}
   - component: {fileID: 837687682458825717}
+  - component: {fileID: 3616806954623369004}
   m_Layer: 0
   m_Name: Tabletop
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198218027137634848}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.18986368, y: 2.625081, z: 2.8328085}
   m_LocalScale: {x: 0.01, y: 0.0010978683, z: 0.01}
   m_Children: []
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3616806954623369004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198218027137634848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 1010.85626, z: 200}
+  m_Center: {x: 100, y: -405.42783, z: 0}

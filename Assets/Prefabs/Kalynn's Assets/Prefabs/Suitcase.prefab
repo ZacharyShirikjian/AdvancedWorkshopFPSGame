@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6862493739642788252}
   - component: {fileID: 7535544890962155065}
   - component: {fileID: 5726139385731080947}
+  - component: {fileID: 3900169537147994957}
   m_Layer: 0
   m_Name: Suitcase
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6086519371527635750}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4748886, y: 1.5988531, z: 5.2344103}
   m_LocalScale: {x: 0.0075739757, y: 0.005164876, z: 0.0018640489}
   m_Children: []
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3900169537147994957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6086519371527635750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 105.67597, y: 127.680466, z: 124.489815}
+  m_Center: {x: 50.00002, y: 58.943497, z: 49.999996}

@@ -53,7 +53,7 @@ public class UITest : MonoBehaviour
     public bool paused;
 
     //FOR NEW INPUT SYSTEM TEST
-    public bool selected;
+    //public bool selected;
     public bool jukeboxOpen;
 
     //Event Systems
@@ -118,11 +118,14 @@ public class UITest : MonoBehaviour
     void Update()
     {
         curBullets = (int) playerRef.ammo;
-        maxBullets = (int)playerRef.maxAmmo; 
+        maxBullets = (int)playerRef.maxAmmo;
+        extraBullets = (int) playerRef.maxAmmo - 6;
+        extraAmmoUI.text = extraBullets.ToString();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
-        healthSliderValue = curHealth;
-        healthSlider.value = healthSliderValue;
+        //healthSliderValue = curHealth;
+        healthSlider.value = curHealth;
+        healthSlider.maxValue = maxHealth;
         coinText.SetText(numCoins.ToString());
 
         /*
@@ -191,12 +194,13 @@ public class UITest : MonoBehaviour
 
     }
 
-    public void CloseJukeboxUI()
-    {
-        jukeboxMenu.SetActive(false);
-        playerRef.enabled = true;
-    }
-    //Upadate the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
+    //public void CloseJukeboxUI()
+    //{
+    //    jukeboxMenu.SetActive(false);
+    //    playerRef.enabled = true;
+    //}
+
+    //Update the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)
     {
         if(prompt != "")
@@ -235,9 +239,20 @@ public class UITest : MonoBehaviour
             else if (curBullets > 0)
             {
                 curBullets--;
+
+                //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
+
                 //For each child in the Bullets GameObject,
                 //Hide the bottom-most element when a bullet is shot
                 Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
+            }
+        }
+
+        else if(jukeboxOpen)
+        {
+            if(maxBullets > 6)
+            {
+                Debug.Log("TWO EXTRA BULLETS");
             }
         }
 
@@ -257,29 +272,51 @@ public class UITest : MonoBehaviour
     //Add/subtract the Bullet sprites accordingly
     public void Reload()
     {
-        curStateText.SetText("");
-        curBullets = maxBullets - 2;
-        maxBullets = maxBullets - 2;
+        //RELOAD ANIMATION PLAYS//
+        Invoke("ReloadDelay", 2f);
+    }
 
-        if (maxBullets == 4)
+    //UPDATE THE AMMO UI FOR RELOADING BULLETS W/ PLACEHOLDER DELAY//
+    public void ReloadDelay()
+    {
+        Debug.Log("RELOADING...");
+        curStateText.SetText("");
+
+        //PLACEHOLDER DELAY FOR UPDATING AMMO UI
+        //TO-DO: MATCH THIS W/ TIMING OF RELOAD ANIMATION
+
+        Debug.Log(maxBullets);
+        if(maxBullets == 6)
         {
             for (int i = 0; i < 4; i++)
             {
+                Debug.Log("6 Bullets");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }
 
-        else if (maxBullets == 2)
+        else if (maxBullets <= 6)
         {
-            Bullets[0].GetComponentInChildren<Image>().enabled = true;
-            Bullets[1].GetComponentInChildren<Image>().enabled = true;
+            for (int i = 0; i < maxBullets; i++)
+            {
+                Debug.Log("6 Bullets or Less");
+                Bullets[i].GetComponentInChildren<Image>().enabled = true;
+            }
         }
+
+        //else if (maxBullets == 2)
+        //{
+        //    Debug.Log("2 Bullets");
+        //    Bullets[0].GetComponentInChildren<Image>().enabled = true;
+        //    Bullets[1].GetComponentInChildren<Image>().enabled = true;
+        //}
 
         else if (maxBullets <= 0)
         {
             curStateText.SetText("Out of Ammo");
         }
     }
+
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//
 
     //This method gets called when the player takes damage, from Tina's PlayerController script//
@@ -287,9 +324,9 @@ public class UITest : MonoBehaviour
 
     public void UpdateHealthUI()
     {
-        curHealth = playerRef.health;
-        healthSliderValue = curHealth;
-        healthSlider.value = healthSliderValue; 
+        //curHealth = playerRef.health;
+        //healthSliderValue = curHealth;
+        //healthSlider.value = healthSliderValue; 
       
         if (curHealth >= maxHealth)
         {

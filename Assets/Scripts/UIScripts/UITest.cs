@@ -16,9 +16,12 @@ using TMPro;
 public class UITest : MonoBehaviour
 {
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
-    private PlayerController playerRef; 
+    private PlayerController playerRef;
 
     //REFERENCES//
+
+    //REFEERENCE TO AMMO CYLINDER ANIMATION 
+    [SerializeField] private Animator ammoAnimator;
 
         //Reference to the Health UI Slider
         public Slider healthSlider;
@@ -120,10 +123,14 @@ public class UITest : MonoBehaviour
         curBullets = (int) playerRef.ammo;
         maxBullets = (int)playerRef.maxAmmo;
         extraBullets = (int) playerRef.maxAmmo - 6;
+        if(extraBullets <= 0)
+        {
+            extraBullets = 0;
+        }
         extraAmmoUI.text = extraBullets.ToString();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
-        //healthSliderValue = curHealth;
+       //healthSliderValue = curHealth;
         healthSlider.value = curHealth;
         healthSlider.maxValue = maxHealth;
         coinText.SetText(numCoins.ToString());
@@ -240,11 +247,15 @@ public class UITest : MonoBehaviour
             {
                 curBullets--;
 
-                //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
+                if(curBullets < 6)
+                {
+                    //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
+                    ammoAnimator.SetTrigger("RotateBullet");
+                    //For each child in the Bullets GameObject,
+                    //Hide the bottom-most element when a bullet is shot
+                    Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
+                }
 
-                //For each child in the Bullets GameObject,
-                //Hide the bottom-most element when a bullet is shot
-                Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
             }
         }
 
@@ -273,20 +284,10 @@ public class UITest : MonoBehaviour
     public void Reload()
     {
         //RELOAD ANIMATION PLAYS//
-        Invoke("ReloadDelay", 2f);
-    }
-
-    //UPDATE THE AMMO UI FOR RELOADING BULLETS W/ PLACEHOLDER DELAY//
-    public void ReloadDelay()
-    {
         Debug.Log("RELOADING...");
-        curStateText.SetText("");
-
-        //PLACEHOLDER DELAY FOR UPDATING AMMO UI
-        //TO-DO: MATCH THIS W/ TIMING OF RELOAD ANIMATION
-
+        ammoAnimator.SetTrigger("Reloading");
         Debug.Log(maxBullets);
-        if(maxBullets == 6)
+        if (maxBullets == 6)
         {
             for (int i = 0; i < 4; i++)
             {
@@ -315,6 +316,50 @@ public class UITest : MonoBehaviour
         {
             curStateText.SetText("Out of Ammo");
         }
+        Invoke("ReloadDelay", 2f);
+    }
+
+    //UPDATE THE AMMO UI FOR RELOADING BULLETS W/ PLACEHOLDER DELAY//
+    public void ReloadDelay()
+    {
+        Debug.Log("RELOADED");
+        ammoAnimator.SetBool("Idle", true);
+        curStateText.SetText("");
+        //ADD A CANSHOOT BOOL SO PLAYER CAN'T SHOOT DURING RELOAD ANIMATION HERE//
+
+        //PLACEHOLDER DELAY FOR UPDATING AMMO UI
+        //TO-DO: MATCH THIS W/ TIMING OF RELOAD ANIMATION
+
+        //Debug.Log(maxBullets);
+        //if(maxBullets == 6)
+        //{
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        Debug.Log("6 Bullets");
+        //        Bullets[i].GetComponentInChildren<Image>().enabled = true;
+        //    }
+        //}
+
+        //else if (maxBullets <= 6)
+        //{
+        //    for (int i = 0; i < maxBullets; i++)
+        //    {
+        //        Debug.Log("6 Bullets or Less");
+        //        Bullets[i].GetComponentInChildren<Image>().enabled = true;
+        //    }
+        //}
+
+        ////else if (maxBullets == 2)
+        ////{
+        ////    Debug.Log("2 Bullets");
+        ////    Bullets[0].GetComponentInChildren<Image>().enabled = true;
+        ////    Bullets[1].GetComponentInChildren<Image>().enabled = true;
+        ////}
+
+        //else if (maxBullets <= 0)
+        //{
+        //    curStateText.SetText("Out of Ammo");
+        //}
     }
 
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//

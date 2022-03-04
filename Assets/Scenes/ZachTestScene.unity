@@ -523,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe58ffcf5726e547a64ffd31d6ff9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoAnimator: {fileID: 1337628406}
   healthSlider: {fileID: 69187303}
   curStateText: {fileID: 841203116}
   interactPromptText: {fileID: 1814654050}
@@ -3490,7 +3491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &908474247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4389,6 +4390,7 @@ GameObject:
   - component: {fileID: 1337628403}
   - component: {fileID: 1337628405}
   - component: {fileID: 1337628404}
+  - component: {fileID: 1337628406}
   m_Layer: 5
   m_Name: AmmoCylinder
   m_TagString: Untagged
@@ -4454,6 +4456,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337628402}
   m_CullTransparentMesh: 1
+--- !u!95 &1337628406
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337628402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e26dd9f6e67d8c640a0b180c98971baa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1342637208
 GameObject:
   m_ObjectHideFlags: 0

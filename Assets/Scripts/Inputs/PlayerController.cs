@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 #pragma warning disable 649
 
-    public float health;                //holds player current health
-    public float maxHealth;             //holds player max health
+    public int health;                //holds player current health
+    public int maxHealth = 30;             //holds player max health
 
     public Camera playerCam;                                //holds main camera(playerCamera)
     [SerializeField] CharacterController controller;        //pulls character controller component from player
@@ -18,9 +18,12 @@ public class PlayerController : MonoBehaviour
     public bool shoot;      //holds bool for shoot mechanic, if left click is pressed
     public bool crouch;     //holds bool for crouch
     public bool reload;     //holds bool for reload state
+    public bool playerDeath;
 
     public Vector3 standPosition;       //holds stand position
     public Vector3 crouchPosition;      //holds crouch position
+    public Vector3 gunStanding;
+    public Vector3 gunCrouching;
     public float crouchHeight = 1.5f;   //crouchheight for character
     public float standHeight = 3.0f;    //standheight for character
     public float smooth = 5.0f;         //value for smooth object transform during crouch
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         rayShoot = GetComponentInChildren<RaycastShoot>();
         controller.height = standHeight;
+        health = 30;
     }
 
 
@@ -63,20 +67,24 @@ public class PlayerController : MonoBehaviour
 
             shoot = false;
             
-            Debug.Log("pew pew");
+            //Debug.Log("pew pew");
             
         }
 
         if (crouch)
         {
-            Debug.Log("Crouch activated");
+            //Debug.Log("Crouch activated");
 
             controller.height = crouchHeight;
 
             crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
 
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
-            
+
+            //gunCrouching = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
+
+            //gun.transform.position = Vector3.Lerp(gun.transform.position, gunCrouching, Time.deltaTime * smooth);
+
             //FIXME: add Lerp to gun transforms
             gun.transform.position = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
 
@@ -88,6 +96,10 @@ public class PlayerController : MonoBehaviour
             standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
             
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
+
+            //gunStanding = new Vector3(gun.transform.position.x, 1.5f, gun.transform.position.z);
+
+            //gun.transform.position = Vector3.Lerp(gun.transform.position, gunStanding, Time.deltaTime * smooth);
 
             gun.transform.position = new Vector3(gun.transform.position.x, 1.5f, gun.transform.position.z);
         }
@@ -144,7 +156,7 @@ public class PlayerController : MonoBehaviour
         reload = true;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(int dmg)
     {
 
         if (health > 0 && dmg <= health)
@@ -155,12 +167,14 @@ public class PlayerController : MonoBehaviour
         else if (health > 0 && dmg > health)
         {
             health = 0;
+            playerDeath = true;
+            PlayerDeath();
         }
 
     }
 
 
-    public void Heal(float healPack)
+    public void Heal(int healPack)
     {
         if (health < maxHealth && (health + healPack <= maxHealth))
         {
@@ -173,4 +187,15 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
+    public void PlayerDeath()
+    {
+        if(playerDeath)
+        {
+
+        }
+    }
+
+
 }

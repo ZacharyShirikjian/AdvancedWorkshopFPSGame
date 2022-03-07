@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
+    private EnemyAttack attack;
     public float health = 2;
+    public GameObject coin;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        attack = GetComponent<EnemyAttack>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,8 @@ public class EnemyHealth : MonoBehaviour
         }
         if (health <= 0)
         {
+            Instantiate(coin, transform.position, transform.rotation);
+            StopCoroutine(attack.SpitAttack());
             Destroy(gameObject);
         }
     }

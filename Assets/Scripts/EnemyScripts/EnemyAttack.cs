@@ -24,7 +24,6 @@ public class EnemyAttack : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        //agent = GetComponent<NavMeshAgent>();
         tracking = false;
     }
 
@@ -40,14 +39,21 @@ public class EnemyAttack : MonoBehaviour
 
     public IEnumerator SpitAttack()
     {
-        agent = GetComponent<NavMeshAgent>();
+
+        if(GetComponent<NavMeshAgent>() != null)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+
+
+       // agent = GetComponent<NavMeshAgent>();
         while (spitting)
         {
 
             agent.destination = player.transform.position;
 
             spawnPoint = spitObject.transform.position;
-            Instantiate(spitPrefab, spawnPoint, transform.rotation);
+            Instantiate(spitPrefab, spawnPoint, spitObject.transform.rotation);
             
 
             //delay coroutine with random delaytime between attacks

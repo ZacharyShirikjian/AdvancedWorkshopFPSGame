@@ -12,11 +12,13 @@ public class CeilingTrigger : MonoBehaviour
     public GameObject enemy;
     public GameObject platform;
 
+    public bool triggered;
 
     // Start is called before the first frame update
     void Start()
     {
         attack = enemy.GetComponent<EnemyAttack>();
+        triggered = false;
     }
 
     // Update is called once per frame
@@ -28,13 +30,18 @@ public class CeilingTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Player"))
+        if (!triggered)
         {
-            platform.SetActive(false);
-            StartCoroutine(ActivateEnemy());
-           
+            if (other.CompareTag("Player"))
+            {
+                platform.SetActive(false);
+                StartCoroutine(ActivateEnemy());
+                triggered = true;
 
+            }
         }
+
+
     }
 
     IEnumerator ActivateEnemy()

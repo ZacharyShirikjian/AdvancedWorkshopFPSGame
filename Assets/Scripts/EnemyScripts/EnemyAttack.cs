@@ -24,8 +24,8 @@ public class EnemyAttack : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        agent = GetComponent<NavMeshAgent>();
-
+        //agent = GetComponent<NavMeshAgent>();
+        tracking = false;
     }
 
     // Update is called once per frame
@@ -33,15 +33,19 @@ public class EnemyAttack : MonoBehaviour
     {
         
         spitObject = transform.Find("spitPoint");
+
+
     }
 
 
     public IEnumerator SpitAttack()
     {
-
+        agent = GetComponent<NavMeshAgent>();
         while (spitting)
         {
+
             agent.destination = player.transform.position;
+
             spawnPoint = spitObject.transform.position;
             Instantiate(spitPrefab, spawnPoint, transform.rotation);
             

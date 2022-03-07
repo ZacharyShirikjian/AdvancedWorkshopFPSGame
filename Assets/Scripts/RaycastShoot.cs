@@ -53,7 +53,7 @@ public class RaycastShoot : MonoBehaviour
             laserLine.SetPosition(1, hit.point);
 
             // Get a reference to a health script attached to the collider we hit
-            EnemyParent health = hit.collider.GetComponent<EnemyParent>();
+            EnemyHealth health = hit.collider.GetComponent<EnemyHealth>();
 
             
             if (health != null)

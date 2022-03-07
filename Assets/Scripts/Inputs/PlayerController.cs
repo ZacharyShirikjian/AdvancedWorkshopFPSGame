@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
             //gun.transform.position = Vector3.Lerp(gun.transform.position, gunStanding, Time.deltaTime * smooth);
 
-            gun.transform.position = new Vector3(gun.transform.position.x, 1.5f, gun.transform.position.z);
+            gun.transform.position = new Vector3(gun.transform.position.x, 2.0f, gun.transform.position.z);
         }
   
 

@@ -14,7 +14,7 @@ public class CoinScript : MonoBehaviour
     {
         fromScale = transform.localScale;
         toScale = new Vector3(1.5f, 1.5f, 1.5f);
-        StartCoroutine(Grow(1.0f));
+        StartCoroutine(Grow(2.0f));
     }
 
     // Update is called once per frame

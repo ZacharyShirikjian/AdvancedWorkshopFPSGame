@@ -7,7 +7,7 @@ public class WindowTrigger : MonoBehaviour
 {
 
 
-    private EnemyAttack attack;
+    private EnemyBasic baseEnemy;
     public GameObject enemy;
 
     public GameObject PointA;
@@ -27,7 +27,7 @@ public class WindowTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attack = enemy.GetComponent<EnemyAttack>();
+        baseEnemy = enemy.GetComponent<EnemyBasic>();
         triggered = false;
         CalculateArc();
     }
@@ -87,32 +87,15 @@ public class WindowTrigger : MonoBehaviour
     }
 
 
-    //IEnumerator Climb(float time)
-    //{
-    //    float i = 0;
-    //    float rate = 1 / time;
-
-    //    while (i < 1)
-    //    {
-    //        i += Time.deltaTime * rate;
-    //        enemy.transform.position = Vector3.Slerp(Point1, Point2, i);
-    //        yield return 0;
-    //    }
-    //    //StartCoroutine(ActivateEnemy());
-    //}
-
-
-
 
     IEnumerator ActivateEnemy()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
        
         NavMeshAgent enemyNMA_ = enemy.AddComponent<NavMeshAgent>();
 
-        attack.spitting = true;
-        //attack.tracking = true;
-        StartCoroutine(attack.SpitAttack());
+
+        baseEnemy.EnableAttack();
 
     }
 

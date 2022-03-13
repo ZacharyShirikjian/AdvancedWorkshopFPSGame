@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrol: {fileID: 0}
   enemy: {fileID: 7364094249303863053}
+  triggered: 0
 --- !u!1 &7364094248703996055
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7364094248703996054
 Transform:
   m_ObjectHideFlags: 0
@@ -187,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7364094249225438923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7364094249303863156}
@@ -208,7 +209,6 @@ GameObject:
   - component: {fileID: 7364094249303863048}
   - component: {fileID: 7364094249303863049}
   - component: {fileID: 7364094249303863051}
-  - component: {fileID: 7364094249303863052}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -225,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 7364094249303863053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11.115513, y: -6.9907966, z: 21.519707}
-  m_LocalScale: {x: 2, y: 8, z: 2}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7364094249225438922}
   m_Father: {fileID: 7364094248703996054}
@@ -333,6 +333,8 @@ MonoBehaviour:
   spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
   tracking: 0
+  health: 2
+  coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
 --- !u!114 &7364094249303863051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,20 +350,6 @@ MonoBehaviour:
   pointA: {fileID: 7364094249324355772}
   pointB: {fileID: 7364094247568625106}
   patrol: 0
---- !u!114 &7364094249303863052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7364094249303863053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc268b2fc1f5d92499949815f98d0f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
 --- !u!1 &7364094249324355772
 GameObject:
   m_ObjectHideFlags: 0

@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 4231394844943670012}
   platform: {fileID: 4231394843722650357}
+  triggered: 0
 --- !u!1 &4231394844943670012
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +169,6 @@ GameObject:
   - component: {fileID: 4231394844943669990}
   - component: {fileID: 4231394844943669985}
   - component: {fileID: 4231394844943669984}
-  - component: {fileID: 4231394844943669987}
   - component: {fileID: 4231394844943669986}
   m_Layer: 0
   m_Name: Enemy
@@ -270,20 +270,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4231394844943669987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4231394844943670012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc268b2fc1f5d92499949815f98d0f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
 --- !u!114 &4231394844943669986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +288,8 @@ MonoBehaviour:
   spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
   tracking: 0
+  health: 2
+  coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
 --- !u!1 &4231394845024679714
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4231394845774704332
 Transform:
   m_ObjectHideFlags: 0

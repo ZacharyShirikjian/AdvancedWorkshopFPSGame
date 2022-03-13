@@ -8,7 +8,7 @@ public class PatrolTrigger : MonoBehaviour
 
     public EnemyPatrol patrol;
     
-    private EnemyAttack attack;
+    private EnemyBasic baseEnemy;
   
     public GameObject enemy;
 
@@ -18,7 +18,7 @@ public class PatrolTrigger : MonoBehaviour
     void Start()
     {
         patrol = enemy.GetComponent<EnemyPatrol>();
-        attack = enemy.GetComponent<EnemyAttack>();
+        baseEnemy = enemy.GetComponent<EnemyBasic>();
         triggered = false;
     }
 
@@ -36,10 +36,8 @@ public class PatrolTrigger : MonoBehaviour
             {
 
                 patrol.patrol = false;
-                attack.spitting = true;
 
-                //attack.tracking = true;
-                StartCoroutine(attack.SpitAttack());
+                baseEnemy.EnableAttack();
 
                 triggered = true;
             }

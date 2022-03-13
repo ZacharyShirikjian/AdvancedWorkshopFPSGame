@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyBasic : MonoBehaviour
 {
 
     private Vector3 spawnPoint;
@@ -17,6 +17,9 @@ public class EnemyAttack : MonoBehaviour
 
     public bool spitting;
     public bool tracking;
+
+    public float health = 2;
+    public GameObject coin;
 
 
     // Start is called before the first frame update
@@ -33,24 +36,62 @@ public class EnemyAttack : MonoBehaviour
         
         spitObject = transform.Find("spitPoint");
 
+        if (health == 0)
+        {
+            StopCoroutine(SpitAttack());
+        }
+    }
 
+
+    public void EnableAttack()
+    {
+        if (health > 0)
+        {
+            spitting = true;
+
+            if (GetComponent<NavMeshAgent>() != null)
+            {
+                agent = GetComponent<NavMeshAgent>();
+            }
+
+            InvokeRepeating("TrackPlayer", 0, 0.25f);
+
+            StartCoroutine(SpitAttack());
+        }
+    }
+
+
+    public void HitEnemy(float dmg)
+    {
+        if (health > 0)
+        {
+            health -= dmg;
+        }
+        if (health <= 0)
+        {
+            spitting = false;
+            Instantiate(coin, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+    }
+
+
+
+    public void TrackPlayer()
+    {
+        agent.destination = player.transform.position;
     }
 
 
     public IEnumerator SpitAttack()
     {
 
-        if(GetComponent<NavMeshAgent>() != null)
-        {
-            agent = GetComponent<NavMeshAgent>();
-        }
-
 
        // agent = GetComponent<NavMeshAgent>();
         while (spitting)
         {
 
-            agent.destination = player.transform.position;
+            
 
             spawnPoint = spitObject.transform.position;
             Instantiate(spitPrefab, spawnPoint, spitObject.transform.rotation);
@@ -64,7 +105,6 @@ public class EnemyAttack : MonoBehaviour
 
 
     }
-
 
 
 }

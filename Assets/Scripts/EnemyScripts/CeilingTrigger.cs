@@ -8,7 +8,7 @@ public class CeilingTrigger : MonoBehaviour
 
 
 
-    private EnemyAttack attack;
+    private EnemyBasic baseEnemy;
     public GameObject enemy;
     public GameObject platform;
 
@@ -17,7 +17,7 @@ public class CeilingTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attack = enemy.GetComponent<EnemyAttack>();
+        baseEnemy = enemy.GetComponent<EnemyBasic>();
         triggered = false;
     }
 
@@ -50,9 +50,7 @@ public class CeilingTrigger : MonoBehaviour
 
         NavMeshAgent enemyNMA_ = enemy.AddComponent<NavMeshAgent>();
 
-        attack.spitting = true;
-        //attack.tracking = true;
-        StartCoroutine(attack.SpitAttack());
+        baseEnemy.EnableAttack();
 
     }
 

@@ -208,11 +208,11 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         {
             playRef.maxAmmo += 2;
             playRef.ammo = playRef.maxAmmo;
+            uiRef.UpdateAmmoUI();
             JukeboxButtonSelected();
-            selected =false;
         }
 
-        if (selected == false)
+        else if (selected == false)
         {
             JukeboxButtonSelected();
         }
@@ -232,7 +232,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             Debug.Log(currentButton);
             if (uiRef.numCoins >= currentButton.GetComponent<JukeboxButton>().cost)
             {
-                selectPromptText.SetText("Is this ok?");
+                selectPromptText.SetText("Is this okay?");
                 selected = true;
             }
             else if(uiRef.numCoins < currentButton.GetComponent<JukeboxButton>().cost)
@@ -273,7 +273,9 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     public void ChangeSelectPromptText()
     {
-        selectPromptText.SetText("SELECT");
+        selectPromptText.SetText("SELECT UPGRADE");
+
+        //TO-DO: CHANGE TO "SELECT MODS" ONCE MOD SCREEN POPS UP
     }
 
     //Closes out of the Jukebox after 1 second

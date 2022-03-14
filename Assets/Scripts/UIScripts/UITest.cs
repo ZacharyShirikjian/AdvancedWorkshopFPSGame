@@ -31,6 +31,13 @@ public class UITest : MonoBehaviour
 
         //Reference to the InteractPrompt Text
         public TextMeshProUGUI interactPromptText;
+        
+        //Space icon for interacting w/ objects
+        public GameObject interactIcon;
+
+    //R icon for reloading
+    public GameObject rIcon;
+
 
     //Reference to Coin UI text
     public TextMeshProUGUI coinText;
@@ -103,6 +110,8 @@ public class UITest : MonoBehaviour
         healthSliderValue = healthSlider.value;
         curStateText.SetText("");
         interactPromptText.SetText("");
+        interactIcon.SetActive(false);
+        rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
         jukeboxMenu.SetActive(false);
@@ -212,12 +221,14 @@ public class UITest : MonoBehaviour
     {
         if(prompt != "")
         {
-            interactPromptText.SetText("Press [SPACE] to " + prompt.ToString());
+            interactIcon.SetActive(true);
+            interactPromptText.SetText(prompt.ToString());
         }
 
         else
         {
             interactPromptText.SetText("");
+            interactIcon.SetActive(false);
         }
     }
     //This method gets called when a player shoots a bullet, called from the PlayerControllerScript
@@ -238,9 +249,11 @@ public class UITest : MonoBehaviour
         //IF JUKEBOX IS CLOSED OR PLAYER DIDN'T GET AMMO REFILL
         if(!jukeboxOpen)
         {
-            if (curBullets <= 0)
+            if (curBullets == 0)
             {
+                Debug.Log("Out of Ammo");
                 curStateText.SetText("Out of Ammo");
+                rIcon.SetActive(true);
             }
 
             else if (curBullets > 0)
@@ -285,6 +298,7 @@ public class UITest : MonoBehaviour
     {
         //RELOAD ANIMATION PLAYS//
         Debug.Log("RELOADING...");
+        rIcon.SetActive(false);
         ammoAnimator.SetTrigger("Reloading");
         Debug.Log(maxBullets);
         if (maxBullets == 6)
@@ -375,7 +389,7 @@ public class UITest : MonoBehaviour
       
         if (curHealth >= maxHealth)
         {
-            curStateText.SetText("Health Maxed Out");
+            curStateText.SetText("Health is Already Full.");
         }
 
         else if (curHealth <= 0)

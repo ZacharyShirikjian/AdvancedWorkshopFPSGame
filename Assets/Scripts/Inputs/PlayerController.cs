@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 #pragma warning disable 649
 
     public int health;                //holds player current health
-    public int maxHealth = 30;             //holds player max health
+    public int maxHealth = 100;             //holds player max health
 
     public Camera playerCam;                                //holds main camera(playerCamera)
     [SerializeField] CharacterController controller;        //pulls character controller component from player

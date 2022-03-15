@@ -6,7 +6,7 @@ public class SpitPhysics : MonoBehaviour
 {
 
     public float speed = 8.0f;
-    public int dmg = 5;
+    public int dmg = 10;
     public Rigidbody spit;
     public GameObject player;
     [SerializeField] Vector3 direction;

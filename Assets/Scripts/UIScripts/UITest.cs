@@ -109,6 +109,7 @@ public class UITest : MonoBehaviour
 
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
+        healthSlider.transform.localScale = new Vector3(1f, 1f, 0f); //RESET health slider at start of game to represent 100
         curStateText.SetText("");
         interactPromptText.SetText("");
         interactIcon.SetActive(false);
@@ -403,8 +404,8 @@ public class UITest : MonoBehaviour
         //curHealth = playerRef.health;
         //healthSliderValue = curHealth;
         //healthSlider.value = healthSliderValue; 
-      
-        if (curHealth >= maxHealth)
+
+        if (curHealth > maxHealth)
         {
             curStateText.SetText("Health is Already Full.");
         }

@@ -192,6 +192,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         {
             playRef.maxHealth += 100;
             playRef.health = playRef.maxHealth;
+            //When upgrading health, increase size of max Health UI to be 0.25f more than before
+            uiRef.healthSlider.transform.localScale += new Vector3(0.25f, 0f, 0f);
             uiRef.UpdateHealthUI();
             JukeboxButtonSelected();
         }
@@ -289,6 +291,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     public void closeJukeboxMenuDelay()
     {
         //DISABLE EVERY BUTTON IN THE JUKEBOX MENU TEMPORARILY//
+        selectPromptText.SetText("SELECT");
         currentButton = null;
         selected = false;
 

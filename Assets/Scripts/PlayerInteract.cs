@@ -103,7 +103,7 @@ public class PlayerInteract : MonoBehaviour
                 curJukebox = other.gameObject;
                 curJukeboxScript = curJukebox.GetComponent<JukeboxScript>();
                 canInteract = true;
-                uiRef.UpdateInteractPromptUI("use Jukebox");
+                uiRef.UpdateInteractPromptUI("Use Jukebox");
             }
 
             else if (other.gameObject.GetComponent<JukeboxScript>().interactedBefore == true)

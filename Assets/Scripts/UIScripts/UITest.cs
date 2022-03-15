@@ -100,6 +100,7 @@ public class UITest : MonoBehaviour
         Time.timeScale = 1f;
         //eventSystem.firstSelectedGameObject = null;
         numCoins = 0;
+        extraBullets = 0;
         playerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
@@ -132,12 +133,12 @@ public class UITest : MonoBehaviour
        // Debug.Log(maxBullets);
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
-        extraBullets = (int) playerRef.maxAmmo - 6;
-        if(extraBullets <= 0)
-        {
-            extraBullets = 0;
-        }
-        extraAmmoUI.text = extraBullets.ToString();
+        //extraBullets = (int) playerRef.maxAmmo - 6;
+        //if(extraBullets <= 0)
+        //{
+        //    extraBullets = 0;
+        //}
+        extraAmmoUI.SetText("+" + extraBullets.ToString());
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
        //healthSliderValue = curHealth;
@@ -252,11 +253,18 @@ public class UITest : MonoBehaviour
         //IF JUKEBOX IS CLOSED OR PLAYER DIDN'T GET AMMO REFILL
         if(!jukeboxOpen)
         {
-
+            //extraBullets = (int)playerRef.maxAmmo - 6;
+            //extraAmmoUI.text = "+" + extraBullets.ToString();
             if (curBullets > 0)
             {
+                if(curBullets > 6)
+                {
+                    extraBullets--;
+                    //extraAmmoUI.text = "+" + extraBullets.ToString();
+                    curBullets--;
+                }
 
-                if (curBullets <= 6)
+                else if (curBullets <= 6)
                 {
                     //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
                     ammoAnimator.SetTrigger("RotateBullet");
@@ -264,43 +272,41 @@ public class UITest : MonoBehaviour
                     //Hide the bottom-most element when a bullet is shot
                     Bullets[curBullets -1].GetComponentInChildren<Image>().enabled = false;
                     curBullets--;
+                    if (curBullets <= 0)
+                    {
+                        Debug.Log(curBullets);
+                        Debug.Log("Out of Ammo");
+                        curStateText.SetText("Out of Ammo");
+                        if (maxBullets > 2)
+                        {
+                            rIcon.SetActive(true);
+                        }
+
+                        else if (maxBullets <= 2)
+                        {
+                            rIcon.SetActive(false);
+                        }
+
+                    }
                 }
 
-                if(curBullets <= 0)
-                {
-                    Debug.Log(curBullets);
-                    Debug.Log("Out of Ammo");
-                    curStateText.SetText("Out of Ammo");
-                    if(maxBullets > 2)
-                    {
-                        rIcon.SetActive(true);
-                    }
 
-                    else if(maxBullets <= 2)
-                    {
-                        rIcon.SetActive(false);
-                    }
-                    
-                }
             }
             //Debug.Log(curBullets);
         }
 
-        else if(jukeboxOpen)
-        {
-            if(maxBullets > 6)
-            {
-                Debug.Log("TWO EXTRA BULLETS");
-            }
-        }
-
-        //FOR REFILLING PLAYER AMMO BY 2 BULLETS (TEMP SOLUTION)
-        else if(jukeboxOpen && (curBullets != maxBullets))
-        {
-            Debug.Log("REFILL AMMO UI");
-            Bullets[curBullets + 1].GetComponentInChildren<Image>().enabled = true;
-            Bullets[curBullets].GetComponentInChildren<Image>().enabled = true;
-        }
+        //else if(jukeboxOpen)
+        //{
+        //    if(maxBullets > 6)
+        //    {
+        //        Debug.Log("TWO EXTRA BULLETS");
+        //        for (int i = 0; i < 6; i++)
+        //        {
+        //            Debug.Log("More than 6 bullets");
+        //            Bullets[i].GetComponentInChildren<Image>().enabled = true;
+        //        }
+        //    }
+        //}
 
     }
     //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,

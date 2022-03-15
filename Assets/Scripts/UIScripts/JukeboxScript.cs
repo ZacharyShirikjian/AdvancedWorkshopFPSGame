@@ -208,7 +208,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         {
             playRef.maxAmmo += 2;
             playRef.ammo = playRef.maxAmmo;
-            uiRef.UpdateAmmoUI();
+            uiRef.extraBullets = (int) playRef.maxAmmo - 6;
+            uiRef.Reload();
             JukeboxButtonSelected();
         }
 
@@ -281,6 +282,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     //Closes out of the Jukebox after 1 second
     public void closeJukeboxMenu()
     {
+        selectPromptText.SetText("CLOSING...");
         Invoke("closeJukeboxMenuDelay", 1f);
     }
 
@@ -289,7 +291,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         //DISABLE EVERY BUTTON IN THE JUKEBOX MENU TEMPORARILY//
         currentButton = null;
         selected = false;
-        selectPromptText.SetText("SELECT");
+
         jukeboxHeaderText.SetText("");
         for (int i = 0; i < 4; i++)
         {

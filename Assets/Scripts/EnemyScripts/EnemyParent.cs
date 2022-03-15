@@ -31,7 +31,6 @@ public class EnemyParent : MonoBehaviour
     {
         if(health > 0)
         {
-            Debug.Log("TESTTTETET");
             health -= dmg;
         }
         if(health <= 0)

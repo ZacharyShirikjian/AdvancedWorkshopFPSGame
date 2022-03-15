@@ -190,7 +190,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         if (selected == true)
         {
-            playRef.maxHealth += 10;
+            playRef.maxHealth += 100;
             playRef.health = playRef.maxHealth;
             uiRef.UpdateHealthUI();
             JukeboxButtonSelected();

@@ -129,8 +129,9 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(maxBullets);
         curBullets = (int) playerRef.ammo;
-        maxBullets = (int)playerRef.maxAmmo;
+        maxBullets = (int) playerRef.maxAmmo;
         extraBullets = (int) playerRef.maxAmmo - 6;
         if(extraBullets <= 0)
         {
@@ -177,7 +178,9 @@ public class UITest : MonoBehaviour
             //pausePress = true;
             paused = true;
             pausePanel.SetActive(true);
-            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject);
+
+            //pausePanel.transform.GetChild(1).gameObject is the Resume button (GetChild (0) is the PauseHeader)
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject);
             Debug.Log(eventSystem.currentSelectedGameObject);
             //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
             //Time.timeScale = 0f;
@@ -239,7 +242,7 @@ public class UITest : MonoBehaviour
             * Test method for updating the ammo counter UI;
             * If the player Left Clicks,
             * They shoot a bullet, so hide/remove the bottom-most child of the Bullet GameObjects.
-            * If the player Right-Clicks,
+            * If the player presses the R key,
             * They reload their gun, 
             * 
             * If the player is out of ammo, 
@@ -249,27 +252,38 @@ public class UITest : MonoBehaviour
         //IF JUKEBOX IS CLOSED OR PLAYER DIDN'T GET AMMO REFILL
         if(!jukeboxOpen)
         {
-            if (curBullets == 0)
-            {
-                Debug.Log("Out of Ammo");
-                curStateText.SetText("Out of Ammo");
-                rIcon.SetActive(true);
-            }
 
-            else if (curBullets > 0)
+            if (curBullets > 0)
             {
-                curBullets--;
 
-                if(curBullets < 6)
+                if (curBullets <= 6)
                 {
                     //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
                     ammoAnimator.SetTrigger("RotateBullet");
                     //For each child in the Bullets GameObject,
                     //Hide the bottom-most element when a bullet is shot
-                    Bullets[curBullets].GetComponentInChildren<Image>().enabled = false;
+                    Bullets[curBullets -1].GetComponentInChildren<Image>().enabled = false;
+                    curBullets--;
                 }
 
+                if(curBullets <= 0)
+                {
+                    Debug.Log(curBullets);
+                    Debug.Log("Out of Ammo");
+                    curStateText.SetText("Out of Ammo");
+                    if(maxBullets > 2)
+                    {
+                        rIcon.SetActive(true);
+                    }
+
+                    else if(maxBullets <= 2)
+                    {
+                        rIcon.SetActive(false);
+                    }
+                    
+                }
             }
+            //Debug.Log(curBullets);
         }
 
         else if(jukeboxOpen)
@@ -299,37 +313,34 @@ public class UITest : MonoBehaviour
         //RELOAD ANIMATION PLAYS//
         Debug.Log("RELOADING...");
         rIcon.SetActive(false);
+        ammoAnimator.SetBool("Idle", false);
         ammoAnimator.SetTrigger("Reloading");
+        maxBullets = (int)playerRef.maxAmmo;
         Debug.Log(maxBullets);
-        if (maxBullets == 6)
+        if(maxBullets > 6)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
-                Debug.Log("6 Bullets");
+                Debug.Log("More than 6 bullets");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }
 
         else if (maxBullets <= 6)
         {
+            Debug.Log(maxBullets);
             for (int i = 0; i < maxBullets; i++)
             {
-                Debug.Log("6 Bullets or Less");
+                Debug.Log("6 bullets or less");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }
-
-        //else if (maxBullets == 2)
-        //{
-        //    Debug.Log("2 Bullets");
-        //    Bullets[0].GetComponentInChildren<Image>().enabled = true;
-        //    Bullets[1].GetComponentInChildren<Image>().enabled = true;
-        //}
 
         else if (maxBullets <= 0)
         {
             curStateText.SetText("Out of Ammo");
         }
+
         Invoke("ReloadDelay", 2f);
     }
 

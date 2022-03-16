@@ -1,6 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
 --- !u!1 &4755795907264487432
+=======
+--- !u!1 &1704107403229808040
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+--- !u!1 &5479931166683841508
+>>>>>>> MainBranch
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,6 +16,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
   - component: {fileID: 4755795907264487427}
   - component: {fileID: 4755795907264487436}
   - component: {fileID: 4755795907264487437}
@@ -17,39 +27,113 @@ GameObject:
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
+=======
+  - component: {fileID: 5879323716944480794}
+  - component: {fileID: 7071862191689288152}
+  - component: {fileID: 122591409632727946}
+  - component: {fileID: 1126395285637608366}
+  - component: {fileID: 4680685157351954894}
+  - component: {fileID: 7808163626410533524}
+  m_Layer: 0
+  m_Name: EnemySpit
+  m_TagString: Untagged
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+  - component: {fileID: 5479931166683841434}
+  - component: {fileID: 5479931166683841433}
+  - component: {fileID: 5479931166683841432}
+  - component: {fileID: 5479931166683841511}
+  - component: {fileID: 5479931166683841509}
+  - component: {fileID: 5479931166683841510}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Enemy
+>>>>>>> MainBranch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
 --- !u!4 &4755795907264487427
+=======
+--- !u!4 &5879323716944480794
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+--- !u!4 &5479931166683841434
+>>>>>>> MainBranch
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
   m_GameObject: {fileID: 4755795907264487432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.761297, y: 1.86, z: 19.98}
   m_LocalScale: {x: 2, y: 8, z: 2}
+=======
+  m_GameObject: {fileID: 1704107403229808040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.240005, y: -1.4006071, z: -16.807932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
 --- !u!33 &4755795907264487436
+=======
+--- !u!33 &7071862191689288152
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+  m_GameObject: {fileID: 5479931166683841508}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.761297, y: 1.86, z: 19.98}
+  m_LocalScale: {x: 2, y: 8, z: 2}
+  m_Children:
+  - {fileID: 5479931167147619679}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5479931166683841433
+>>>>>>> MainBranch
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
   m_GameObject: {fileID: 4755795907264487432}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &4755795907264487437
+=======
+  m_GameObject: {fileID: 1704107403229808040}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &122591409632727946
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+  m_GameObject: {fileID: 5479931166683841508}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5479931166683841432
+>>>>>>> MainBranch
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
   m_GameObject: {fileID: 4755795907264487432}
+=======
+  m_GameObject: {fileID: 1704107403229808040}
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+  m_GameObject: {fileID: 5479931166683841508}
+>>>>>>> MainBranch
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,19 +168,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
 --- !u!65 &4755795907264487438
 BoxCollider:
+=======
+--- !u!135 &1126395285637608366
+SphereCollider:
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+--- !u!65 &5479931166683841511
+BoxCollider:
+>>>>>>> MainBranch
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
   m_GameObject: {fileID: 4755795907264487432}
+=======
+  m_GameObject: {fileID: 1704107403229808040}
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+  m_GameObject: {fileID: 5479931166683841508}
+>>>>>>> MainBranch
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
 --- !u!114 &4755795907264487439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,11 +218,24 @@ MonoBehaviour:
   player: {fileID: 0}
 --- !u!195 &4755795907264487426
 NavMeshAgent:
+=======
+--- !u!54 &4680685157351954894
+Rigidbody:
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+--- !u!195 &5479931166683841509
+NavMeshAgent:
+>>>>>>> MainBranch
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Prefabs/Tina's Prefabs(temp)/Enemy.prefab
   m_GameObject: {fileID: 4755795907264487432}
+=======
+  m_GameObject: {fileID: 5479931166683841508}
+>>>>>>> MainBranch
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -134,3 +251,80 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+<<<<<<< HEAD
+=======
+  m_GameObject: {fileID: 1704107403229808040}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7808163626410533524
+=======
+--- !u!114 &5479931166683841510
+>>>>>>> MainBranch
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 1704107403229808040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1ba904cdfa8c349a8943cba4bbc71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  dmg: 5
+  spit: {fileID: 0}
+  player: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+>>>>>>> MainBranch:Assets/Prefabs/Tina's Prefabs(temp)/EnemySpit.prefab
+=======
+  m_GameObject: {fileID: 5479931166683841508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591d1211531e49e4e95c8bd47d9036f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerController: {fileID: 0}
+  spitObject: {fileID: 5479931167147619679}
+  spitPrefab: {fileID: 5258509425596587932, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
+  spitting: 0
+--- !u!1 &5479931167147619678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5479931167147619679}
+  m_Layer: 0
+  m_Name: spitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5479931167147619679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5479931167147619678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5479931166683841434}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> MainBranch

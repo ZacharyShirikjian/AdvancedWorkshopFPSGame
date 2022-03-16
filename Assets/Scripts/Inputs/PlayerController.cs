@@ -117,12 +117,17 @@ public class PlayerController : MonoBehaviour
             if(ammo <= 0)
             {
                 ammo = 0;
+                maxAmmo = 0;
             }
 
 
             //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
             reload = false;
-            uiRef.Reload();
+            if(maxAmmo > 0)
+            {
+                uiRef.Reload();
+            }
+
         }
 
         Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;

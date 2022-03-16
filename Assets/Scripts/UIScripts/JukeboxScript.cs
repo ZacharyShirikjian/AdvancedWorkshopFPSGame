@@ -70,6 +70,11 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
             jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         }
+        else if(currentButton == null)
+        {
+            jukeboxHeaderText.SetText("");
+            jukeboxDescText.SetText("");
+        }
 
         //Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
     }

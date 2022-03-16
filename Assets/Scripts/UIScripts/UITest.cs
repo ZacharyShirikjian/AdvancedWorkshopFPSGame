@@ -329,6 +329,7 @@ public class UITest : MonoBehaviour
             for (int i = 0; i < 6; i++)
             {
                 Debug.Log("More than 6 bullets");
+                curStateText.SetText("");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }
@@ -339,6 +340,7 @@ public class UITest : MonoBehaviour
             for (int i = 0; i < maxBullets; i++)
             {
                 Debug.Log("6 bullets or less");
+                curStateText.SetText("");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }

@@ -7,11 +7,23 @@ public class InputManager : MonoBehaviour
     Controls controls;
     Controls.MovementActions movement;
     Controls.MenusActions menu;
-    [SerializeField] PlayerController playCon;
-    [SerializeField] MouseLook mouseLook;
+    private PlayerController playCon;
+    private MouseLook mouseLook;
+    private UITest uiScript;
+    private JukeboxScript jukeboxRef;
+    private PlayerInteract playInteract;
 
     Vector2 inputVector;
     Vector2 mouseInput;
+
+    private void Start()
+    {
+        playCon = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        playInteract = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerInteract>();
+        mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
+        uiScript = this.gameObject.GetComponent<UITest>();
+        jukeboxRef = GameObject.FindWithTag("Jukebox").GetComponent<JukeboxScript>();
+    }
 
     private void Awake()
     {
@@ -29,12 +41,20 @@ public class InputManager : MonoBehaviour
 
         movement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+
+        //MENU//
+        //menu.Select.performed += _ => uiScript.OnSelectPressed();
+        menu.Pause.performed += _ => uiScript.PauseGame();
+        movement.Interact.performed += _ => playInteract.Interact();
+        menu.Cancel.performed += _ => jukeboxRef.CancelOption();
+
     }
 
     private void Update()
     {
         playCon.ReceiveInput(inputVector);
         mouseLook.ReceiveInput(mouseInput);
+        //uiScript.ReceiveInput();
     }
 
     private void OnEnable()

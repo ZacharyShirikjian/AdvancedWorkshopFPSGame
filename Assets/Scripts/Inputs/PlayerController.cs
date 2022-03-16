@@ -35,14 +35,30 @@ public class PlayerController : MonoBehaviour
     public RaycastShoot rayShoot;       //script that runs raycast hitscan
     private float nextFire;             //float to delay gun fire
     public float fireRate = 0.25f;      //how often the gun can shoot
+<<<<<<< HEAD
     public float ammo = 6;              //amount of ammo when full
     public GameObject gun;              //gun game object
+=======
+    public float ammo = 6;
+    public float maxAmmo = 6;
+    public GameObject gun;
+>>>>>>> ZachsBranch
+
+    //REFERENCE TO UI SCRIPT//
+    private UITest uiRef;
 
     public void Awake()
     {
+        ammo = 6;
+        maxAmmo = 6;
+
         rayShoot = GetComponentInChildren<RaycastShoot>();
         controller.height = standHeight;
+<<<<<<< HEAD
         health = 30;
+=======
+        uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
+>>>>>>> ZachsBranch
     }
 
 
@@ -67,7 +83,14 @@ public class PlayerController : MonoBehaviour
 
             shoot = false;
             
+<<<<<<< HEAD
             //Debug.Log("pew pew");
+=======
+            Debug.Log("pew pew");
+
+            //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
+            uiRef.UpdateAmmoUI();
+>>>>>>> ZachsBranch
             
         }
 
@@ -114,9 +137,21 @@ public class PlayerController : MonoBehaviour
             //add audio
             shoot = false;
 
-            ammo = 6;
+            ammo = maxAmmo - 2;
+            maxAmmo = ammo;
+            if(ammo <= 0)
+            {
+                ammo = 0;
+                maxAmmo = 0;
+            }
 
+
+            //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
             reload = false;
+            if(maxAmmo > 0)
+            {
+                uiRef.Reload();
+            }
 
         }
 

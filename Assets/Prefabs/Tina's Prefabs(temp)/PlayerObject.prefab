@@ -63,11 +63,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6239929424462989361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b745ec4ce4ced4892255feadeaed77, type: 3}
+  m_Script: {fileID: 11500000, guid: 19b9690185a41ec499c8c8ec05cff71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playCon: {fileID: 6239929424462989363}
   mouseLook: {fileID: 6239929424462989373}
+  uiScript: {fileID: 0}
 --- !u!114 &6239929424462989373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +78,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6239929424462989361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a50b673b7fa4534bbdc16047700826d, type: 3}
+  m_Script: {fileID: 11500000, guid: 525c1b152655e264d97b10703f0b8a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivityX: 8
@@ -93,11 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6239929424462989361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b53e900a41f364685387373d22ca9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9911ecf0101b4d742b479c814009a3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 0
+  health: 30
+  maxHealth: 30
   playerCam: {fileID: 6239929425235843974}
   controller: {fileID: 6239929424462989360}
   speed: 11

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -12,6 +11,8 @@ public class InputManager : MonoBehaviour
     private UITest uiScript;
     private JukeboxScript jukeboxRef;
     private PlayerInteract playInteract;
+
+    Vector2 mousePos;
 
     Vector2 inputVector;
     Vector2 mouseInput;
@@ -47,6 +48,7 @@ public class InputManager : MonoBehaviour
         menu.Pause.performed += _ => uiScript.PauseGame();
         movement.Interact.performed += _ => playInteract.Interact();
         menu.Cancel.performed += _ => jukeboxRef.CancelOption();
+        //menu.Point.performed += ctx 
 
     }
 
@@ -55,6 +57,9 @@ public class InputManager : MonoBehaviour
         playCon.ReceiveInput(inputVector);
         mouseLook.ReceiveInput(mouseInput);
         //uiScript.ReceiveInput();
+
+        mousePos = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue());
+
     }
 
     private void OnEnable()

@@ -63,11 +63,14 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     private void Update()
     {
+        jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
+        jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN HOVERING OVER A BUTTON//
 
-
-        if (currentButton != null || currentButton != exitButton)
+        /*
+        if (currentButton != null && currentButton != exitButton)
         {
+            Debug.Log("test");
             jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
             jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         }
@@ -77,9 +80,10 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             jukeboxHeaderText.SetText("");
             jukeboxDescText.SetText("");
         }
-
+        */
 
         //Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
+
     }
 
     //FOR CANCELING OUT AN OPTION IN THE JUKEBOX
@@ -153,6 +157,72 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
        
     }
 
+    //MODS//
+
+    //TO DO: MODDING OF WEAPON WILL BE ADDED LATER//
+    //THESE ARE PLACEHOLDER MODS TO ENSURE BUTTONS WILL WORK//
+
+    //CHANGE EFFECT OF PLAYER'S GUN TO BE LIKE SHOTGUN (ADD LATER)
+    public void ShotgunMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("SHOTGUN MOD ADDED");
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+
+    }
+
+    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    public void SlowSpeedMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("ELECTRICITY MOD ADDED");
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+    }
+
+
+    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    public void FreezeEnemyMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("FREEZE MOD ADDED");
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+    }
+
+    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    public void FireballMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("FIRE AMMO MOD ADDED");
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+    }
     ///UPGRADES/REFILLS///
 
     //CALL HEALTH PACK METHOD OF PLAYER TO HEAL PLAYER (VALUE TBD, LET'S SAY 50% FOR NOW)
@@ -235,7 +305,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     //This method gets called when jukebox is active & button in jukebox is pressed
     public void JukeboxButtonSelected()
     {
-
+        Debug.Log("SDCVASDCASCS");
         if (selected == false)
         {
             currentButton = EventSystem.current.currentSelectedGameObject;

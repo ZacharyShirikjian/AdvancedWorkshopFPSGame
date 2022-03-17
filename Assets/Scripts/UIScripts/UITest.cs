@@ -13,6 +13,10 @@ using TMPro;
     *And modify them to work accordingly with her scripts.
     *-Zach
 */
+
+//REFERENCE USED FOR FADING OUT UI IMAGE//
+//code from ryanmillerca on https://forum.unity.com/threads/simple-ui-animation-fade-in-fade-out-c.439825/
+
 public class UITest : MonoBehaviour
 {
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
@@ -87,9 +91,14 @@ public class UITest : MonoBehaviour
             //The value of the HealthSlider
             private float healthSliderValue;
 
+
+    //For Poison Effect (https://www.youtube.com/watch?v=5nWRrkaFpic)
+    [SerializeField] private Image splatterImage;
+    public bool inMist = false;    
+
     //AMMO//
-        //The current amount of bullets which the player can shoot 
-        [SerializeField] public int curBullets;
+    //The current amount of bullets which the player can shoot 
+    [SerializeField] public int curBullets;
 
         //The maximum amount of bullets which the player can have in their cylinder,
         //Which decreases by 2 every time they reload their gun
@@ -145,17 +154,18 @@ public class UITest : MonoBehaviour
        // Debug.Log(maxBullets);
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
+
         //extraBullets = (int) playerRef.maxAmmo - 6;
         //if(extraBullets <= 0)
         //{
         //    extraBullets = 0;
         //}
+
         extraAmmoUI.SetText("+" + extraBullets.ToString());
-        curHealth = playerRef.health;
-        maxHealth = playerRef.maxHealth;
-       //healthSliderValue = curHealth;
-        healthSlider.value = curHealth;
-        healthSlider.maxValue = maxHealth;
+        //curHealth = playerRef.health;
+        //maxHealth = playerRef.maxHealth;
+        //healthSlider.value = curHealth;
+        //healthSlider.maxValue = maxHealth;
         coinText.SetText(numCoins.ToString());
     }
 
@@ -418,10 +428,6 @@ public class UITest : MonoBehaviour
 
     public void UpdateHealthUI()
     {
-        //curHealth = playerRef.health;
-        //healthSliderValue = curHealth;
-        //healthSlider.value = healthSliderValue; 
-
         if (curHealth > maxHealth)
         {
             curStateText.SetText("Health is Already Full.");
@@ -433,6 +439,21 @@ public class UITest : MonoBehaviour
         }
     }
 
+    public void FadeSplatterImage()
+    {
+        curHealth = playerRef.health;
+        healthSliderValue = curHealth;
+        healthSlider.value = healthSliderValue;
+        splatterImage.color = new Color(1, 1, 1, 1);
+        if (inMist == false)
+        {
+            for(float i = 1; i >= 0; i -= Time.deltaTime)
+            {
+                //i = opacity, slowly decrease opacity over time for 1 second
+                splatterImage.color = new Color(1, 1, 1, i);
+            }
+        }
+    }
     //Called when player gets a GameOver//
     public void GameOver()
     {

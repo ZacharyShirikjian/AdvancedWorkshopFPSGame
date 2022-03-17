@@ -55,6 +55,14 @@ public class UITest : MonoBehaviour
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
 
+    //Panel for mods//
+    [SerializeField] private GameObject currentPanel;
+    [SerializeField] private GameObject refillPanel;
+    [SerializeField] private GameObject modPanel;
+
+    //REFERENCE TO NEXT BUTTON//
+    [SerializeField] private Button NextButton;
+
     //VARIABLES//
     //Checks if Game Over is true, if true enemies can't track player anymore
     public bool gameOver = false;
@@ -120,6 +128,9 @@ public class UITest : MonoBehaviour
         gameOver = false;
         paused = false;
         jukeboxOpen = false;
+        currentPanel = refillPanel;
+        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
+
         for (int i = 0; i < 6; i++)
         {
             Bullets[i].GetComponentInChildren<Image>().enabled = true;
@@ -198,6 +209,25 @@ public class UITest : MonoBehaviour
             //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
         }
 
+    }
+
+    //SWITCH BETWEEN JUKEBOX PAGES
+    public void SwitchJukeboxPages()
+    {
+        if(currentPanel == refillPanel)
+        {
+            currentPanel = modPanel;
+            refillPanel.SetActive(false);
+            modPanel.SetActive(true);
+            NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
+        }
+        else if (currentPanel == modPanel)
+        {
+            currentPanel = refillPanel;
+            modPanel.SetActive(false);
+            refillPanel.SetActive(true);
+            NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
+        }
     }
 
     //public void CloseJukeboxUI()

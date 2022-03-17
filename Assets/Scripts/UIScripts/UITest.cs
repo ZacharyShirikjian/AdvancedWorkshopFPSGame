@@ -182,7 +182,7 @@ public class UITest : MonoBehaviour
             UpdateInteractPromptUI("");
             jukeboxMenu.SetActive(true);
             playerRef.enabled = false;
-            eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).gameObject);
+            eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).transform.GetChild(0).gameObject);
             Debug.Log(eventSystem.currentSelectedGameObject);
             paused = true;
             //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/

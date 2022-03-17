@@ -146,22 +146,6 @@ public class UITest : MonoBehaviour
         healthSlider.value = curHealth;
         healthSlider.maxValue = maxHealth;
         coinText.SetText(numCoins.ToString());
-
-        /*
-        if (paused)
-        {
-            eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
-            if (jukeboxMenu.activeSelf)
-            {
-                //jukeboxMenu.SetActive(false);
-            }
-        } 
-        else if (!paused)
-        {
-            eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
-
-        }
-        */
     }
 
     //For Pausing/Unpausing Game
@@ -197,10 +181,10 @@ public class UITest : MonoBehaviour
         {
             UpdateInteractPromptUI("");
             jukeboxMenu.SetActive(true);
-            //Time.timeScale = 0f;
             playerRef.enabled = false;
             eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).gameObject);
             Debug.Log(eventSystem.currentSelectedGameObject);
+            paused = true;
             //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
             //eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
         }
@@ -208,6 +192,7 @@ public class UITest : MonoBehaviour
         //RENABLE PLAYER MOVEMENT ONCE JUKEBOX MENU IS CLOSED
         else if(!jukeboxOpen)
         {
+            paused = false;
             jukeboxMenu.SetActive(false);
             playerRef.enabled = true;
             //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
@@ -329,6 +314,7 @@ public class UITest : MonoBehaviour
             for (int i = 0; i < 6; i++)
             {
                 Debug.Log("More than 6 bullets");
+                curStateText.SetText("");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }
@@ -339,6 +325,7 @@ public class UITest : MonoBehaviour
             for (int i = 0; i < maxBullets; i++)
             {
                 Debug.Log("6 bullets or less");
+                curStateText.SetText("");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
         }

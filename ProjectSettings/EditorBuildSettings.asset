@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ZachTestScene(Title).unity
+    path: Assets/Scenes/_TitleScreenScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/_PrototypeDemoScene.unity
+    guid: e48a05550c7f27840b49bb848aec3fce
   - enabled: 0
     path: Assets/Scenes/OLDZachTestSceneBACKUP.unity
     guid: b30b375a36fee544a865795bf6391ba2
@@ -23,7 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TinaTestScene.unity
     guid: 617484dafa5c03048bb4a74b2812e0ea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ZachTestScene.unity
     guid: 4150aec83557ba54dad376eda92951e4
   m_configObjects:

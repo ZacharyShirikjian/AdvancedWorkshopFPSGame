@@ -15,6 +15,8 @@ public class JukeboxButton : MonoBehaviour
     public bool buttonUsed;
 
     public string upgradeName;
+
+    [TextArea]
     public string upgradeDescription;
     // Start is called before the first frame update
     void Start()

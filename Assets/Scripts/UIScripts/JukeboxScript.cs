@@ -65,16 +65,19 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     {
         //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN HOVERING OVER A BUTTON//
 
+
         if (currentButton != null || currentButton != exitButton)
         {
             jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
             jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         }
-        else if(currentButton == null)
+
+        else if (currentButton == null)
         {
             jukeboxHeaderText.SetText("");
             jukeboxDescText.SetText("");
         }
+
 
         //Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
     }
@@ -299,6 +302,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         selectPromptText.SetText("SELECT");
         currentButton = null;
         selected = false;
+        uiRef.paused = false;
 
         jukeboxHeaderText.SetText("");
         for (int i = 0; i < 4; i++)

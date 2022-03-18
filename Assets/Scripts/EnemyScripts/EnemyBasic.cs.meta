@@ -3,7 +3,12 @@ guid: 591d1211531e49e4e95c8bd47d9036f7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - playerController: {instanceID: 0}
+  - spitObject: {instanceID: 0}
+  - spitPrefab: {instanceID: 0}
+  - coin: {fileID: 6045769555704210287, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

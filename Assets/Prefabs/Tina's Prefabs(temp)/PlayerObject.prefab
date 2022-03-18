@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6239929424462989372}
   - component: {fileID: 6239929424462989373}
   - component: {fileID: 6239929424462989363}
+  - component: {fileID: 8901952096158090557}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Player
@@ -66,9 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b9690185a41ec499c8c8ec05cff71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playCon: {fileID: 6239929424462989363}
-  mouseLook: {fileID: 6239929424462989373}
-  uiScript: {fileID: 0}
 --- !u!114 &6239929424462989373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,8 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c1b152655e264d97b10703f0b8a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityX: 8
-  sensitivityY: 0.5
+  sensitivityX: 20
+  sensitivityY: 0.2
   playerCamera: {fileID: 6239929425235843969}
   xClamp: 85
 --- !u!114 &6239929424462989363
@@ -97,23 +95,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9911ecf0101b4d742b479c814009a3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
-  maxHealth: 30
+  health: 100
+  maxHealth: 100
   playerCam: {fileID: 6239929425235843974}
   controller: {fileID: 6239929424462989360}
   speed: 11
   shoot: 0
   crouch: 0
   reload: 0
+  playerDeath: 0
   standPosition: {x: 0, y: 0, z: 0}
   crouchPosition: {x: 0, y: 0, z: 0}
+  gunStanding: {x: 0, y: 0, z: 0}
+  gunCrouching: {x: 0, y: 0, z: 0}
   crouchHeight: 1.5
   standHeight: 3
   smooth: 5
   rayShoot: {fileID: 0}
   fireRate: 0.25
   ammo: 6
+  maxAmmo: 0
   gun: {fileID: 6239929424626209970}
+--- !u!95 &8901952096158090557
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239929424462989361}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2999ce97e4f0c1419bf1d590986125f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6239929424626209970
 GameObject:
   m_ObjectHideFlags: 0

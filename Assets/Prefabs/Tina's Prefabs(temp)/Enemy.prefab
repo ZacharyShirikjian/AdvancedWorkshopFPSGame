@@ -135,8 +135,11 @@ MonoBehaviour:
   player: {fileID: 0}
   playerController: {fileID: 0}
   spitObject: {fileID: 5479931167147619679}
-  spitPrefab: {fileID: 5258509425596587932, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
+  spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
+  tracking: 0
+  health: 2
+  coin: {fileID: 0}
 --- !u!1 &5479931167147619678
 GameObject:
   m_ObjectHideFlags: 0

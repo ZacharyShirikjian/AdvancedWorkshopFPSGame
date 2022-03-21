@@ -18,6 +18,9 @@ public class JukeboxButton : MonoBehaviour
 
     [TextArea]
     public string upgradeDescription;
+
+    //Reference to Jukebox Script
+    [SerializeField] private UITest uiTest;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,21 @@ public class JukeboxButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //update the text of the next page ui 
+        if(this.gameObject.name == "NEXTPAGE")
+        {
+            if (uiTest.currentPanel == uiTest.refillPanel)
+            {
+                upgradeName = "SWITCH TO MODS PAGE";
+                upgradeDescription = "Switch to display the Mods page.";
+            }
+
+            else if (uiTest.currentPanel == uiTest.modPanel)
+            {
+                upgradeName = "SWITCH TO REFILLS/UPGRADES PAGE";
+                upgradeDescription = "Switch to display the Refills/Upgrades page.";
+            }
+        }
+
     }
 }

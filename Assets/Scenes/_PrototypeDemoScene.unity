@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   buttonUsed: 0
-  upgradeName: GO TO MODS PAGE
+  upgradeName: GO TO NEXT PAGE
   upgradeDescription: Switch to the next page of the Jukebox.
 --- !u!114 &121084957
 MonoBehaviour:
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: -1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 821087676}
     m_SelectOnDown: {fileID: 0}
@@ -3210,7 +3210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_LocalScale.x
@@ -3280,25 +3280,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6239929425235843972, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
   m_PrefabInstance: {fileID: 1524353299}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &416004416
-Animator:
-  serializedVersion: 3
+--- !u!114 &416004416
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416004414}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f7abfe1d9090c441ae33170796a2052, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18705851e1ad8049bbe5dc05a140c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 585880222}
+  zoomingIn: 0
 --- !u!111 &416004419
 Animation:
   m_ObjectHideFlags: 0
@@ -3306,7 +3301,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416004414}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: e68084c21173f3a4198e67e4fed0f72a, type: 2}
   m_Animations:
@@ -3837,7 +3832,7 @@ MonoBehaviour:
   curJukeboxScript: {fileID: 0}
   canInteract: 0
   uiRef: {fileID: 124476718}
-  cameraAnim: {fileID: 416004419}
+  cameraScript: {fileID: 416004416}
 --- !u!65 &484632621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4539,7 +4534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: -1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 865722586}
     m_SelectOnDown: {fileID: 0}
@@ -6895,7 +6890,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_LocalScale.x
@@ -7783,11 +7778,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: -1
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnUp: {fileID: 1721775881}
+    m_SelectOnDown: {fileID: 566262262}
+    m_SelectOnLeft: {fileID: 1287971487}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
@@ -7885,7 +7880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_LocalScale.x
@@ -8956,12 +8951,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1290176224}
+    m_SelectOnDown: {fileID: 121084957}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 1102368901}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -9118,12 +9113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: -1
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 1287971487}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 1721775881}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10528,7 +10523,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9404542be47295b47acb2a118f6e571d, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9404542be47295b47acb2a118f6e571d, type: 3}
       propertyPath: m_LocalScale.x
@@ -11782,11 +11777,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnDown: {fileID: 1102368901}
+    m_SelectOnLeft: {fileID: 1290176224}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
@@ -12103,7 +12098,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ac098b1bcf01c734e83074e9ed6f873b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac098b1bcf01c734e83074e9ed6f873b, type: 3}
       propertyPath: m_LocalScale.x
@@ -12349,7 +12344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_LocalScale.x
@@ -14005,7 +14000,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 67bdc11b43585394d892c06b5f329d7a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67bdc11b43585394d892c06b5f329d7a, type: 3}
       propertyPath: m_LocalScale.x
@@ -14520,7 +14515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6045769555704210275, guid: 9b5f5a244db6870438f22726a05c79d4, type: 3}
       propertyPath: m_LocalScale.x

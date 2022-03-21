@@ -16,18 +16,22 @@ public class PlayerInteract : MonoBehaviour
     //Reference to UI
     [SerializeField] private UITest uiRef;
 
-    //Reference to Camera's Animator
-    [SerializeField] private Animation cameraAnim;
+    //Reference to Camera's Script
+    [SerializeField] private CameraLerpMovement cameraScript;
+
 
     // Start is called before the first frame update
     void Start()
     {
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+      
+
         //CHANGE TO NEW INPUT SYSTEM
         if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
         {
@@ -59,15 +63,21 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("[JUKEBOX]");
             canInteract = false;
             //curJukeboxScript.interactedBefore = true;
-            cameraAnim.Play("ZoomInAnim");
+            //cameraScript.enabled = true;
+            cameraScript.StartCoroutine(cameraScript.ZoomCamera());
             Invoke("OpenJukeboxAfterDelay", 1f);
 
         }
     }
 
+    public void CameraZoom()
+    {
+
+    }
     public void OpenJukeboxAfterDelay()
     {
-       // cameraAnim.SetBool("ZoomIn", false);
+        //cameraScript.enabled = false;
+        cameraScript.zoomingIn = false;
         curJukeboxScript.enabled = true;
         uiRef.jukeboxOpen = true;
         uiRef.JukeboxUI();

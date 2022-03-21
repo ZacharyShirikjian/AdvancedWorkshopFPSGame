@@ -64,9 +64,9 @@ public class UITest : MonoBehaviour
     public Image[] modIcons = new Image[4];
 
     //Panel for mods//
-    [SerializeField] private GameObject currentPanel;
-    [SerializeField] private GameObject refillPanel;
-    [SerializeField] private GameObject modPanel;
+    [SerializeField] public GameObject currentPanel;
+    [SerializeField] public GameObject refillPanel;
+    [SerializeField] public GameObject modPanel;
 
     //REFERENCE TO NEXT BUTTON//
     [SerializeField] private Button NextButton;

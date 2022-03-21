@@ -58,6 +58,10 @@ public class UITest : MonoBehaviour
 
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
+    public Image modIcon; //UI Icon for which mod the player currently has on their pistol
+    
+    //LIST OF MOD IMAGES
+    public Image[] modIcons = new Image[4];
 
     //Panel for mods//
     [SerializeField] private GameObject currentPanel;

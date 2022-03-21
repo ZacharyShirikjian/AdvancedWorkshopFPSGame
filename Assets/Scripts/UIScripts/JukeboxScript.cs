@@ -168,6 +168,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         if (selected == true)
         {
             Debug.Log("SHOTGUN MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[2].sprite;
             JukeboxButtonSelected();
         }
 
@@ -184,6 +185,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         if (selected == true)
         {
             Debug.Log("ELECTRICITY MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[1].sprite;
             JukeboxButtonSelected();
         }
 
@@ -200,6 +202,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         if (selected == true)
         {
             Debug.Log("FREEZE MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[0].sprite;
             JukeboxButtonSelected();
         }
 
@@ -215,6 +218,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         if (selected == true)
         {
             Debug.Log("FIRE AMMO MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[3].sprite;
             JukeboxButtonSelected();
         }
 
@@ -333,7 +337,21 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             selectPromptText.SetText("SELECTED");
             uiRef.numCoins = uiRef.numCoins - currentButton.GetComponent<JukeboxButton>().cost;
             //currentButton.GetComponent<Button>().interactable = false;
-            currentButton.GetComponent<Button>().interactable = false;
+
+            //If you selected a mod button, disable the other mod buttons
+            if(currentButton.CompareTag("ModButton"))
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    jukeboxButtons[i].GetComponent<Button>().interactable = false;
+                }
+            }
+
+            //If you selected an upgrade/refill button, just disable that current button
+            else if(currentButton.CompareTag("RefillButton"))
+            {
+                currentButton.GetComponent<Button>().interactable = false;
+            }
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(exitButton);
 
             currentButton.GetComponent<JukeboxButton>().buttonUsed = true;

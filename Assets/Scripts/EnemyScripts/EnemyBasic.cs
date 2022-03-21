@@ -21,12 +21,16 @@ public class EnemyBasic : MonoBehaviour
     public float health = 2;
     public GameObject coin;
 
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
         tracking = false;
     }
 
@@ -40,6 +44,7 @@ public class EnemyBasic : MonoBehaviour
         {
             StopCoroutine(SpitAttack());
         }
+
     }
 
 
@@ -86,12 +91,8 @@ public class EnemyBasic : MonoBehaviour
     public IEnumerator SpitAttack()
     {
 
-
-       // agent = GetComponent<NavMeshAgent>();
         while (spitting)
         {
-
-            
 
             spawnPoint = spitObject.transform.position;
             Instantiate(spitPrefab, spawnPoint, spitObject.transform.rotation);
@@ -102,7 +103,6 @@ public class EnemyBasic : MonoBehaviour
 
             yield return new WaitForSeconds(delayTime);
         }
-
 
     }
 

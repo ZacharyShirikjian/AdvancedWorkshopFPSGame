@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public float maxAmmo;
     public GameObject gun;              //gun game object
 
+    public Animator animator;
 
     //REFERENCE TO UI SCRIPT//
     private UITest uiRef;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         maxAmmo = 6;
 
         rayShoot = GetComponentInChildren<RaycastShoot>();
+        animator = GetComponent<Animator>();
         controller.height = standHeight;
 
         health = maxHealth;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
         if (shoot && Time.time > nextFire && ammo > 0)
         {
+            animator.SetTrigger("Shoot");
 
             ammo--;
 
@@ -86,7 +89,6 @@ public class PlayerController : MonoBehaviour
             //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
             uiRef.UpdateAmmoUI();
 
-            
         }
 
         if (crouch)
@@ -128,6 +130,9 @@ public class PlayerController : MonoBehaviour
         
         if (reload)
         {
+
+            animator.SetTrigger("Reload");
+
             //play animation here
             //add audio
             shoot = false;

@@ -1122,6 +1122,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: GO TO NEXT PAGE
   upgradeDescription: Switch to the next page of the Jukebox.
+  uiTest: {fileID: 124476718}
 --- !u!114 &121084957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3022,6 +3023,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: REFILL HEALTH
   upgradeDescription: Fully refills your health.
+  uiTest: {fileID: 124476718}
 --- !u!1 &361907968
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,6 +4633,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: EXIT
   upgradeDescription: Closes out of the Jukebox.
+  uiTest: {fileID: 124476718}
 --- !u!1 &585880222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6239929424462989361, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
@@ -5987,6 +5990,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: REFILL AMMO
   upgradeDescription: Fully refills your ammo.
+  uiTest: {fileID: 124476718}
 --- !u!1001 &827222053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6397,6 +6401,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: UPGRADE AMMO
   upgradeDescription: Increases your maximum Ammo by 2 bullets.
+  uiTest: {fileID: 124476718}
 --- !u!114 &865722586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7765,6 +7770,7 @@ MonoBehaviour:
   upgradeName: WILDFIRE
   upgradeDescription: "Ammo now has an additional fire effect, \ngradually damaging
     enemies over a short period of time. "
+  uiTest: {fileID: 124476718}
 --- !u!114 &1102368901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8938,6 +8944,7 @@ MonoBehaviour:
   upgradeName: BOLTIN' BATTERY
   upgradeDescription: "Ammo now has an additional electric effect, \nbriefly slowing
     down the speed of enemies when hit."
+  uiTest: {fileID: 124476718}
 --- !u!114 &1287971487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9100,6 +9107,7 @@ MonoBehaviour:
   upgradeName: WINTER BLUES
   upgradeDescription: "Enemies now freeze in place when hit. \nAdds a winter-blue
     decorative skin to your ammo cylinder. "
+  uiTest: {fileID: 124476718}
 --- !u!114 &1290176224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11764,6 +11772,7 @@ MonoBehaviour:
   upgradeName: BIG IRON
   upgradeDescription: "Increases the damage of your bullets, \nwhile decreasing the
     range of your pistol."
+  uiTest: {fileID: 124476718}
 --- !u!114 &1721775881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12879,6 +12888,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: UPGRADE HEALTH
   upgradeDescription: Increases your maximum health by 10.
+  uiTest: {fileID: 124476718}
 --- !u!1001 &1856872827
 PrefabInstance:
   m_ObjectHideFlags: 0

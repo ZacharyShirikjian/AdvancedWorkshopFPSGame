@@ -16,6 +16,9 @@ public class PlayerInteract : MonoBehaviour
     //Reference to UI
     [SerializeField] private UITest uiRef;
 
+    //Reference to Camera's Animator
+    [SerializeField] private Animation cameraAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,12 +59,19 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("[JUKEBOX]");
             canInteract = false;
             //curJukeboxScript.interactedBefore = true;
-            curJukeboxScript.enabled = true;
-            uiRef.jukeboxOpen = true;
-            uiRef.JukeboxUI();
+            cameraAnim.Play("ZoomInAnim");
+            Invoke("OpenJukeboxAfterDelay", 1f);
+
         }
     }
 
+    public void OpenJukeboxAfterDelay()
+    {
+       // cameraAnim.SetBool("ZoomIn", false);
+        curJukeboxScript.enabled = true;
+        uiRef.jukeboxOpen = true;
+        uiRef.JukeboxUI();
+    }
     //If player enters trigger zone of interactable object
     //Call UITest's InteractPrompt method,
     //And update that text to be what that interactable is

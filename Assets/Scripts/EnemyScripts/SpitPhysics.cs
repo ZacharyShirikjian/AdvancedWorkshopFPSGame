@@ -9,7 +9,15 @@ public class SpitPhysics : MonoBehaviour
     public int dmg = 10;
     public Rigidbody spit;
     public GameObject player;
-    [SerializeField] Vector3 direction;
+
+    [SerializeField] Vector3 Point1;
+    [SerializeField] Vector3 Point2;
+    [SerializeField] Vector3 center;
+    [SerializeField] Vector3 upRelative;
+    [SerializeField] Vector3 downRelative;
+
+    public float time = 20.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +29,36 @@ public class SpitPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //spit.AddForce(SetPlayerTarget() * speed, ForceMode.Impulse);
-        spit.velocity = transform.forward * speed;
+        CalculateArc();
+        StartCoroutine(Spit(time));
     }
 
-
-    public Vector3 SetPlayerTarget()
+    public void CalculateArc()
     {
-        return direction = (player.transform.position - transform.position);
+        Point1 = transform.position;
+        Point2 = player.transform.position;
+        center = (Point1 + Point2) * 0.5f;
+        center -= new Vector3(0, 1, 0);
+
+        upRelative = Point1 - center;
+        downRelative = Point2 - center;
     }
 
+    IEnumerator Spit(float time)
+    {
+        float i = 0;
+        float rate = 1 / time;
+
+        while (i < 1)
+        {
+            i += Time.deltaTime * rate;
+            transform.position = Vector3.Slerp(upRelative, downRelative, i);
+            transform.position += center;
+
+            yield return 0;
+        }
+
+    }
 
     public void OnCollisionEnter(Collision collision)
     {

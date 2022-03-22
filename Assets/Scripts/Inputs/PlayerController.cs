@@ -12,13 +12,15 @@ public class PlayerController : MonoBehaviour
     public Camera playerCam;                                //holds main camera(playerCamera)
     [SerializeField] CharacterController controller;        //pulls character controller component from player
     [SerializeField] float speed = 11f;                     //speed variable for character movement
-    Vector2 inputVector;        
+    Vector2 inputVector;
 
     //public bool isGrounded; //holds variable for if player is collided on ground object
+    public bool zoom;
     public bool shoot;      //holds bool for shoot mechanic, if left click is pressed
     public bool crouch;     //holds bool for crouch
     public bool reload;     //holds bool for reload state
     public bool playerDeath;
+
 
     public Vector3 standPosition;       //holds stand position
     public Vector3 crouchPosition;      //holds crouch position
@@ -101,12 +103,9 @@ public class PlayerController : MonoBehaviour
 
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
 
-            //gunCrouching = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
+            gunCrouching = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
 
-            //gun.transform.position = Vector3.Lerp(gun.transform.position, gunCrouching, Time.deltaTime * smooth);
-
-            //FIXME: add Lerp to gun transforms
-            gun.transform.position = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
+            gun.transform.position = Vector3.Lerp(gun.transform.position, gunCrouching, Time.deltaTime * smooth);
 
         }
         else if (!crouch)
@@ -117,11 +116,10 @@ public class PlayerController : MonoBehaviour
             
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
 
-            //gunStanding = new Vector3(gun.transform.position.x, 1.5f, gun.transform.position.z);
+            gunStanding = new Vector3(gun.transform.position.x, 2.0f, gun.transform.position.z);
 
-            //gun.transform.position = Vector3.Lerp(gun.transform.position, gunStanding, Time.deltaTime * smooth);
+            gun.transform.position = Vector3.Lerp(gun.transform.position, gunStanding, Time.deltaTime * smooth);
 
-            gun.transform.position = new Vector3(gun.transform.position.x, 2.0f, gun.transform.position.z);
         }
   
 
@@ -175,15 +173,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnCrouchPressed()
     {
-        if (!crouch)
-        {
-            crouch = true;
-        }
-        else
-        {
-            crouch = false;
-        }
+        Debug.Log("Crouch");
+        crouch = true;
+
     }
+
+    public void OnCrouchUnpressed()
+    {
+        crouch = false;
+    }
+
+    public void OnZoomPressed()
+    {
+        zoom = true;
+    }
+
+    public void OnZoomUnpressed()
+    {
+        zoom = false;
+    }
+
 
 
     public void OnReloadPressed()

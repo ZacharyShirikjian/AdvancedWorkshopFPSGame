@@ -129,4 +129,9 @@ MonoBehaviour:
   dmg: 5
   spit: {fileID: 0}
   player: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
+  Point1: {x: 0, y: 0, z: 0}
+  Point2: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0, z: 0}
+  upRelative: {x: 0, y: 0, z: 0}
+  downRelative: {x: 0, y: 0, z: 0}
+  time: 20

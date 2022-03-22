@@ -33,9 +33,12 @@ public class InputManager : MonoBehaviour
 
         movement.Move.performed += ctx => inputVector = ctx.ReadValue<Vector2>();
         movement.Crouch.performed += _ => playCon.OnCrouchPressed();
+        movement.Crouch.canceled += _ => playCon.OnCrouchUnpressed();
         movement.Shoot.performed += _ => playCon.OnShootPressed();
         movement.Reload.performed += _ => playCon.OnReloadPressed();
 
+        movement.Zoom.performed += _ => playCon.OnZoomPressed();
+        movement.Zoom.canceled += _ => playCon.OnZoomUnpressed();
 
         //movement.Jump.performed += _ => playCon.OnJumpPressed();
 

@@ -23,6 +23,8 @@ public class EnemyBasic : MonoBehaviour
 
     public Animator animator;
 
+    public float journeyTime = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,14 +39,12 @@ public class EnemyBasic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         spitObject = transform.Find("spitPoint");
 
         if (health == 0)
         {
             StopCoroutine(SpitAttack());
         }
-
     }
 
 
@@ -79,7 +79,6 @@ public class EnemyBasic : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
 
     public void TrackPlayer()

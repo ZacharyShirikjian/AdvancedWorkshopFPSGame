@@ -46,14 +46,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "a215006b-9991-4abd-aaae-c039d8d7bb0b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Reload",
                     "type": "Button",
                     "id": "19e2fff6-701a-45a5-b255-4e24300b6e6c",
@@ -73,6 +65,14 @@
                     "name": "Zoom",
                     "type": "Button",
                     "id": "de3b3797-4fdb-4e8c-85f5-663724fcc320",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "8441658e-95f5-4a55-bd02-28ae86f699e5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -180,17 +180,6 @@
                 },
                 {
                     "name": "",
-                    "id": "4dbd33b9-2448-4424-a0c4-96ba3e5765de",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f25a776b-43f3-42f3-a80a-c9fef61b022d",
                     "path": "<Keyboard>/r",
                     "interactions": "",
@@ -219,6 +208,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a187cb65-7cef-4fcb-be2e-3064d46500ad",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

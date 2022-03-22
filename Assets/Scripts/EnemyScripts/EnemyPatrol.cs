@@ -32,6 +32,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (patrol)
         {
+            //Debug.Log("collided");
             if (other.name == "PointA")
             {
                 agent.destination = pointB.transform.position;

@@ -160,7 +160,18 @@ public class PlayerInteract : MonoBehaviour
     //And update that text to be blank
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Interactable"))
+        if (other.CompareTag("Door"))
+        {
+            canInteract = false;
+            uiRef.UpdateInteractPromptUI("");
+            if (other.gameObject == currentInteractable)
+            {
+                currentInteractable = null;
+                interactableScript = null;
+            }
+        }
+
+        if (other.CompareTag("Ladder"))
         {
             canInteract = false;
             uiRef.UpdateInteractPromptUI("");

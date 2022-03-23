@@ -63,15 +63,27 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     private void Update()
     {
+        jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
+        jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN HOVERING OVER A BUTTON//
 
-        if (currentButton != null || currentButton != exitButton)
+        /*
+        if (currentButton != null && currentButton != exitButton)
         {
+            Debug.Log("test");
             jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
             jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         }
 
+        else if (currentButton == null)
+        {
+            jukeboxHeaderText.SetText("");
+            jukeboxDescText.SetText("");
+        }
+        */
+
         //Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
+
     }
 
     //FOR CANCELING OUT AN OPTION IN THE JUKEBOX
@@ -145,6 +157,76 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
        
     }
 
+    //MODS//
+
+    //TO DO: MODDING OF WEAPON WILL BE ADDED LATER//
+    //THESE ARE PLACEHOLDER MODS TO ENSURE BUTTONS WILL WORK//
+
+    //CHANGE EFFECT OF PLAYER'S GUN TO BE LIKE SHOTGUN (ADD LATER)
+    public void ShotgunMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("SHOTGUN MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[2].sprite;
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+
+    }
+
+    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    public void SlowSpeedMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("ELECTRICITY MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[1].sprite;
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+    }
+
+
+    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    public void FreezeEnemyMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("FREEZE MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[0].sprite;
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+    }
+
+    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    public void FireballMod()
+    {
+        if (selected == true)
+        {
+            Debug.Log("FIRE AMMO MOD ADDED");
+            uiRef.modIcon.sprite = uiRef.modIcons[3].sprite;
+            JukeboxButtonSelected();
+        }
+
+        else if (selected == false)
+        {
+            JukeboxButtonSelected();
+        }
+    }
     ///UPGRADES/REFILLS///
 
     //CALL HEALTH PACK METHOD OF PLAYER TO HEAL PLAYER (VALUE TBD, LET'S SAY 50% FOR NOW)
@@ -227,7 +309,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     //This method gets called when jukebox is active & button in jukebox is pressed
     public void JukeboxButtonSelected()
     {
-
+        Debug.Log("SDCVASDCASCS");
         if (selected == false)
         {
             currentButton = EventSystem.current.currentSelectedGameObject;
@@ -255,7 +337,21 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             selectPromptText.SetText("SELECTED");
             uiRef.numCoins = uiRef.numCoins - currentButton.GetComponent<JukeboxButton>().cost;
             //currentButton.GetComponent<Button>().interactable = false;
-            currentButton.GetComponent<Button>().interactable = false;
+
+            //If you selected a mod button, disable the other mod buttons
+            if(currentButton.CompareTag("ModButton"))
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    jukeboxButtons[i].GetComponent<Button>().interactable = false;
+                }
+            }
+
+            //If you selected an upgrade/refill button, just disable that current button
+            else if(currentButton.CompareTag("RefillButton"))
+            {
+                currentButton.GetComponent<Button>().interactable = false;
+            }
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(exitButton);
 
             currentButton.GetComponent<JukeboxButton>().buttonUsed = true;
@@ -294,6 +390,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         selectPromptText.SetText("SELECT");
         currentButton = null;
         selected = false;
+        uiRef.paused = false;
 
         jukeboxHeaderText.SetText("");
         for (int i = 0; i < 4; i++)

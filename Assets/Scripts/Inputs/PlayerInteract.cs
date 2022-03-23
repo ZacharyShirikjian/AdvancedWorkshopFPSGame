@@ -16,15 +16,22 @@ public class PlayerInteract : MonoBehaviour
     //Reference to UI
     [SerializeField] private UITest uiRef;
 
+    //Reference to Camera's Script
+    [SerializeField] private CameraLerpMovement cameraScript;
+
+
     // Start is called before the first frame update
     void Start()
     {
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+      
+
         //CHANGE TO NEW INPUT SYSTEM
         if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
         {
@@ -56,12 +63,25 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("[JUKEBOX]");
             canInteract = false;
             //curJukeboxScript.interactedBefore = true;
-            curJukeboxScript.enabled = true;
-            uiRef.jukeboxOpen = true;
-            uiRef.JukeboxUI();
+            //cameraScript.enabled = true;
+            cameraScript.StartCoroutine(cameraScript.ZoomCamera());
+            Invoke("OpenJukeboxAfterDelay", 1f);
+
         }
     }
 
+    public void CameraZoom()
+    {
+
+    }
+    public void OpenJukeboxAfterDelay()
+    {
+        //cameraScript.enabled = false;
+        cameraScript.zoomingIn = false;
+        curJukeboxScript.enabled = true;
+        uiRef.jukeboxOpen = true;
+        uiRef.JukeboxUI();
+    }
     //If player enters trigger zone of interactable object
     //Call UITest's InteractPrompt method,
     //And update that text to be what that interactable is
@@ -75,7 +95,6 @@ public class PlayerInteract : MonoBehaviour
             uiRef.numCoins++;
             Destroy(other.gameObject);
         }
-
 
         if (other.gameObject.CompareTag("Door"))
         {
@@ -114,11 +133,9 @@ public class PlayerInteract : MonoBehaviour
                 canInteract = false;
             }
         }
-
-
         if (other.gameObject.CompareTag("Jukebox"))
         {
-            Debug.Log("test");
+            Debug.Log("[JUKEBOX]");
             if (other.gameObject.GetComponent<JukeboxScript>().interactedBefore == false)
             {
                 curJukebox = other.gameObject;
@@ -143,7 +160,18 @@ public class PlayerInteract : MonoBehaviour
     //And update that text to be blank
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Interactable"))
+        if (other.CompareTag("Door"))
+        {
+            canInteract = false;
+            uiRef.UpdateInteractPromptUI("");
+            if (other.gameObject == currentInteractable)
+            {
+                currentInteractable = null;
+                interactableScript = null;
+            }
+        }
+
+        if (other.CompareTag("Ladder"))
         {
             canInteract = false;
             uiRef.UpdateInteractPromptUI("");

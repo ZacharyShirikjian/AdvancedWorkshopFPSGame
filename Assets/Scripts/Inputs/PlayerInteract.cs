@@ -76,9 +76,10 @@ public class PlayerInteract : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.CompareTag("Interactable"))
+
+        if (other.gameObject.CompareTag("Door"))
         {
-            Debug.Log("test");
+            Debug.Log("[DOOR]");
             if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
             {
                 currentInteractable = other.gameObject;
@@ -94,6 +95,26 @@ public class PlayerInteract : MonoBehaviour
                 canInteract = false;
             }
         }
+
+        if (other.gameObject.CompareTag("Ladder"))
+        {
+            Debug.Log("[LADDER]");
+            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
+            {
+                currentInteractable = other.gameObject;
+                interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                canInteract = true;
+                uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<TestInteractableScript>().actionPrompt);
+            }
+
+            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == true)
+            {
+                currentInteractable = other.gameObject;
+                interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                canInteract = false;
+            }
+        }
+
 
         if (other.gameObject.CompareTag("Jukebox"))
         {

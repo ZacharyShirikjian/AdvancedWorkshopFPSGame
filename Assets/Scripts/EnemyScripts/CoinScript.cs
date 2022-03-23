@@ -7,20 +7,21 @@ public class CoinScript : MonoBehaviour
 
     public Vector3 fromScale;
     public Vector3 toScale;
-
+    public float scaleUp = 1.5f;
+    public float speed = 20.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         fromScale = transform.localScale;
-        toScale = new Vector3(1.5f, 1.5f, 1.5f);
+        toScale = new Vector3(fromScale.x * scaleUp, fromScale.y * scaleUp, fromScale.z * scaleUp);
         StartCoroutine(Grow(2.0f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.right * Time.deltaTime);
+        //transform.Rotate(Vector3.right * Time.deltaTime * speed, Space.Self);
     }
 
 

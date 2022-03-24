@@ -453,14 +453,17 @@ public class UITest : MonoBehaviour
         if(inMist == true)
         {
             splatterImage.color = new Color(1, 1, 1, 1);
-            StartCoroutine(FadeSplatterImage());
-
         }
         //curHealth = playerRef.health;
         //healthSliderValue = curHealth;
         //healthSlider.value = healthSliderValue;
 
 
+    }
+
+    public void StartSplatterCoroutine()
+    {
+        StartCoroutine(FadeSplatterImage());
     }
 
     //REFERENCE FOR FADING OUT SPLATTER IMAGE USING COROUTINE

@@ -44,6 +44,7 @@ public class EnemyPoison : MonoBehaviour
         else if (Vector3.Distance(player.transform.position, transform.position) > radius)
         {
             poison = false;
+            uiRef.StartSplatterCoroutine();
             //uiRef.inMist = false;
         }
 

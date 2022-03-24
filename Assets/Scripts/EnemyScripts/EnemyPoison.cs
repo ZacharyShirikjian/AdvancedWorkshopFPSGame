@@ -13,6 +13,7 @@ public class EnemyPoison : MonoBehaviour
     public GameObject player;
     public PlayerController playCon;
 
+    [SerializeField] UITest uiRef;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +36,15 @@ public class EnemyPoison : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) <= radius)
         {
+            Debug.Log("player being poisoned");
             poison = true;
+            uiRef.SplatterImage();
         }
 
         else if (Vector3.Distance(player.transform.position, transform.position) > radius)
         {
             poison = false;
+            //uiRef.inMist = false;
         }
 
     }

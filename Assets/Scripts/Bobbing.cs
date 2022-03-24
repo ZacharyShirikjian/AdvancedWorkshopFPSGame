@@ -7,7 +7,7 @@ public class Bobbing : MonoBehaviour
 
     public float hoverForce;
     public float hoverHeight;
-    public Rigidbody rb;
+    //public Rigidbody rb;
     private string tag;
 
     public bool isGrounded;
@@ -15,7 +15,7 @@ public class Bobbing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
 
         tag = gameObject.tag;
         switch (tag)
@@ -38,10 +38,10 @@ public class Bobbing : MonoBehaviour
 
         if (isGrounded)
         {
-            if(rb.position.y < hoverHeight)
-            {
-                rb.AddForce(Vector3.up * hoverForce);
-            }
+            //if(rb.position.y < hoverHeight)
+            //{
+            //    rb.AddForce(Vector3.up * hoverForce);
+            //}
         }
 
 

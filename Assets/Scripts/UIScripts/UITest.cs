@@ -432,6 +432,10 @@ public class UITest : MonoBehaviour
 
     public void UpdateHealthUI()
     {
+        curHealth = playerRef.health;
+        maxHealth = playerRef.maxHealth;
+        healthSlider.value = curHealth;
+        healthSlider.maxValue = maxHealth;
         if (curHealth > maxHealth)
         {
             curStateText.SetText("Health is Already Full.");
@@ -443,19 +447,41 @@ public class UITest : MonoBehaviour
         }
     }
 
-    public void FadeSplatterImage()
+    public void SplatterImage()
     {
-        curHealth = playerRef.health;
-        healthSliderValue = curHealth;
-        healthSlider.value = healthSliderValue;
-        splatterImage.color = new Color(1, 1, 1, 1);
-        if (inMist == false)
+        inMist = true;
+        if(inMist == true)
         {
-            for(float i = 1; i >= 0; i -= Time.deltaTime)
+            splatterImage.color = new Color(1, 1, 1, 1);
+            StartCoroutine(FadeSplatterImage());
+
+        }
+        //curHealth = playerRef.health;
+        //healthSliderValue = curHealth;
+        //healthSlider.value = healthSliderValue;
+
+
+    }
+
+    //REFERENCE FOR FADING OUT SPLATTER IMAGE USING COROUTINE
+    //Coroutine needed instead of method b/c loop = instant, coroutine = delay 
+    //Bunny83's response on this forum: https://answers.unity.com/questions/225438/slowly-fades-from-opaque-to-alpha.html 
+    public IEnumerator FadeSplatterImage()
+    {
+        float fadeTime = 2.0f; 
+        if (inMist == true)
+        {
+            for (float i = 0; i < 1.0f; i += Time.deltaTime / fadeTime)
             {
                 //i = opacity, slowly decrease opacity over time for 1 second
-                splatterImage.color = new Color(1, 1, 1, i);
+                Color alphaColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, i));
+                splatterImage.color = alphaColor;
+                Debug.Log(splatterImage.color);
+                Debug.Log(inMist);
+                yield return null;
             }
+            inMist = false;
+            Debug.Log(inMist);
         }
     }
     //Called when player gets a GameOver//

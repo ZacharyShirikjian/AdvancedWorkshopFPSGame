@@ -6,35 +6,43 @@ public class PlayerController : MonoBehaviour
 {
 #pragma warning disable 649
 
-    public float health;
-    public float maxHealth;
+    public int health;                //holds player current health
+    public int maxHealth = 100;             //holds player max health
 
-    public Camera playerCam;
-    [SerializeField] CharacterController controller;
-    [SerializeField] float speed = 11f;
+    public Camera playerCam;                                //holds main camera(playerCamera)
+    [SerializeField] CharacterController controller;        //pulls character controller component from player
+    [SerializeField] float speed = 11f;                     //speed variable for character movement
     Vector2 inputVector;
 
     //public bool isGrounded; //holds variable for if player is collided on ground object
+    public bool zoom;
     public bool shoot;      //holds bool for shoot mechanic, if left click is pressed
     public bool crouch;     //holds bool for crouch
     public bool reload;     //holds bool for reload state
+    public bool playerDeath;
 
-    public Vector3 standPosition;
-    public Vector3 crouchPosition;
-    public float crouchHeight = 1.5f;
-    public float standHeight = 3.0f;
-    public float smooth = 5.0f;
+
+    public Vector3 standPosition;       //holds stand position
+    public Vector3 crouchPosition;      //holds crouch position
+    public Vector3 gunStanding;
+    public Vector3 gunCrouching;
+    public float crouchHeight = 1.5f;   //crouchheight for character
+    public float standHeight = 3.0f;    //standheight for character
+    public float smooth = 5.0f;         //value for smooth object transform during crouch
 
     //[SerializeField] float gravity = -30f;
     //Vector3 verticalVelocity = Vector3.zero;
     //[SerializeField] LayerMask groundMask;
 
-    public RaycastShoot rayShoot;
-    private float nextFire;
+    public RaycastShoot rayShoot;       //script that runs raycast hitscan
+    private float nextFire;             //float to delay gun fire
     public float fireRate = 0.25f;      //how often the gun can shoot
-    public float ammo = 6;
-    public float maxAmmo = 6;
-    public GameObject gun;
+
+    public float ammo;              //amount of ammo when full
+    public float maxAmmo;
+    public GameObject gun;              //gun game object
+
+    public Animator animator;
 
     //REFERENCE TO UI SCRIPT//
     private UITest uiRef;
@@ -45,8 +53,13 @@ public class PlayerController : MonoBehaviour
         maxAmmo = 6;
 
         rayShoot = GetComponentInChildren<RaycastShoot>();
+        animator = GetComponent<Animator>();
         controller.height = standHeight;
+
+        health = maxHealth;
+
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
+
     }
 
 
@@ -58,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
         if (shoot && Time.time > nextFire && ammo > 0)
         {
+            animator.SetTrigger("Shoot");
 
             ammo--;
 
@@ -71,16 +85,17 @@ public class PlayerController : MonoBehaviour
 
             shoot = false;
             
+
             Debug.Log("pew pew");
 
             //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
             uiRef.UpdateAmmoUI();
-            
+
         }
 
         if (crouch)
         {
-            Debug.Log("Crouch activated");
+            //Debug.Log("Crouch activated");
 
             controller.height = crouchHeight;
 
@@ -88,7 +103,9 @@ public class PlayerController : MonoBehaviour
 
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
 
-            gun.transform.position = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
+            gunCrouching = new Vector3(gun.transform.position.x, 0.5f, gun.transform.position.z);
+
+            gun.transform.position = Vector3.Lerp(gun.transform.position, gunCrouching, Time.deltaTime * smooth);
 
         }
         else if (!crouch)
@@ -99,7 +116,10 @@ public class PlayerController : MonoBehaviour
             
             playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
 
-            gun.transform.position = new Vector3(gun.transform.position.x, 1.5f, gun.transform.position.z);
+            gunStanding = new Vector3(gun.transform.position.x, 2.0f, gun.transform.position.z);
+
+            gun.transform.position = Vector3.Lerp(gun.transform.position, gunStanding, Time.deltaTime * smooth);
+
         }
   
 
@@ -108,6 +128,9 @@ public class PlayerController : MonoBehaviour
         
         if (reload)
         {
+
+            animator.SetTrigger("Reload");
+
             //play animation here
             //add audio
             shoot = false;
@@ -117,12 +140,17 @@ public class PlayerController : MonoBehaviour
             if(ammo <= 0)
             {
                 ammo = 0;
+                maxAmmo = 0;
             }
 
 
             //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
             reload = false;
-            uiRef.Reload();
+            if(maxAmmo > 0)
+            {
+                uiRef.Reload();
+            }
+
         }
 
         Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;
@@ -145,15 +173,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnCrouchPressed()
     {
-        if (!crouch)
-        {
-            crouch = true;
-        }
-        else
-        {
-            crouch = false;
-        }
+        Debug.Log("Crouch");
+        crouch = true;
+
     }
+
+    public void OnCrouchUnpressed()
+    {
+        crouch = false;
+    }
+
+    public void OnZoomPressed()
+    {
+        zoom = true;
+    }
+
+    public void OnZoomUnpressed()
+    {
+        zoom = false;
+    }
+
 
 
     public void OnReloadPressed()
@@ -161,7 +200,7 @@ public class PlayerController : MonoBehaviour
         reload = true;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(int dmg)
     {
 
         if (health > 0 && dmg <= health)
@@ -172,12 +211,14 @@ public class PlayerController : MonoBehaviour
         else if (health > 0 && dmg > health)
         {
             health = 0;
+            playerDeath = true;
+            PlayerDeath();
         }
 
     }
 
 
-    public void Heal(float healPack)
+    public void Heal(int healPack)
     {
         if (health < maxHealth && (health + healPack <= maxHealth))
         {
@@ -190,4 +231,15 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
+    public void PlayerDeath()
+    {
+        if(playerDeath)
+        {
+
+        }
+    }
+
+
 }

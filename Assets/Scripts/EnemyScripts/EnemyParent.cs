@@ -31,7 +31,6 @@ public class EnemyParent : MonoBehaviour
     {
         if(health > 0)
         {
-            Debug.Log("TESTTTETET");
             health -= dmg;
         }
         if(health <= 0)
@@ -45,7 +44,7 @@ public class EnemyParent : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
-            playerController.TakeDamage(dmg);
+            playerController.TakeDamage((int)dmg);
         }
     }
 

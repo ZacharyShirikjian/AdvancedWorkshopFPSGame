@@ -14,9 +14,6 @@ using TMPro;
     *-Zach
 */
 
-//REFERENCE USED FOR FADING OUT UI IMAGE//
-//code from ryanmillerca on https://forum.unity.com/threads/simple-ui-animation-fade-in-fade-out-c.439825/
-
 public class UITest : MonoBehaviour
 {
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
@@ -53,8 +50,11 @@ public class UITest : MonoBehaviour
         //Array of GameObjects for Bullets
         [SerializeField] private GameObject[] Bullets = new GameObject[6];
 
-        //Reference to the Pause Menu panel (used for pausing/Game Over)
+        //Reference to the Pause Menu panel (used for pausing)
         public GameObject pausePanel;
+
+    //Reference to Game Over panel
+    public GameObject gameOverPanel;
 
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
@@ -137,6 +137,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
         jukeboxMenu.SetActive(false);
         gameOver = false;
         paused = false;
@@ -176,26 +177,30 @@ public class UITest : MonoBehaviour
     //For Pausing/Unpausing Game
     public void PauseGame()
     {
-        if (paused)
+        if(gameOver == false)
         {
-            Time.timeScale = 1f;
-            paused = false;
-            pausePanel.SetActive(false);
-        }
-        else if(!paused && jukeboxOpen == false)
-        {
+            if (paused)
+            {
+                Time.timeScale = 1f;
+                paused = false;
+                pausePanel.SetActive(false);
+            }
+            else if (!paused && jukeboxOpen == false)
+            {
 
-            Debug.Log("PAUSE BUTTONS ACTIVATED");
-            //pausePress = true;
-            paused = true;
-            pausePanel.SetActive(true);
+                Debug.Log("PAUSE BUTTONS ACTIVATED");
+                //pausePress = true;
+                paused = true;
+                pausePanel.SetActive(true);
 
-            //pausePanel.transform.GetChild(1).gameObject is the Resume button (GetChild (0) is the PauseHeader)
-            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject);
-            Debug.Log(eventSystem.currentSelectedGameObject);
-            //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
-            //Time.timeScale = 0f;
+                //pausePanel.transform.GetChild(1).gameObject is the Resume button (GetChild (0) is the PauseHeader)
+                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject);
+                Debug.Log(eventSystem.currentSelectedGameObject);
+                //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
+                //Time.timeScale = 0f;
+            }
         }
+
 
     }
 
@@ -432,6 +437,10 @@ public class UITest : MonoBehaviour
 
     public void UpdateHealthUI()
     {
+        curHealth = playerRef.health;
+        maxHealth = playerRef.maxHealth;
+        healthSlider.value = curHealth;
+        healthSlider.maxValue = maxHealth;
         if (curHealth > maxHealth)
         {
             curStateText.SetText("Health is Already Full.");
@@ -443,35 +452,59 @@ public class UITest : MonoBehaviour
         }
     }
 
-    public void FadeSplatterImage()
+    public void SplatterImage()
     {
-        curHealth = playerRef.health;
-        healthSliderValue = curHealth;
-        healthSlider.value = healthSliderValue;
-        splatterImage.color = new Color(1, 1, 1, 1);
-        if (inMist == false)
+        inMist = true;
+        if(inMist == true)
         {
-            for(float i = 1; i >= 0; i -= Time.deltaTime)
+            splatterImage.color = new Color(1, 1, 1, 1);
+        }
+        //curHealth = playerRef.health;
+        //healthSliderValue = curHealth;
+        //healthSlider.value = healthSliderValue;
+
+
+    }
+
+    public void StartSplatterCoroutine()
+    {
+        StartCoroutine(FadeSplatterImage());
+    }
+
+    //REFERENCE FOR FADING OUT SPLATTER IMAGE USING COROUTINE
+    //Coroutine needed instead of method b/c loop = instant, coroutine = delay 
+    //Bunny83's response on this forum: https://answers.unity.com/questions/225438/slowly-fades-from-opaque-to-alpha.html 
+    public IEnumerator FadeSplatterImage()
+    {
+        float fadeTime = 2.0f; 
+        if (inMist == true)
+        {
+            for (float i = 0; i < 1.0f; i += Time.deltaTime / fadeTime)
             {
                 //i = opacity, slowly decrease opacity over time for 1 second
-                splatterImage.color = new Color(1, 1, 1, i);
+                Color alphaColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, i));
+                splatterImage.color = alphaColor;
+                Debug.Log(splatterImage.color);
+                Debug.Log(inMist);
+                yield return null;
             }
+            inMist = false;
+            Debug.Log(inMist);
         }
     }
     //Called when player gets a GameOver//
     public void GameOver()
     {
         gameOver = true;
-        playerRef.gameObject.SetActive(false);
-        BulletObject.SetActive(false);
-        healthSlider.gameObject.SetActive(false);
-        curStateText.SetText("GameOver");
 
-        //Activate the Pause Panel during a Game Over
-        pausePanel.SetActive(true);
+        //REPLACE THIS W/ TRIGGERING DEATH ANIMATION LATER (Once implemented)
+        playerRef.enabled = false;
 
-        //Freeze the game by setting timescale to 1 (temporary) 
-        Time.timeScale = 0f;
+        //Activate the Game Over Panel during a Game Over 
+        gameOverPanel.SetActive(true);
+        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject);
+        ////Freeze the game by setting timescale to 1 (temporary) 
+        //Time.timeScale = 0f;
     }
     //Reloads the current scene the player is on 
     public void RestartGame()

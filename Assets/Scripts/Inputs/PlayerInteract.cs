@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInteract : MonoBehaviour
 {
     public GameObject currentInteractable = null;
-    public TestInteractableScript interactableScript = null;
+    public Interactables interactableScript = null;
 
     public GameObject curJukebox = null;
     public JukeboxScript curJukeboxScript = null;
@@ -102,7 +102,7 @@ public class PlayerInteract : MonoBehaviour
             if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
             {
                 currentInteractable = other.gameObject;
-                interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                interactableScript = currentInteractable.GetComponent<Interactables>();
                 canInteract = true;
                 uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<TestInteractableScript>().actionPrompt);
             }
@@ -110,7 +110,7 @@ public class PlayerInteract : MonoBehaviour
             if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == true)
             {
                 currentInteractable = other.gameObject;
-                interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                interactableScript = currentInteractable.GetComponent<Interactables>();
                 canInteract = false;
             }
         }
@@ -121,7 +121,7 @@ public class PlayerInteract : MonoBehaviour
             if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
             {
                 currentInteractable = other.gameObject;
-                interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                interactableScript = currentInteractable.GetComponent<Interactables>();
                 canInteract = true;
                 uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<TestInteractableScript>().actionPrompt);
             }
@@ -129,7 +129,7 @@ public class PlayerInteract : MonoBehaviour
             if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == true)
             {
                 currentInteractable = other.gameObject;
-                interactableScript = currentInteractable.GetComponent<TestInteractableScript>();
+                interactableScript = currentInteractable.GetComponent<Interactables>();
                 canInteract = false;
             }
         }

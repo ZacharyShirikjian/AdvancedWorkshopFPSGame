@@ -13953,6 +13953,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1372519999, guid: 7c8c0747de83edb4e9fbe041b226b6a4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7290345269534894884, guid: 7c8c0747de83edb4e9fbe041b226b6a4, type: 3}
       propertyPath: eventSystem
       value: 

@@ -41,7 +41,7 @@ public class JukeboxButton : MonoBehaviour
 
             else if (uiTest.currentPanel == uiTest.modPanel)
             {
-                upgradeName = "SWITCH TO REFILLS/UPGRADES PAGE";
+                upgradeName = "SWITCH TO REFILLS PAGE";
                 upgradeDescription = "Switch to display the Refills/Upgrades page.";
             }
         }

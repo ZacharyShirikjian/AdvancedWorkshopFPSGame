@@ -19,7 +19,7 @@ public class TitleScreen : MonoBehaviour
     public GameObject Canvas;
 
     //REFERENCE TO CREDITS PANEL IN SCENE//
-    private GameObject creditsPanel;
+    [SerializeField] private GameObject creditsPanel;
 
     //REFERENCE TO OPTIONS PANEL IN SCENE//
     //private GameObject optionsPanel;

@@ -293,6 +293,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: UPGRADE AMMO
   upgradeDescription: Increases your maximum Ammo by 2 bullets.
+  uiTest: {fileID: 0}
 --- !u!114 &22569851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,12 +1005,24 @@ MonoBehaviour:
   - {fileID: 1323192587}
   pausePanel: {fileID: 2074193413}
   jukeboxMenu: {fileID: 998231284}
+  modIcon: {fileID: 0}
+  modIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentPanel: {fileID: 0}
+  refillPanel: {fileID: 0}
+  modPanel: {fileID: 0}
+  NextButton: {fileID: 0}
   gameOver: 0
   paused: 0
   jukeboxOpen: 0
   eventSystem: {fileID: 139658156}
   curHealth: 1
   maxHealth: 1
+  splatterImage: {fileID: 0}
+  inMist: 0
   curBullets: 0
   maxBullets: 0
   curSceneIndex: 0
@@ -1277,6 +1290,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: UPGRADE HEALTH
   upgradeDescription: Increases your maximum health by 10.
+  uiTest: {fileID: 0}
 --- !u!114 &176446992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4113,27 +4127,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6239929424462989361, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
   m_PrefabInstance: {fileID: 2035422799}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1059137810
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059137809}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 64
-  m_CollisionDetection: 0
---- !u!4 &1059137816 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6239929424462989362, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
-  m_PrefabInstance: {fileID: 2035422799}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1111530349
 GameObject:
   m_ObjectHideFlags: 0
@@ -4825,69 +4818,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264107050}
   m_CullTransparentMesh: 1
---- !u!1 &1294323038
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1294323039}
-  - component: {fileID: 1294323041}
-  - component: {fileID: 1294323040}
-  m_Layer: 0
-  m_Name: InteractColliderGameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1294323039
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294323038}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1059137816}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1294323040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294323038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e5030cf634bab4cae64ab9f579e313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentInteractable: {fileID: 0}
-  interactableScript: {fileID: 0}
-  curJukebox: {fileID: 0}
-  curJukeboxScript: {fileID: 0}
-  canInteract: 0
-  uiRef: {fileID: 146679710}
---- !u!65 &1294323041
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294323038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1298794570
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,6 +5507,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: REFILL HEALTH
   upgradeDescription: Fully refills your health.
+  uiTest: {fileID: 0}
 --- !u!114 &1442404032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6584,6 +6515,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: REFILL AMMO
   upgradeDescription: Fully refills your ammo.
+  uiTest: {fileID: 0}
 --- !u!114 &1768358257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7439,6 +7371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1294323040, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
+      propertyPath: uiRef
+      value: 
+      objectReference: {fileID: 146679710}
     - target: {fileID: 6239929424462989361, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
       propertyPath: m_Name
       value: PlayerObject
@@ -7486,14 +7422,6 @@ PrefabInstance:
     - target: {fileID: 6239929424462989362, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239929424462989363, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6239929424462989363, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
-      propertyPath: maxHealth
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
@@ -7687,6 +7615,7 @@ MonoBehaviour:
   buttonUsed: 0
   upgradeName: EXIT
   upgradeDescription: Closes out of the Jukebox.
+  uiTest: {fileID: 0}
 --- !u!114 &2072122822
 MonoBehaviour:
   m_ObjectHideFlags: 0

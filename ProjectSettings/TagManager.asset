@@ -4,22 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Interactable
   - Jukebox
+  - Interactable
+  - Ground
   - Coin
-<<<<<<< HEAD
+  - Enemy
   - Ladder
   - Door
-  - Ground
-=======
-  - PoisonEnemy
->>>>>>> ZachsBranch
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
   - 

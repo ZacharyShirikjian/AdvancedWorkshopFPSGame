@@ -56,6 +56,9 @@ public class UITest : MonoBehaviour
     //Reference to Game Over panel
     public GameObject gameOverPanel;
 
+    //Reference to the Quit panel;
+    public GameObject quitPanel;
+
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
     public Image modIcon; //UI Icon for which mod the player currently has on their pistol
@@ -137,6 +140,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pausePanel.SetActive(false);
+        quitPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         jukeboxMenu.SetActive(false);
         gameOver = false;
@@ -518,11 +522,28 @@ public class UITest : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    //Opens up the Quit Confirmation Panel to ask players if they actually want to quit the game or not 
+    public void OpenQuitPanel()
+    {
+        quitPanel.SetActive(true);
+        pausePanel.SetActive(false);
+        eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(1).gameObject);
+    }
+
+    //Closes the Quit Confirmation Panel to allow players to go back to the regular pause menu 
+    public void CloseQuitPanel()
+    {
+        quitPanel.SetActive(false);
+        pausePanel.SetActive(true);
+        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject);
+    }
+
     //Called on the Quit button of the Pause menu,
     //Quits the entire game (only works in a Build of the game).
     public void QuitGame()
     {
         Application.Quit();
     }
+
 
 }

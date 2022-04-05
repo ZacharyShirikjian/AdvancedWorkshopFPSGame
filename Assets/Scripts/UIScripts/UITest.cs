@@ -548,7 +548,7 @@ public class UITest : MonoBehaviour
     {
         quitPanel.SetActive(false);
         pausePanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject);
+        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
     }
 
     //Called on the Quit button of the Pause menu,

@@ -21,6 +21,10 @@ public class TitleScreen : MonoBehaviour
     //REFERENCE TO CREDITS PANEL IN SCENE//
     [SerializeField] private GameObject creditsPanel;
 
+
+    //REFERENCE TO CANCEL BUTTON ANIM in Credits
+    [SerializeField] private Animator cancelAnim;
+
     //REFERENCE TO OPTIONS PANEL IN SCENE//
     //private GameObject optionsPanel;
 
@@ -65,6 +69,7 @@ public class TitleScreen : MonoBehaviour
     public void OpenCredits()
     {
         creditsPanel.SetActive(true);
+        cancelAnim.SetTrigger("Credits");
         Buttons.SetActive(false);
     }
 

@@ -56,8 +56,17 @@ public class UITest : MonoBehaviour
     //Reference to Game Over panel
     public GameObject gameOverPanel;
 
+    //Reference to Pause panel animator
+    private Animator pauseAnimator;
+
+    //Reference to the Button prompt animator
+    [SerializeField] private Animator buttonPromptAnimator;
+
     //Reference to the Quit panel;
     public GameObject quitPanel;
+
+    //Animator for QuitPanel
+    [SerializeField] private Animator quitAnimator;
 
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
@@ -139,6 +148,7 @@ public class UITest : MonoBehaviour
         interactIcon.SetActive(false);
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        pauseAnimator = pausePanel.GetComponentInChildren<Animator>();
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
         gameOverPanel.SetActive(false);
@@ -197,8 +207,10 @@ public class UITest : MonoBehaviour
                 paused = true;
                 pausePanel.SetActive(true);
 
-                //pausePanel.transform.GetChild(1).gameObject is the Resume button (GetChild (0) is the PauseHeader)
-                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject);
+                //pausePanel.transform.GetChild(1).gameObject is the Resume button child of the PausePanel Parent GOBject, GetChild (0) is the PauseHeader)
+                pauseAnimator.SetTrigger("Pausing");
+                buttonPromptAnimator.SetTrigger("Pausing");
+                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
                 //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
                 //Time.timeScale = 0f;
@@ -527,7 +539,8 @@ public class UITest : MonoBehaviour
     {
         quitPanel.SetActive(true);
         pausePanel.SetActive(false);
-        eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(1).gameObject);
+        quitAnimator.SetTrigger("Quitting");
+        eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject); //QuitButton is child of the QuitConfirmPanel object
     }
 
     //Closes the Quit Confirmation Panel to allow players to go back to the regular pause menu 

@@ -21,6 +21,8 @@ public class TitleScreen : MonoBehaviour
     //REFERENCE TO CREDITS PANEL IN SCENE//
     [SerializeField] private GameObject creditsPanel;
 
+    //REFERENCE TO Menu Prompts ANIM in Credits
+    [SerializeField] private Animator menuPromptsAnimator; 
 
     //REFERENCE TO CANCEL BUTTON ANIM in Credits
     [SerializeField] private Animator cancelAnim;
@@ -60,6 +62,7 @@ public class TitleScreen : MonoBehaviour
             Buttons.SetActive(true);
             promptText.SetText("");
             buttonPressed = true;
+            menuPromptsAnimator.SetTrigger("Pausing");
         }
 
     }

@@ -318,7 +318,8 @@ public class UITest : MonoBehaviour
                 else if (curBullets <= 6)
                 {
                     //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
-                    ammoAnimator.SetTrigger("RotateBullet");
+
+                    //ammoAnimator.SetTrigger("RotateBullet");
                     //For each child in the Bullets GameObject,
                     //Hide the bottom-most element when a bullet is shot
                     Bullets[curBullets -1].GetComponentInChildren<Image>().enabled = false;

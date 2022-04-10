@@ -16,7 +16,20 @@ using UnityEngine.InputSystem;
  */
 public class TitleScreen : MonoBehaviour
 {
+    //Controls controls;
+    //Controls.MenusActions menu;
+
+    public EventSystem eventSystem;
     public GameObject Canvas;
+
+    //REFERENCE TO CONTROLS PANEL//
+    [SerializeField] private GameObject controlsPanel;
+
+        //Keyboard Input,Controls Menu
+        //[SerializeField] private GameObject keyboardInput;
+
+        //Controller Input,Controls Menu
+        //[SerializeField] private GameObject controllerInput;
 
     //REFERENCE TO CREDITS PANEL IN SCENE//
     [SerializeField] private GameObject creditsPanel;
@@ -40,14 +53,17 @@ public class TitleScreen : MonoBehaviour
     public GameObject Buttons;
 
     //// Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        creditsPanel = GameObject.Find("CreditsPanel");
+        //controls = new Controls();
+        //menu = controls.Menus;
+
         //optionsPanel = GameObject.Find("OptionsPanel");
         creditsPanel.SetActive(false);
+        controlsPanel.SetActive(false);
         //optionsPanel.SetActive(false);
         buttonPressed = false;
-        promptText.SetText("Press Any Button");
+        promptText.SetText("Press          to Start.");
         Buttons.SetActive(false);
 
     }
@@ -55,18 +71,29 @@ public class TitleScreen : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-        //FIX THIS METHOD TO WORK W/ NEW INPUT SYSTEM LATER?
-        //If you press any key, open up the options buttons
-        if(Input.anyKeyDown && buttonPressed == false)
+
+    }
+
+    //Switch to this for New Input
+    public void OpenMenu()
+    {
+        if (buttonPressed == false)
         {
+            //eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
             Buttons.SetActive(true);
             promptText.SetText("");
             buttonPressed = true;
             menuPromptsAnimator.SetTrigger("Pausing");
         }
-
     }
 
+    public void BackToMenu()
+    {
+        creditsPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+        Buttons.SetActive(true);
+        eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
+    }
     //This method is used for opening up the Credits Panel in the Title Screen.
     //Temporarily hide the other menu elements, and bring them back once the Credits Panel is closed.
     public void OpenCredits()
@@ -81,6 +108,21 @@ public class TitleScreen : MonoBehaviour
     {
         creditsPanel.SetActive(false);
         Buttons.SetActive(true);
+    }
+
+    //CONTROLS PANEL//
+
+    public void OpenControlsPanel()
+    {
+        controlsPanel.SetActive(true);
+        cancelAnim.SetTrigger("Controls");
+        Buttons.SetActive(false);
+    }
+
+    //Gets called when player presses TAB on TitleScreen.
+    public void SwitchInputPage()
+    {
+
     }
 
     ////This method is used for opening up the Options Panel in the Title Screen.

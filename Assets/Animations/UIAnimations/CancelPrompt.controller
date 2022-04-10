@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Credits
+    m_ConditionEvent: Controls
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2213092656585169721}
@@ -86,7 +86,7 @@ AnimatorController:
   m_Name: CancelPrompt
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Credits
+  - m_Name: Controls
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -114,7 +114,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Credits
+    m_ConditionEvent: Controls
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5909686810783944665}

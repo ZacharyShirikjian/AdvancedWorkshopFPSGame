@@ -256,6 +256,24 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             {
                 playRef.ammo = playRef.maxAmmo;
             }
+
+            if(playRef.ammo >= 6)
+            {
+                if (playRef.maxAmmo == 6)
+                {
+                    uiRef.backupBullets = 6;
+
+                }
+                else if (playRef.maxAmmo == 4)
+                {
+                    uiRef.backupBullets = 2;
+                }
+
+                else if(playRef.maxAmmo == 2)
+                {
+                    uiRef.backupBullets = 0;
+                }
+            }
             uiRef.UpdateAmmoUI();
             JukeboxButtonSelected();
         }
@@ -293,6 +311,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             playRef.maxAmmo += 2;
             playRef.ammo = playRef.maxAmmo;
             uiRef.extraBullets = (int) playRef.maxAmmo - 6;
+            uiRef.backupBullets += 2;
             uiRef.Reload();
             JukeboxButtonSelected();
         }

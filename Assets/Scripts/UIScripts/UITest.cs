@@ -116,12 +116,15 @@ public class UITest : MonoBehaviour
     public bool inMist = false;    
 
     //AMMO//
-    //The current amount of bullets which the player can shoot 
-    [SerializeField] public int curBullets;
+        //The current amount of bullets which the player can shoot at a time  
+        [SerializeField] public int curBullets;
 
         //The maximum amount of bullets which the player can have in their cylinder,
         //Which decreases by 2 every time they reload their gun
         [SerializeField] public int maxBullets;
+
+        //The total amount of bullets which the player has left in their gun
+        [SerializeField] public int backupBullets;
         
         //Build index of the current scene (will be more important once more scenes are added)
        [SerializeField] private int curSceneIndex;
@@ -142,6 +145,7 @@ public class UITest : MonoBehaviour
         maxHealth = playerRef.maxHealth;
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
+        backupBullets = 6;
 
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
@@ -364,19 +368,6 @@ public class UITest : MonoBehaviour
             //Debug.Log(curBullets);
         }
 
-        //else if(jukeboxOpen)
-        //{
-        //    if(maxBullets > 6)
-        //    {
-        //        Debug.Log("TWO EXTRA BULLETS");
-        //        for (int i = 0; i < 6; i++)
-        //        {
-        //            Debug.Log("More than 6 bullets");
-        //            Bullets[i].GetComponentInChildren<Image>().enabled = true;
-        //        }
-        //    }
-        //}
-
     }
     //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
     //Or when they've run out of ammo in a single cylinder.
@@ -411,6 +402,16 @@ public class UITest : MonoBehaviour
                 curStateText.SetText("");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
+
+            if(maxBullets == 4)
+            {
+                backupBullets = 2;
+            }
+
+            else if(maxBullets == 2)
+            {
+                backupBullets = 0;
+            }
         }
 
         else if (maxBullets <= 0)
@@ -427,41 +428,7 @@ public class UITest : MonoBehaviour
         Debug.Log("RELOADED");
         ammoAnimator.SetBool("Idle", true);
         curStateText.SetText("");
-        //ADD A CANSHOOT BOOL SO PLAYER CAN'T SHOOT DURING RELOAD ANIMATION HERE//
-
-        //PLACEHOLDER DELAY FOR UPDATING AMMO UI
-        //TO-DO: MATCH THIS W/ TIMING OF RELOAD ANIMATION
-
-        //Debug.Log(maxBullets);
-        //if(maxBullets == 6)
-        //{
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        Debug.Log("6 Bullets");
-        //        Bullets[i].GetComponentInChildren<Image>().enabled = true;
-        //    }
-        //}
-
-        //else if (maxBullets <= 6)
-        //{
-        //    for (int i = 0; i < maxBullets; i++)
-        //    {
-        //        Debug.Log("6 Bullets or Less");
-        //        Bullets[i].GetComponentInChildren<Image>().enabled = true;
-        //    }
-        //}
-
-        ////else if (maxBullets == 2)
-        ////{
-        ////    Debug.Log("2 Bullets");
-        ////    Bullets[0].GetComponentInChildren<Image>().enabled = true;
-        ////    Bullets[1].GetComponentInChildren<Image>().enabled = true;
-        ////}
-
-        //else if (maxBullets <= 0)
-        //{
-        //    curStateText.SetText("Out of Ammo");
-        //}
+        //ADD A CANSHOOT BOOL SO PLAYER CAN'T SHOOT DURING RELOAD ANIMATION HERE//  
     }
 
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//

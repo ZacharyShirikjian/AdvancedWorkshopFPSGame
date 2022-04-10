@@ -304,6 +304,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dc38720-d6d3-44b4-945d-fc2aa7417dec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -438,6 +446,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf78a3a0-6356-43e7-8ad3-08bb7d7566a7"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -465,6 +484,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menus_LeftClick = m_Menus.FindAction("LeftClick", throwIfNotFound: true);
         m_Menus_ScrollWheel = m_Menus.FindAction("ScrollWheel", throwIfNotFound: true);
         m_Menus_Start = m_Menus.FindAction("Start", throwIfNotFound: true);
+        m_Menus_Back = m_Menus.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -619,6 +639,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menus_LeftClick;
     private readonly InputAction m_Menus_ScrollWheel;
     private readonly InputAction m_Menus_Start;
+    private readonly InputAction m_Menus_Back;
     public struct MenusActions
     {
         private @Controls m_Wrapper;
@@ -631,6 +652,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @LeftClick => m_Wrapper.m_Menus_LeftClick;
         public InputAction @ScrollWheel => m_Wrapper.m_Menus_ScrollWheel;
         public InputAction @Start => m_Wrapper.m_Menus_Start;
+        public InputAction @Back => m_Wrapper.m_Menus_Back;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -664,6 +686,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Start.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnStart;
                 @Start.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnStart;
                 @Start.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnStart;
+                @Back.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_MenusActionsCallbackInterface = instance;
             if (instance != null)
@@ -692,6 +717,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
         }
     }
@@ -718,5 +746,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnLeftClick(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }

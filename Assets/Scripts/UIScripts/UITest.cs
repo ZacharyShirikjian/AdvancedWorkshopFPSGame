@@ -16,6 +16,9 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
+    //CONTROLS PANEL REF//
+    [SerializeField] private GameObject controlsPanel;
+
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
     private PlayerController playerRef;
 
@@ -186,6 +189,20 @@ public class UITest : MonoBehaviour
         //healthSlider.value = curHealth;
         //healthSlider.maxValue = maxHealth;
         coinText.SetText(numCoins.ToString());
+    }
+
+    //CONTROLS PANEL
+    public void OpenControlsPanel()
+    {
+        controlsPanel.SetActive(true);
+        controlsPanel.GetComponentInChildren<Animator>().SetTrigger("Controls");
+        pausePanel.SetActive(false);
+    }
+
+    public void CloseControlsPanel()
+    {
+        controlsPanel.SetActive(false);
+        pausePanel.SetActive(true);
     }
 
     //For Pausing/Unpausing Game

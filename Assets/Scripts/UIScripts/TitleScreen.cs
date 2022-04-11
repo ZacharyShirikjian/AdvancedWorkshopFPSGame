@@ -69,7 +69,7 @@ public class TitleScreen : MonoBehaviour
 
         //optionsPanel.SetActive(false);
         buttonPressed = false;
-        promptText.SetText("Press          to Start.");
+        promptText.SetText("Press          to Start");
         Buttons.SetActive(false);
 
     }

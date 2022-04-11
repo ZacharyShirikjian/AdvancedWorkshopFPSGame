@@ -312,6 +312,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwitchPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e8b8de1-d2d9-4660-b503-6fc104ccc5a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -457,6 +465,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fecbf6b-9732-41c1-8b4b-06c3652cf0e4"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -485,6 +504,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menus_ScrollWheel = m_Menus.FindAction("ScrollWheel", throwIfNotFound: true);
         m_Menus_Start = m_Menus.FindAction("Start", throwIfNotFound: true);
         m_Menus_Back = m_Menus.FindAction("Back", throwIfNotFound: true);
+        m_Menus_SwitchPage = m_Menus.FindAction("SwitchPage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -640,6 +660,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menus_ScrollWheel;
     private readonly InputAction m_Menus_Start;
     private readonly InputAction m_Menus_Back;
+    private readonly InputAction m_Menus_SwitchPage;
     public struct MenusActions
     {
         private @Controls m_Wrapper;
@@ -653,6 +674,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_Menus_ScrollWheel;
         public InputAction @Start => m_Wrapper.m_Menus_Start;
         public InputAction @Back => m_Wrapper.m_Menus_Back;
+        public InputAction @SwitchPage => m_Wrapper.m_Menus_SwitchPage;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -689,6 +711,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Back.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnBack;
                 @Back.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnBack;
                 @Back.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnBack;
+                @SwitchPage.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnSwitchPage;
+                @SwitchPage.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnSwitchPage;
+                @SwitchPage.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnSwitchPage;
             }
             m_Wrapper.m_MenusActionsCallbackInterface = instance;
             if (instance != null)
@@ -720,6 +745,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Back.started += instance.OnBack;
                 @Back.performed += instance.OnBack;
                 @Back.canceled += instance.OnBack;
+                @SwitchPage.started += instance.OnSwitchPage;
+                @SwitchPage.performed += instance.OnSwitchPage;
+                @SwitchPage.canceled += instance.OnSwitchPage;
             }
         }
     }
@@ -747,5 +775,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnSwitchPage(InputAction.CallbackContext context);
     }
 }

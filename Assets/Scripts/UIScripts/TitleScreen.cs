@@ -24,12 +24,16 @@ public class TitleScreen : MonoBehaviour
 
     //REFERENCE TO CONTROLS PANEL//
     [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject curPanel;
 
-        //Keyboard Input,Controls Menu
-        //[SerializeField] private GameObject keyboardInput;
+    [SerializeField] private Image keyboardIcon;
+    [SerializeField] private Image controllerIcon;
+
+    //Keyboard Input,Controls Menu
+    [SerializeField] private GameObject keyboardInput;
 
         //Controller Input,Controls Menu
-        //[SerializeField] private GameObject controllerInput;
+        [SerializeField] private GameObject controllerInput;
 
     //REFERENCE TO CREDITS PANEL IN SCENE//
     [SerializeField] private GameObject creditsPanel;
@@ -61,6 +65,8 @@ public class TitleScreen : MonoBehaviour
         //optionsPanel = GameObject.Find("OptionsPanel");
         creditsPanel.SetActive(false);
         controlsPanel.SetActive(false);
+        curPanel = keyboardInput;
+
         //optionsPanel.SetActive(false);
         buttonPressed = false;
         promptText.SetText("Press          to Start.");
@@ -81,7 +87,7 @@ public class TitleScreen : MonoBehaviour
         {
             //eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
             Buttons.SetActive(true);
-            promptText.SetText("");
+            promptText.gameObject.SetActive(false);
             buttonPressed = true;
             menuPromptsAnimator.SetTrigger("Pausing");
         }
@@ -116,13 +122,32 @@ public class TitleScreen : MonoBehaviour
     {
         controlsPanel.SetActive(true);
         cancelAnim.SetTrigger("Controls");
+        keyboardInput.SetActive(true);
+        controllerInput.SetActive(false);
+        controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
         Buttons.SetActive(false);
     }
 
     //Gets called when player presses TAB on TitleScreen.
     public void SwitchInputPage()
     {
+        if(curPanel == keyboardInput)
+        {
+            curPanel = controllerInput;
+            keyboardInput.gameObject.SetActive(false);
+            controllerInput.gameObject.SetActive(true);
+            controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+        }
 
+        else if (curPanel == controllerInput)
+        {
+            curPanel = keyboardInput;
+            keyboardInput.gameObject.SetActive(true);
+            controllerInput.gameObject.SetActive(false);
+            keyboardIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+        }
     }
 
     ////This method is used for opening up the Options Panel in the Title Screen.

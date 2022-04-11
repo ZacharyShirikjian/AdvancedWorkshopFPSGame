@@ -18,6 +18,16 @@ public class UITest : MonoBehaviour
 {
     //CONTROLS PANEL REF//
     [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject curControlsPanel;
+
+    [SerializeField] private Image keyboardIcon;
+    [SerializeField] private Image controllerIcon;
+
+    //Keyboard Input,Controls Menu
+    [SerializeField] private GameObject keyboardInput;
+
+    //Controller Input,Controls Menu
+    [SerializeField] private GameObject controllerInput;
 
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
     private PlayerController playerRef;
@@ -156,6 +166,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pauseAnimator = pausePanel.GetComponentInChildren<Animator>();
+        controlsPanel.SetActive(false);
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
         gameOverPanel.SetActive(false);
@@ -164,6 +175,7 @@ public class UITest : MonoBehaviour
         paused = false;
         jukeboxOpen = false;
         currentPanel = refillPanel;
+        curControlsPanel = keyboardInput;
         NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
 
         for (int i = 0; i < 6; i++)
@@ -201,6 +213,9 @@ public class UITest : MonoBehaviour
         controlsPanel.SetActive(true);
         controlsPanel.GetComponentInChildren<Animator>().SetTrigger("Controls");
         pausePanel.SetActive(false);
+        keyboardInput.SetActive(true);
+        controllerInput.SetActive(false);
+        controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
     }
 
     public void CloseControlsPanel()
@@ -209,6 +224,27 @@ public class UITest : MonoBehaviour
         pausePanel.SetActive(true);
     }
 
+    //Gets called when player presses TAB on TitleScreen.
+    public void SwitchInputPage()
+    {
+        if (curControlsPanel == keyboardInput)
+        {
+            curControlsPanel = controllerInput;
+            keyboardInput.gameObject.SetActive(false);
+            controllerInput.gameObject.SetActive(true);
+            controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+        }
+
+        else if (curControlsPanel == controllerInput)
+        {
+            curControlsPanel = keyboardInput;
+            keyboardInput.gameObject.SetActive(true);
+            controllerInput.gameObject.SetActive(false);
+            keyboardIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+        }
+    }
     //For Pausing/Unpausing Game
     public void PauseGame()
     {

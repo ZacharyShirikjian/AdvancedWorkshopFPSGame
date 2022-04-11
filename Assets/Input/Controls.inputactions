@@ -299,6 +299,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SwitchPage",
+                    "type": "Button",
+                    "id": "2e8b8de1-d2d9-4660-b503-6fc104ccc5a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -442,6 +450,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fecbf6b-9732-41c1-8b4b-06c3652cf0e4",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchPage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

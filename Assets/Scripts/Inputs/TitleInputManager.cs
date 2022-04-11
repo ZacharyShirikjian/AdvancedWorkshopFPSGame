@@ -27,6 +27,7 @@ public class TitleInputManager : MonoBehaviour
 
         //MENU//
         menu.Start.performed += _ => titleScreen.OpenMenu();
+        menu.SwitchPage.performed += _ => titleScreen.SwitchInputPage();
         menu.Navigate.performed += ctx => inputVector = ctx.ReadValue<Vector2>();
         menu.Cancel.performed += _ => titleScreen.BackToMenu();
 

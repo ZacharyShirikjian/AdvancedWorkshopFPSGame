@@ -180,6 +180,7 @@ public class UITest : MonoBehaviour
         {
             Time.timeScale = 1f;
             paused = false;
+            StaticGameClass.pause = false;
             pausePanel.SetActive(false);
         }
         else if(!paused && jukeboxOpen == false)
@@ -188,6 +189,7 @@ public class UITest : MonoBehaviour
             Debug.Log("PAUSE BUTTONS ACTIVATED");
             //pausePress = true;
             paused = true;
+            StaticGameClass.pause = true;
             pausePanel.SetActive(true);
 
             //pausePanel.transform.GetChild(1).gameObject is the Resume button (GetChild (0) is the PauseHeader)

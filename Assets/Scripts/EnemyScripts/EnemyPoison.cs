@@ -32,15 +32,18 @@ public class EnemyPoison : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Vector3.Distance(player.transform.position, transform.position) <= radius)
+        if(StaticGameClass.pause == false)
         {
-            poison = true;
-        }
+            if (Vector3.Distance(player.transform.position, transform.position) <= radius)
+            {
+                poison = true;
+            }
 
-        else if (Vector3.Distance(player.transform.position, transform.position) > radius)
-        {
-            poison = false;
+            else if (Vector3.Distance(player.transform.position, transform.position) > radius)
+            {
+                poison = false;
+            }
+
         }
 
     }

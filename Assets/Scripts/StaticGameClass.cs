@@ -5,85 +5,73 @@ using UnityEngine;
 public static class StaticGameClass
 {
 
-    static bool pause;
+    public static bool pause { get; set; }
 
     static int mobCap = 2;
     static int activeEnemies = 0;
 
-    public static void PauseGame()
+    static Queue<GameObject> backlog;
+
+    public static void QueueTrigger(GameObject trigger)
     {
-        pause = true;
+        backlog.Enqueue(trigger);
     }
 
-
-    public static void UnPauseGame()
+    public static GameObject DequeueTrigger()
     {
-        pause = false;
+       return backlog.Dequeue();   
     }
 
-    //public static void QueueEnemy(GameObject enemy)
-    //{
-    //    backlog.Enqueue(enemy);
-    //}
+    public static void ClearQueue()
+    {
+        backlog.Clear();
+    }
 
-    //public static GameObject DequeueEnemy()
-    //{
-    //    if (backlog.Peek() != null)
-    //    {
-    //        return backlog.Dequeue();
-    //    }
-    //}
+    public static int GetActiveEnemies()
+    {
+        return activeEnemies;
+    }
 
-    //public static void ClearQueue()
-    //{
-    //    backlog.Clear();
-    //}
+    public static void PlusActiveEnemies(GameObject trigger)
+    {
+        if (activeEnemies < mobCap)
+        {
+            activeEnemies += 1;
+            ActivateTrigger(trigger);
+        }
 
-    //public static int GetActiveEnemies()
-    //{
-    //    return activeEnemies;
-    //}
+        else
+        {
+            QueueTrigger(trigger);
+        }
+    }
 
-    //public static void PlusActiveEnemies(GameObject enemy)
-    //{
-    //    if (activeEnemies < mobCap)
-    //    {
-    //        activeEnemies += 1;
-    //        SetActiveEnemy(enemy);
-    //    }
+    public static void LessActiveEnemies()
+    {
+        if (activeEnemies > 0)
+        {
+            if (backlog.Peek() == null)
+            {
+                activeEnemies -= 1;
+            }
 
-    //    else
-    //    {
-    //        QueueEnemy(enemy);
-    //    }
-    //}
+            else
+            {
+                ActivateTrigger(DequeueTrigger());
+            }
 
-    //public static void LessActiveEnemies()
-    //{
-    //    if (activeEnemies > 0)
-    //    {
-    //        if (backlog.Peek() == null)
-    //        {
-    //            activeEnemies -= 1;
-    //        }
+        }
 
-    //        else
-    //        {
-    //            SetActiveEnemy(DequeueEnemy());
-    //        }
+    }
 
-    //    }
+    public static void ResetActiveEnemies()
+    {
+        activeEnemies = 0;
+    }
 
-    //}
-
-    //public static void ResetActiveEnemies()
-    //{
-    //    activeEnemies = 0;
-    //}
-
-    //public static void SetActiveEnemy(GameObject enemy)
-    //{
-    //    enemy.GetComponent<EnemyBasic>().active = true;
-    //}
+    public static void ActivateTrigger(GameObject trigger)
+    {
+        trigger.GetComponent<Trigger>().ActivateTriggerAction();
+    }
 
 }

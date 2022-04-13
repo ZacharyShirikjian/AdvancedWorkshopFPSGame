@@ -6,16 +6,14 @@ public abstract class Trigger : MonoBehaviour
 {
     public EnemyBasic baseEnemy;
     public GameObject enemy;
+    public GameObject triggerBox;
 
     public bool triggered;
-    public bool active;
 
     // Start is called before the first frame update
     void Start()
     {
-    
         triggered = false;
-        active = false;
     }
 
     // Update is called once per frame
@@ -30,7 +28,7 @@ public abstract class Trigger : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                ActivateTriggerAction();
+                StaticGameClass.PlusActiveEnemies(triggerBox);
                 triggered = true;
             }
         }

@@ -11,6 +11,7 @@ public class CeilingTrigger : Trigger
     void Start()
     {
         baseEnemy = enemy.GetComponent<EnemyBasic>();
+        triggerBox = gameObject;
     }
 
     // Update is called once per frame

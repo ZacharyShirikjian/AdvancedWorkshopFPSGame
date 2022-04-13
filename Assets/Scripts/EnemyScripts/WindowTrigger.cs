@@ -23,6 +23,7 @@ public class WindowTrigger : Trigger
     {
         CalculateArc();
         baseEnemy = enemy.GetComponent<EnemyBasic>();
+        triggerBox = gameObject;
     }
 
     // Update is called once per frame

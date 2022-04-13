@@ -36,12 +36,14 @@ public static class StaticGameClass
     {
         if (activeEnemies < mobCap)
         {
+            Debug.Log("Activated");
             activeEnemies += 1;
             ActivateTrigger(trigger);
         }
 
         else
         {
+            Debug.Log("Queued");
             QueueTrigger(trigger);
         }
     }
@@ -57,6 +59,7 @@ public static class StaticGameClass
 
             else
             {
+                Debug.Log("Dequeued");
                 ActivateTrigger(DequeueTrigger());
             }
 

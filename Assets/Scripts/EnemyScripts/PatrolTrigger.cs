@@ -14,6 +14,7 @@ public class PatrolTrigger : Trigger
     {
         patrol = enemy.GetComponent<EnemyPatrol>();
         baseEnemy = enemy.GetComponent<EnemyBasic>();
+        triggerBox = gameObject;
     }
 
     // Update is called once per frame

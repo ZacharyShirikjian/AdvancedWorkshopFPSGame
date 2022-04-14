@@ -293,14 +293,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Back",
-                    "type": "Button",
-                    "id": "2dc38720-d6d3-44b4-945d-fc2aa7417dec",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "SwitchPage",
                     "type": "Button",
                     "id": "2e8b8de1-d2d9-4660-b503-6fc104ccc5a9",
@@ -439,17 +431,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Start",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bf78a3a0-6356-43e7-8ad3-08bb7d7566a7",
-                    "path": "<Keyboard>/backspace",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

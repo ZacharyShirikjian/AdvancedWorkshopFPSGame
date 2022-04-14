@@ -178,6 +178,7 @@ MonoBehaviour:
   spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
   tracking: 0
+  active: 0
   health: 2
   coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
   animator: {fileID: 0}
@@ -246,7 +247,7 @@ GameObject:
   - component: {fileID: 454494806214849983}
   - component: {fileID: 5773136341211962608}
   m_Layer: 0
-  m_Name: Window Trigger
+  m_Name: TriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea5dadfa9c50c247b555219860394b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseEnemy: {fileID: 0}
   enemy: {fileID: 5773136341053236774}
+  triggered: 0
+  active: 0
   PointA: {fileID: 5773136341009848662}
   PointB: {fileID: 5773136341004895152}
   Point1: {x: 0, y: 0, z: 0}
@@ -324,7 +328,6 @@ MonoBehaviour:
   upRelative: {x: 0, y: 0, z: 0}
   downRelative: {x: 0, y: 0, z: 0}
   journeyTime: 3
-  triggered: 0
 --- !u!1 &5773136341457243893
 GameObject:
   m_ObjectHideFlags: 0

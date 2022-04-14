@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 7364094248461517367}
   - component: {fileID: 7364094248461518280}
   m_Layer: 0
-  m_Name: PatrolTrigger
+  m_Name: TriggerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,9 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051c68610560bff4397aae91a588db4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol: {fileID: 0}
+  baseEnemy: {fileID: 0}
   enemy: {fileID: 7364094249303863053}
   triggered: 0
+  active: 0
+  patrol: {fileID: 0}
 --- !u!1 &7364094248703996055
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +213,6 @@ GameObject:
   - component: {fileID: 7364094249303863051}
   - component: {fileID: 5717409212376542813}
   - component: {fileID: 2379641765363365924}
-  - component: {fileID: 926149870348725036}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -336,6 +337,7 @@ MonoBehaviour:
   spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
   tracking: 0
+  active: 0
   health: 2
   coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
   animator: {fileID: 0}
@@ -388,22 +390,6 @@ MonoBehaviour:
   poison: 0
   player: {fileID: 0}
   playCon: {fileID: 0}
---- !u!114 &926149870348725036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7364094249303863053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df10a8c9336a6e242b84bc97fd6e4156, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverForce: 5
-  hoverHeight: 0
-  rb: {fileID: 0}
-  isGrounded: 0
 --- !u!1 &7364094249324355772
 GameObject:
   m_ObjectHideFlags: 0

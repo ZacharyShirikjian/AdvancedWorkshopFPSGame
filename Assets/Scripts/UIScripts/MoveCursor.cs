@@ -13,14 +13,15 @@ public class MoveCursor : MonoBehaviour
     void Start()
     {
         curCursorPos = gunCursor.transform.position;
-        if (SceneManager.GetActiveScene().name == "_TitleScreenScene")
+        if (SceneManager.GetActiveScene().name == "_PrototypeDemoScene" && gunCursor.GetComponent<Animator>().GetBool("TEST") == false)
         {
-            gunCursor.GetComponent<Animator>().SetBool("Title", true);
+            Debug.Log("MoveCursorPOS");
+            gunCursor.GetComponent<Animator>().SetBool("TEST", true);
         }
-        else
-        {
-            gunCursor.GetComponent<Animator>().SetBool("Title", false);
-        }
+        //else if(SceneManager.GetActiveScene().name == "_PrototypeDemoScene")
+        //{
+        //    gunCursor.GetComponent<Animator>().SetBool("Title", false);
+        //}
 
     }
 

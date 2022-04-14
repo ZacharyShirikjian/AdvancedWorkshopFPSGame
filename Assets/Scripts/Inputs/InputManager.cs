@@ -23,7 +23,6 @@ public class InputManager : MonoBehaviour
         playInteract = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerInteract>();
         mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         uiScript = this.gameObject.GetComponent<UITest>();
-        jukeboxRef = GameObject.FindWithTag("Jukebox").GetComponent<JukeboxScript>();
     }
 
     private void Awake()
@@ -48,10 +47,9 @@ public class InputManager : MonoBehaviour
 
         //MENU//
         //menu.Select.performed += _ => uiScript.OnSelectPressed();
-        menu.Back.performed += _ => uiScript.CloseControlsPanel();
+        menu.Cancel.performed += _ => uiScript.CloseMenu();
         menu.Pause.performed += _ => uiScript.PauseGame();
         movement.Interact.performed += _ => playInteract.Interact();
-        menu.Cancel.performed += _ => jukeboxRef.CancelOption();
         menu.SwitchPage.performed += _ => uiScript.SwitchInputPage();
         //menu.Point.performed += ctx 
 

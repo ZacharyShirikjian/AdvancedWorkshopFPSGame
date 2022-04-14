@@ -83,18 +83,19 @@ public class UITest : MonoBehaviour
 
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
-    public Image modIcon; //UI Icon for which mod the player currently has on their pistol
-    
-    //LIST OF MOD IMAGES
-    public Image[] modIcons = new Image[4];
+    //public Image modIcon; //UI Icon for which mod the player currently has on their pistol
+
+    //REFERENCE TO CURRENT JUKEBOX//
+    [SerializeField] private GameObject curJukebox;
+    //Referenece to PlayerInteract//
+    [SerializeField] private PlayerInteract playInteract;
+
+    ////LIST OF MOD IMAGES
+    //public Image[] modIcons = new Image[4];
 
     //Panel for mods//
     [SerializeField] public GameObject currentPanel;
     [SerializeField] public GameObject refillPanel;
-    [SerializeField] public GameObject modPanel;
-
-    //REFERENCE TO NEXT BUTTON//
-    [SerializeField] private Button NextButton;
 
     //VARIABLES//
     //Checks if Game Over is true, if true enemies can't track player anymore
@@ -176,7 +177,6 @@ public class UITest : MonoBehaviour
         jukeboxOpen = false;
         currentPanel = refillPanel;
         curControlsPanel = keyboardInput;
-        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
 
         for (int i = 0; i < 6; i++)
         {
@@ -218,10 +218,21 @@ public class UITest : MonoBehaviour
         controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
     }
 
-    public void CloseControlsPanel()
+    //ONE BUTTON FOR CLOSING ANY MENU WHICH IS OPEN
+    public void CloseMenu()
     {
-        controlsPanel.SetActive(false);
-        pausePanel.SetActive(true);
+        if(controlsPanel.activeSelf == true)
+        {
+            Debug.Log("CONTROLS ONSEFSdcfdsFDSDfsdfdsfdsfdfdfdfdfdfdfd");
+            controlsPanel.SetActive(false);
+            pausePanel.SetActive(true);
+        }
+
+        else if(jukeboxMenu.activeSelf == true)
+        {
+            curJukebox = playInteract.curJukebox;
+            curJukebox.GetComponent<JukeboxScript>().CancelOption();
+        }
     }
 
     //Gets called when player presses TAB on TitleScreen.
@@ -234,6 +245,10 @@ public class UITest : MonoBehaviour
             controllerInput.gameObject.SetActive(true);
             controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
             keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+            Time.timeScale = 1f;
+            paused = false;
+            StaticGameClass.pause = false;
+            pausePanel.SetActive(false);
         }
 
         else if (curControlsPanel == controllerInput)
@@ -258,6 +273,11 @@ public class UITest : MonoBehaviour
             }
             else if (!paused && jukeboxOpen == false)
             {
+            Debug.Log("PAUSE BUTTONS ACTIVATED");
+            //pausePress = true;
+            paused = true;
+            StaticGameClass.pause = true;
+            pausePanel.SetActive(true);
 
                 Debug.Log("PAUSE BUTTONS ACTIVATED");
                 //pausePress = true;
@@ -303,24 +323,24 @@ public class UITest : MonoBehaviour
 
     }
 
-    //SWITCH BETWEEN JUKEBOX PAGES
-    public void SwitchJukeboxPages()
-    {
-        if(currentPanel == refillPanel)
-        {
-            currentPanel = modPanel;
-            refillPanel.SetActive(false);
-            modPanel.SetActive(true);
-            NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
-        }
-        else if (currentPanel == modPanel)
-        {
-            currentPanel = refillPanel;
-            modPanel.SetActive(false);
-            refillPanel.SetActive(true);
-            NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
-        }
-    }
+    ////SWITCH BETWEEN JUKEBOX PAGES
+    //public void SwitchJukeboxPages()
+    //{
+    //    if(currentPanel == refillPanel)
+    //    {
+    //        currentPanel = modPanel;
+    //        refillPanel.SetActive(false);
+    //        modPanel.SetActive(true);
+    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
+    //    }
+    //    else if (currentPanel == modPanel)
+    //    {
+    //        currentPanel = refillPanel;
+    //        modPanel.SetActive(false);
+    //        refillPanel.SetActive(true);
+    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
+    //    }
+    //}
 
     //public void CloseJukeboxUI()
     //{

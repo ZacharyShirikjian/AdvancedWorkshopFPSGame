@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
 
     public void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         ammo = 6;
         maxAmmo = 6;
 
@@ -92,109 +95,113 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
 
-        if (zoom)
+        if(StaticGameClass.pause == false)
         {
-            //Debug.Log("Zoom");
-            animator.SetBool("Zoom", true);   //triggers zoomed in animations
-            playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, (defaultFOV / zoomPercent), Time.deltaTime * smooth);
-            mouseLook.sensitivityX = zoomSenseX;
-            mouseLook.sensitivityY = zoomSenseY;
-        }
-        if (!zoom)
-        {
-            //Debug.Log("UnZoom");
-            animator.SetBool("Zoom", false);    //turns off zoomed in animations
-            playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, defaultFOV, Time.deltaTime * smooth);
-            mouseLook.sensitivityX = defaultSenseX;
-            mouseLook.sensitivityY = defaultSenseY;
-        }
-
-        //check if player is on a "ground" tagged object
-        //isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
-
-        if (shoot && Time.time > nextFire && ammo > 0)
-        {
-            animator.SetTrigger("Shoot");
-
-            ammo--;
-
-            // Update the time when our player can fire next
-            nextFire = Time.time + fireRate;
-            rayShoot.Shoot();
-
-            //play audio here
-            //include animation
-
-            shoot = false;
-
-            Debug.Log("pew pew");
-
-            //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
-            uiRef.UpdateAmmoUI();
-
-        }
-
-        if (crouch)
-        {
-            //Debug.Log("Crouch activated");
-
-            controller.height = crouchHeight;
-
-            crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
-
-            playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
-
-            gunCrouching = new Vector3(arms.transform.position.x, gunCrouchHeight, arms.transform.position.z);
-
-            arms.transform.position = Vector3.Lerp(arms.transform.position, gunCrouching, Time.deltaTime * smooth);
-
-        }
-        else if (!crouch)
-        {
-            controller.height = standHeight;
-
-            standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
-
-            playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
-
-            gunStanding = new Vector3(arms.transform.position.x, gunStandHeight, arms.transform.position.z);
-
-            arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
-
-        }
-
-        //reload ammo to maxAmmo for gun
-        if (reload)
-        {
-
-            animator.SetTrigger("Reload");
-            //add audio
-            shoot = false;
-
-            ammo = maxAmmo - 2;
-            maxAmmo = ammo;
-
-            if (ammo <= 0)
+            if (zoom)
             {
-                ammo = 0;
-                maxAmmo = 0;
+                //Debug.Log("Zoom");
+                animator.SetBool("Zoom", true);   //triggers zoomed in animations
+                playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, (defaultFOV / zoomPercent), Time.deltaTime * smooth);
+                mouseLook.sensitivityX = zoomSenseX;
+                mouseLook.sensitivityY = zoomSenseY;
+            }
+            if (!zoom)
+            {
+                //Debug.Log("UnZoom");
+                animator.SetBool("Zoom", false);    //turns off zoomed in animations
+                playerCam.fieldOfView = Mathf.Lerp(playerCam.fieldOfView, defaultFOV, Time.deltaTime * smooth);
+                mouseLook.sensitivityX = defaultSenseX;
+                mouseLook.sensitivityY = defaultSenseY;
             }
 
-            //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
-            reload = false;
-            if (maxAmmo > 0)
+            //check if player is on a "ground" tagged object
+            //isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
+
+            if (shoot && Time.time > nextFire && ammo > 0)
             {
-                uiRef.Reload();
+                animator.SetTrigger("Shoot");
+
+                ammo--;
+
+                // Update the time when our player can fire next
+                nextFire = Time.time + fireRate;
+                rayShoot.Shoot();
+
+                //play audio here
+                //include animation
+
+                shoot = false;
+
+                Debug.Log("pew pew");
+
+                //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
+                uiRef.UpdateAmmoUI();
+
             }
 
+            if (crouch)
+            {
+                //Debug.Log("Crouch activated");
+
+                controller.height = crouchHeight;
+
+                crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
+
+                playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
+
+                gunCrouching = new Vector3(arms.transform.position.x, gunCrouchHeight, arms.transform.position.z);
+
+                arms.transform.position = Vector3.Lerp(arms.transform.position, gunCrouching, Time.deltaTime * smooth);
+
+            }
+            else if (!crouch)
+            {
+                controller.height = standHeight;
+
+                standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
+
+                playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
+
+                gunStanding = new Vector3(arms.transform.position.x, gunStandHeight, arms.transform.position.z);
+
+                arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
+
+            }
+
+            //reload ammo to maxAmmo for gun
+            if (reload)
+            {
+
+                animator.SetTrigger("Reload");
+                //add audio
+                shoot = false;
+
+                ammo = maxAmmo - 2;
+                maxAmmo = ammo;
+
+                if (ammo <= 0)
+                {
+                    ammo = 0;
+                    maxAmmo = 0;
+                }
+
+                //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
+                reload = false;
+                if (maxAmmo > 0)
+                {
+                    uiRef.Reload();
+                }
+
+            }
+
+            //wasd movement
+            Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;
+            controller.Move(horzVel * Time.deltaTime);
+
+            //verticalVelocity.y += gravity * Time.deltaTime;
+            //controller.Move(verticalVelocity * Time.deltaTime);
         }
 
-        //wasd movement
-        Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;
-        controller.Move(horzVel * Time.deltaTime);
-
-        //verticalVelocity.y += gravity * Time.deltaTime;
-        //controller.Move(verticalVelocity * Time.deltaTime);
     }
 
     //accepts wasd movement

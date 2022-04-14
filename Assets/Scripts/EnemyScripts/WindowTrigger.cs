@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WindowTrigger : MonoBehaviour
+public class WindowTrigger : Trigger
 {
-
-
-    private EnemyBasic baseEnemy;
-    public GameObject enemy;
 
     public GameObject PointA;
     public GameObject PointB;
@@ -22,14 +18,12 @@ public class WindowTrigger : MonoBehaviour
     public float journeyTime = 3.0f;
     private float startTime;
 
-    public bool triggered;
-
     // Start is called before the first frame update
     void Start()
     {
-        baseEnemy = enemy.GetComponent<EnemyBasic>();
-        triggered = false;
         CalculateArc();
+        baseEnemy = enemy.GetComponent<EnemyBasic>();
+        triggerBox = gameObject;
     }
 
     // Update is called once per frame
@@ -38,23 +32,11 @@ public class WindowTrigger : MonoBehaviour
         
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    public override void ActivateTriggerAction()
     {
+        startTime = Time.time;
 
-        if (!triggered)
-        {
-            if (other.CompareTag("Player"))
-            {
-                startTime = Time.time;
-
-                StartCoroutine(Window(journeyTime));
-
-                triggered = true;
-            }
-        }
-
-
+        StartCoroutine(Window(journeyTime));
     }
 
     public void CalculateArc()
@@ -87,7 +69,6 @@ public class WindowTrigger : MonoBehaviour
     }
 
 
-
     IEnumerator ActivateEnemy()
     {
         yield return new WaitForSeconds(2.0f);
@@ -96,7 +77,6 @@ public class WindowTrigger : MonoBehaviour
 
 
         baseEnemy.EnableAttack();
-
     }
 
 

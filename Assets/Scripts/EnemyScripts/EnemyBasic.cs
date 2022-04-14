@@ -17,6 +17,7 @@ public class EnemyBasic : MonoBehaviour
 
     public bool spitting;
     public bool tracking;
+    public bool active;
 
     public float health = 2;
     public GameObject coin;
@@ -28,12 +29,11 @@ public class EnemyBasic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
         tracking = false;
+        active = false;
     }
 
     // Update is called once per frame
@@ -83,14 +83,17 @@ public class EnemyBasic : MonoBehaviour
 
     public void TrackPlayer()
     {
-        agent.destination = player.transform.position;
+        if(StaticGameClass.pause == false)
+        {
+            agent.destination = player.transform.position;
+        }
     }
 
 
     public IEnumerator SpitAttack()
     {
 
-        while (spitting)
+        while (spitting && StaticGameClass.pause == false)
         {
 
             spawnPoint = spitObject.transform.position;

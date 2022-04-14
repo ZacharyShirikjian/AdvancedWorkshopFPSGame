@@ -3,22 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CeilingTrigger : MonoBehaviour
+public class CeilingTrigger : Trigger
 {
-
-
-
-    private EnemyBasic baseEnemy;
-    public GameObject enemy;
     public GameObject platform;
-
-    public bool triggered;
 
     // Start is called before the first frame update
     void Start()
     {
         baseEnemy = enemy.GetComponent<EnemyBasic>();
-        triggered = false;
+        triggerBox = gameObject;
     }
 
     // Update is called once per frame
@@ -27,21 +20,10 @@ public class CeilingTrigger : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void ActivateTriggerAction()
     {
-
-        if (!triggered)
-        {
-            if (other.CompareTag("Player"))
-            {
-                platform.SetActive(false);
-                StartCoroutine(ActivateEnemy());
-                triggered = true;
-
-            }
-        }
-
-
+        platform.SetActive(false);
+        StartCoroutine(ActivateEnemy());
     }
 
     IEnumerator ActivateEnemy()

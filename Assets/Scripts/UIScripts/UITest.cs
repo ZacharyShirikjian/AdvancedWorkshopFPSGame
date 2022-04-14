@@ -234,6 +234,10 @@ public class UITest : MonoBehaviour
             controllerInput.gameObject.SetActive(true);
             controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
             keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+            Time.timeScale = 1f;
+            paused = false;
+            StaticGameClass.pause = false;
+            pausePanel.SetActive(false);
         }
 
         else if (curControlsPanel == controllerInput)
@@ -258,6 +262,11 @@ public class UITest : MonoBehaviour
             }
             else if (!paused && jukeboxOpen == false)
             {
+            Debug.Log("PAUSE BUTTONS ACTIVATED");
+            //pausePress = true;
+            paused = true;
+            StaticGameClass.pause = true;
+            pausePanel.SetActive(true);
 
                 Debug.Log("PAUSE BUTTONS ACTIVATED");
                 //pausePress = true;

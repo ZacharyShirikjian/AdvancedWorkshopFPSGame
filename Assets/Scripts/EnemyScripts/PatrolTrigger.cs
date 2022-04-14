@@ -3,23 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolTrigger : MonoBehaviour
+public class PatrolTrigger : Trigger
 {
 
     public EnemyPatrol patrol;
     
-    private EnemyBasic baseEnemy;
-  
-    public GameObject enemy;
-
-    public bool triggered;
 
     // Start is called before the first frame update
     void Start()
     {
         patrol = enemy.GetComponent<EnemyPatrol>();
         baseEnemy = enemy.GetComponent<EnemyBasic>();
-        triggered = false;
+        triggerBox = gameObject;
     }
 
     // Update is called once per frame
@@ -28,21 +23,11 @@ public class PatrolTrigger : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void ActivateTriggerAction()
     {
-        if (!triggered)
-        {
-            if (other.CompareTag("Player"))
-            {
+        patrol.patrol = false;
 
-                patrol.patrol = false;
-
-                baseEnemy.EnableAttack();
-
-                triggered = true;
-            }
-        }
-        
+        baseEnemy.EnableAttack();
 
     }
 

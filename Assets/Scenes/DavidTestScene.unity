@@ -2351,7 +2351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5d84388dfd44341b46ded61e8c33fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TerrainSpeed: -100
+  TerrainSpeed: 100
   LowerBias: 0
   TerrainPrefab:
   - {fileID: 8106110412104152249, guid: a84ff70192518964394d8e8d3bb8cd23, type: 3}
@@ -9311,7 +9311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1291212391
 Transform:
   m_ObjectHideFlags: 0
@@ -14610,7 +14610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5d84388dfd44341b46ded61e8c33fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TerrainSpeed: -25
+  TerrainSpeed: 0
   LowerBias: 10
   TerrainPrefab:
   - {fileID: 6624551976893691755, guid: 182ad36520fd6ae478d3147547aab461, type: 3}
@@ -14944,7 +14944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1878828055
 Transform:
   m_ObjectHideFlags: 0

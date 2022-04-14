@@ -296,6 +296,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""28934cc6-94ab-4187-8036-3e23034c7608"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwitchPage"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e8b8de1-d2d9-4660-b503-6fc104ccc5a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -419,6 +435,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""ScrollWheel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6264c5c4-93cb-42b7-af2a-1abfe9858ce8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fecbf6b-9732-41c1-8b4b-06c3652cf0e4"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchPage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -445,6 +483,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Menus_Point = m_Menus.FindAction("Point", throwIfNotFound: true);
         m_Menus_LeftClick = m_Menus.FindAction("LeftClick", throwIfNotFound: true);
         m_Menus_ScrollWheel = m_Menus.FindAction("ScrollWheel", throwIfNotFound: true);
+        m_Menus_Start = m_Menus.FindAction("Start", throwIfNotFound: true);
+        m_Menus_SwitchPage = m_Menus.FindAction("SwitchPage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -598,6 +638,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menus_Point;
     private readonly InputAction m_Menus_LeftClick;
     private readonly InputAction m_Menus_ScrollWheel;
+    private readonly InputAction m_Menus_Start;
+    private readonly InputAction m_Menus_SwitchPage;
     public struct MenusActions
     {
         private @Controls m_Wrapper;
@@ -609,6 +651,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Point => m_Wrapper.m_Menus_Point;
         public InputAction @LeftClick => m_Wrapper.m_Menus_LeftClick;
         public InputAction @ScrollWheel => m_Wrapper.m_Menus_ScrollWheel;
+        public InputAction @Start => m_Wrapper.m_Menus_Start;
+        public InputAction @SwitchPage => m_Wrapper.m_Menus_SwitchPage;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -639,6 +683,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @ScrollWheel.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnScrollWheel;
                 @ScrollWheel.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnScrollWheel;
                 @ScrollWheel.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnScrollWheel;
+                @Start.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnStart;
+                @SwitchPage.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnSwitchPage;
+                @SwitchPage.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnSwitchPage;
+                @SwitchPage.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnSwitchPage;
             }
             m_Wrapper.m_MenusActionsCallbackInterface = instance;
             if (instance != null)
@@ -664,6 +714,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @ScrollWheel.started += instance.OnScrollWheel;
                 @ScrollWheel.performed += instance.OnScrollWheel;
                 @ScrollWheel.canceled += instance.OnScrollWheel;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
+                @SwitchPage.started += instance.OnSwitchPage;
+                @SwitchPage.performed += instance.OnSwitchPage;
+                @SwitchPage.canceled += instance.OnSwitchPage;
             }
         }
     }
@@ -689,5 +745,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnPoint(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
+        void OnSwitchPage(InputAction.CallbackContext context);
     }
 }

@@ -30,21 +30,21 @@ public class JukeboxButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //update the text of the next page ui 
-        if(this.gameObject.name == "NEXTPAGE")
-        {
-            if (uiTest.currentPanel == uiTest.refillPanel)
-            {
-                upgradeName = "SWITCH TO MODS PAGE";
-                upgradeDescription = "Switch to display the Mods page.";
-            }
+        ////update the text of the next page ui 
+        //if(this.gameObject.name == "NEXTPAGE")
+        //{
+        //    if (uiTest.currentPanel == uiTest.refillPanel)
+        //    {
+        //        upgradeName = "SWITCH TO MODS PAGE";
+        //        upgradeDescription = "Switch to display the Mods page.";
+        //    }
 
-            else if (uiTest.currentPanel == uiTest.modPanel)
-            {
-                upgradeName = "SWITCH TO REFILLS PAGE";
-                upgradeDescription = "Switch to display the Refills/Upgrades page.";
-            }
-        }
+        //    //else if (uiTest.currentPanel == uiTest.modPanel)
+        //    //{
+        //    //    upgradeName = "SWITCH TO REFILLS PAGE";
+        //    //    upgradeDescription = "Switch to display the Refills/Upgrades page.";
+        //    //}
+        //}
 
     }
 }

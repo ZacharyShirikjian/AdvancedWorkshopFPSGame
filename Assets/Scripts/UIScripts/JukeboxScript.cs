@@ -157,76 +157,76 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
        
     }
 
-    //MODS//
+    ////MODS//
 
-    //TO DO: MODDING OF WEAPON WILL BE ADDED LATER//
-    //THESE ARE PLACEHOLDER MODS TO ENSURE BUTTONS WILL WORK//
+    ////TO DO: MODDING OF WEAPON WILL BE ADDED LATER//
+    ////THESE ARE PLACEHOLDER MODS TO ENSURE BUTTONS WILL WORK//
 
-    //CHANGE EFFECT OF PLAYER'S GUN TO BE LIKE SHOTGUN (ADD LATER)
-    public void ShotgunMod()
-    {
-        if (selected == true)
-        {
-            Debug.Log("SHOTGUN MOD ADDED");
-            uiRef.modIcon.sprite = uiRef.modIcons[2].sprite;
-            JukeboxButtonSelected();
-        }
+    ////CHANGE EFFECT OF PLAYER'S GUN TO BE LIKE SHOTGUN (ADD LATER)
+    //public void ShotgunMod()
+    //{
+    //    if (selected == true)
+    //    {
+    //        Debug.Log("SHOTGUN MOD ADDED");
+    //        uiRef.modIcon.sprite = uiRef.modIcons[2].sprite;
+    //        JukeboxButtonSelected();
+    //    }
 
-        else if (selected == false)
-        {
-            JukeboxButtonSelected();
-        }
+    //    else if (selected == false)
+    //    {
+    //        JukeboxButtonSelected();
+    //    }
 
-    }
+    //}
 
-    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
-    public void SlowSpeedMod()
-    {
-        if (selected == true)
-        {
-            Debug.Log("ELECTRICITY MOD ADDED");
-            uiRef.modIcon.sprite = uiRef.modIcons[1].sprite;
-            JukeboxButtonSelected();
-        }
+    ////SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    //public void SlowSpeedMod()
+    //{
+    //    if (selected == true)
+    //    {
+    //        Debug.Log("ELECTRICITY MOD ADDED");
+    //        uiRef.modIcon.sprite = uiRef.modIcons[1].sprite;
+    //        JukeboxButtonSelected();
+    //    }
 
-        else if (selected == false)
-        {
-            JukeboxButtonSelected();
-        }
-    }
+    //    else if (selected == false)
+    //    {
+    //        JukeboxButtonSelected();
+    //    }
+    //}
 
 
-    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
-    public void FreezeEnemyMod()
-    {
-        if (selected == true)
-        {
-            Debug.Log("FREEZE MOD ADDED");
-            uiRef.modIcon.sprite = uiRef.modIcons[0].sprite;
-            JukeboxButtonSelected();
-        }
+    ////SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    //public void FreezeEnemyMod()
+    //{
+    //    if (selected == true)
+    //    {
+    //        Debug.Log("FREEZE MOD ADDED");
+    //        uiRef.modIcon.sprite = uiRef.modIcons[0].sprite;
+    //        JukeboxButtonSelected();
+    //    }
 
-        else if (selected == false)
-        {
-            JukeboxButtonSelected();
-        }
-    }
+    //    else if (selected == false)
+    //    {
+    //        JukeboxButtonSelected();
+    //    }
+    //}
 
-    //SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
-    public void FireballMod()
-    {
-        if (selected == true)
-        {
-            Debug.Log("FIRE AMMO MOD ADDED");
-            uiRef.modIcon.sprite = uiRef.modIcons[3].sprite;
-            JukeboxButtonSelected();
-        }
+    ////SLOWS DOWN ENEMY SPEED WHEN SHOOTING BULLETS
+    //public void FireballMod()
+    //{
+    //    if (selected == true)
+    //    {
+    //        Debug.Log("FIRE AMMO MOD ADDED");
+    //        uiRef.modIcon.sprite = uiRef.modIcons[3].sprite;
+    //        JukeboxButtonSelected();
+    //    }
 
-        else if (selected == false)
-        {
-            JukeboxButtonSelected();
-        }
-    }
+    //    else if (selected == false)
+    //    {
+    //        JukeboxButtonSelected();
+    //    }
+    //}
     ///UPGRADES/REFILLS///
 
     //CALL HEALTH PACK METHOD OF PLAYER TO HEAL PLAYER (VALUE TBD, LET'S SAY 50% FOR NOW)
@@ -255,6 +255,24 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             if (playRef.ammo > playRef.maxAmmo)
             {
                 playRef.ammo = playRef.maxAmmo;
+            }
+
+            if(playRef.ammo >= 6)
+            {
+                if (playRef.maxAmmo == 6)
+                {
+                    uiRef.backupBullets = 6;
+
+                }
+                else if (playRef.maxAmmo == 4)
+                {
+                    uiRef.backupBullets = 2;
+                }
+
+                else if(playRef.maxAmmo == 2)
+                {
+                    uiRef.backupBullets = 0;
+                }
             }
             uiRef.UpdateAmmoUI();
             JukeboxButtonSelected();
@@ -293,6 +311,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             playRef.maxAmmo += 2;
             playRef.ammo = playRef.maxAmmo;
             uiRef.extraBullets = (int) playRef.maxAmmo - 6;
+            uiRef.backupBullets += 2;
             uiRef.Reload();
             JukeboxButtonSelected();
         }
@@ -303,8 +322,6 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         }
      }
 
-
-    /// MODS//// (ADD LATER ONCE WE HAVE MODS)
 
     //This method gets called when jukebox is active & button in jukebox is pressed
     public void JukeboxButtonSelected()
@@ -336,22 +353,23 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             //Debug.Log(currentButton);
             selectPromptText.SetText("SELECTED");
             uiRef.numCoins = uiRef.numCoins - currentButton.GetComponent<JukeboxButton>().cost;
+            currentButton.GetComponent<Button>().interactable = false;
             //currentButton.GetComponent<Button>().interactable = false;
 
-            //If you selected a mod button, disable the other mod buttons
-            if(currentButton.CompareTag("ModButton"))
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    jukeboxButtons[i].GetComponent<Button>().interactable = false;
-                }
-            }
+                ////If you selected a mod button, disable the other mod buttons
+                //if(currentButton.CompareTag("ModButton"))
+                //{
+                //    for (int i = 0; i < 4; i++)
+                //    {
+                //        jukeboxButtons[i].GetComponent<Button>().interactable = false;
+                //    }
+                //}
 
-            //If you selected an upgrade/refill button, just disable that current button
-            else if(currentButton.CompareTag("RefillButton"))
-            {
-                currentButton.GetComponent<Button>().interactable = false;
-            }
+            //    //If you selected an upgrade/refill button, just disable that current button
+            //else if(currentButton.CompareTag("RefillButton"))
+            //{
+                
+            //}
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(exitButton);
 
             currentButton.GetComponent<JukeboxButton>().buttonUsed = true;

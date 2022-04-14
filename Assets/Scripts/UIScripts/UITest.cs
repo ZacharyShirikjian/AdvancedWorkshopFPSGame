@@ -16,6 +16,19 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
+    //CONTROLS PANEL REF//
+    [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject curControlsPanel;
+
+    [SerializeField] private Image keyboardIcon;
+    [SerializeField] private Image controllerIcon;
+
+    //Keyboard Input,Controls Menu
+    [SerializeField] private GameObject keyboardInput;
+
+    //Controller Input,Controls Menu
+    [SerializeField] private GameObject controllerInput;
+
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
     private PlayerController playerRef;
 
@@ -70,18 +83,19 @@ public class UITest : MonoBehaviour
 
     //REFERENCE TO JUKEBOX MENU PANEL
     [SerializeField] private GameObject jukeboxMenu;
-    public Image modIcon; //UI Icon for which mod the player currently has on their pistol
-    
-    //LIST OF MOD IMAGES
-    public Image[] modIcons = new Image[4];
+    //public Image modIcon; //UI Icon for which mod the player currently has on their pistol
+
+    //REFERENCE TO CURRENT JUKEBOX//
+    [SerializeField] private GameObject curJukebox;
+    //Referenece to PlayerInteract//
+    [SerializeField] private PlayerInteract playInteract;
+
+    ////LIST OF MOD IMAGES
+    //public Image[] modIcons = new Image[4];
 
     //Panel for mods//
     [SerializeField] public GameObject currentPanel;
     [SerializeField] public GameObject refillPanel;
-    [SerializeField] public GameObject modPanel;
-
-    //REFERENCE TO NEXT BUTTON//
-    [SerializeField] private Button NextButton;
 
     //VARIABLES//
     //Checks if Game Over is true, if true enemies can't track player anymore
@@ -113,12 +127,15 @@ public class UITest : MonoBehaviour
     public bool inMist = false;    
 
     //AMMO//
-    //The current amount of bullets which the player can shoot 
-    [SerializeField] public int curBullets;
+        //The current amount of bullets which the player can shoot at a time  
+        [SerializeField] public int curBullets;
 
         //The maximum amount of bullets which the player can have in their cylinder,
         //Which decreases by 2 every time they reload their gun
         [SerializeField] public int maxBullets;
+
+        //The total amount of bullets which the player has left in their gun
+        [SerializeField] public int backupBullets;
         
         //Build index of the current scene (will be more important once more scenes are added)
        [SerializeField] private int curSceneIndex;
@@ -139,6 +156,7 @@ public class UITest : MonoBehaviour
         maxHealth = playerRef.maxHealth;
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
+        backupBullets = 6;
 
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
@@ -149,6 +167,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pauseAnimator = pausePanel.GetComponentInChildren<Animator>();
+        controlsPanel.SetActive(false);
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
         gameOverPanel.SetActive(false);
@@ -157,7 +176,7 @@ public class UITest : MonoBehaviour
         paused = false;
         jukeboxOpen = false;
         currentPanel = refillPanel;
-        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
+        curControlsPanel = keyboardInput;
 
         for (int i = 0; i < 6; i++)
         {
@@ -188,6 +207,59 @@ public class UITest : MonoBehaviour
         coinText.SetText(numCoins.ToString());
     }
 
+    //CONTROLS PANEL
+    public void OpenControlsPanel()
+    {
+        controlsPanel.SetActive(true);
+        controlsPanel.GetComponentInChildren<Animator>().SetTrigger("Controls");
+        pausePanel.SetActive(false);
+        keyboardInput.SetActive(true);
+        controllerInput.SetActive(false);
+        controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+    }
+
+    //ONE BUTTON FOR CLOSING ANY MENU WHICH IS OPEN
+    public void CloseMenu()
+    {
+        if(controlsPanel.activeSelf == true)
+        {
+            Debug.Log("CONTROLS ONSEFSdcfdsFDSDfsdfdsfdsfdfdfdfdfdfdfd");
+            controlsPanel.SetActive(false);
+            pausePanel.SetActive(true);
+        }
+
+        else if(jukeboxMenu.activeSelf == true)
+        {
+            curJukebox = playInteract.curJukebox;
+            curJukebox.GetComponent<JukeboxScript>().CancelOption();
+        }
+    }
+
+    //Gets called when player presses TAB on TitleScreen.
+    public void SwitchInputPage()
+    {
+        if (curControlsPanel == keyboardInput)
+        {
+            curControlsPanel = controllerInput;
+            keyboardInput.gameObject.SetActive(false);
+            controllerInput.gameObject.SetActive(true);
+            controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+            Time.timeScale = 1f;
+            paused = false;
+            StaticGameClass.pause = false;
+            pausePanel.SetActive(false);
+        }
+
+        else if (curControlsPanel == controllerInput)
+        {
+            curControlsPanel = keyboardInput;
+            keyboardInput.gameObject.SetActive(true);
+            controllerInput.gameObject.SetActive(false);
+            keyboardIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
+        }
+    }
     //For Pausing/Unpausing Game
     public void PauseGame()
     {
@@ -201,6 +273,11 @@ public class UITest : MonoBehaviour
             }
             else if (!paused && jukeboxOpen == false)
             {
+            Debug.Log("PAUSE BUTTONS ACTIVATED");
+            //pausePress = true;
+            paused = true;
+            StaticGameClass.pause = true;
+            pausePanel.SetActive(true);
 
                 Debug.Log("PAUSE BUTTONS ACTIVATED");
                 //pausePress = true;
@@ -246,24 +323,24 @@ public class UITest : MonoBehaviour
 
     }
 
-    //SWITCH BETWEEN JUKEBOX PAGES
-    public void SwitchJukeboxPages()
-    {
-        if(currentPanel == refillPanel)
-        {
-            currentPanel = modPanel;
-            refillPanel.SetActive(false);
-            modPanel.SetActive(true);
-            NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
-        }
-        else if (currentPanel == modPanel)
-        {
-            currentPanel = refillPanel;
-            modPanel.SetActive(false);
-            refillPanel.SetActive(true);
-            NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
-        }
-    }
+    ////SWITCH BETWEEN JUKEBOX PAGES
+    //public void SwitchJukeboxPages()
+    //{
+    //    if(currentPanel == refillPanel)
+    //    {
+    //        currentPanel = modPanel;
+    //        refillPanel.SetActive(false);
+    //        modPanel.SetActive(true);
+    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
+    //    }
+    //    else if (currentPanel == modPanel)
+    //    {
+    //        currentPanel = refillPanel;
+    //        modPanel.SetActive(false);
+    //        refillPanel.SetActive(true);
+    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
+    //    }
+    //}
 
     //public void CloseJukeboxUI()
     //{
@@ -318,6 +395,7 @@ public class UITest : MonoBehaviour
                 else if (curBullets <= 6)
                 {
                     //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
+
                     ammoAnimator.SetTrigger("RotateBullet");
                     //For each child in the Bullets GameObject,
                     //Hide the bottom-most element when a bullet is shot
@@ -345,19 +423,6 @@ public class UITest : MonoBehaviour
             }
             //Debug.Log(curBullets);
         }
-
-        //else if(jukeboxOpen)
-        //{
-        //    if(maxBullets > 6)
-        //    {
-        //        Debug.Log("TWO EXTRA BULLETS");
-        //        for (int i = 0; i < 6; i++)
-        //        {
-        //            Debug.Log("More than 6 bullets");
-        //            Bullets[i].GetComponentInChildren<Image>().enabled = true;
-        //        }
-        //    }
-        //}
 
     }
     //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
@@ -393,6 +458,16 @@ public class UITest : MonoBehaviour
                 curStateText.SetText("");
                 Bullets[i].GetComponentInChildren<Image>().enabled = true;
             }
+
+            if(maxBullets == 4)
+            {
+                backupBullets = 2;
+            }
+
+            else if(maxBullets == 2)
+            {
+                backupBullets = 0;
+            }
         }
 
         else if (maxBullets <= 0)
@@ -409,41 +484,7 @@ public class UITest : MonoBehaviour
         Debug.Log("RELOADED");
         ammoAnimator.SetBool("Idle", true);
         curStateText.SetText("");
-        //ADD A CANSHOOT BOOL SO PLAYER CAN'T SHOOT DURING RELOAD ANIMATION HERE//
-
-        //PLACEHOLDER DELAY FOR UPDATING AMMO UI
-        //TO-DO: MATCH THIS W/ TIMING OF RELOAD ANIMATION
-
-        //Debug.Log(maxBullets);
-        //if(maxBullets == 6)
-        //{
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        Debug.Log("6 Bullets");
-        //        Bullets[i].GetComponentInChildren<Image>().enabled = true;
-        //    }
-        //}
-
-        //else if (maxBullets <= 6)
-        //{
-        //    for (int i = 0; i < maxBullets; i++)
-        //    {
-        //        Debug.Log("6 Bullets or Less");
-        //        Bullets[i].GetComponentInChildren<Image>().enabled = true;
-        //    }
-        //}
-
-        ////else if (maxBullets == 2)
-        ////{
-        ////    Debug.Log("2 Bullets");
-        ////    Bullets[0].GetComponentInChildren<Image>().enabled = true;
-        ////    Bullets[1].GetComponentInChildren<Image>().enabled = true;
-        ////}
-
-        //else if (maxBullets <= 0)
-        //{
-        //    curStateText.SetText("Out of Ammo");
-        //}
+        //ADD A CANSHOOT BOOL SO PLAYER CAN'T SHOOT DURING RELOAD ANIMATION HERE//  
     }
 
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//

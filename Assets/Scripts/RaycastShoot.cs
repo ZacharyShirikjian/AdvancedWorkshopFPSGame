@@ -14,7 +14,7 @@ public class RaycastShoot : MonoBehaviour
 
     public Camera playerCam;              //main camera
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f); 
-    private LineRenderer laserLine;
+    //private LineRenderer laserLine;
 
     private Vector3 rayOrigin;
 
@@ -22,7 +22,7 @@ public class RaycastShoot : MonoBehaviour
     void Start()
     {
 
-        laserLine = GetComponent<LineRenderer>();
+        //laserLine = GetComponent<LineRenderer>();
 
     }
 
@@ -44,13 +44,13 @@ public class RaycastShoot : MonoBehaviour
         // Declare a raycast hit to store information about what our raycast has hit
         RaycastHit hit;
 
-        laserLine.SetPosition(0, gunEnd.position);
+        //laserLine.SetPosition(0, gunEnd.position);
 
         // Check if our raycast has hit anything
         if (Physics.Raycast(rayOrigin, playerCam.transform.forward, out hit, weaponRange))
         {
             // Set the end position for our laser line 
-            laserLine.SetPosition(1, hit.point);
+            //laserLine.SetPosition(1, hit.point);
 
             // Get a reference to a health script attached to the collider we hit
             EnemyBasic health = hit.collider.GetComponent<EnemyBasic>();
@@ -64,7 +64,7 @@ public class RaycastShoot : MonoBehaviour
         }
         else
         {
-            laserLine.SetPosition(1, rayOrigin + (playerCam.transform.forward * weaponRange));
+            //laserLine.SetPosition(1, rayOrigin + (playerCam.transform.forward * weaponRange));
         }
 
 
@@ -76,9 +76,9 @@ public class RaycastShoot : MonoBehaviour
 
     private IEnumerator ShotEffect()
     {
-        laserLine.enabled = true;
+        //laserLine.enabled = true;
         yield return shotDuration;
-        laserLine.enabled = false;
+        //laserLine.enabled = false;
     }
 
 }

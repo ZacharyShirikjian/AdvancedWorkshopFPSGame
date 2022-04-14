@@ -26,9 +26,10 @@ public class TitleInputManager : MonoBehaviour
         //movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
 
         //MENU//
-        //menu.Select.performed += _ => uiScript.OnSelectPressed();
+        menu.Start.performed += _ => titleScreen.OpenMenu();
+        menu.SwitchPage.performed += _ => titleScreen.SwitchInputPage();
         menu.Navigate.performed += ctx => inputVector = ctx.ReadValue<Vector2>();
-        menu.Cancel.performed += _ => titleScreen.CloseCredits();
+        menu.Cancel.performed += _ => titleScreen.BackToMenu();
 
     }
 

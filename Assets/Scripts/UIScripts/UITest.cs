@@ -87,6 +87,7 @@ public class UITest : MonoBehaviour
 
     //REFERENCE TO CURRENT JUKEBOX//
     [SerializeField] private GameObject curJukebox;
+
     //Referenece to PlayerInteract//
     [SerializeField] private PlayerInteract playInteract;
 
@@ -189,7 +190,8 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(maxBullets);
+        // Debug.Log(maxBullets);
+
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
 
@@ -204,7 +206,6 @@ public class UITest : MonoBehaviour
         //maxHealth = playerRef.maxHealth;
         //healthSlider.value = curHealth;
         //healthSlider.maxValue = maxHealth;
-        coinText.SetText(numCoins.ToString());
     }
 
     //CONTROLS PANEL
@@ -230,8 +231,12 @@ public class UITest : MonoBehaviour
 
         else if(jukeboxMenu.activeSelf == true)
         {
-            curJukebox = playInteract.curJukebox;
+            curJukebox = playInteract.curJukebox.gameObject;
             curJukebox.GetComponent<JukeboxScript>().CancelOption();
+        }
+        else
+        {
+            Debug.Log("DO NOTHING");
         }
     }
 
@@ -267,14 +272,17 @@ public class UITest : MonoBehaviour
         {
             if (paused)
             {
+                pausePanel.GetComponent<AudioSource>().Play();
                 Time.timeScale = 1f;
                 paused = false;
+                StaticGameClass.pause = false;
                 pausePanel.SetActive(false);
             }
             else if (!paused && jukeboxOpen == false)
             {
             Debug.Log("PAUSE BUTTONS ACTIVATED");
-            //pausePress = true;
+                //pausePress = true;
+                pausePanel.GetComponent<AudioSource>().Play();
             paused = true;
             StaticGameClass.pause = true;
             pausePanel.SetActive(true);
@@ -342,11 +350,11 @@ public class UITest : MonoBehaviour
     //    }
     //}
 
-    //public void CloseJukeboxUI()
-    //{
-    //    jukeboxMenu.SetActive(false);
-    //    playerRef.enabled = true;
-    //}
+    public void CloseJukeboxUI()
+    {
+        jukeboxMenu.SetActive(false);
+        playerRef.enabled = true;
+    }
 
     //Update the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)

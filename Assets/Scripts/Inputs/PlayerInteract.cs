@@ -32,14 +32,14 @@ public class PlayerInteract : MonoBehaviour
     {
       
 
-        //CHANGE TO NEW INPUT SYSTEM
-        if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
-        {
-            canInteract = false;
-            interactableScript.interactedBefore = true;
-            //currentInteractable.GetComponent<TestInteractableScript>().enabled = true;
-            uiRef.UpdateInteractPromptUI("");
-        }
+        ////CHANGE TO NEW INPUT SYSTEM
+        //if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
+        //{
+        //    canInteract = false;
+        //    interactableScript.interactedBefore = true;
+        //    //currentInteractable.GetComponent<TestInteractableScript>().enabled = true;
+        //    uiRef.UpdateInteractPromptUI("");
+        //}
     }
 
     //CALLED W/ INPUT MANAGER TO INTERACT OR BRING UP JUKEBOX MENU/
@@ -65,6 +65,7 @@ public class PlayerInteract : MonoBehaviour
             //curJukeboxScript.interactedBefore = true;
             //cameraScript.enabled = true;
             cameraScript.StartCoroutine(cameraScript.ZoomCamera());
+            curJukebox.GetComponent<AudioSource>().Play();
             Invoke("OpenJukeboxAfterDelay", 1f);
 
         }
@@ -89,11 +90,10 @@ public class PlayerInteract : MonoBehaviour
     //RE USE SAME METHOD FOR INTERACTING W/ JUKEBOXES//
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("Coin"))
         {
             Debug.Log("COIN PICKUP");
-            uiRef.numCoins++;
-            Destroy(other.gameObject);
+            //other.gameObject.GetComponent<AudioSource>().Play();
         }
 
         if (other.gameObject.CompareTag("Door"))

@@ -8,16 +8,8 @@ using TMPro;
 //Script used to handle the jukebox
 public class JukeboxScript : MonoBehaviour //required for OnSelect
 {
-    //ALGORITHM//
-    //Algorithm
-
-    //When button is clicked, set upgrade header => upgrade's header & desc => upgrade desc
-
-    //Change the SELECT text to be "yes or no"
-
-    //If enter is pressed, disable all the other buttons(set interactable = false)
-
-    //After 2-3 seconds, disable the jukebox panel and apply changes(eg if max ammo increases, display that in game & UI)
+    //REFERENCE TO AUDIO SOURCE//
+    //private AudioSource audiSource;
 
 
     //Checks to see if the player previously interacted with this object, if true, don't update UI

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaycastShoot : MonoBehaviour
 {
-
+    [SerializeField] private AudioSource source;
 
     public int gunDamage = 1;           //takes one hit point off enemy
   
@@ -23,7 +23,6 @@ public class RaycastShoot : MonoBehaviour
     {
 
         //laserLine = GetComponent<LineRenderer>();
-
     }
 
 
@@ -43,6 +42,7 @@ public class RaycastShoot : MonoBehaviour
 
         // Declare a raycast hit to store information about what our raycast has hit
         RaycastHit hit;
+        source.Play();
 
         //laserLine.SetPosition(0, gunEnd.position);
 

@@ -47,10 +47,10 @@ public class InputManager : MonoBehaviour
 
         //MENU//
         //menu.Select.performed += _ => uiScript.OnSelectPressed();
-        menu.Cancel.performed += _ => uiScript.CloseMenu();
-        menu.Pause.performed += _ => uiScript.PauseGame();
-        movement.Interact.performed += _ => playInteract.Interact();
-        menu.SwitchPage.performed += _ => uiScript.SwitchInputPage();
+        menu.Cancel.performed += ctx => uiScript.CloseMenu();
+        menu.Pause.performed += ctx => uiScript.PauseGame();
+        movement.Interact.performed += ctx => playInteract.Interact();
+        menu.SwitchPage.performed += ctx => uiScript.SwitchInputPage();
         //menu.Point.performed += ctx 
 
     }

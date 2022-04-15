@@ -158,8 +158,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6526184, y: 1.5340624, z: 1.3010359}
+  m_Center: {x: -0.07490921, y: 0.26703084, z: 0.15051794}
 --- !u!114 &5773136341053236778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,8 +318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEnemy: {fileID: 0}
   enemy: {fileID: 5773136341053236774}
+  triggerBox: {fileID: 0}
   triggered: 0
-  active: 0
   PointA: {fileID: 5773136341009848662}
   PointB: {fileID: 5773136341004895152}
   Point1: {x: 0, y: 0, z: 0}

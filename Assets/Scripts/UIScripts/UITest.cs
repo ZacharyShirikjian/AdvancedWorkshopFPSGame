@@ -16,6 +16,13 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
+    //AUDIO CLIPS//
+    [SerializeField] private AudioClip quitConfirm;
+    [SerializeField] private AudioClip quitCancel;
+    [SerializeField] private AudioClip pauseGame;
+    [SerializeField] private AudioClip unPauseGame;
+    [SerializeField] private AudioClip playerPoisoned;
+
     //CONTROLS PANEL REF//
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject curControlsPanel;
@@ -224,7 +231,6 @@ public class UITest : MonoBehaviour
     {
         if(controlsPanel.activeSelf == true)
         {
-            Debug.Log("CONTROLS ONSEFSdcfdsFDSDfsdfdsfdsfdfdfdfdfdfdfd");
             controlsPanel.SetActive(false);
             pausePanel.SetActive(true);
         }
@@ -272,32 +278,26 @@ public class UITest : MonoBehaviour
         {
             if (paused)
             {
-                pausePanel.GetComponent<AudioSource>().Play();
-                Time.timeScale = 1f;
+                GetComponent<AudioSource>().PlayOneShot(unPauseGame);
+                //Time.timeScale = 1f;
                 paused = false;
                 StaticGameClass.pause = false;
                 pausePanel.SetActive(false);
             }
             else if (!paused && jukeboxOpen == false)
             {
-            Debug.Log("PAUSE BUTTONS ACTIVATED");
-                //pausePress = true;
-                pausePanel.GetComponent<AudioSource>().Play();
-            paused = true;
-            StaticGameClass.pause = true;
-            pausePanel.SetActive(true);
-
                 Debug.Log("PAUSE BUTTONS ACTIVATED");
-                //pausePress = true;
                 paused = true;
+                StaticGameClass.pause = true;
                 pausePanel.SetActive(true);
+                GetComponent<AudioSource>().PlayOneShot(pauseGame);
+                Debug.Log("PAUSE BUTTONS ACTIVATED");
 
                 //pausePanel.transform.GetChild(1).gameObject is the Resume button child of the PausePanel Parent GOBject, GetChild (0) is the PauseHeader)
                 pauseAnimator.SetTrigger("Pausing");
                 buttonPromptAnimator.SetTrigger("Pausing");
                 eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
-                //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
                 //Time.timeScale = 0f;
             }
         }
@@ -541,7 +541,8 @@ public class UITest : MonoBehaviour
     //Bunny83's response on this forum: https://answers.unity.com/questions/225438/slowly-fades-from-opaque-to-alpha.html 
     public IEnumerator FadeSplatterImage()
     {
-        float fadeTime = 2.0f; 
+        float fadeTime = 2.0f;
+        GetComponent<AudioSource>().PlayOneShot(playerPoisoned);
         if (inMist == true)
         {
             for (float i = 0; i < 1.0f; i += Time.deltaTime / fadeTime)
@@ -567,12 +568,17 @@ public class UITest : MonoBehaviour
 
         //Activate the Game Over Panel during a Game Over 
         gameOverPanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject);
+        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
         ////Freeze the game by setting timescale to 1 (temporary) 
         //Time.timeScale = 0f;
     }
     //Reloads the current scene the player is on 
     public void RestartGame()
+    {
+        Invoke("RestartAfterDelay", 1f);
+    }
+
+    void RestartAfterDelay()
     {
         SceneManager.LoadScene(curSceneIndex);
     }
@@ -589,6 +595,7 @@ public class UITest : MonoBehaviour
         quitPanel.SetActive(true);
         pausePanel.SetActive(false);
         quitAnimator.SetTrigger("Quitting");
+        GetComponent<AudioSource>().PlayOneShot(quitConfirm);
         eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject); //QuitButton is child of the QuitConfirmPanel object
     }
 
@@ -597,6 +604,7 @@ public class UITest : MonoBehaviour
     {
         quitPanel.SetActive(false);
         pausePanel.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(quitCancel);
         eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
     }
 

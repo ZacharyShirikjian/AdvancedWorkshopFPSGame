@@ -9,6 +9,7 @@ public class MoveCursor : MonoBehaviour
     [SerializeField] private GameObject gunCursor;
     [SerializeField] private EventSystem eventSystem;
     private Vector2 curCursorPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class MoveCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
         curCursorPos = new Vector2(curCursorPos.x, EventSystem.current.currentSelectedGameObject.transform.position.y);
         gunCursor.transform.position = curCursorPos;
     }

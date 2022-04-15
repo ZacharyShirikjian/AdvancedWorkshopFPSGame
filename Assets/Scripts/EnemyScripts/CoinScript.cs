@@ -11,13 +11,14 @@ public class CoinScript : MonoBehaviour
     public float speed = 20.0f;
 
     private AudioSource source;
-    [SerializeField] private UITest uiScript;
+    private UITest uiScript;
     // Start is called before the first frame update
     void Start()
     {
         source = this.GetComponent<AudioSource>();
         fromScale = transform.localScale;
         toScale = new Vector3(fromScale.x * scaleUp, fromScale.y * scaleUp, fromScale.z * scaleUp);
+        uiScript = GameObject.Find("Canvas").GetComponent<UITest>();
         StartCoroutine(Grow(2.0f));
     }
 

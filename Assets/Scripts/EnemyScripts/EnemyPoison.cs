@@ -13,6 +13,8 @@ public class EnemyPoison : MonoBehaviour
     public GameObject player;
     public PlayerController playCon;
 
+    //REFERENCE TO UI SCRIPT TO GET SPLATTER TO WORK
+    [SerializeField] private UITest uiScript;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,8 @@ public class EnemyPoison : MonoBehaviour
         if (poison)
         {
             playCon.TakeDamage(dmg);
+            uiScript.inMist = true;
+            uiScript.StartSplatterCoroutine();
         }
 
     }

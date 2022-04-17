@@ -10,6 +10,7 @@ public class MouseLook : MonoBehaviour
 
     [SerializeField] Transform playerCamera;
     [SerializeField] float xClamp = 85f;
+    [SerializeField] float xClampDown = 30f;
     float xRotation = 0f;
 
     private void Update()
@@ -20,7 +21,7 @@ public class MouseLook : MonoBehaviour
             transform.Rotate(Vector3.up, mouseX * Time.deltaTime);
 
             xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
+            xRotation = Mathf.Clamp(xRotation, -xClamp, xClampDown);
             Vector3 targetRotation = transform.eulerAngles;
 
             targetRotation.x = xRotation;

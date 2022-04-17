@@ -256,6 +256,7 @@ public class PlayerController : MonoBehaviour
         if (health > 0 && dmg <= health)
         {
             health = health - dmg;
+            uiRef.UpdateHealthUI();
         }
 
         else if (health > 0 && dmg > health)
@@ -290,7 +291,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerDeath)
         {
-
+            uiRef.GameOver();
         }
     }
 

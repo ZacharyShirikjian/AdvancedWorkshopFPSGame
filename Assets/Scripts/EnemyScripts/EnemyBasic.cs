@@ -25,11 +25,15 @@ public class EnemyBasic : MonoBehaviour
     public Animator animator;
 
     public float journeyTime = 3.0f;
+    [SerializeField] private AudioClip enemyHit;
+    [SerializeField] private AudioClip enemyDeath; 
+     private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        source = GetComponent<AudioSource>();
         playerController = player.GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
         tracking = false;
@@ -71,12 +75,15 @@ public class EnemyBasic : MonoBehaviour
         if (health > 0)
         {
             health -= dmg;
+            AudioSource.PlayClipAtPoint(enemyHit, gameObject.transform.position);
         }
         if (health <= 0)
         {
+            AudioSource.PlayClipAtPoint(enemyDeath, gameObject.transform.position);
             spitting = false;
             Instantiate(coin, transform.position, transform.rotation);
             Destroy(gameObject);
+            StaticGameClass.LessActiveEnemies();
         }
     }
 

@@ -8,17 +8,13 @@ using TMPro;
 //Script used to handle the jukebox
 public class JukeboxScript : MonoBehaviour //required for OnSelect
 {
-    //ALGORITHM//
-    //Algorithm
-
-    //When button is clicked, set upgrade header => upgrade's header & desc => upgrade desc
-
-    //Change the SELECT text to be "yes or no"
-
-    //If enter is pressed, disable all the other buttons(set interactable = false)
-
-    //After 2-3 seconds, disable the jukebox panel and apply changes(eg if max ammo increases, display that in game & UI)
-
+    //REFERENCE TO AUDIO SOURCE//
+    [SerializeField] private AudioSource audiSource;
+    [SerializeField] private AudioClip openMenu;
+    [SerializeField] private AudioClip closeMenu;
+    [SerializeField] private AudioClip selectSFX;
+    [SerializeField] private AudioClip areYouSureSFX;
+    [SerializeField] private AudioClip cancelSFX;
 
     //Checks to see if the player previously interacted with this object, if true, don't update UI
     public bool interactedBefore = false;
@@ -59,31 +55,14 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         //canvasGroup = GameObject.Find("JukeboxMenu").GetComponent<CanvasGroup>();
         //canvasGroup.interactable = true;
         currentButton = null;
+        audiSource.PlayOneShot(openMenu);
     }
 
     private void Update()
     {
-        jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
-        jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
+       // jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
+      //  jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN HOVERING OVER A BUTTON//
-
-        /*
-        if (currentButton != null && currentButton != exitButton)
-        {
-            Debug.Log("test");
-            jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
-            jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
-        }
-
-        else if (currentButton == null)
-        {
-            jukeboxHeaderText.SetText("");
-            jukeboxDescText.SetText("");
-        }
-        */
-
-        //Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
-
     }
 
     //FOR CANCELING OUT AN OPTION IN THE JUKEBOX
@@ -97,6 +76,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         {
             jukeboxButtons[i].GetComponent<Button>().interactable = true;
         }
+        audiSource.PlayOneShot(cancelSFX);
     }
 
     //FOR WHEN A BUTTON IN JUKEBOX MENU IS SELECTED
@@ -241,7 +221,18 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
             else if(selected == false)
             {
-                JukeboxButtonSelected();
+                if(playRef.health >= playRef.maxHealth)
+                {
+                    selectPromptText.SetText("Health Already Full");
+                    audiSource.PlayOneShot(cancelSFX);
+                    selected = false;
+                }
+
+                else if(playRef.health < playRef.maxHealth)
+                {
+                    JukeboxButtonSelected();
+                }
+
             }
         }
 
@@ -280,6 +271,18 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         else if (selected == false)
         {
+            if (playRef.ammo >= playRef.maxAmmo)
+            {
+                selectPromptText.SetText("Ammo Maxed Out");
+                audiSource.PlayOneShot(cancelSFX);
+                selected = false;
+            }
+
+            else if (playRef.ammo <= playRef.maxAmmo)
+            {
+                JukeboxButtonSelected();
+
+            }
             JukeboxButtonSelected();
         }
 
@@ -300,7 +303,18 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         else if (selected == false)
         {
-            JukeboxButtonSelected();
+            if (playRef.health >= playRef.maxHealth)
+            {
+                selectPromptText.SetText("Health Already Full");
+                audiSource.PlayOneShot(cancelSFX);
+                selected = false;
+            }
+
+            else if(playRef.health <= playRef.maxHealth)
+            {
+                JukeboxButtonSelected();
+
+            }
         }
     }
 
@@ -335,7 +349,9 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             if (uiRef.numCoins >= currentButton.GetComponent<JukeboxButton>().cost)
             {
                 selectPromptText.SetText("Is this okay?");
+                audiSource.PlayOneShot(areYouSureSFX);
                 selected = true;
+                DisableButtons();
             }
             else if(uiRef.numCoins < currentButton.GetComponent<JukeboxButton>().cost)
             {
@@ -353,28 +369,30 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             //Debug.Log(currentButton);
             selectPromptText.SetText("SELECTED");
             uiRef.numCoins = uiRef.numCoins - currentButton.GetComponent<JukeboxButton>().cost;
+            uiRef.coinText.SetText(uiRef.numCoins.ToString());
             currentButton.GetComponent<Button>().interactable = false;
+            audiSource.PlayOneShot(selectSFX);
             //currentButton.GetComponent<Button>().interactable = false;
 
-                ////If you selected a mod button, disable the other mod buttons
-                //if(currentButton.CompareTag("ModButton"))
-                //{
-                //    for (int i = 0; i < 4; i++)
-                //    {
-                //        jukeboxButtons[i].GetComponent<Button>().interactable = false;
-                //    }
-                //}
+            ////If you selected a mod button, disable the other mod buttons
+            //if(currentButton.CompareTag("ModButton"))
+            //{
+            //    for (int i = 0; i < 4; i++)
+            //    {
+            //        jukeboxButtons[i].GetComponent<Button>().interactable = false;
+            //    }
+            //}
 
             //    //If you selected an upgrade/refill button, just disable that current button
             //else if(currentButton.CompareTag("RefillButton"))
             //{
-                
+
             //}
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(exitButton);
 
             currentButton.GetComponent<JukeboxButton>().buttonUsed = true;
             selected = false;
-
+            DisableButtons();
             //CHANGES TEXT FROM SELECTED TO SELECT IN 1 SECOND//
             Invoke("ChangeSelectPromptText", 1f);
 
@@ -395,11 +413,12 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         //TO-DO: CHANGE TO "SELECT MODS" ONCE MOD SCREEN POPS UP
     }
 
-    //Closes out of the Jukebox after 1 second
+    //Closes out of the Jukebox after 2 seconds
     public void closeJukeboxMenu()
     {
         selectPromptText.SetText("CLOSING...");
-        Invoke("closeJukeboxMenuDelay", 1f);
+        audiSource.PlayOneShot(closeMenu);
+        Invoke("closeJukeboxMenuDelay", 2f);
     }
 
     public void closeJukeboxMenuDelay()

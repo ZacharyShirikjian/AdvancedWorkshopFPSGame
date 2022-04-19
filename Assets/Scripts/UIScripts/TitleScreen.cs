@@ -18,7 +18,8 @@ public class TitleScreen : MonoBehaviour
 {
     //Controls controls;
     //Controls.MenusActions menu;
-
+    //REFERENCE TO AUDIOSOURCE//
+    [SerializeField] private AudioSource source; 
     public EventSystem eventSystem;
     public GameObject Canvas;
 
@@ -166,10 +167,14 @@ public class TitleScreen : MonoBehaviour
     //}
 
     //This method is used for loading the main scene of the game,
-    //ZachTestScene3 (which may get changed later).
     //Which has a build index of 1 in the Project's Build Settings.
-    //For now, the TitleScreen scene (ZachTestScene) has a build index of 0.
+    //For now, the TitleScreen scene has a build index of 0.
     public void PlayGame()
+    {
+        Invoke("PlayAfterDelay", 0.5f);
+    }
+
+    public void PlayAfterDelay()
     {
         SceneManager.LoadScene(1);
     }

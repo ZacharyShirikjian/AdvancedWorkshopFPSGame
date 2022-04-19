@@ -60,6 +60,13 @@ public class PlayerController : MonoBehaviour
     //REFERENCE to MouseLook script
     private MouseLook mouseLook;
 
+    //REFERENCE TO PLAYER AUDIO SOURCE
+    [SerializeField] private AudioClip shootGun;
+    [SerializeField] private AudioClip reloadClip;
+    [SerializeField] private AudioClip takeDamage;
+    [SerializeField] private AudioClip playerDead;
+    [SerializeField] private AudioSource audioSource;
+
 
     public void Awake()
     {
@@ -128,6 +135,7 @@ public class PlayerController : MonoBehaviour
                 rayShoot.Shoot();
 
                 //play audio here
+                audioSource.PlayOneShot(shootGun);
                 //include animation
 
                 shoot = false;
@@ -174,6 +182,7 @@ public class PlayerController : MonoBehaviour
 
                 animator.SetTrigger("Reload");
                 //add audio
+                audioSource.PlayOneShot(reloadClip);
                 shoot = false;
 
                 ammo = maxAmmo - 2;
@@ -183,6 +192,7 @@ public class PlayerController : MonoBehaviour
                 {
                     ammo = 0;
                     maxAmmo = 0;
+                    audioSource.Play();
                 }
 
                 //CALL UI SCRIPT METHOD TO UPDATE AMMO UI W/ CORRECT AMMO 
@@ -256,6 +266,7 @@ public class PlayerController : MonoBehaviour
         if (health > 0 && dmg <= health)
         {
             health = health - dmg;
+            audioSource.PlayOneShot(takeDamage);
             uiRef.UpdateHealthUI();
         }
 
@@ -263,6 +274,7 @@ public class PlayerController : MonoBehaviour
         {
             health = 0;
             playerDeath = true;
+            audioSource.PlayOneShot(playerDead);
             PlayerDeath();
         }
 

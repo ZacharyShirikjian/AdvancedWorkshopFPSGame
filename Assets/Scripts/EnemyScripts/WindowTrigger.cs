@@ -72,9 +72,11 @@ public class WindowTrigger : Trigger
     IEnumerator ActivateEnemy()
     {
         yield return new WaitForSeconds(2.0f);
-       
-        NavMeshAgent enemyNMA_ = enemy.AddComponent<NavMeshAgent>();
 
+        if (baseEnemy.health > 0)
+        {
+            NavMeshAgent enemyNMA_ = enemy.AddComponent<NavMeshAgent>();
+        }
 
         baseEnemy.EnableAttack();
     }

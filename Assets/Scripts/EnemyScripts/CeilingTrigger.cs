@@ -30,7 +30,11 @@ public class CeilingTrigger : Trigger
     {
         yield return new WaitForSeconds(3.0f);
 
-        NavMeshAgent enemyNMA_ = enemy.AddComponent<NavMeshAgent>();
+        if(baseEnemy.health > 0)
+        {
+            NavMeshAgent enemyNMA_ = enemy.AddComponent<NavMeshAgent>();
+        }
+        
 
         baseEnemy.EnableAttack();
 

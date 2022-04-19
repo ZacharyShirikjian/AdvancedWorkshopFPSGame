@@ -129,8 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEnemy: {fileID: 0}
   enemy: {fileID: 7364094249303863053}
+  triggerBox: {fileID: 0}
   triggered: 0
-  active: 0
   patrol: {fileID: 0}
 --- !u!1 &7364094248703996055
 GameObject:
@@ -229,7 +229,7 @@ Transform:
   m_GameObject: {fileID: 7364094249303863053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -11.115513, y: -6.9907966, z: 21.519707}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2, y: 4, z: 2}
   m_Children:
   - {fileID: 7364094249225438922}
   m_Father: {fileID: 7364094248703996054}
@@ -295,8 +295,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2529045, y: 1.1635786, z: 1.3368168}
+  m_Center: {x: 0.0073156953, y: 0.081789434, z: 0.0025091171}
 --- !u!195 &7364094249303863048
 NavMeshAgent:
   m_ObjectHideFlags: 0

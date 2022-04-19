@@ -16,6 +16,16 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
+    [SerializeField] private GameObject cursor;
+
+    //AUDIO CLIPS//
+    [SerializeField] private AudioClip buttonHover;
+    [SerializeField] private AudioClip quitConfirm;
+    [SerializeField] private AudioClip quitCancel;
+    [SerializeField] private AudioClip pauseGame;
+    [SerializeField] private AudioClip unPauseGame;
+    [SerializeField] private AudioClip playerPoisoned;
+
     //CONTROLS PANEL REF//
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject curControlsPanel;
@@ -86,7 +96,8 @@ public class UITest : MonoBehaviour
     //public Image modIcon; //UI Icon for which mod the player currently has on their pistol
 
     //REFERENCE TO CURRENT JUKEBOX//
-    [SerializeField] private GameObject curJukebox;
+    public GameObject curJukebox;
+
     //Referenece to PlayerInteract//
     [SerializeField] private PlayerInteract playInteract;
 
@@ -144,11 +155,17 @@ public class UITest : MonoBehaviour
     [SerializeField] public int extraBullets;
     public TextMeshProUGUI extraAmmoUI;
 
+
+    //REF TO AUDIOSOURCE
+    private AudioSource canvasSource;
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
         //eventSystem.firstSelectedGameObject = null;
+        canvasSource = GetComponent<AudioSource>();
+        cursor.SetActive(false);
         numCoins = 0;
         extraBullets = 0;
         playerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -189,7 +206,8 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(maxBullets);
+        // Debug.Log(maxBullets);
+
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
 
@@ -204,7 +222,6 @@ public class UITest : MonoBehaviour
         //maxHealth = playerRef.maxHealth;
         //healthSlider.value = curHealth;
         //healthSlider.maxValue = maxHealth;
-        coinText.SetText(numCoins.ToString());
     }
 
     //CONTROLS PANEL
@@ -223,15 +240,18 @@ public class UITest : MonoBehaviour
     {
         if(controlsPanel.activeSelf == true)
         {
-            Debug.Log("CONTROLS ONSEFSdcfdsFDSDfsdfdsfdsfdfdfdfdfdfdfd");
             controlsPanel.SetActive(false);
             pausePanel.SetActive(true);
         }
 
         else if(jukeboxMenu.activeSelf == true)
         {
-            curJukebox = playInteract.curJukebox;
+            curJukebox = playInteract.curJukebox.gameObject;
             curJukebox.GetComponent<JukeboxScript>().CancelOption();
+        }
+        else
+        {
+            Debug.Log("DO NOTHING");
         }
     }
 
@@ -267,29 +287,29 @@ public class UITest : MonoBehaviour
         {
             if (paused)
             {
-                Time.timeScale = 1f;
+                GetComponent<AudioSource>().PlayOneShot(unPauseGame);
+                //Time.timeScale = 1f;
                 paused = false;
+                StaticGameClass.pause = false;
                 pausePanel.SetActive(false);
+                cursor.SetActive(false);
             }
             else if (!paused && jukeboxOpen == false)
             {
-            Debug.Log("PAUSE BUTTONS ACTIVATED");
-            //pausePress = true;
-            paused = true;
-            StaticGameClass.pause = true;
-            pausePanel.SetActive(true);
-
                 Debug.Log("PAUSE BUTTONS ACTIVATED");
-                //pausePress = true;
                 paused = true;
+                StaticGameClass.pause = true;
                 pausePanel.SetActive(true);
+                GetComponent<AudioSource>().PlayOneShot(pauseGame);
+                Debug.Log("PAUSE BUTTONS ACTIVATED");
+                cursor.SetActive(true);
 
                 //pausePanel.transform.GetChild(1).gameObject is the Resume button child of the PausePanel Parent GOBject, GetChild (0) is the PauseHeader)
                 pauseAnimator.SetTrigger("Pausing");
                 buttonPromptAnimator.SetTrigger("Pausing");
                 eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
-                //eventSystem.firstSelectedGameObject = pausePanel.GetComponentInChildren<Button>().gameObject;
+ 
                 //Time.timeScale = 0f;
             }
         }
@@ -304,10 +324,13 @@ public class UITest : MonoBehaviour
         {
             UpdateInteractPromptUI("");
             jukeboxMenu.SetActive(true);
+            cursor.SetActive(true);
+            //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Jukebox");
             playerRef.enabled = false;
             eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).transform.GetChild(0).gameObject);
             Debug.Log(eventSystem.currentSelectedGameObject);
             paused = true;
+            StaticGameClass.pause = true;
             //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
             //eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
         }
@@ -316,8 +339,11 @@ public class UITest : MonoBehaviour
         else if(!jukeboxOpen)
         {
             paused = false;
+            StaticGameClass.pause = false;
             jukeboxMenu.SetActive(false);
             playerRef.enabled = true;
+            //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Pause");
+            cursor.SetActive(false);
             //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
         }
 
@@ -342,12 +368,35 @@ public class UITest : MonoBehaviour
     //    }
     //}
 
-    //public void CloseJukeboxUI()
-    //{
-    //    jukeboxMenu.SetActive(false);
-    //    playerRef.enabled = true;
-    //}
+    public void closeJukebox()
+    {
+        curJukebox.GetComponent<JukeboxScript>().closeJukeboxMenuDelay();
+    }
 
+    public void JukeboxHealPlayer()
+    {
+        curJukebox.GetComponent<JukeboxScript>().HealPlayer();
+    }
+
+    public void JukeboxRefillAmmo()
+    {
+        curJukebox.GetComponent<JukeboxScript>().ReloadAmmo();
+    }
+
+    public void JukeboxHealthUp()
+    {
+        curJukebox.GetComponent<JukeboxScript>().MaxHealthUp();
+    }
+
+    public void JukeboxAmmoUp()
+    {
+        curJukebox.GetComponent<JukeboxScript>().MaxAmmoUp();
+    }
+
+    public void DisableJukeboxBUttons()
+    {
+        curJukebox.GetComponent<JukeboxScript>().DisableButtons();
+    }
     //Update the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)
     {
@@ -533,7 +582,8 @@ public class UITest : MonoBehaviour
     //Bunny83's response on this forum: https://answers.unity.com/questions/225438/slowly-fades-from-opaque-to-alpha.html 
     public IEnumerator FadeSplatterImage()
     {
-        float fadeTime = 2.0f; 
+        float fadeTime = 2.0f;
+        GetComponent<AudioSource>().PlayOneShot(playerPoisoned);
         if (inMist == true)
         {
             for (float i = 0; i < 1.0f; i += Time.deltaTime / fadeTime)
@@ -559,12 +609,17 @@ public class UITest : MonoBehaviour
 
         //Activate the Game Over Panel during a Game Over 
         gameOverPanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject);
+        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
         ////Freeze the game by setting timescale to 1 (temporary) 
         //Time.timeScale = 0f;
     }
     //Reloads the current scene the player is on 
     public void RestartGame()
+    {
+        Invoke("RestartAfterDelay", 1f);
+    }
+
+    void RestartAfterDelay()
     {
         SceneManager.LoadScene(curSceneIndex);
     }
@@ -581,7 +636,10 @@ public class UITest : MonoBehaviour
         quitPanel.SetActive(true);
         pausePanel.SetActive(false);
         quitAnimator.SetTrigger("Quitting");
+        GetComponent<AudioSource>().PlayOneShot(quitConfirm);
         eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject); //QuitButton is child of the QuitConfirmPanel object
+        //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Quit");
+
     }
 
     //Closes the Quit Confirmation Panel to allow players to go back to the regular pause menu 
@@ -589,7 +647,9 @@ public class UITest : MonoBehaviour
     {
         quitPanel.SetActive(false);
         pausePanel.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(quitCancel);
         eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
+        //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Pause");
     }
 
     //Called on the Quit button of the Pause menu,

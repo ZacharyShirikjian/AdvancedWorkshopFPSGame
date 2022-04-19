@@ -115,31 +115,33 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        if (other.gameObject.CompareTag("Ladder"))
-        {
-            Debug.Log("[LADDER]");
-            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
-            {
-                currentInteractable = other.gameObject;
-                interactableScript = currentInteractable.GetComponent<Interactables>();
-                canInteract = true;
-                uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<TestInteractableScript>().actionPrompt);
-            }
+        //if (other.gameObject.CompareTag("Ladder"))
+        //{
+        //    Debug.Log("[LADDER]");
+        //    if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
+        //    {
+        //        currentInteractable = other.gameObject;
+        //        interactableScript = currentInteractable.GetComponent<Interactables>();
+        //        canInteract = true;
+        //        uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<TestInteractableScript>().actionPrompt);
+        //    }
 
-            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == true)
-            {
-                currentInteractable = other.gameObject;
-                interactableScript = currentInteractable.GetComponent<Interactables>();
-                canInteract = false;
-            }
-        }
+        //    if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == true)
+        //    {
+        //        currentInteractable = other.gameObject;
+        //        interactableScript = currentInteractable.GetComponent<Interactables>();
+        //        canInteract = false;
+        //    }
+        //}
         if (other.gameObject.CompareTag("Jukebox"))
         {
             Debug.Log("[JUKEBOX]");
             if (other.gameObject.GetComponent<JukeboxScript>().interactedBefore == false)
             {
                 curJukebox = other.gameObject;
+                uiRef.curJukebox = curJukebox;
                 curJukeboxScript = curJukebox.GetComponent<JukeboxScript>();
+
                 canInteract = true;
                 uiRef.UpdateInteractPromptUI("Use Jukebox");
             }
@@ -147,6 +149,7 @@ public class PlayerInteract : MonoBehaviour
             else if (other.gameObject.GetComponent<JukeboxScript>().interactedBefore == true)
             {
                 curJukebox = other.gameObject;
+                uiRef.curJukebox = curJukebox;
                 curJukeboxScript = curJukebox.GetComponent<JukeboxScript>();
                 canInteract = false;
             }
@@ -171,16 +174,16 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Ladder"))
-        {
-            canInteract = false;
-            uiRef.UpdateInteractPromptUI("");
-            if (other.gameObject == currentInteractable)
-            {
-                currentInteractable = null;
-                interactableScript = null;
-            }
-        }
+        //if (other.CompareTag("Ladder"))
+        //{
+        //    canInteract = false;
+        //    uiRef.UpdateInteractPromptUI("");
+        //    if (other.gameObject == currentInteractable)
+        //    {
+        //        currentInteractable = null;
+        //        interactableScript = null;
+        //    }
+        //}
 
         if (other.CompareTag("Jukebox"))
         {
@@ -188,6 +191,7 @@ public class PlayerInteract : MonoBehaviour
             uiRef.UpdateInteractPromptUI("");
             if (other.gameObject == curJukebox)
             {
+                Debug.Log("CUR STATE " + curJukebox);
                 curJukebox = null;
                 curJukeboxScript = null;
             }

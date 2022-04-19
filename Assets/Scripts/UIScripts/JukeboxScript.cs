@@ -60,27 +60,9 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     private void Update()
     {
-        jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
-        jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
+       // jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
+      //  jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN HOVERING OVER A BUTTON//
-
-        /*
-        if (currentButton != null && currentButton != exitButton)
-        {
-            Debug.Log("test");
-            jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
-            jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
-        }
-
-        else if (currentButton == null)
-        {
-            jukeboxHeaderText.SetText("");
-            jukeboxDescText.SetText("");
-        }
-        */
-
-        //Debug.Log("HEADER NAME IS: " + jukeboxHeaderText.text);
-
     }
 
     //FOR CANCELING OUT AN OPTION IN THE JUKEBOX
@@ -239,7 +221,18 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
             else if(selected == false)
             {
-                JukeboxButtonSelected();
+                if(playRef.health >= playRef.maxHealth)
+                {
+                    selectPromptText.SetText("Health Already Full");
+                    audiSource.PlayOneShot(cancelSFX);
+                    selected = false;
+                }
+
+                else if(playRef.health < playRef.maxHealth)
+                {
+                    JukeboxButtonSelected();
+                }
+
             }
         }
 
@@ -278,6 +271,18 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         else if (selected == false)
         {
+            if (playRef.ammo >= playRef.maxAmmo)
+            {
+                selectPromptText.SetText("Ammo Maxed Out");
+                audiSource.PlayOneShot(cancelSFX);
+                selected = false;
+            }
+
+            else if (playRef.ammo <= playRef.maxAmmo)
+            {
+                JukeboxButtonSelected();
+
+            }
             JukeboxButtonSelected();
         }
 
@@ -298,7 +303,18 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         else if (selected == false)
         {
-            JukeboxButtonSelected();
+            if (playRef.health >= playRef.maxHealth)
+            {
+                selectPromptText.SetText("Health Already Full");
+                audiSource.PlayOneShot(cancelSFX);
+                selected = false;
+            }
+
+            else if(playRef.health <= playRef.maxHealth)
+            {
+                JukeboxButtonSelected();
+
+            }
         }
     }
 
@@ -335,6 +351,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
                 selectPromptText.SetText("Is this okay?");
                 audiSource.PlayOneShot(areYouSureSFX);
                 selected = true;
+                DisableButtons();
             }
             else if(uiRef.numCoins < currentButton.GetComponent<JukeboxButton>().cost)
             {
@@ -375,7 +392,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
             currentButton.GetComponent<JukeboxButton>().buttonUsed = true;
             selected = false;
-
+            DisableButtons();
             //CHANGES TEXT FROM SELECTED TO SELECT IN 1 SECOND//
             Invoke("ChangeSelectPromptText", 1f);
 

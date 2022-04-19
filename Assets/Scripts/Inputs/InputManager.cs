@@ -23,6 +23,11 @@ public class InputManager : MonoBehaviour
         playInteract = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerInteract>();
         mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         uiScript = this.gameObject.GetComponent<UITest>();
+
+        InputSystem.DisableDevice(Mouse.current);
+        InputSystem.EnableDevice(Mouse.current);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Awake()
@@ -48,7 +53,7 @@ public class InputManager : MonoBehaviour
         //MENU//
         //menu.Select.performed += _ => uiScript.OnSelectPressed();
         menu.Cancel.performed += ctx => uiScript.CloseMenu();
-        menu.Pause.performed += ctx => uiScript.PauseGame();
+        menu.Pause.performed += _ => uiScript.PauseGame();
         movement.Interact.performed += ctx => playInteract.Interact();
         menu.SwitchPage.performed += ctx => uiScript.SwitchInputPage();
         //menu.Point.performed += ctx 

@@ -96,7 +96,7 @@ public class UITest : MonoBehaviour
     //public Image modIcon; //UI Icon for which mod the player currently has on their pistol
 
     //REFERENCE TO CURRENT JUKEBOX//
-    [SerializeField] private GameObject curJukebox;
+    public GameObject curJukebox;
 
     //Referenece to PlayerInteract//
     [SerializeField] private PlayerInteract playInteract;
@@ -368,12 +368,35 @@ public class UITest : MonoBehaviour
     //    }
     //}
 
-    public void CloseJukeboxUI()
+    public void closeJukebox()
     {
-        jukeboxMenu.SetActive(false);
-        playerRef.enabled = true;
+        curJukebox.GetComponent<JukeboxScript>().closeJukeboxMenuDelay();
     }
 
+    public void JukeboxHealPlayer()
+    {
+        curJukebox.GetComponent<JukeboxScript>().HealPlayer();
+    }
+
+    public void JukeboxRefillAmmo()
+    {
+        curJukebox.GetComponent<JukeboxScript>().ReloadAmmo();
+    }
+
+    public void JukeboxHealthUp()
+    {
+        curJukebox.GetComponent<JukeboxScript>().MaxHealthUp();
+    }
+
+    public void JukeboxAmmoUp()
+    {
+        curJukebox.GetComponent<JukeboxScript>().MaxAmmoUp();
+    }
+
+    public void DisableJukeboxBUttons()
+    {
+        curJukebox.GetComponent<JukeboxScript>().DisableButtons();
+    }
     //Update the InteractPrompt UI based on the action prompted from the Interactable (eg climb over, duck, etc)
     public void UpdateInteractPromptUI(string prompt)
     {

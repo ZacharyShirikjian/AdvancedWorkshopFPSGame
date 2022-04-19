@@ -33,7 +33,7 @@ public class MoveCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        //Debug.Log(EventSystem.current.currentSelectedGameObject);
         curCursorPos = new Vector2(EventSystem.current.currentSelectedGameObject.transform.position.x - 40, EventSystem.current.currentSelectedGameObject.transform.position.y + 5);
         gunCursor.transform.position = curCursorPos;
     }

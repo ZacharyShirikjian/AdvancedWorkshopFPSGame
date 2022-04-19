@@ -83,6 +83,7 @@ public class EnemyBasic : MonoBehaviour
             spitting = false;
             Instantiate(coin, transform.position, transform.rotation);
             Destroy(gameObject);
+            StaticGameClass.LessActiveEnemies();
         }
     }
 

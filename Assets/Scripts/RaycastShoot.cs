@@ -58,6 +58,7 @@ public class RaycastShoot : MonoBehaviour
             
             if (health != null)
             {
+                Debug.Log("damaged");
                 health.HitEnemy(gunDamage);
             }
 

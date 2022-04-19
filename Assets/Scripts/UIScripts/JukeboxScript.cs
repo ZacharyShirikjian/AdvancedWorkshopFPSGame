@@ -64,8 +64,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     private void Update()
     {
-       // jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
-      //  jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
+        jukeboxHeaderText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeName;
+        jukeboxDescText.text = EventSystem.current.currentSelectedGameObject.GetComponent<JukeboxButton>().upgradeDescription;
         //UPDATE THE JUKEBOX HEADER/SUBHEADER TEXT WHEN HOVERING OVER A BUTTON//
     }
 
@@ -408,8 +408,6 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     public void ChangeSelectPromptText()
     {
         selectPromptText.SetText("SELECT UPGRADE");
-
-        //TO-DO: CHANGE TO "SELECT MODS" ONCE MOD SCREEN POPS UP
     }
 
     //Closes out of the Jukebox after 2 seconds

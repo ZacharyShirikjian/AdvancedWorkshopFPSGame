@@ -123,6 +123,7 @@ public class UITest : MonoBehaviour
     public EventSystem eventSystem;
 
     //HEALTH//
+    [SerializeField] private TextMeshProUGUI healthText;
         //The current health which the player has
         [SerializeField] private float curHealth;
 
@@ -171,6 +172,7 @@ public class UITest : MonoBehaviour
         playerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
+        healthText.text = "100";
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
         backupBullets = 6;
@@ -218,10 +220,12 @@ public class UITest : MonoBehaviour
         //}
 
         extraAmmoUI.SetText("+" + extraBullets.ToString());
-        //curHealth = playerRef.health;
-        //maxHealth = playerRef.maxHealth;
-        //healthSlider.value = curHealth;
-        //healthSlider.maxValue = maxHealth;
+
+        healthSlider.value = curHealth;
+        healthSlider.maxValue = maxHealth;
+        curHealth = playerRef.health;
+        maxHealth = playerRef.maxHealth;
+        healthText.text = curHealth.ToString();
     }
 
     //CONTROLS PANEL
@@ -373,7 +377,7 @@ public class UITest : MonoBehaviour
 
     public void closeJukebox()
     {
-        curJukebox.GetComponent<JukeboxScript>().closeJukeboxMenuDelay();
+        curJukebox.GetComponent<JukeboxScript>().closeJukeboxMenu();
     }
 
     public void JukeboxHealPlayer()

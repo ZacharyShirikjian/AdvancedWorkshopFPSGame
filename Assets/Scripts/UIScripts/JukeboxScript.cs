@@ -14,6 +14,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
     [SerializeField] private AudioClip closeMenu;
     [SerializeField] private AudioClip selectSFX;
     [SerializeField] private AudioClip areYouSureSFX;
+    [SerializeField] private AudioClip cantAfford;
     [SerializeField] private AudioClip cancelSFX;
 
     //Checks to see if the player previously interacted with this object, if true, don't update UI
@@ -21,6 +22,9 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
     //Checks if button has been selected or not, if true then press space to close out of jukebox menu
     public bool selected = false;
+
+    //Did player press Enter/A on an option once? If so, set = true (only time backspace can be used)
+    public bool purchasing = false;
 
     //public bool buttonUsed = false;
 
@@ -224,8 +228,9 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
                 if(playRef.health >= playRef.maxHealth)
                 {
                     selectPromptText.SetText("Health Already Full");
-                    audiSource.PlayOneShot(cancelSFX);
+                    audiSource.PlayOneShot(cantAfford);
                     selected = false;
+                    Invoke("ChangeSelectPromptText", 1f);
                 }
 
                 else if(playRef.health < playRef.maxHealth)
@@ -274,8 +279,9 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             if (playRef.ammo >= playRef.maxAmmo)
             {
                 selectPromptText.SetText("Ammo Maxed Out");
-                audiSource.PlayOneShot(cancelSFX);
+                audiSource.PlayOneShot(cantAfford);
                 selected = false;
+                Invoke("ChangeSelectPromptText", 1f);
             }
 
             else if (playRef.ammo <= playRef.maxAmmo)
@@ -283,7 +289,6 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
                 JukeboxButtonSelected();
 
             }
-            JukeboxButtonSelected();
         }
 
     }
@@ -295,6 +300,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         {
             playRef.maxHealth += 100;
             playRef.health = playRef.maxHealth;
+            Debug.Log(playRef.health);
             //When upgrading health, increase size of max Health UI to be 0.25f more than before
             uiRef.healthSlider.transform.localScale += new Vector3(0.25f, 0f, 0f);
             uiRef.UpdateHealthUI();
@@ -303,18 +309,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         else if (selected == false)
         {
-            if (playRef.health >= playRef.maxHealth)
-            {
-                selectPromptText.SetText("Health Already Full");
-                audiSource.PlayOneShot(cancelSFX);
-                selected = false;
-            }
-
-            else if(playRef.health <= playRef.maxHealth)
-            {
-                JukeboxButtonSelected();
-
-            }
+            JukeboxButtonSelected();
         }
     }
 
@@ -350,12 +345,15 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             {
                 selectPromptText.SetText("Is this okay?");
                 audiSource.PlayOneShot(areYouSureSFX);
+                purchasing = true;
                 selected = true;
                 DisableButtons();
             }
             else if(uiRef.numCoins < currentButton.GetComponent<JukeboxButton>().cost)
             {
                 selectPromptText.SetText("Not enough coins");
+                audiSource.PlayOneShot(cantAfford);
+                Invoke("ChangeSelectPromptText", 1f);
             }
 
 
@@ -392,6 +390,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
             currentButton.GetComponent<JukeboxButton>().buttonUsed = true;
             selected = false;
+            purchasing = false;
             DisableButtons();
             //CHANGES TEXT FROM SELECTED TO SELECT IN 1 SECOND//
             Invoke("ChangeSelectPromptText", 1f);

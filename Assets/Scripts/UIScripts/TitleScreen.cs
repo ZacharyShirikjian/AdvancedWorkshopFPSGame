@@ -96,10 +96,14 @@ public class TitleScreen : MonoBehaviour
 
     public void BackToMenu()
     {
-        creditsPanel.SetActive(false);
-        controlsPanel.SetActive(false);
-        Buttons.SetActive(true);
-        eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
+        if(creditsPanel.activeSelf == true || controlsPanel.activeSelf == true)
+        {
+            creditsPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            Buttons.SetActive(true);
+            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
+        }
+       
     }
     //This method is used for opening up the Credits Panel in the Title Screen.
     //Temporarily hide the other menu elements, and bring them back once the Credits Panel is closed.

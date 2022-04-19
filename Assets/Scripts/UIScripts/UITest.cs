@@ -247,7 +247,10 @@ public class UITest : MonoBehaviour
         else if(jukeboxMenu.activeSelf == true)
         {
             curJukebox = playInteract.curJukebox.gameObject;
-            curJukebox.GetComponent<JukeboxScript>().CancelOption();
+            if (curJukebox.GetComponent<JukeboxScript>().purchasing == true)
+            {
+                curJukebox.GetComponent<JukeboxScript>().CancelOption();
+            }
         }
         else
         {
@@ -543,16 +546,12 @@ public class UITest : MonoBehaviour
 
     public void UpdateHealthUI()
     {
+        healthSlider.maxValue = playerRef.maxHealth;
+        healthSlider.value = playerRef.health;
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
-        healthSlider.value = curHealth;
-        healthSlider.maxValue = maxHealth;
-        if (curHealth > maxHealth)
-        {
-            curStateText.SetText("Health is Already Full.");
-        }
 
-        else if (curHealth <= 0)
+        if (curHealth <= 0)
         {
             GameOver();
         }

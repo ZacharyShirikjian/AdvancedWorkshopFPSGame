@@ -16,9 +16,10 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
-    [SerializeField] private GameObject cursor; 
+    [SerializeField] private GameObject cursor;
 
     //AUDIO CLIPS//
+    [SerializeField] private AudioClip buttonHover;
     [SerializeField] private AudioClip quitConfirm;
     [SerializeField] private AudioClip quitCancel;
     [SerializeField] private AudioClip pauseGame;
@@ -154,11 +155,16 @@ public class UITest : MonoBehaviour
     [SerializeField] public int extraBullets;
     public TextMeshProUGUI extraAmmoUI;
 
+
+    //REF TO AUDIOSOURCE
+    private AudioSource canvasSource;
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
         //eventSystem.firstSelectedGameObject = null;
+        canvasSource = GetComponent<AudioSource>();
         cursor.SetActive(false);
         numCoins = 0;
         extraBullets = 0;
@@ -303,6 +309,7 @@ public class UITest : MonoBehaviour
                 buttonPromptAnimator.SetTrigger("Pausing");
                 eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
+ 
                 //Time.timeScale = 0f;
             }
         }

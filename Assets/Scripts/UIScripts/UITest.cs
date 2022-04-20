@@ -228,6 +228,20 @@ public class UITest : MonoBehaviour
         healthText.text = curHealth.ToString();
     }
 
+    private void OnControlsChanged(PlayerInput context)
+    {
+        //Print out current control scheme player is using
+        Debug.Log("Control Scheme: " + context.currentControlScheme);
+        if(context.currentControlScheme == "Gamepad")
+        {
+            context.currentControlScheme = "Keyboard";
+                
+        }
+        else if(context.currentControlScheme == "Keyboard")
+        {
+
+        }
+    }
     //CONTROLS PANEL
     public void OpenControlsPanel()
     {
@@ -242,19 +256,23 @@ public class UITest : MonoBehaviour
     //ONE BUTTON FOR CLOSING ANY MENU WHICH IS OPEN
     public void CloseMenu()
     {
-        if(controlsPanel.activeSelf == true)
+        if (controlsPanel.activeSelf == true)
         {
             controlsPanel.SetActive(false);
             pausePanel.SetActive(true);
         }
 
-        else if(jukeboxMenu.activeSelf == true)
+        else if (jukeboxMenu.activeSelf == true)
         {
             curJukebox = playInteract.curJukebox.gameObject;
             if (curJukebox.GetComponent<JukeboxScript>().purchasing == true)
             {
                 curJukebox.GetComponent<JukeboxScript>().CancelOption();
             }
+        }
+        else if (pausePanel.activeSelf == true)
+        {
+            PauseGame();
         }
         else
         {
@@ -272,10 +290,6 @@ public class UITest : MonoBehaviour
             controllerInput.gameObject.SetActive(true);
             controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
             keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
-            Time.timeScale = 1f;
-            paused = false;
-            StaticGameClass.pause = false;
-            pausePanel.SetActive(false);
         }
 
         else if (curControlsPanel == controllerInput)
@@ -292,7 +306,7 @@ public class UITest : MonoBehaviour
     {
         if(gameOver == false)
         {
-            if (paused)
+            if (paused && controlsPanel.activeSelf == false)
             {
                 GetComponent<AudioSource>().PlayOneShot(unPauseGame);
                 //Time.timeScale = 1f;

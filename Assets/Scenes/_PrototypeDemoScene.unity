@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 32297794}
   - component: {fileID: 32297796}
   - component: {fileID: 32297795}
+  - component: {fileID: 32297797}
   m_Layer: 5
   m_Name: CancelPrompt
   m_TagString: Untagged
@@ -372,6 +373,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32297793}
   m_CullTransparentMesh: 1
+--- !u!114 &32297797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32297793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 32297795}
+  keyboardImage: {fileID: 21300000, guid: 4bf6a47799ce65d4fbe823f062da70dc, type: 3}
+  controllerImage: {fileID: 21300000, guid: 6e0b7de6d37f68a469e457e6ed31943c, type: 3}
 --- !u!1 &36030192
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +500,7 @@ GameObject:
   - component: {fileID: 49498365}
   - component: {fileID: 49498364}
   m_Layer: 5
-  m_Name: SelectText
+  m_Name: ButtonPromptText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,7 +1216,6 @@ GameObject:
   - component: {fileID: 124476718}
   - component: {fileID: 124476719}
   - component: {fileID: 124476724}
-  - component: {fileID: 124476723}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1310,6 +1325,8 @@ MonoBehaviour:
   curSceneIndex: 0
   extraBullets: 0
   extraAmmoUI: {fileID: 1313904523}
+  currentControlScheme: 2
+  playerInput: {fileID: 1272259285}
 --- !u!114 &124476719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,36 +1400,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &124476723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124476716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: af860e935d195c64caee44316e428ec3, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 1272259288}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Movement
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!82 &124476724
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7348,6 +7335,7 @@ GameObject:
   - component: {fileID: 800803121}
   - component: {fileID: 800803123}
   - component: {fileID: 800803122}
+  - component: {fileID: 800803124}
   m_Layer: 5
   m_Name: SelectPrompt
   m_TagString: Untagged
@@ -7412,6 +7400,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800803120}
   m_CullTransparentMesh: 1
+--- !u!114 &800803124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800803120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 800803122}
+  keyboardImage: {fileID: 21300000, guid: 73a972c18eb16424c920e6abf0019d3d, type: 3}
+  controllerImage: {fileID: 21300000, guid: 2519253e5717edc44893ebb6aa807219, type: 3}
 --- !u!1001 &818685052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7893,7 +7896,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.9725491, g: 0.96470594, b: 0.627451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8309,7 +8312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &908474247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8398,6 +8401,7 @@ GameObject:
   - component: {fileID: 913474238}
   - component: {fileID: 913474240}
   - component: {fileID: 913474239}
+  - component: {fileID: 913474241}
   m_Layer: 5
   m_Name: SpaceIcon
   m_TagString: Untagged
@@ -8462,6 +8466,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913474237}
   m_CullTransparentMesh: 1
+--- !u!114 &913474241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913474237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 913474239}
+  keyboardImage: {fileID: 21300000, guid: 496e338ad2d559649b0c5e37a56b9bcb, type: 3}
+  controllerImage: {fileID: 21300000, guid: be76d44b257c6a341a261017cd2068fa, type: 3}
 --- !u!1 &931699990
 GameObject:
   m_ObjectHideFlags: 0
@@ -8673,6 +8692,7 @@ GameObject:
   - component: {fileID: 978364971}
   - component: {fileID: 978364973}
   - component: {fileID: 978364972}
+  - component: {fileID: 978364974}
   m_Layer: 5
   m_Name: CancelPrompt
   m_TagString: Untagged
@@ -8737,6 +8757,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978364970}
   m_CullTransparentMesh: 1
+--- !u!114 &978364974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978364970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 978364972}
+  keyboardImage: {fileID: 21300000, guid: 4bf6a47799ce65d4fbe823f062da70dc, type: 3}
+  controllerImage: {fileID: 21300000, guid: 6e0b7de6d37f68a469e457e6ed31943c, type: 3}
 --- !u!4 &984617577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7531054614445038194, guid: 894e0d4057094a34aa43b55665a5b7ae, type: 3}
@@ -9666,6 +9701,7 @@ GameObject:
   - component: {fileID: 1135253197}
   - component: {fileID: 1135253199}
   - component: {fileID: 1135253198}
+  - component: {fileID: 1135253200}
   m_Layer: 5
   m_Name: CancelPrompt
   m_TagString: Untagged
@@ -9730,6 +9766,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135253196}
   m_CullTransparentMesh: 1
+--- !u!114 &1135253200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135253196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 1135253198}
+  keyboardImage: {fileID: 21300000, guid: 4bf6a47799ce65d4fbe823f062da70dc, type: 3}
+  controllerImage: {fileID: 21300000, guid: 6e0b7de6d37f68a469e457e6ed31943c, type: 3}
 --- !u!1 &1158486916
 GameObject:
   m_ObjectHideFlags: 0
@@ -10158,6 +10209,7 @@ GameObject:
   - component: {fileID: 1190849639}
   - component: {fileID: 1190849641}
   - component: {fileID: 1190849640}
+  - component: {fileID: 1190849642}
   m_Layer: 5
   m_Name: SelectPrompt
   m_TagString: Untagged
@@ -10222,6 +10274,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190849638}
   m_CullTransparentMesh: 1
+--- !u!114 &1190849642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190849638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 1190849640}
+  keyboardImage: {fileID: 21300000, guid: 73a972c18eb16424c920e6abf0019d3d, type: 3}
+  controllerImage: {fileID: 21300000, guid: 2519253e5717edc44893ebb6aa807219, type: 3}
 --- !u!1 &1201797413
 GameObject:
   m_ObjectHideFlags: 0
@@ -10233,6 +10300,7 @@ GameObject:
   - component: {fileID: 1201797414}
   - component: {fileID: 1201797416}
   - component: {fileID: 1201797415}
+  - component: {fileID: 1201797417}
   m_Layer: 5
   m_Name: SelectPrompt
   m_TagString: Untagged
@@ -10297,6 +10365,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201797413}
   m_CullTransparentMesh: 1
+--- !u!114 &1201797417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201797413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 1201797415}
+  keyboardImage: {fileID: 21300000, guid: 73a972c18eb16424c920e6abf0019d3d, type: 3}
+  controllerImage: {fileID: 21300000, guid: 2519253e5717edc44893ebb6aa807219, type: 3}
 --- !u!1001 &1204661832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10901,7 +10984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: af860e935d195c64caee44316e428ec3, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -10911,11 +10994,92 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 124476718}
+        m_TargetAssemblyTypeName: UITest, Assembly-CSharp
+        m_MethodName: OnControlsChanged
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1272259285}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_ActionEvents:
+  - m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+    m_ActionId: 10ff3972-690c-411a-92bc-bcaafc4bff4b
+    m_ActionName: Movement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aae8fe8f-9515-4156-aa51-a0cfd188b320
+    m_ActionName: Movement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 199a07dc-ef4f-4f49-8d50-2fda4f6829bc
+    m_ActionName: Movement/MouseX[/Mouse/delta/x,/XInputControllerWindows/rightStick/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c34a9154-bcd9-4195-9550-9451c87a815b
+    m_ActionName: Movement/MouseY[/Mouse/delta/y,/XInputControllerWindows/leftStick/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be9b4b8b-c852-4a05-848b-6a391ee5d36b
+    m_ActionName: Movement/Shoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 19e2fff6-701a-45a5-b255-4e24300b6e6c
+    m_ActionName: Movement/Reload[/Keyboard/r,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9280d652-38b9-426c-8254-566544878a42
+    m_ActionName: Movement/Interact[/Keyboard/space,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de3b3797-4fdb-4e8c-85f5-663724fcc320
+    m_ActionName: Movement/Zoom[/Mouse/rightButton,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8441658e-95f5-4a55-bd02-28ae86f699e5
+    m_ActionName: Movement/Crouch[/Keyboard/leftShift,/XInputControllerWindows/leftStickPress]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34b0c48b-a913-4842-a7b0-216a5452274c
+    m_ActionName: Menus/Select[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34f264f5-8ad7-4fc9-ad6d-517592298b1b
+    m_ActionName: Menus/Navigate[/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 37035848-c865-4b24-a6b7-918e90ccba6b
+    m_ActionName: Menus/Pause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 77223fdc-1b02-427b-9696-9b6cb9ff52d0
+    m_ActionName: Menus/Cancel[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f778e95b-a27f-4c60-bf81-0677f3abb8ff
+    m_ActionName: Menus/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 458b9db2-84c1-4a16-ae48-5370f1fb1795
+    m_ActionName: Menus/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28934cc6-94ab-4187-8036-3e23034c7608
+    m_ActionName: Menus/Start[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e8b8de1-d2d9-4660-b503-6fc104ccc5a9
+    m_ActionName: Menus/SwitchPage[/Keyboard/tab,/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultControlScheme: Gamepad
+  m_DefaultActionMap: Menus
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1272259286
@@ -10985,6 +11149,7 @@ GameObject:
   - component: {fileID: 1279539256}
   - component: {fileID: 1279539258}
   - component: {fileID: 1279539257}
+  - component: {fileID: 1279539259}
   m_Layer: 5
   m_Name: CancelPrompt
   m_TagString: Untagged
@@ -11049,6 +11214,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279539255}
   m_CullTransparentMesh: 1
+--- !u!114 &1279539259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279539255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 1279539257}
+  keyboardImage: {fileID: 21300000, guid: 4bf6a47799ce65d4fbe823f062da70dc, type: 3}
+  controllerImage: {fileID: 21300000, guid: 6e0b7de6d37f68a469e457e6ed31943c, type: 3}
 --- !u!1 &1296982361
 GameObject:
   m_ObjectHideFlags: 0
@@ -11207,8 +11387,9 @@ GameObject:
   - component: {fileID: 1312240837}
   - component: {fileID: 1312240839}
   - component: {fileID: 1312240838}
+  - component: {fileID: 1312240840}
   m_Layer: 5
-  m_Name: SelectPrompt
+  m_Name: NavigatePrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11271,6 +11452,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312240836}
   m_CullTransparentMesh: 1
+--- !u!114 &1312240840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312240836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 1312240838}
+  keyboardImage: {fileID: 21300000, guid: 3aa416fc9544e314bb958b5498d18fb6, type: 3}
+  controllerImage: {fileID: 21300000, guid: 0d3c43b236ebfba4686a19df7a5d9351, type: 3}
 --- !u!1 &1313904522
 GameObject:
   m_ObjectHideFlags: 0
@@ -12687,6 +12883,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 387757368944480824, guid: 8b0bb53778e7586458c0fdf59559f745, type: 3}
   m_PrefabInstance: {fileID: 1882690874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1513198232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1513198233}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1513198233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513198232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513968785
 GameObject:
   m_ObjectHideFlags: 0
@@ -17040,6 +17266,7 @@ GameObject:
   - component: {fileID: 1951523816}
   - component: {fileID: 1951523818}
   - component: {fileID: 1951523817}
+  - component: {fileID: 1951523819}
   m_Layer: 5
   m_Name: SelectPrompt
   m_TagString: Untagged
@@ -17104,6 +17331,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951523815}
   m_CullTransparentMesh: 1
+--- !u!114 &1951523819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951523815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 1951523817}
+  keyboardImage: {fileID: 21300000, guid: 73a972c18eb16424c920e6abf0019d3d, type: 3}
+  controllerImage: {fileID: 21300000, guid: 2519253e5717edc44893ebb6aa807219, type: 3}
 --- !u!114 &1968012920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18117,6 +18359,7 @@ GameObject:
   - component: {fileID: 2044355387}
   - component: {fileID: 2044355386}
   - component: {fileID: 2044355385}
+  - component: {fileID: 2044355388}
   m_Layer: 5
   m_Name: R_Icon
   m_TagString: Untagged
@@ -18182,6 +18425,21 @@ RectTransform:
   m_AnchoredPosition: {x: -160, y: 64}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
+--- !u!114 &2044355388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044355384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3ed0910fe926418a27317a7c7c0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 2044355385}
+  keyboardImage: {fileID: 21300000, guid: cbf54528640639f43b082e4e2ba6ef6b, type: 3}
+  controllerImage: {fileID: 21300000, guid: 4d38067eed67bc946af36523ce6670db, type: 3}
 --- !u!1 &2060836353
 GameObject:
   m_ObjectHideFlags: 0

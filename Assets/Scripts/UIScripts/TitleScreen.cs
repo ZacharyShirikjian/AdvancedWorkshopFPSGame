@@ -57,6 +57,17 @@ public class TitleScreen : MonoBehaviour
     //Reference to Menu Buttons 
     public GameObject Buttons;
 
+    //HOLDS ALL POSSIBLE STATES OF CONTROLLER
+    //ints are individual specific states
+    //0 = none
+    //1 = keyboard
+    //2 = controller
+    public enum CurrentController { NONE, KEYBOARD, GAMEPAD };
+    public CurrentController currentControlScheme = CurrentController.GAMEPAD;
+    [SerializeField] private PlayerInput playerInput;
+
+    //public static = doesn't change for instance of the class, can be seen anywhere 
+    public static TitleScreen instance;
     //// Start is called before the first frame update
     void Awake()
     {
@@ -64,6 +75,7 @@ public class TitleScreen : MonoBehaviour
         //menu = controls.Menus;
 
         //optionsPanel = GameObject.Find("OptionsPanel");
+        instance = this;
         creditsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         curPanel = keyboardInput;
@@ -81,6 +93,31 @@ public class TitleScreen : MonoBehaviour
 
     }
 
+    //Based on method written by Peter Gomes//
+    //Switches current input depending on whether players uses a controller or keyboard
+    public void OnControlsChanged(PlayerInput context)
+    {
+        //Print out current control scheme player is using
+        Debug.Log("Control Scheme: " + context.currentControlScheme);
+        Debug.Log("CHANGING");
+
+        //Prevents unexpected Null Ref Exceptions when Switching 
+        if (context != null && UITest.instance != null)
+        {
+            if (TitleScreen.instance.currentControlScheme == CurrentController.GAMEPAD)
+            {
+                TitleScreen.instance.currentControlScheme = CurrentController.KEYBOARD;
+                Debug.Log("NOW IS KEYBOARD");
+            }
+
+            else if (TitleScreen.instance.currentControlScheme == CurrentController.KEYBOARD)
+            {
+                TitleScreen.instance.currentControlScheme = CurrentController.GAMEPAD;
+                Debug.Log("NOW IS GAMEPAD");
+            }
+        }
+
+    }
     //Switch to this for New Input
     public void OpenMenu()
     {

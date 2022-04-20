@@ -16,6 +16,9 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
+    //public static = doesn't change for instance of the class, can be seen anywhere 
+    public static UITest instance;
+
     [SerializeField] private GameObject cursor;
 
     //AUDIO CLIPS//
@@ -160,10 +163,27 @@ public class UITest : MonoBehaviour
     //REF TO AUDIOSOURCE
     private AudioSource canvasSource;
 
+    //HOLDS ALL POSSIBLE STATES OF CONTROLLER
+    //ints are individual specific states
+    //0 = none
+    //1 = keyboard
+    //2 = controller
+    public enum CurrentController {NONE, KEYBOARD, GAMEPAD};
+    public CurrentController currentControlScheme = CurrentController.GAMEPAD;
+    [SerializeField] private PlayerInput playerInput;
+
+    //Set the instance to be this class
+    private void Awake()
+    {
+        instance = this;  
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
+        playerInput.onControlsChanged += OnControlsChanged;
+        currentControlScheme = CurrentController.GAMEPAD;
         //eventSystem.firstSelectedGameObject = null;
         canvasSource = GetComponent<AudioSource>();
         cursor.SetActive(false);
@@ -228,19 +248,29 @@ public class UITest : MonoBehaviour
         healthText.text = curHealth.ToString();
     }
 
-    private void OnControlsChanged(PlayerInput context)
+    //Based on method written by Peter Gomes//
+
+    public void OnControlsChanged(PlayerInput context)
     {
         //Print out current control scheme player is using
         Debug.Log("Control Scheme: " + context.currentControlScheme);
-        if(context.currentControlScheme == "Gamepad")
+        Debug.Log("CHANGING");
+        //Prevents unexpected Null Ref Exceptions when Switching 
+        if (context != null && UITest.instance != null)
         {
-            context.currentControlScheme = "Keyboard";
-                
-        }
-        else if(context.currentControlScheme == "Keyboard")
-        {
+            if(UITest.instance.currentControlScheme == CurrentController.GAMEPAD)
+            {
+                UITest.instance.currentControlScheme = CurrentController.KEYBOARD;
+                Debug.Log("NOW IS KEYBOARD");
+            }
 
+            else if (UITest.instance.currentControlScheme == CurrentController.KEYBOARD)
+            {
+                UITest.instance.currentControlScheme = CurrentController.GAMEPAD;
+                Debug.Log("NOW IS GAMEPAD");
+            }
         }
+
     }
     //CONTROLS PANEL
     public void OpenControlsPanel()

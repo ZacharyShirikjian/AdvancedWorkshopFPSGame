@@ -42,11 +42,18 @@ public class TitleScreen : MonoBehaviour
 
         //Controller Input,Controls Menu
         [SerializeField] private GameObject controllerInput;
-    //REFERENCE TO Menu Prompts ANIM in Credits
+
+    //REFERENCE TO Menu Prompts ANIM in Menus
     [SerializeField] private Animator menuPromptsAnimator; 
 
+    //REFERENCE TO CANCEL BUTTON ANIM in Controls
+    [SerializeField] private Animator controlsAnim;
+
     //REFERENCE TO CANCEL BUTTON ANIM in Credits
-    [SerializeField] private Animator cancelAnim;
+    [SerializeField] private Animator creditsAnim;
+
+    //REFERENCE TO CANCEL BUTTON ANIM in Options
+    [SerializeField] private Animator optionsAnim;
 
     //REFERENCE TO THE "PRESS ANY BUTTON TO START" TEXT
     [SerializeField] private TextMeshProUGUI promptText;
@@ -79,7 +86,7 @@ public class TitleScreen : MonoBehaviour
         controlsPanel.SetActive(false);
         curPanel = keyboardInput;
 
-        //optionsPanel.SetActive(false);
+        optionsPanel.SetActive(false);
         buttonPressed = false;
         promptText.SetText("Press          to Start");
         Buttons.SetActive(false);
@@ -128,7 +135,7 @@ public class TitleScreen : MonoBehaviour
             Buttons.SetActive(true);
             promptText.gameObject.SetActive(false);
             buttonPressed = true;
-            menuPromptsAnimator.SetTrigger("Pausing");
+            menuPromptsAnimator.SetTrigger("Menu");
         }
     }
 
@@ -141,7 +148,8 @@ public class TitleScreen : MonoBehaviour
             creditsPanel.SetActive(false);
             controlsPanel.SetActive(false);
             Buttons.SetActive(true);
-            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(4).gameObject);
+            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
+            menuPromptsAnimator.SetTrigger("Menu");
         }
        
     }
@@ -150,7 +158,7 @@ public class TitleScreen : MonoBehaviour
     public void OpenCredits()
     {
         creditsPanel.SetActive(true);
-        cancelAnim.SetTrigger("Credits");
+        creditsAnim.SetTrigger("Credits");
         Buttons.SetActive(false);
     }
 
@@ -166,7 +174,7 @@ public class TitleScreen : MonoBehaviour
     public void OpenControlsPanel()
     {
         controlsPanel.SetActive(true);
-        cancelAnim.SetTrigger("Controls");
+        controlsAnim.SetTrigger("Controls");
         keyboardInput.SetActive(true);
         controllerInput.SetActive(false);
         controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
@@ -200,7 +208,7 @@ public class TitleScreen : MonoBehaviour
     public void OpenOptions()
     {
         optionsPanel.SetActive(true);
-        cancelAnim.SetTrigger("Credits");
+        optionsAnim.SetTrigger("Options");
         Buttons.SetActive(false);
         eventSystem.SetSelectedGameObject(optionsPanel.transform.GetChild(3).gameObject); //this is the Volume Slider GObject
     }
@@ -209,7 +217,6 @@ public class TitleScreen : MonoBehaviour
     public void CloseOptions()
     {
         optionsPanel.SetActive(false);
-        cancelAnim.SetTrigger("Credits");
         Buttons.SetActive(true);
     }
 

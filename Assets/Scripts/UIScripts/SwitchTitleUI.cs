@@ -14,8 +14,7 @@ public class SwitchTitleUI : MonoBehaviour
     //Based on method written by Peter Gnomes//
     void Start()
     {
-        //uiImage = GetComponent<Image>();
-        ChangeInputImage();
+        //ChangeInputImage();
     }
 
     // Update is called once per frame

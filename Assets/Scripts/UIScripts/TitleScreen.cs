@@ -16,6 +16,8 @@ using UnityEngine.InputSystem;
  */
 public class TitleScreen : MonoBehaviour
 {
+    //Reference to music GameObject
+    [SerializeField] private GameObject musicManager;
     //Controls controls;
     //Controls.MenusActions menu;
     //REFERENCE TO AUDIOSOURCE//
@@ -24,6 +26,11 @@ public class TitleScreen : MonoBehaviour
     public GameObject Canvas;
 
     //REFERENCE TO CONTROLS PANEL//
+    //REFERENCE TO CREDITS PANEL IN SCENE//
+    //REFERENCE TO OPTIONS PANEL IN SCENE//
+
+    [SerializeField] private GameObject creditsPanel;
+    [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject curPanel;
 
@@ -35,18 +42,11 @@ public class TitleScreen : MonoBehaviour
 
         //Controller Input,Controls Menu
         [SerializeField] private GameObject controllerInput;
-
-    //REFERENCE TO CREDITS PANEL IN SCENE//
-    [SerializeField] private GameObject creditsPanel;
-
     //REFERENCE TO Menu Prompts ANIM in Credits
     [SerializeField] private Animator menuPromptsAnimator; 
 
     //REFERENCE TO CANCEL BUTTON ANIM in Credits
     [SerializeField] private Animator cancelAnim;
-
-    //REFERENCE TO OPTIONS PANEL IN SCENE//
-    //private GameObject optionsPanel;
 
     //REFERENCE TO THE "PRESS ANY BUTTON TO START" TEXT
     [SerializeField] private TextMeshProUGUI promptText;
@@ -73,9 +73,8 @@ public class TitleScreen : MonoBehaviour
     {
         //controls = new Controls();
         //menu = controls.Menus;
-
-        //optionsPanel = GameObject.Find("OptionsPanel");
         instance = this;
+        optionsPanel.SetActive(false);
         creditsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         curPanel = keyboardInput;
@@ -85,6 +84,9 @@ public class TitleScreen : MonoBehaviour
         promptText.SetText("Press          to Start");
         Buttons.SetActive(false);
 
+        //Set volume of the Canvas AudioSource to be = game volume 
+        Canvas.GetComponent<AudioSource>().volume = Settings.volume;
+        musicManager.GetComponent<AudioManager>().SwitchSong("Title");
     }
 
     //// Update is called once per frame
@@ -118,7 +120,6 @@ public class TitleScreen : MonoBehaviour
         }
 
     }
-    //Switch to this for New Input
     public void OpenMenu()
     {
         if (buttonPressed == false)
@@ -133,12 +134,14 @@ public class TitleScreen : MonoBehaviour
 
     public void BackToMenu()
     {
-        if(creditsPanel.activeSelf == true || controlsPanel.activeSelf == true)
+        //If any panel Object is active, turn them off, return to Main Menu
+        if(creditsPanel.activeSelf == true || controlsPanel.activeSelf == true || optionsPanel.activeSelf == true)
         {
+            optionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             controlsPanel.SetActive(false);
             Buttons.SetActive(true);
-            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
+            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(4).gameObject);
         }
        
     }
@@ -194,18 +197,21 @@ public class TitleScreen : MonoBehaviour
 
     ////This method is used for opening up the Options Panel in the Title Screen.
     ////Temporarily hide the other menu elements, and bring them back once the Options Panel is closed.
-    //public void OpenOptions()
-    //{
-    //    optionsPanel.SetActive(true);
-    //    Buttons.SetActive(false);
-    //}
+    public void OpenOptions()
+    {
+        optionsPanel.SetActive(true);
+        cancelAnim.SetTrigger("Credits");
+        Buttons.SetActive(false);
+        eventSystem.SetSelectedGameObject(optionsPanel.transform.GetChild(3).gameObject); //this is the Volume Slider GObject
+    }
 
-    ////Called when clicking on the Back/Close button on the Options panel when it's opened.
-    //public void CloseOptions()
-    //{
-    //    optionsPanel.SetActive(false);
-    //    Buttons.SetActive(true);
-    //}
+    //Called when clicking on the Back/Close button on the Options panel when it's opened.
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
+        cancelAnim.SetTrigger("Credits");
+        Buttons.SetActive(true);
+    }
 
     //This method is used for loading the main scene of the game,
     //Which has a build index of 1 in the Project's Build Settings.

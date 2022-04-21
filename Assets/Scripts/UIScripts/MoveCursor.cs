@@ -34,8 +34,12 @@ public class MoveCursor : MonoBehaviour
     void Update()
     {
         //Debug.Log(EventSystem.current.currentSelectedGameObject);
-        curCursorPos = new Vector2(EventSystem.current.currentSelectedGameObject.transform.position.x - 40, EventSystem.current.currentSelectedGameObject.transform.position.y + 5);
-        gunCursor.transform.position = curCursorPos;
+        if(EventSystem.current.currentSelectedGameObject != null)
+        {
+            curCursorPos = new Vector2(EventSystem.current.currentSelectedGameObject.transform.position.x - 40, EventSystem.current.currentSelectedGameObject.transform.position.y + 5);
+            gunCursor.transform.position = curCursorPos;
+        }
+
     }
 
     //public void SwitchCursorAnimation(string anim)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TitleInputManager : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class TitleInputManager : MonoBehaviour
 
         //movement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         //movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+
+        InputSystem.DisableDevice(Mouse.current);
+        InputSystem.EnableDevice(Mouse.current);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         //MENU//
         menu.Start.performed += _ => titleScreen.OpenMenu();

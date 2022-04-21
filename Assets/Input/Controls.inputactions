@@ -454,7 +454,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "NULL",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -465,7 +465,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "NULL",
                     "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -665,6 +665,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "NULL",
+            "bindingGroup": "NULL",
+            "devices": []
         }
     ]
 }

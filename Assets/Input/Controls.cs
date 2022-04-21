@@ -467,7 +467,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""NULL"",
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -478,7 +478,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""NULL"",
                     ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -678,6 +678,11 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""NULL"",
+            ""bindingGroup"": ""NULL"",
+            ""devices"": []
         }
     ]
 }");
@@ -949,6 +954,15 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
             return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    private int m_NULLSchemeIndex = -1;
+    public InputControlScheme NULLScheme
+    {
+        get
+        {
+            if (m_NULLSchemeIndex == -1) m_NULLSchemeIndex = asset.FindControlSchemeIndex("NULL");
+            return asset.controlSchemes[m_NULLSchemeIndex];
         }
     }
     public interface IMovementActions

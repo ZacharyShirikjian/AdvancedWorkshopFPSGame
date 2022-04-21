@@ -28,12 +28,12 @@ public class SwitchTitleUI : MonoBehaviour
     {
         if(TitleScreen.instance.currentControlScheme == TitleScreen.CurrentController.KEYBOARD)
         {
-            uiImage.sprite = controllerImage;
+            uiImage.sprite = keyboardImage;
         }
 
         else if (TitleScreen.instance.currentControlScheme == TitleScreen.CurrentController.GAMEPAD)
         {
-            uiImage.sprite = keyboardImage;
+            uiImage.sprite = controllerImage;
         }
     }
 }

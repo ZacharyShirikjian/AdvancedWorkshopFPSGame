@@ -1275,8 +1275,8 @@ MonoBehaviour:
   buttonHover: {fileID: 8300000, guid: 2c100f05610798a47876f115ea5608d9, type: 3}
   quitConfirm: {fileID: 8300000, guid: 690032f764d139f45b65cbc520e16423, type: 3}
   quitCancel: {fileID: 8300000, guid: cf9a267dda0193a429751f36f6e3f64a, type: 3}
-  pauseGame: {fileID: 8300000, guid: 4ac179b084bc66e469ea62c577e98cbd, type: 3}
-  unPauseGame: {fileID: 8300000, guid: 3e1b3d8ed59c7c94888db6fa2a3f16fe, type: 3}
+  pauseGame: {fileID: 8300000, guid: 8ba8d9826785d3645bac815893b8e5e1, type: 3}
+  unPauseGame: {fileID: 8300000, guid: 95128b15dbc6bb6429cd25c272d7bb66, type: 3}
   playerPoisoned: {fileID: 8300000, guid: fb145ad30d5684640979f68d75ba0725, type: 3}
   controlsPanel: {fileID: 842396404}
   curControlsPanel: {fileID: 0}
@@ -22112,8 +22112,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   shootGun: {fileID: 8300000, guid: ccd605d11aea6f943867520eff03c815, type: 3}
   reloadClip: {fileID: 8300000, guid: 13650c52bcfa31f4d94f8b0cbf380e69, type: 3}
-  takeDamage: {fileID: 8300000, guid: cf5300128bf751f4b9f9623b5a95f3a7, type: 3}
-  playerDead: {fileID: 8300000, guid: b95977a21d88b5f4490a8e54548e782b, type: 3}
+  takeDamage: {fileID: 8300000, guid: 2bb511a828d0ca949b2098ea4c6026fe, type: 3}
+  playerDead: {fileID: 8300000, guid: 59ae64fd548afaa43a94c3821f4d66dc, type: 3}
   audioSource: {fileID: 6239929423819440420}
 --- !u!4 &6239929423819440417
 Transform:
@@ -23390,7 +23390,7 @@ MonoBehaviour:
   coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
   animator: {fileID: 0}
   journeyTime: 3
-  enemyHit: {fileID: 8300000, guid: cf9a267dda0193a429751f36f6e3f64a, type: 3}
+  enemyHit: {fileID: 8300000, guid: 5a9ab05e8d05d6d4ea3f1d51f674a552, type: 3}
   enemyDeath: {fileID: 8300000, guid: 1881996b629aa6943a601eec5d4805fd, type: 3}
 --- !u!195 &7364094248759814521
 NavMeshAgent:

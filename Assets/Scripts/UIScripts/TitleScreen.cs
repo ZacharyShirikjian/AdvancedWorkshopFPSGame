@@ -111,7 +111,7 @@ public class TitleScreen : MonoBehaviour
         Debug.Log("CHANGING");
 
         //Prevents unexpected Null Ref Exceptions when Switching 
-        if (context != null && UITest.instance != null)
+        if (context != null && TitleScreen.instance != null)
         {
             if (TitleScreen.instance.currentControlScheme == CurrentController.GAMEPAD)
             {

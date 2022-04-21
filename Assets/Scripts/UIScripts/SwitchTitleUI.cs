@@ -14,7 +14,7 @@ public class SwitchTitleUI : MonoBehaviour
     //Based on method written by Peter Gnomes//
     void Start()
     {
-        //ChangeInputImage();
+        ChangeInputImage();
     }
 
     // Update is called once per frame
@@ -28,12 +28,12 @@ public class SwitchTitleUI : MonoBehaviour
     {
         if(TitleScreen.instance.currentControlScheme == TitleScreen.CurrentController.KEYBOARD)
         {
-            uiImage.sprite = keyboardImage;
+            uiImage.sprite = controllerImage;
         }
 
         else if (TitleScreen.instance.currentControlScheme == TitleScreen.CurrentController.GAMEPAD)
         {
-            uiImage.sprite = controllerImage;
+            uiImage.sprite = keyboardImage;
         }
     }
 }

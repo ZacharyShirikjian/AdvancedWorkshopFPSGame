@@ -1325,7 +1325,7 @@ MonoBehaviour:
   curSceneIndex: 0
   extraBullets: 0
   extraAmmoUI: {fileID: 1313904523}
-  currentControlScheme: 2
+  currentControlScheme: 1
   playerInput: {fileID: 1272259285}
 --- !u!114 &124476719
 MonoBehaviour:
@@ -11078,7 +11078,7 @@ MonoBehaviour:
     m_ActionId: 2e8b8de1-d2d9-4660-b503-6fc104ccc5a9
     m_ActionName: Menus/SwitchPage[/Keyboard/tab,/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Menus
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -12883,36 +12883,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 387757368944480824, guid: 8b0bb53778e7586458c0fdf59559f745, type: 3}
   m_PrefabInstance: {fileID: 1882690874}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1513198232
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1513198233}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1513198233
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513198232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513968785
 GameObject:
   m_ObjectHideFlags: 0

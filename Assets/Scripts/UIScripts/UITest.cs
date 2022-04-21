@@ -169,7 +169,7 @@ public class UITest : MonoBehaviour
     //1 = keyboard
     //2 = controller
     public enum CurrentController {NONE, KEYBOARD, GAMEPAD};
-    public CurrentController currentControlScheme = CurrentController.GAMEPAD;
+    public CurrentController currentControlScheme = CurrentController.KEYBOARD;
     [SerializeField] private PlayerInput playerInput;
 
     //Set the instance to be this class
@@ -183,7 +183,7 @@ public class UITest : MonoBehaviour
     {
         Time.timeScale = 1f;
         playerInput.onControlsChanged += OnControlsChanged;
-        currentControlScheme = CurrentController.GAMEPAD;
+        currentControlScheme = CurrentController.KEYBOARD;
         //eventSystem.firstSelectedGameObject = null;
         canvasSource = GetComponent<AudioSource>();
         cursor.SetActive(false);

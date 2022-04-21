@@ -63,7 +63,7 @@ public class TitleScreen : MonoBehaviour
     //1 = keyboard
     //2 = controller
     public enum CurrentController { NONE, KEYBOARD, GAMEPAD };
-    public CurrentController currentControlScheme = CurrentController.GAMEPAD;
+    public CurrentController currentControlScheme = CurrentController.KEYBOARD;
     [SerializeField] private PlayerInput playerInput;
 
     //public static = doesn't change for instance of the class, can be seen anywhere 

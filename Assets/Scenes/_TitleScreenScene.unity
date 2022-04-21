@@ -3615,7 +3615,7 @@ MonoBehaviour:
   promptText: {fileID: 1737848415}
   buttonPressed: 0
   Buttons: {fileID: 1263698503}
-  currentControlScheme: 2
+  currentControlScheme: 1
   playerInput: {fileID: 1452648007}
 --- !u!114 &769585830
 MonoBehaviour:
@@ -7127,7 +7127,7 @@ MonoBehaviour:
     m_ActionId: 2e8b8de1-d2d9-4660-b503-6fc104ccc5a9
     m_ActionName: Menus/SwitchPage[/Keyboard/tab,/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Menus
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

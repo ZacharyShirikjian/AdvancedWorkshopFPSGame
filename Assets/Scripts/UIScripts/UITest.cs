@@ -16,6 +16,9 @@ using TMPro;
 
 public class UITest : MonoBehaviour
 {
+    //public static = doesn't change for instance of the class, can be seen anywhere 
+    public static UITest instance;
+
     [SerializeField] private GameObject cursor;
 
     //AUDIO CLIPS//
@@ -123,6 +126,7 @@ public class UITest : MonoBehaviour
     public EventSystem eventSystem;
 
     //HEALTH//
+    [SerializeField] private TextMeshProUGUI healthText;
         //The current health which the player has
         [SerializeField] private float curHealth;
 
@@ -159,10 +163,29 @@ public class UITest : MonoBehaviour
     //REF TO AUDIOSOURCE
     private AudioSource canvasSource;
 
+    private GameObject musicManager;
+
+    //HOLDS ALL POSSIBLE STATES OF CONTROLLER
+    //ints are individual specific states
+    //0 = none
+    //1 = keyboard
+    //2 = controller
+    public enum CurrentController {NONE, KEYBOARD, GAMEPAD};
+    public CurrentController currentControlScheme = CurrentController.KEYBOARD;
+    [SerializeField] private PlayerInput playerInput;
+
+    //Set the instance to be this class
+    private void Awake()
+    {
+        instance = this;  
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
+        playerInput.onControlsChanged += OnControlsChanged;
+        currentControlScheme = CurrentController.KEYBOARD;
         //eventSystem.firstSelectedGameObject = null;
         canvasSource = GetComponent<AudioSource>();
         cursor.SetActive(false);
@@ -171,6 +194,7 @@ public class UITest : MonoBehaviour
         playerRef = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
+        healthText.text = "100";
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
         backupBullets = 6;
@@ -201,6 +225,10 @@ public class UITest : MonoBehaviour
         }
 
         extraAmmoUI.SetText("0");
+        Debug.Log(AudioListener.volume);
+
+        musicManager = GameObject.Find("MusicManager");
+        musicManager.GetComponent<AudioManager>().SwitchSong("Gameplay");
     }
 
     // Update is called once per frame
@@ -218,12 +246,38 @@ public class UITest : MonoBehaviour
         //}
 
         extraAmmoUI.SetText("+" + extraBullets.ToString());
-        //curHealth = playerRef.health;
-        //maxHealth = playerRef.maxHealth;
-        //healthSlider.value = curHealth;
-        //healthSlider.maxValue = maxHealth;
+
+        healthSlider.value = curHealth;
+        healthSlider.maxValue = maxHealth;
+        curHealth = playerRef.health;
+        maxHealth = playerRef.maxHealth;
+        healthText.text = curHealth.ToString();
     }
 
+    //Based on method written by Peter Gomes//
+
+    public void OnControlsChanged(PlayerInput context)
+    {
+        //Print out current control scheme player is using
+        Debug.Log("Control Scheme: " + context.currentControlScheme);
+        Debug.Log("CHANGING");
+        //Prevents unexpected Null Ref Exceptions when Switching 
+        if (context != null && UITest.instance != null)
+        {
+            if(UITest.instance.currentControlScheme == CurrentController.GAMEPAD)
+            {
+                UITest.instance.currentControlScheme = CurrentController.KEYBOARD;
+                Debug.Log("NOW IS KEYBOARD");
+            }
+
+            else if (UITest.instance.currentControlScheme == CurrentController.KEYBOARD)
+            {
+                UITest.instance.currentControlScheme = CurrentController.GAMEPAD;
+                Debug.Log("NOW IS GAMEPAD");
+            }
+        }
+
+    }
     //CONTROLS PANEL
     public void OpenControlsPanel()
     {
@@ -238,16 +292,23 @@ public class UITest : MonoBehaviour
     //ONE BUTTON FOR CLOSING ANY MENU WHICH IS OPEN
     public void CloseMenu()
     {
-        if(controlsPanel.activeSelf == true)
+        if (controlsPanel.activeSelf == true)
         {
             controlsPanel.SetActive(false);
             pausePanel.SetActive(true);
         }
 
-        else if(jukeboxMenu.activeSelf == true)
+        else if (jukeboxMenu.activeSelf == true)
         {
             curJukebox = playInteract.curJukebox.gameObject;
-            curJukebox.GetComponent<JukeboxScript>().CancelOption();
+            if (curJukebox.GetComponent<JukeboxScript>().purchasing == true)
+            {
+                curJukebox.GetComponent<JukeboxScript>().CancelOption();
+            }
+        }
+        else if (pausePanel.activeSelf == true)
+        {
+            PauseGame();
         }
         else
         {
@@ -265,10 +326,6 @@ public class UITest : MonoBehaviour
             controllerInput.gameObject.SetActive(true);
             controllerIcon.GetComponent<Image>().color = new Color(1f, 1f, 1f);
             keyboardIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
-            Time.timeScale = 1f;
-            paused = false;
-            StaticGameClass.pause = false;
-            pausePanel.SetActive(false);
         }
 
         else if (curControlsPanel == controllerInput)
@@ -285,7 +342,7 @@ public class UITest : MonoBehaviour
     {
         if(gameOver == false)
         {
-            if (paused)
+            if (paused && controlsPanel.activeSelf == false)
             {
                 GetComponent<AudioSource>().PlayOneShot(unPauseGame);
                 //Time.timeScale = 1f;
@@ -370,7 +427,7 @@ public class UITest : MonoBehaviour
 
     public void closeJukebox()
     {
-        curJukebox.GetComponent<JukeboxScript>().closeJukeboxMenuDelay();
+        curJukebox.GetComponent<JukeboxScript>().closeJukeboxMenu();
     }
 
     public void JukeboxHealPlayer()
@@ -543,16 +600,12 @@ public class UITest : MonoBehaviour
 
     public void UpdateHealthUI()
     {
+        healthSlider.maxValue = playerRef.maxHealth;
+        healthSlider.value = playerRef.health;
         curHealth = playerRef.health;
         maxHealth = playerRef.maxHealth;
-        healthSlider.value = curHealth;
-        healthSlider.maxValue = maxHealth;
-        if (curHealth > maxHealth)
-        {
-            curStateText.SetText("Health is Already Full.");
-        }
 
-        else if (curHealth <= 0)
+        if (curHealth <= 0)
         {
             GameOver();
         }

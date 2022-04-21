@@ -7,33 +7,52 @@ using TMPro;
 //UI Script to update the game settings based on what the player chooses
 public class SettingsSlider : MonoBehaviour
 {
-    //VOLUME SLIDER
+    //SFX VOLUME SLIDER
     public Slider volume_S;
     public TMPro.TMP_Text volumeNum;
 
-    //SENSITIVITY SLIDER
-    public Slider sens_S;
-    public TMPro.TMP_Text sensNum;
+    //SFX VOLUME SLIDER
+    public Slider musicVolume_S;
+    public TMPro.TMP_Text musicVolumeNum;
+
+    ////SENSITIVITY SLIDER
+    //public Slider sens_S;
+    //public TMPro.TMP_Text sensNum;
+
+    public GameObject Canvas;
+
+    [SerializeField] private GameObject musicManager;
 
     private void Awake()
     {
         volume_S.value = Settings.volume;
-        sens_S.value = Settings.sensitivity;
-        UpdateVolume();
-        UpdateSensitivity();
+        musicVolume_S.value = Settings.musicVolume;
+        UpdateSFXVolume();
+        UpdateMusicVolume();
     }
 
-    public void UpdateVolume()
+    public void UpdateSFXVolume()
     {
         Settings.ChangeVolume((int)volume_S.value);
         volume_S.value = Settings.volume;
         volumeNum.text = volume_S.value.ToString();
+        //AudioListener.volume = Settings.volume;
+        //Canvas.GetComponent<AudioSource>().volume = ((float) Settings.volume / 100);
+        //Debug.Log(AudioListener.volume);
     }
 
-    public void UpdateSensitivity()
+    public void UpdateMusicVolume()
     {
-        Settings.ChangeSensitivity((int)sens_S.value);
-        sens_S.value = Settings.sensitivity;
-        sensNum.text = sens_S.value.ToString();
+        Settings.ChangeMusicVolume((int)musicVolume_S.value);
+        musicVolume_S.value = Settings.musicVolume;
+        musicVolumeNum.text = musicVolume_S.value.ToString();
+        musicManager.GetComponent<AudioSource>().volume = ((float) Settings.musicVolume / 200); //Divide by 200 to get 1/2 volume
     }
+
+    //public void UpdateSensitivity()
+    //{
+    //    Settings.ChangeSensitivity((int)sens_S.value);
+    //    sens_S.value = Settings.sensitivity;
+    //    sensNum.text = sens_S.value.ToString();
+    //}
 }

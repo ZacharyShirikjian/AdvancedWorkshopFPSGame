@@ -46,7 +46,7 @@ public class SettingsSlider : MonoBehaviour
         Settings.ChangeMusicVolume((int)musicVolume_S.value);
         musicVolume_S.value = Settings.musicVolume;
         musicVolumeNum.text = musicVolume_S.value.ToString();
-        musicManager.GetComponent<AudioSource>().volume = ((float) Settings.musicVolume / 100);
+        musicManager.GetComponent<AudioSource>().volume = ((float) Settings.musicVolume / 200); //Divide by 200 to get 1/2 volume
     }
 
     //public void UpdateSensitivity()

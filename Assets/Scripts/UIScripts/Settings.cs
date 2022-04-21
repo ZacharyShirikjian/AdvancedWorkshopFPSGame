@@ -5,7 +5,7 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     [SerializeField] public static int volume = 100;
-    [SerializeField] public static int musicVolume = 50;
+    [SerializeField] public static int musicVolume = 100;
 
     public static void ChangeVolume(int value)
     {

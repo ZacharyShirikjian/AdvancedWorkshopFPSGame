@@ -7,30 +7,23 @@ public class PlayerInteract : MonoBehaviour
 {
     public GameObject currentInteractable = null;
     public Interactables interactableScript = null;
-
     public GameObject curJukebox = null;
     public JukeboxScript curJukeboxScript = null;
-
     public bool canInteract;
-
     //Reference to UI
     [SerializeField] private UITest uiRef;
-
     //Reference to Camera's Script
     [SerializeField] private CameraLerpMovement cameraScript;
-
 
     // Start is called before the first frame update
     void Start()
     {
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-      
 
         ////CHANGE TO NEW INPUT SYSTEM
         //if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
@@ -63,17 +56,11 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("[JUKEBOX]");
             canInteract = false;
             //curJukeboxScript.interactedBefore = true;
-            //cameraScript.enabled = true;
             cameraScript.StartCoroutine(cameraScript.ZoomCamera());
             curJukebox.GetComponent<AudioSource>().Play();
             Invoke("OpenJukeboxAfterDelay", 1f);
 
         }
-    }
-
-    public void CameraZoom()
-    {
-
     }
     public void OpenJukeboxAfterDelay()
     {

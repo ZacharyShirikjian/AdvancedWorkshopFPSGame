@@ -9,7 +9,6 @@ public class SwitchTitleUI : MonoBehaviour
     [SerializeField] private Image uiImage;
     [SerializeField] private Sprite keyboardImage;
     [SerializeField] private Sprite controllerImage;
-    // Start is called before the first frame update
 
     //Based on method written by Peter Gnomes//
     void Start()
@@ -17,7 +16,6 @@ public class SwitchTitleUI : MonoBehaviour
         ChangeInputImage();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ChangeInputImage();

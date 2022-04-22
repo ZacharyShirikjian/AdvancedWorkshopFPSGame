@@ -9,8 +9,6 @@ using UnityEngine;
 //https://answers.unity.com/questions/1502190/help-using-lerp-inside-of-a-coroutine.html 
 public class CameraLerpMovement : MonoBehaviour
 {
-    //FOR CAMERA ZOOM IN//
-
     //Reference player
     [SerializeField] private GameObject player;
     private Vector3 cameraEndPos; 
@@ -19,22 +17,14 @@ public class CameraLerpMovement : MonoBehaviour
     private float desiredDuration = 1f; //amount of time you want to move between 2 points for 
     private float elapsedTime; //amount of time that's passed since start of the game 
     public bool zoomingIn; //if true, call method to zoom in, else, don't call the method in update
-    // Start is called before the first frame update
     void Start()
     {
         //This makes sure the start position stays the same while lerp is being used
         startPos = transform.position;
         cameraEndPos = new Vector3(player.transform.position.x, 3, player.transform.position.z + 3);
         zoomingIn = false;
-
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
-
+    //FOR CAMERA ZOOM IN//
     public IEnumerator ZoomCamera()
     {
         elapsedTime = 0;

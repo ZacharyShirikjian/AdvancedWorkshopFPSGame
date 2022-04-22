@@ -186,7 +186,6 @@ public class UITest : MonoBehaviour
         Time.timeScale = 1f;
         playerInput.onControlsChanged += OnControlsChanged;
         currentControlScheme = CurrentController.KEYBOARD;
-        //eventSystem.firstSelectedGameObject = null;
         canvasSource = GetComponent<AudioSource>();
         cursor.SetActive(false);
         numCoins = 0;
@@ -198,7 +197,6 @@ public class UITest : MonoBehaviour
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
         backupBullets = 6;
-
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
         healthSlider.transform.localScale = new Vector3(1f, 1f, 0f); //RESET health slider at start of game to represent 100
@@ -345,7 +343,6 @@ public class UITest : MonoBehaviour
             if (paused && controlsPanel.activeSelf == false)
             {
                 GetComponent<AudioSource>().PlayOneShot(unPauseGame);
-                //Time.timeScale = 1f;
                 paused = false;
                 StaticGameClass.pause = false;
                 pausePanel.SetActive(false);
@@ -366,8 +363,6 @@ public class UITest : MonoBehaviour
                 buttonPromptAnimator.SetTrigger("Pausing");
                 eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
- 
-                //Time.timeScale = 0f;
             }
         }
 
@@ -382,14 +377,11 @@ public class UITest : MonoBehaviour
             UpdateInteractPromptUI("");
             jukeboxMenu.SetActive(true);
             cursor.SetActive(true);
-            //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Jukebox");
             playerRef.enabled = false;
             eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).transform.GetChild(0).gameObject);
             Debug.Log(eventSystem.currentSelectedGameObject);
             paused = true;
             StaticGameClass.pause = true;
-            //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
-            //eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
         }
 
         //RENABLE PLAYER MOVEMENT ONCE JUKEBOX MENU IS CLOSED
@@ -399,31 +391,10 @@ public class UITest : MonoBehaviour
             StaticGameClass.pause = false;
             jukeboxMenu.SetActive(false);
             playerRef.enabled = true;
-            //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Pause");
             cursor.SetActive(false);
-            //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
         }
 
     }
-
-    ////SWITCH BETWEEN JUKEBOX PAGES
-    //public void SwitchJukeboxPages()
-    //{
-    //    if(currentPanel == refillPanel)
-    //    {
-    //        currentPanel = modPanel;
-    //        refillPanel.SetActive(false);
-    //        modPanel.SetActive(true);
-    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
-    //    }
-    //    else if (currentPanel == modPanel)
-    //    {
-    //        currentPanel = refillPanel;
-    //        modPanel.SetActive(false);
-    //        refillPanel.SetActive(true);
-    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
-    //    }
-    //}
 
     public void closeJukebox()
     {
@@ -521,21 +492,21 @@ public class UITest : MonoBehaviour
                         {
                             rIcon.SetActive(false);
                         }
-
                     }
                 }
 
 
             }
-            //Debug.Log(curBullets);
         }
 
     }
-    //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
-    //Or when they've run out of ammo in a single cylinder.
-    //Reload the ammo cylinder, reducing the max bullets they can hold by 2.
-    //1st Reload = 4 Max Bullets, 2nd Reload = 2 Max Bullets
-    //Add/subtract the Bullet sprites accordingly
+    /*
+    /This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
+    *Or when they've run out of ammo in a single cylinder.
+    *Reload the ammo cylinder, reducing the max bullets they can hold by 2.
+    *1st Reload = 4 Max Bullets, 2nd Reload = 2 Max Bullets
+    *Add/subtract the Bullet sprites accordingly
+    */
     public void Reload()
     {
         //RELOAD ANIMATION PLAYS//
@@ -594,7 +565,6 @@ public class UITest : MonoBehaviour
     }
 
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//
-
     //This method gets called when the player takes damage, from Tina's PlayerController script//
     //The player takes X damage, where X is based on the value when the method gets called//
 
@@ -618,11 +588,6 @@ public class UITest : MonoBehaviour
         {
             splatterImage.color = new Color(1, 1, 1, 1);
         }
-        //curHealth = playerRef.health;
-        //healthSliderValue = curHealth;
-        //healthSlider.value = healthSliderValue;
-
-
     }
 
     public void StartSplatterCoroutine()
@@ -663,8 +628,7 @@ public class UITest : MonoBehaviour
         //Activate the Game Over Panel during a Game Over 
         gameOverPanel.SetActive(true);
         eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
-        ////Freeze the game by setting timescale to 1 (temporary) 
-        //Time.timeScale = 0f;
+        StaticGameClass.pause = true;
     }
     //Reloads the current scene the player is on 
     public void RestartGame()
@@ -691,8 +655,6 @@ public class UITest : MonoBehaviour
         quitAnimator.SetTrigger("Quitting");
         GetComponent<AudioSource>().PlayOneShot(quitConfirm);
         eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject); //QuitButton is child of the QuitConfirmPanel object
-        //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Quit");
-
     }
 
     //Closes the Quit Confirmation Panel to allow players to go back to the regular pause menu 
@@ -702,7 +664,6 @@ public class UITest : MonoBehaviour
         pausePanel.SetActive(true);
         GetComponent<AudioSource>().PlayOneShot(quitCancel);
         eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
-        //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Pause");
     }
 
     //Called on the Quit button of the Pause menu,
@@ -711,6 +672,4 @@ public class UITest : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 }

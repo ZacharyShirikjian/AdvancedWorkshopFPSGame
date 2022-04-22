@@ -66,9 +66,8 @@ public class TitleScreen : MonoBehaviour
 
     //HOLDS ALL POSSIBLE STATES OF CONTROLLER
     //ints are individual specific states
-    //0 = none
-    //1 = keyboard
-    //2 = controller
+    //0 = none, 1 = keyboard, 2 = controller
+
     public enum CurrentController { NONE, KEYBOARD, GAMEPAD };
     public CurrentController currentControlScheme = CurrentController.KEYBOARD;
     [SerializeField] private PlayerInput playerInput;
@@ -94,12 +93,6 @@ public class TitleScreen : MonoBehaviour
         //Set volume of the Canvas AudioSource to be = game volume 
         Canvas.GetComponent<AudioSource>().volume = Settings.volume;
         musicManager.GetComponent<AudioManager>().SwitchSong("Title");
-    }
-
-    //// Update is called once per frame
-    void Update()
-    {
-
     }
 
     //Based on method written by Peter Gomes//
@@ -131,14 +124,13 @@ public class TitleScreen : MonoBehaviour
     {
         if (buttonPressed == false)
         {
-            //eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
+            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
             Buttons.SetActive(true);
             promptText.gameObject.SetActive(false);
             buttonPressed = true;
             menuPromptsAnimator.SetTrigger("Menu");
         }
     }
-
     public void BackToMenu()
     {
         //If any panel Object is active, turn them off, return to Main Menu
@@ -170,7 +162,6 @@ public class TitleScreen : MonoBehaviour
     }
 
     //CONTROLS PANEL//
-
     public void OpenControlsPanel()
     {
         controlsPanel.SetActive(true);
@@ -203,8 +194,8 @@ public class TitleScreen : MonoBehaviour
         }
     }
 
-    ////This method is used for opening up the Options Panel in the Title Screen.
-    ////Temporarily hide the other menu elements, and bring them back once the Options Panel is closed.
+    //This method is used for opening up the Options Panel in the Title Screen.
+    //Temporarily hide the other menu elements, and bring them back once the Options Panel is closed.
     public void OpenOptions()
     {
         optionsPanel.SetActive(true);
@@ -227,7 +218,6 @@ public class TitleScreen : MonoBehaviour
     {
         Invoke("PlayAfterDelay", 0.5f);
     }
-
     public void PlayAfterDelay()
     {
         SceneManager.LoadScene(1);

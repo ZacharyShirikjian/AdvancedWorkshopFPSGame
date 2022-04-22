@@ -6,8 +6,6 @@ public class SFXManager : MonoBehaviour
 {
     //Reference to this Audio Source
     [SerializeField] private AudioSource source;
-    [SerializeField] private AudioClip buttonClick;
-    [SerializeField] private AudioClip buttonHover;
 
     //An instance of this AudioManager script, which is used for the DontDestroyOnLoad method. 
     private static SFXManager instance;

@@ -164,6 +164,7 @@ public class UITest : MonoBehaviour
     private AudioSource canvasSource;
 
     private GameObject musicManager;
+    private GameObject sfxManager;
 
     //HOLDS ALL POSSIBLE STATES OF CONTROLLER
     //ints are individual specific states
@@ -223,10 +224,16 @@ public class UITest : MonoBehaviour
         }
 
         extraAmmoUI.SetText("0");
-        Debug.Log(AudioListener.volume);
+        //Debug.Log(AudioListener.volume);
 
+        //sfxManager = GameObject.Find("SFXManager");
         musicManager = GameObject.Find("MusicManager");
         musicManager.GetComponent<AudioManager>().SwitchSong("Gameplay");
+        //canvasSource.volume = Settings.volume;
+        Debug.Log(Settings.volume);
+        //musicManager.GetComponent<AudioSource>().volume = Settings.musicVolume;
+        //sfxManager.GetComponent<AudioSource>().volume = Settings.volume;
+
     }
 
     // Update is called once per frame

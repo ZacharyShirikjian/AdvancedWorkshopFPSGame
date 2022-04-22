@@ -18,6 +18,9 @@ public class TitleScreen : MonoBehaviour
 {
     //Reference to music GameObject
     [SerializeField] private GameObject musicManager;
+    //Reference to music GameObject
+    [SerializeField] private GameObject sfxManager;
+
     //Controls controls;
     //Controls.MenusActions menu;
     //REFERENCE TO AUDIOSOURCE//
@@ -62,7 +65,8 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private bool buttonPressed = false;
 
     //Reference to Menu Buttons 
-    public GameObject Buttons;
+    public GameObject ButtonParent;
+    public GameObject[] Buttons = new GameObject[5];
 
     //HOLDS ALL POSSIBLE STATES OF CONTROLLER
     //ints are individual specific states
@@ -84,14 +88,15 @@ public class TitleScreen : MonoBehaviour
         creditsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         curPanel = keyboardInput;
-        source = GameObject.Find("SFXManager").GetComponent<AudioSource>();
+        //source = GameObject.Find("SFXManager").GetComponent<AudioSource>();
         optionsPanel.SetActive(false);
         buttonPressed = false;
         promptText.SetText("Press          to Start");
-        Buttons.SetActive(false);
+        ButtonParent.SetActive(false);
 
         //Set volume of the Canvas AudioSource to be = game volume 
-        Canvas.GetComponent<AudioSource>().volume = Settings.volume;
+        musicManager.GetComponent<AudioSource>().volume = Settings.musicVolume;
+        sfxManager.GetComponent<AudioSource>().volume = Settings.volume;
         musicManager.GetComponent<AudioManager>().SwitchSong("Title");
     }
 
@@ -124,10 +129,10 @@ public class TitleScreen : MonoBehaviour
     {
         if (buttonPressed == false)
         {
-            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(1).gameObject);
-            Buttons.SetActive(true);
+            eventSystem.SetSelectedGameObject(ButtonParent.transform.GetChild(1).gameObject);
             promptText.gameObject.SetActive(false);
             buttonPressed = true;
+            ButtonParent.SetActive(true);
             menuPromptsAnimator.SetTrigger("Menu");
         }
     }
@@ -139,8 +144,11 @@ public class TitleScreen : MonoBehaviour
             optionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             controlsPanel.SetActive(false);
-            Buttons.SetActive(true);
-            eventSystem.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
+            for (int i = 0; i < 5; i++)
+            {
+                Buttons[i].GetComponent<Button>().interactable = true;
+            }
+            eventSystem.SetSelectedGameObject(ButtonParent.transform.GetChild(0).gameObject);
             menuPromptsAnimator.SetTrigger("Menu");
         }
        
@@ -151,14 +159,22 @@ public class TitleScreen : MonoBehaviour
     {
         creditsPanel.SetActive(true);
         creditsAnim.SetTrigger("Credits");
-        Buttons.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
+        //Buttons.SetActive(false);
     }
 
     //Called when clicking on the Back/Close button on the Credits panel when it's opened.
     public void CloseCredits()
     {
         creditsPanel.SetActive(false);
-        Buttons.SetActive(true);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = true;
+        }
+        //Buttons.SetActive(true);
     }
 
     //CONTROLS PANEL//
@@ -169,7 +185,11 @@ public class TitleScreen : MonoBehaviour
         keyboardInput.SetActive(true);
         controllerInput.SetActive(false);
         controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
-        Buttons.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
+       // Buttons.SetActive(false);
     }
 
     //Gets called when player presses TAB on TitleScreen.
@@ -200,7 +220,11 @@ public class TitleScreen : MonoBehaviour
     {
         optionsPanel.SetActive(true);
         optionsAnim.SetTrigger("Options");
-        Buttons.SetActive(false);
+        //Buttons.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
         eventSystem.SetSelectedGameObject(optionsPanel.transform.GetChild(3).gameObject); //this is the Volume Slider GObject
     }
 
@@ -208,7 +232,10 @@ public class TitleScreen : MonoBehaviour
     public void CloseOptions()
     {
         optionsPanel.SetActive(false);
-        Buttons.SetActive(true);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = true;
+        }
     }
 
     //This method is used for loading the main scene of the game,

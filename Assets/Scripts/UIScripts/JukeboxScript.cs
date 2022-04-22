@@ -189,7 +189,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
         else if (selected == false)
         {
-            if (playRef.ammo >= playRef.maxAmmo)
+            if (playRef.ammo != 0 && playRef.ammo >= playRef.maxAmmo)
             {
                 selectPromptText.SetText("Ammo Maxed Out");
                 audiSource.PlayOneShot(cantAfford);
@@ -197,7 +197,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
                 Invoke("ChangeSelectPromptText", 1f);
             }
 
-            else if (playRef.ammo <= playRef.maxAmmo)
+            else if (playRef.ammo < playRef.maxAmmo)
             {
                 JukeboxButtonSelected();
             }

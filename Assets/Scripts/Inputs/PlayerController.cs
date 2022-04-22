@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip reloadClip;
     [SerializeField] private AudioClip takeDamage;
     [SerializeField] private AudioClip playerDead;
-    [SerializeField] private AudioSource audioSource;
+    private AudioSource audioSource;
 
 
     public void Awake()
@@ -85,8 +85,18 @@ public class PlayerController : MonoBehaviour
         uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
         mouseLook = GetComponent<MouseLook>();
 
-        mouseLook.sensitivityX = defaultSenseX;
-        mouseLook.sensitivityY = defaultSenseY;
+        if (uiRef.currentControlScheme == UITest.CurrentController.KEYBOARD)
+        {
+            mouseLook.sensitivityX = defaultSenseX;
+            mouseLook.sensitivityY = defaultSenseY;
+        }
+
+
+        else if (uiRef.currentControlScheme == UITest.CurrentController.GAMEPAD)
+        {
+            mouseLook.sensitivityX = 50;
+            mouseLook.sensitivityY = 3;
+        }
 
         controller.height = standHeight;
         crouchHeight = standHeight - crouchPercent;
@@ -96,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
         zoomSenseX = defaultSenseX / 0.5f;
         zoomSenseY = defaultSenseY / 0.5f;
+        audioSource = GameObject.Find("SFXManager").GetComponent<AudioSource>();
     }
 
 

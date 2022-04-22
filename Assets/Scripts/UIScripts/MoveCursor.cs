@@ -10,7 +10,6 @@ public class MoveCursor : MonoBehaviour
     [SerializeField] private GameObject gunCursor;
     [SerializeField] private EventSystem eventSystem;
     private Vector2 curCursorPos;
-
     void Update()
     {
         if(EventSystem.current.currentSelectedGameObject != null)

@@ -21,7 +21,7 @@ public class TitleScreen : MonoBehaviour
     //Controls controls;
     //Controls.MenusActions menu;
     //REFERENCE TO AUDIOSOURCE//
-    [SerializeField] private AudioSource source; 
+    private AudioSource source; 
     public EventSystem eventSystem;
     public GameObject Canvas;
 
@@ -84,7 +84,7 @@ public class TitleScreen : MonoBehaviour
         creditsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         curPanel = keyboardInput;
-
+        source = GameObject.Find("SFXManager").GetComponent<AudioSource>();
         optionsPanel.SetActive(false);
         buttonPressed = false;
         promptText.SetText("Press          to Start");

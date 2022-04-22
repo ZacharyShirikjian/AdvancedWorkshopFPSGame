@@ -22,6 +22,7 @@ public class SettingsSlider : MonoBehaviour
     public GameObject Canvas;
 
     [SerializeField] private GameObject musicManager;
+    [SerializeField] private GameObject sfxManager;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class SettingsSlider : MonoBehaviour
         Settings.ChangeVolume((int)volume_S.value);
         volume_S.value = Settings.volume;
         volumeNum.text = volume_S.value.ToString();
+        sfxManager.GetComponent<AudioSource>().volume = ((float)Settings.volume / 100);
         //AudioListener.volume = Settings.volume;
         //Canvas.GetComponent<AudioSource>().volume = ((float) Settings.volume / 100);
         //Debug.Log(AudioListener.volume);

@@ -84,7 +84,7 @@ public class EnemyBasic : MonoBehaviour
 
     public void TrackPlayer()
     {
-        if(StaticGameClass.pause == false)
+        if(StaticGameClass.pause == false && GetComponent<NavMeshAgent>() != null)
         {
             agent.destination = player.transform.position;
         }

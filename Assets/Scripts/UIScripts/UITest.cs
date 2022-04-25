@@ -387,7 +387,7 @@ public class UITest : MonoBehaviour
     {
         if (gameOver == false)
         {
-            if (paused && controlsPanel.activeSelf == false)
+            if (paused && (controlsPanel.activeSelf == false || settingsPanel.activeSelf == false))
             {
                 GetComponent<AudioSource>().PlayOneShot(unPauseGame);
                 paused = false;

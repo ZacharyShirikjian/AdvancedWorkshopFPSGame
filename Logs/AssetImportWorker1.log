@@ -1,0 +1,306 @@
+Using pre-set license
+Built from '2020.3/release' branch; Version is '2020.3.15f2 (6cf78cb77498) revision 7141260'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 22000.613; Version 2009; 64bit' Language: 'en' Physical Memory: 7969 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Users\Kalynn\Documents\Level Design\2020.3.15f2\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/Kalynn/Documents/Mobile Game Design/AdvancedWorkshopFPSGame
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+53776
+Successfully changed project path to: C:/Users/Kalynn/Documents/Mobile Game Design/AdvancedWorkshopFPSGame
+C:/Users/Kalynn/Documents/Mobile Game Design/AdvancedWorkshopFPSGame
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 50.81 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.15f2 (6cf78cb77498)
+[Subsystems] Discovering subsystems at path C:/Users/Kalynn/Documents/Level Design/2020.3.15f2/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Kalynn/Documents/Mobile Game Design/AdvancedWorkshopFPSGame/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Iris(R) Plus Graphics (ID=0x8a52)
+    Vendor:   
+    VRAM:     3984 MB
+    Driver:   26.20.100.7926
+Initialize mono
+Mono path[0] = 'C:/Users/Kalynn/Documents/Level Design/2020.3.15f2/Editor/Data/Managed'
+Mono path[1] = 'C:/Users/Kalynn/Documents/Level Design/2020.3.15f2/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Users/Kalynn/Documents/Level Design/2020.3.15f2/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56536
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Users/Kalynn/Documents/Level Design/2020.3.15f2/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002806 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 63.78 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.566 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1566ms)
+		BeginReloadAssembly (70ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (675ms)
+			LoadAssemblies (69ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (266ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (255ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (64ms)
+				BeforeProcessingInitializeOnLoad (12ms)
+				ProcessInitializeOnLoadAttributes (122ms)
+				ProcessInitializeOnLoadMethodAttributes (50ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.006195 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 45.61 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in 10.367 seconds
+Domain Reload Profiling:
+	ReloadAssembly (10381ms)
+		BeginReloadAssembly (549ms)
+			ExecutionOrderSort (10ms)
+			DisableScriptedObjects (18ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (63ms)
+		EndReloadAssembly (9729ms)
+			LoadAssemblies (5982ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (2440ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (65ms)
+			SetupLoadedEditorAssemblies (1199ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (46ms)
+				BeforeProcessingInitializeOnLoad (76ms)
+				ProcessInitializeOnLoadAttributes (1054ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (12ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (13ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.26 seconds
+Refreshing native plugins compatible for Editor in 0.43 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1758 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 80.8 MB.
+System memory in use after: 80.8 MB.
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2198.
+Total: 2.321800 ms (FindLiveObjects: 0.153500 ms CreateObjectMapping: 0.058200 ms MarkObjects: 2.029700 ms  DeleteObjects: 0.078800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Prefabs/Kalynn's Assets/HangingLight_Glass.fbx
+  artifactKey: Guid(05adf35b17934db418ada37aaa58c7be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/HangingLight_Glass.fbx using Guid(05adf35b17934db418ada37aaa58c7be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9575ade9fef6511b13d2b9fcdd49daf6') in 0.285955 seconds 
+  Import took 0.290040 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/HangingLight_Roof.fbx
+  artifactKey: Guid(a9b5cfbf38a26af4eb7f4f0132aea7ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/HangingLight_Roof.fbx using Guid(a9b5cfbf38a26af4eb7f4f0132aea7ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d92ca3e0d7d6fff3a2c3d0b0f1f97ce') in 0.285703 seconds 
+  Import took 0.293146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000541 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Bar_Corner.fbx
+  artifactKey: Guid(f5ed779803e76d043b3c5c18c1bb33c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Bar_Corner.fbx using Guid(f5ed779803e76d043b3c5c18c1bb33c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68f5d40374c7c05815f79f0305e4d1db') in 0.107468 seconds 
+  Import took 0.113700 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000294 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Bar_Straight.fbx
+  artifactKey: Guid(eb8fa45f6ea03ef43947e045c15360fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Bar_Straight.fbx using Guid(eb8fa45f6ea03ef43947e045c15360fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aecbd4f7d7b67e765c69c55fe60b3b46') in 0.202908 seconds 
+  Import took 0.208304 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000328 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Bar_End.fbx
+  artifactKey: Guid(ecbc4351e344c1646af6d5fc4f23619f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Bar_End.fbx using Guid(ecbc4351e344c1646af6d5fc4f23619f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f19cba89b5c4abbcb00c5441fafcd2a') in 0.131376 seconds 
+  Import took 0.136434 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000459 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Bench_Cushined.fbx
+  artifactKey: Guid(826feea0267a2fe4e96c888b3681674b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Bench_Cushined.fbx using Guid(826feea0267a2fe4e96c888b3681674b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30f9ed5d8d50351cbc7b17f6dfe69637') in 0.063954 seconds 
+  Import took 0.069427 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000539 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/HangingLight.fbx
+  artifactKey: Guid(0dc976f80d3f84647b45d29ad7bb16fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/HangingLight.fbx using Guid(0dc976f80d3f84647b45d29ad7bb16fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3c1d3accbc20c641f6842a744f9615f') in 0.135549 seconds 
+  Import took 0.142514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000411 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Bench.fbx
+  artifactKey: Guid(6f0f29f03712b5d4782be5302f663ca3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Bench.fbx using Guid(6f0f29f03712b5d4782be5302f663ca3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9866c86ad0d04a7509c8dce07b95992') in 0.075977 seconds 
+  Import took 0.083038 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000640 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Stool.fbx
+  artifactKey: Guid(0c8102e9120c3aa4c9e83b1135233351) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Stool.fbx using Guid(0c8102e9120c3aa4c9e83b1135233351) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '718f3319194e3e8280b11dfc26490234') in 0.052810 seconds 
+  Import took 0.058783 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.157737 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Prefabs/Bar_Straight.prefab
+  artifactKey: Guid(ed82cab7ab689c344bbab09974888192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Prefabs/Bar_Straight.prefab using Guid(ed82cab7ab689c344bbab09974888192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87fbcd0b9dd00c67cb0096a39334f35d') in 0.033283 seconds 
+  Import took 0.040079 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.901442 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bar_Corner.prefab
+  artifactKey: Guid(974b9746413b5634cb5a8ad7df00d1ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bar_Corner.prefab using Guid(974b9746413b5634cb5a8ad7df00d1ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f467f174cbb4e036cf760592d9097448') in 0.037396 seconds 
+  Import took 0.046560 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004055 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bar_Corner.prefab
+  artifactKey: Guid(974b9746413b5634cb5a8ad7df00d1ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bar_Corner.prefab using Guid(974b9746413b5634cb5a8ad7df00d1ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f467f174cbb4e036cf760592d9097448') in 0.026863 seconds 
+  Import took 0.039419 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.702151 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bar_End.prefab
+  artifactKey: Guid(c2745a9560fa0584c8b3eb8770f61d16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bar_End.prefab using Guid(c2745a9560fa0584c8b3eb8770f61d16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2dff9014c4b2cd81cfd64dfbbd04232') in 0.039130 seconds 
+  Import took 0.048630 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.123748 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bench.prefab
+  artifactKey: Guid(f069c5fdc84c7c84cad5c9c95460d5da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bench.prefab using Guid(f069c5fdc84c7c84cad5c9c95460d5da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35bcec632bfe4cb66cc79d1ae23f8203') in 0.027739 seconds 
+  Import took 0.033208 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.189762 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bench_Cushined.prefab
+  artifactKey: Guid(d34b647f8f23ac0409e0700e7b7c1a9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Bench_Cushined.prefab using Guid(d34b647f8f23ac0409e0700e7b7c1a9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab73331cd8bf6c61cbc323d384c3f80e') in 0.023678 seconds 
+  Import took 0.033620 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.431352 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight.prefab
+  artifactKey: Guid(4f1f304575f0c844f9b2ff0f71510f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight.prefab using Guid(4f1f304575f0c844f9b2ff0f71510f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0862af1550598b8afaf7cae830a09cf2') in 0.025828 seconds 
+  Import took 0.036479 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.067260 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Glass.prefab
+  artifactKey: Guid(0e76650d6bae9ee45af68528dcf50282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Glass.prefab using Guid(0e76650d6bae9ee45af68528dcf50282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b06a305f708bcacd03be40e2a2ccdf0') in 0.023145 seconds 
+  Import took 0.030158 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.027459 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Glass.prefab
+  artifactKey: Guid(0e76650d6bae9ee45af68528dcf50282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Glass.prefab using Guid(0e76650d6bae9ee45af68528dcf50282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b06a305f708bcacd03be40e2a2ccdf0') in 0.021552 seconds 
+  Import took 0.028681 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.139773 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Roof.prefab
+  artifactKey: Guid(3b633b58cea292f439dae66ea59dc43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Roof.prefab using Guid(3b633b58cea292f439dae66ea59dc43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2348cbaf87582c1dced9c45a47433e7') in 0.045530 seconds 
+  Import took 0.057573 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005824 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Roof.prefab
+  artifactKey: Guid(3b633b58cea292f439dae66ea59dc43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/HangingLight_Roof.prefab using Guid(3b633b58cea292f439dae66ea59dc43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2348cbaf87582c1dced9c45a47433e7') in 0.063646 seconds 
+  Import took 0.076442 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.701796 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Stool.prefab
+  artifactKey: Guid(c8e18f7acf10e5147a7f6e2ee679f4a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Stool.prefab using Guid(c8e18f7acf10e5147a7f6e2ee679f4a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '044a2537d80da48fb8fb344a461f0832') in 0.028403 seconds 
+  Import took 0.032566 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.027804 seconds.
+  path: Assets/Prefabs/Kalynn's Assets/Final Prefabs/Stool.prefab
+  artifactKey: Guid(c8e18f7acf10e5147a7f6e2ee679f4a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Kalynn's Assets/Final Prefabs/Stool.prefab using Guid(c8e18f7acf10e5147a7f6e2ee679f4a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '044a2537d80da48fb8fb344a461f0832') in 0.020395 seconds 
+  Import took 0.025637 seconds .
+

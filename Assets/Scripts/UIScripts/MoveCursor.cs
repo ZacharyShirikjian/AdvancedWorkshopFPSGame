@@ -10,11 +10,12 @@ public class MoveCursor : MonoBehaviour
     [SerializeField] private GameObject gunCursor;
     [SerializeField] private EventSystem eventSystem;
     private Vector2 curCursorPos;
+  
     void Update()
     {
         if(EventSystem.current.currentSelectedGameObject != null)
         {
-            curCursorPos = new Vector2(EventSystem.current.currentSelectedGameObject.transform.position.x, EventSystem.current.currentSelectedGameObject.transform.position.y);
+            curCursorPos = new Vector2(EventSystem.current.currentSelectedGameObject.transform.GetChild(0).position.x, EventSystem.current.currentSelectedGameObject.transform.position.y);
             gunCursor.transform.position = curCursorPos;
         }
 

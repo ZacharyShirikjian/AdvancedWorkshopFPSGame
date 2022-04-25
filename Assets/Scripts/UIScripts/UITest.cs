@@ -359,7 +359,7 @@ public class UITest : MonoBehaviour
     //For Pausing/Unpausing Game
     public void PauseGame()
     {
-        if(gameOver == false)
+        if (gameOver == false)
         {
             if (paused && controlsPanel.activeSelf == false)
             {
@@ -386,6 +386,7 @@ public class UITest : MonoBehaviour
                 Debug.Log(eventSystem.currentSelectedGameObject);
             }
         }
+
 
 
     }
@@ -613,7 +614,10 @@ public class UITest : MonoBehaviour
 
     public void StartSplatterCoroutine()
     {
-        StartCoroutine(FadeSplatterImage());
+        if(gameOver == false && paused == false)
+        {
+            StartCoroutine(FadeSplatterImage());
+        }
     }
 
     //REFERENCE FOR FADING OUT SPLATTER IMAGE USING COROUTINE
@@ -642,13 +646,11 @@ public class UITest : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
-
-        //REPLACE THIS W/ TRIGGERING DEATH ANIMATION LATER (Once implemented)
         playerRef.enabled = false;
 
         //Activate the Game Over Panel during a Game Over 
         gameOverPanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject);
         StaticGameClass.pause = true;
     }
     //Reloads the current scene the player is on 
@@ -683,9 +685,17 @@ public class UITest : MonoBehaviour
     public void CloseQuitPanel()
     {
         quitPanel.SetActive(false);
-        pausePanel.SetActive(true);
+        if (pausePanel.activeSelf == false && gameOverPanel.activeSelf == false)
+        {
+            pausePanel.SetActive(true);
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        }
+
+        else if (gameOverPanel.activeSelf == true)
+        {
+            eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        }
         GetComponent<AudioSource>().PlayOneShot(quitCancel);
-        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
     }
 
     //Called on the Quit button of the Pause menu,

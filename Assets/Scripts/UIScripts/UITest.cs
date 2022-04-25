@@ -175,6 +175,10 @@ public class UITest : MonoBehaviour
     public CurrentController currentControlScheme = CurrentController.KEYBOARD;
     [SerializeField] private PlayerInput playerInput;
 
+    //Reference to Menu Buttons 
+    //public GameObject ButtonParent;
+    public GameObject[] Buttons = new GameObject[5];
+
     //Set the instance to be this class
     private void Awake()
     {
@@ -207,6 +211,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pauseAnimator = pausePanel.GetComponentInChildren<Animator>();
+        //ButtonParent.SetActive(false);
         controlsPanel.SetActive(false);
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
@@ -288,7 +293,11 @@ public class UITest : MonoBehaviour
     {
         controlsPanel.SetActive(true);
         controlsPanel.GetComponentInChildren<Animator>().SetTrigger("Controls");
-        pausePanel.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
+        //pausePanel.SetActive(false);
         keyboardInput.SetActive(true);
         controllerInput.SetActive(false);
         controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
@@ -300,7 +309,12 @@ public class UITest : MonoBehaviour
         if (controlsPanel.activeSelf == true)
         {
             controlsPanel.SetActive(false);
-            pausePanel.SetActive(true);
+            for (int i = 0; i < 5; i++)
+            {
+                Buttons[i].GetComponent<Button>().interactable = true;
+            }
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+            //pausePanel.SetActive(true);
         }
 
         else if (jukeboxMenu.activeSelf == true)
@@ -368,7 +382,7 @@ public class UITest : MonoBehaviour
                 //pausePanel.transform.GetChild(1).gameObject is the Resume button child of the PausePanel Parent GOBject, GetChild (0) is the PauseHeader)
                 pauseAnimator.SetTrigger("Pausing");
                 buttonPromptAnimator.SetTrigger("Pausing");
-                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
+                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
             }
         }
@@ -634,7 +648,7 @@ public class UITest : MonoBehaviour
 
         //Activate the Game Over Panel during a Game Over 
         gameOverPanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
+        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
         StaticGameClass.pause = true;
     }
     //Reloads the current scene the player is on 
@@ -658,6 +672,7 @@ public class UITest : MonoBehaviour
     public void OpenQuitPanel()
     {
         quitPanel.SetActive(true);
+        StaticGameClass.pause = true;
         pausePanel.SetActive(false);
         quitAnimator.SetTrigger("Quitting");
         GetComponent<AudioSource>().PlayOneShot(quitConfirm);
@@ -670,7 +685,7 @@ public class UITest : MonoBehaviour
         quitPanel.SetActive(false);
         pausePanel.SetActive(true);
         GetComponent<AudioSource>().PlayOneShot(quitCancel);
-        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
+        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
     }
 
     //Called on the Quit button of the Pause menu,

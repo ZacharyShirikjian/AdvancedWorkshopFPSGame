@@ -42,6 +42,9 @@ public class UITest : MonoBehaviour
     //Controller Input,Controls Menu
     [SerializeField] private GameObject controllerInput;
 
+    //SETTINGS PANEL//
+    [SerializeField] private GameObject settingsPanel;
+
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
     private PlayerController playerRef;
 
@@ -211,7 +214,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pauseAnimator = pausePanel.GetComponentInChildren<Animator>();
-        //ButtonParent.SetActive(false);
+        settingsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
@@ -303,6 +306,18 @@ public class UITest : MonoBehaviour
         controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
     }
 
+    //Settings PANEL
+    public void OpenSettingsPanel()
+    {
+        settingsPanel.SetActive(true);
+        settingsPanel.GetComponentInChildren<Animator>().SetTrigger("Options");
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
+        eventSystem.SetSelectedGameObject(settingsPanel.transform.GetChild(3).gameObject); //this is the Volume Slider GObject
+
+    }
     //ONE BUTTON FOR CLOSING ANY MENU WHICH IS OPEN
     public void CloseMenu()
     {
@@ -325,6 +340,17 @@ public class UITest : MonoBehaviour
                 curJukebox.GetComponent<JukeboxScript>().CancelOption();
             }
         }
+
+        else if (settingsPanel.activeSelf == true)
+        {
+            settingsPanel.SetActive(false);
+            for (int i = 0; i < 5; i++)
+            {
+                Buttons[i].GetComponent<Button>().interactable = true;
+            }
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        }
+
         else if (pausePanel.activeSelf == true)
         {
             PauseGame();
@@ -381,7 +407,7 @@ public class UITest : MonoBehaviour
 
                 //pausePanel.transform.GetChild(1).gameObject is the Resume button child of the PausePanel Parent GOBject, GetChild (0) is the PauseHeader)
                 pauseAnimator.SetTrigger("Pausing");
-                buttonPromptAnimator.SetTrigger("Pausing");
+                buttonPromptAnimator.SetTrigger("Menu");
                 eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
             }

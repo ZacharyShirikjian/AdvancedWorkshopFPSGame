@@ -153,43 +153,55 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
 
             }
         }
-
-    //RELOAD 2 BULLETS (IF NOT AT 6 ALREADY)
     public void ReloadAmmo()
     {
         if (selected == true)
         {
-            playRef.ammo = playRef.ammo + 2;
 
-            if (playRef.ammo > playRef.maxAmmo)
+            //if (playRef.ammo > playRef.maxAmmo)
+            //{
+            //    playRef.ammo = playRef.maxAmmo;
+            //}
+
+            //if(playRef.ammo < playRef.maxAmmo)
+            //{
+            //    if (playRef.maxAmmo > 6)
+            //    {
+            //        Debug.Log("refill MORE THAN 6");
+            //        playRef.ammo = playRef.maxAmmo;
+            //        uiRef.backupBullets = (int) playRef.ammo;
+            //    }
+
+            //    else if (playRef.maxAmmo <= 6)
+            //    {
+            //        Debug.Log("refill back to 6");
+            //        uiRef.backupBullets = 6;
+            //        playRef.ammo = 6;
+            //        playRef.maxAmmo = 6;
+            //    }
+            //}
+            if(playRef.ammo > 6)
             {
-                playRef.ammo = playRef.maxAmmo;
+                playRef.ammo = uiRef.totalBullets - 6;
+                playRef.maxAmmo = playRef.ammo;
+                uiRef.backupBullets = 6;
+                uiRef.UpdateAmmoUI(true);
             }
 
-            if(playRef.ammo >= 6)
+            else if(playRef.ammo < 6)
             {
-                if (playRef.maxAmmo == 6)
-                {
-                    uiRef.backupBullets = 6;
-
-                }
-                else if (playRef.maxAmmo == 4)
-                {
-                    uiRef.backupBullets = 2;
-                }
-
-                else if(playRef.maxAmmo == 2)
-                {
-                    uiRef.backupBullets = 0;
-                }
+                playRef.ammo = 6;
+                playRef.maxAmmo = 6;
+                uiRef.backupBullets = 6;
+                uiRef.UpdateAmmoUI(true);
             }
-            uiRef.UpdateAmmoUI();
+
             JukeboxButtonSelected();
         }
 
         else if (selected == false)
         {
-            if (playRef.ammo != 0 && playRef.ammo >= playRef.maxAmmo)
+            if ((playRef.ammo >= 6) && (playRef.ammo == playRef.maxAmmo))
             {
                 selectPromptText.SetText("Ammo Maxed Out");
                 audiSource.PlayOneShot(cantAfford);
@@ -197,7 +209,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
                 Invoke("ChangeSelectPromptText", 1f);
             }
 
-            else if (playRef.ammo < playRef.maxAmmo)
+            else if ((playRef.maxAmmo < 6) && (playRef.ammo <= playRef.maxAmmo))
             {
                 JukeboxButtonSelected();
             }
@@ -230,7 +242,8 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
             playRef.maxAmmo += 2;
             playRef.ammo = playRef.maxAmmo;
             uiRef.extraBullets = (int) playRef.maxAmmo - 6;
-            uiRef.backupBullets += 2;
+            uiRef.backupBullets = 6;
+            uiRef.totalBullets += 2;
             uiRef.Reload();
             JukeboxButtonSelected();
         }
@@ -318,6 +331,7 @@ public class JukeboxScript : MonoBehaviour //required for OnSelect
         uiRef.jukeboxOpen = false;
         uiRef.JukeboxUI();
         Debug.Log("Jukebox menu closing...");
+        this.enabled = false;
     }
 
 }

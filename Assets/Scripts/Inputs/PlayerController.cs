@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("pew pew");
 
                 //CALL UI METHOD TO UPDATE UI WHEN SHOOTING//
-                uiRef.UpdateAmmoUI();
+                uiRef.UpdateAmmoUI(false);
 
             }
 

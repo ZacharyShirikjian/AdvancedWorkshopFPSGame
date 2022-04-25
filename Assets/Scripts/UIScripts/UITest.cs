@@ -152,11 +152,14 @@ public class UITest : MonoBehaviour
         //Which decreases by 2 every time they reload their gun
         [SerializeField] public int maxBullets;
 
-        //The total amount of bullets which the player has left in their gun
+        //The amount of bullets which the player has left in their gun, without extra ammo
         [SerializeField] public int backupBullets;
-        
-        //Build index of the current scene (will be more important once more scenes are added)
-       [SerializeField] private int curSceneIndex;
+
+        //The total amount of bullets which the player has left in their gun
+        [SerializeField] public int totalBullets;
+
+    //Build index of the current scene (will be more important once more scenes are added)
+    [SerializeField] private int curSceneIndex;
 
     //Reference to reserve ammo (when players have > 6 bullets at a time) 
     [SerializeField] public int extraBullets;
@@ -205,6 +208,7 @@ public class UITest : MonoBehaviour
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
         backupBullets = 6;
+        totalBullets = 12;
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
         healthSlider.transform.localScale = new Vector3(1f, 1f, 0f); //RESET health slider at start of game to represent 100
@@ -490,7 +494,7 @@ public class UITest : MonoBehaviour
     }
     //This method gets called when a player shoots a bullet, called from the PlayerControllerScript
 
-    public void UpdateAmmoUI()
+    public void UpdateAmmoUI(bool upgradedAmmo)
     {
         /*
             * Test method for updating the ammo counter UI;
@@ -502,49 +506,58 @@ public class UITest : MonoBehaviour
             * If the player is out of ammo, 
             * The curStateText UI lets them know they've run out of ammo
         */
-
-        //IF JUKEBOX IS CLOSED OR PLAYER DIDN'T GET AMMO REFILL
-        if(!jukeboxOpen)
+        if(upgradedAmmo == true)
         {
-            //extraBullets = (int)playerRef.maxAmmo - 6;
-            //extraAmmoUI.text = "+" + extraBullets.ToString();
-            if (curBullets > 0)
+            Debug.Log("aoksERHFADSFOICHASDOI8HDSAFOI8DSAH");
+            for (int i = 0; i < 6; i++)
             {
-                if(curBullets > 6)
-                {
-                    extraBullets--;
-                    //extraAmmoUI.text = "+" + extraBullets.ToString();
-                    curBullets--;
-                }
+                Bullets[i].GetComponentInChildren<Image>().enabled = true;
+            }
+            upgradedAmmo = false;
+        }
 
-                else if (curBullets <= 6)
+        if(upgradedAmmo == false)
+        {
+            if (!jukeboxOpen)
+            {
+                //extraBullets = (int)playerRef.maxAmmo - 6;
+                //extraAmmoUI.text = "+" + extraBullets.ToString();
+                if (curBullets > 0)
                 {
-                    //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
-
-                    ammoAnimator.SetTrigger("RotateBullet");
-                    //For each child in the Bullets GameObject,
-                    //Hide the bottom-most element when a bullet is shot
-                    Bullets[curBullets -1].GetComponentInChildren<Image>().enabled = false;
-                    curBullets--;
-                    if (curBullets <= 0)
+                    if (curBullets > 6)
                     {
-                        Debug.Log(curBullets);
-                        Debug.Log("Out of Ammo");
-                        curStateText.SetText("Out of Ammo");
-                        if (maxBullets > 2)
-                        {
-                            rIcon.SetActive(true);
-                        }
+                        extraBullets--;
+                        //extraAmmoUI.text = "+" + extraBullets.ToString();
+                        curBullets--;
+                    }
+                    else if (curBullets <= 6)
+                    {
+                        //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
 
-                        else if (maxBullets <= 2)
+                        ammoAnimator.SetTrigger("RotateBullet");
+                        //For each child in the Bullets GameObject,
+                        //Hide the bottom-most element when a bullet is shot
+                        Bullets[curBullets - 1].GetComponentInChildren<Image>().enabled = false;
+                        curBullets--;
+                        if (curBullets <= 0)
                         {
-                            rIcon.SetActive(false);
+                            Debug.Log(curBullets);
+                            Debug.Log("Out of Ammo");
+                            curStateText.SetText("Out of Ammo");
+                            if (maxBullets > 2)
+                            {
+                                rIcon.SetActive(true);
+                            }
+
+                            else if (maxBullets <= 2)
+                            {
+                                rIcon.SetActive(false);
+                            }
                         }
                     }
                 }
-
-
             }
+        
         }
 
     }

@@ -6,50 +6,48 @@ public class Interactables : MonoBehaviour
 {
 
     public bool interactedBefore;
+    public bool doorOpen;
 
-    Controls.MovementActions movement;
+    public GameObject pointA;
+    public GameObject pointB;
 
-    public Animator animator;
+    public GameObject player;
 
-
+    public string actionPrompt;
     // Start is called before the first frame update
     void Start()
     {
+        doorOpen = false;
+        actionPrompt = "Open Door";
         interactedBefore = false;
-        animator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.tag == "Door")
+        if (gameObject.tag == "Door" && doorOpen == true)
         {
             StartCoroutine(OpenDoor());
-        }
-
-        if (gameObject.tag == "Ladder")
-        {
-            StartCoroutine(ClimbLadder());
         }
 
     }
 
     IEnumerator OpenDoor()
     {
-        movement.Disable();
-        animator.SetTrigger("OpenTheDoor");
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        movement.Enable();
+        StaticGameClass.pause = true;
+        //fade to black - lerp
+        yield return new WaitForSeconds(2.5f);
+        player.transform.position = pointA.transform.position;
+        //fade back in, then fade to black again
+        yield return new WaitForSeconds(2.5f);
+        player.transform.position = pointB.transform.position;
+        //fade back in
+        yield return new WaitForSeconds(2.5f);
+
+        StaticGameClass.pause = false;
     }
 
-
-    IEnumerator ClimbLadder()
-    {
-        movement.Disable();
-        animator.SetTrigger("ClimbTheLadder");
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        movement.Enable();
-    }
 
 }

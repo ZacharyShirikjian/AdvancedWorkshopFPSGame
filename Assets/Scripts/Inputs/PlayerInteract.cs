@@ -86,15 +86,15 @@ public class PlayerInteract : MonoBehaviour
         if (other.gameObject.CompareTag("Door"))
         {
             Debug.Log("[DOOR]");
-            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == false)
+            if (other.gameObject.GetComponent<Interactables>().interactedBefore == false)
             {
                 currentInteractable = other.gameObject;
                 interactableScript = currentInteractable.GetComponent<Interactables>();
                 canInteract = true;
-                uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<TestInteractableScript>().actionPrompt);
+                uiRef.UpdateInteractPromptUI(other.gameObject.GetComponent<Interactables>().actionPrompt);
             }
 
-            if (other.gameObject.GetComponent<TestInteractableScript>().interactedBefore == true)
+            if (other.gameObject.GetComponent<Interactables>().interactedBefore == true)
             {
                 currentInteractable = other.gameObject;
                 interactableScript = currentInteractable.GetComponent<Interactables>();

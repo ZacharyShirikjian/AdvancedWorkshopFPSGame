@@ -45,6 +45,7 @@ public class PlayerInteract : MonoBehaviour
             canInteract = false;
             interactableScript.interactedBefore = true;
             interactableScript.enabled = true;
+            //interactableScript.doorOpen = true;
             uiRef.UpdateInteractPromptUI("");
             //TO DO: call the specific interactable script to do specific action (eg climb, heal, etc)
         }

@@ -55,6 +55,7 @@ public class EnemyPoison : MonoBehaviour
     {
         if (poison)
         {
+            Debug.Log("POISON PLAYER");
             playCon.TakeDamage(dmg);
             uiScript.inMist = true;
             uiScript.StartSplatterCoroutine();

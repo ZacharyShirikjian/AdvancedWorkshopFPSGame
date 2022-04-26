@@ -7,7 +7,6 @@ public class TitleInputManager : MonoBehaviour
 {
     Controls controls;
     Controls.MenusActions menu;
-    //Controls.MovementActions movement;
     private TitleScreen titleScreen;
 
     Vector2 inputVector;
@@ -23,9 +22,6 @@ public class TitleInputManager : MonoBehaviour
         controls = new Controls();
         menu = controls.Menus;
 
-        //movement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
-        //movement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
-
         InputSystem.DisableDevice(Mouse.current);
         InputSystem.EnableDevice(Mouse.current);
         Cursor.visible = false;
@@ -36,14 +32,13 @@ public class TitleInputManager : MonoBehaviour
         menu.SwitchPage.performed += _ => titleScreen.SwitchInputPage();
         menu.Navigate.performed += ctx => inputVector = ctx.ReadValue<Vector2>();
         menu.Cancel.performed += _ => titleScreen.BackToMenu();
-
     }
 
     private void Update()
     {
         //playCon.ReceiveInput(inputVector);
         //mouseLook.ReceiveInput(mouseInput);
-        //uiScript.ReceiveInput();
+        //uiScript.ReceiveInput(); 
     }
 
     private void OnEnable()

@@ -42,6 +42,9 @@ public class UITest : MonoBehaviour
     //Controller Input,Controls Menu
     [SerializeField] private GameObject controllerInput;
 
+    //SETTINGS PANEL//
+    [SerializeField] private GameObject settingsPanel;
+
     //REFERENCE TO TINA'S PLAYER CONTROLLER SCRIPT//    
     private PlayerController playerRef;
 
@@ -149,11 +152,14 @@ public class UITest : MonoBehaviour
         //Which decreases by 2 every time they reload their gun
         [SerializeField] public int maxBullets;
 
-        //The total amount of bullets which the player has left in their gun
+        //The amount of bullets which the player has left in their gun, without extra ammo
         [SerializeField] public int backupBullets;
-        
-        //Build index of the current scene (will be more important once more scenes are added)
-       [SerializeField] private int curSceneIndex;
+
+        //The total amount of bullets which the player has left in their gun
+        [SerializeField] public int totalBullets;
+
+    //Build index of the current scene (will be more important once more scenes are added)
+    [SerializeField] private int curSceneIndex;
 
     //Reference to reserve ammo (when players have > 6 bullets at a time) 
     [SerializeField] public int extraBullets;
@@ -164,6 +170,7 @@ public class UITest : MonoBehaviour
     private AudioSource canvasSource;
 
     private GameObject musicManager;
+    private GameObject sfxManager;
 
     //HOLDS ALL POSSIBLE STATES OF CONTROLLER
     //ints are individual specific states
@@ -173,6 +180,10 @@ public class UITest : MonoBehaviour
     public enum CurrentController {NONE, KEYBOARD, GAMEPAD};
     public CurrentController currentControlScheme = CurrentController.KEYBOARD;
     [SerializeField] private PlayerInput playerInput;
+
+    //Reference to Menu Buttons 
+    //public GameObject ButtonParent;
+    public GameObject[] Buttons = new GameObject[5];
 
     //Set the instance to be this class
     private void Awake()
@@ -186,7 +197,6 @@ public class UITest : MonoBehaviour
         Time.timeScale = 1f;
         playerInput.onControlsChanged += OnControlsChanged;
         currentControlScheme = CurrentController.KEYBOARD;
-        //eventSystem.firstSelectedGameObject = null;
         canvasSource = GetComponent<AudioSource>();
         cursor.SetActive(false);
         numCoins = 0;
@@ -198,7 +208,7 @@ public class UITest : MonoBehaviour
         curBullets = (int) playerRef.ammo;
         maxBullets = (int) playerRef.maxAmmo;
         backupBullets = 6;
-
+        totalBullets = 12;
         healthSlider.value = maxHealth;
         healthSliderValue = healthSlider.value;
         healthSlider.transform.localScale = new Vector3(1f, 1f, 0f); //RESET health slider at start of game to represent 100
@@ -208,6 +218,7 @@ public class UITest : MonoBehaviour
         rIcon.SetActive(false);
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         pauseAnimator = pausePanel.GetComponentInChildren<Animator>();
+        settingsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
@@ -225,10 +236,16 @@ public class UITest : MonoBehaviour
         }
 
         extraAmmoUI.SetText("0");
-        Debug.Log(AudioListener.volume);
+        //Debug.Log(AudioListener.volume);
 
+        //sfxManager = GameObject.Find("SFXManager");
         musicManager = GameObject.Find("MusicManager");
         musicManager.GetComponent<AudioManager>().SwitchSong("Gameplay");
+        //canvasSource.volume = Settings.volume;
+        Debug.Log(Settings.volume);
+        //musicManager.GetComponent<AudioSource>().volume = Settings.musicVolume;
+        //sfxManager.GetComponent<AudioSource>().volume = Settings.volume;
+
     }
 
     // Update is called once per frame
@@ -283,19 +300,40 @@ public class UITest : MonoBehaviour
     {
         controlsPanel.SetActive(true);
         controlsPanel.GetComponentInChildren<Animator>().SetTrigger("Controls");
-        pausePanel.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
+        //pausePanel.SetActive(false);
         keyboardInput.SetActive(true);
         controllerInput.SetActive(false);
         controllerIcon.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f);
     }
 
+    //Settings PANEL
+    public void OpenSettingsPanel()
+    {
+        settingsPanel.SetActive(true);
+        settingsPanel.GetComponentInChildren<Animator>().SetTrigger("Options");
+        for (int i = 0; i < 5; i++)
+        {
+            Buttons[i].GetComponent<Button>().interactable = false;
+        }
+        eventSystem.SetSelectedGameObject(settingsPanel.transform.GetChild(3).gameObject); //this is the Volume Slider GObject
+
+    }
     //ONE BUTTON FOR CLOSING ANY MENU WHICH IS OPEN
     public void CloseMenu()
     {
         if (controlsPanel.activeSelf == true)
         {
             controlsPanel.SetActive(false);
-            pausePanel.SetActive(true);
+            for (int i = 0; i < 5; i++)
+            {
+                Buttons[i].GetComponent<Button>().interactable = true;
+            }
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+            //pausePanel.SetActive(true);
         }
 
         else if (jukeboxMenu.activeSelf == true)
@@ -306,6 +344,17 @@ public class UITest : MonoBehaviour
                 curJukebox.GetComponent<JukeboxScript>().CancelOption();
             }
         }
+
+        else if (settingsPanel.activeSelf == true)
+        {
+            settingsPanel.SetActive(false);
+            for (int i = 0; i < 5; i++)
+            {
+                Buttons[i].GetComponent<Button>().interactable = true;
+            }
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        }
+
         else if (pausePanel.activeSelf == true)
         {
             PauseGame();
@@ -340,12 +389,11 @@ public class UITest : MonoBehaviour
     //For Pausing/Unpausing Game
     public void PauseGame()
     {
-        if(gameOver == false)
+        if (gameOver == false)
         {
-            if (paused && controlsPanel.activeSelf == false)
+            if (paused && (controlsPanel.activeSelf == false || settingsPanel.activeSelf == false))
             {
                 GetComponent<AudioSource>().PlayOneShot(unPauseGame);
-                //Time.timeScale = 1f;
                 paused = false;
                 StaticGameClass.pause = false;
                 pausePanel.SetActive(false);
@@ -363,13 +411,12 @@ public class UITest : MonoBehaviour
 
                 //pausePanel.transform.GetChild(1).gameObject is the Resume button child of the PausePanel Parent GOBject, GetChild (0) is the PauseHeader)
                 pauseAnimator.SetTrigger("Pausing");
-                buttonPromptAnimator.SetTrigger("Pausing");
-                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
+                buttonPromptAnimator.SetTrigger("Menu");
+                eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
                 Debug.Log(eventSystem.currentSelectedGameObject);
- 
-                //Time.timeScale = 0f;
             }
         }
+
 
 
     }
@@ -382,14 +429,11 @@ public class UITest : MonoBehaviour
             UpdateInteractPromptUI("");
             jukeboxMenu.SetActive(true);
             cursor.SetActive(true);
-            //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Jukebox");
             playerRef.enabled = false;
             eventSystem.SetSelectedGameObject(jukeboxMenu.transform.GetChild(0).transform.GetChild(0).gameObject);
             Debug.Log(eventSystem.currentSelectedGameObject);
             paused = true;
             StaticGameClass.pause = true;
-            //DISABLE PLAYER MOVEMENT/PLAYER INPUT HERE/
-            //eventSystem.firstSelectedGameObject = jukeboxMenu.transform.GetChild(0).gameObject;
         }
 
         //RENABLE PLAYER MOVEMENT ONCE JUKEBOX MENU IS CLOSED
@@ -399,31 +443,10 @@ public class UITest : MonoBehaviour
             StaticGameClass.pause = false;
             jukeboxMenu.SetActive(false);
             playerRef.enabled = true;
-            //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Pause");
             cursor.SetActive(false);
-            //eventSystem.firstSelectedGameObject = pausePanel.transform.GetChild(0).gameObject;
         }
 
     }
-
-    ////SWITCH BETWEEN JUKEBOX PAGES
-    //public void SwitchJukeboxPages()
-    //{
-    //    if(currentPanel == refillPanel)
-    //    {
-    //        currentPanel = modPanel;
-    //        refillPanel.SetActive(false);
-    //        modPanel.SetActive(true);
-    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Refill & \nUpgrades \nPage";
-    //    }
-    //    else if (currentPanel == modPanel)
-    //    {
-    //        currentPanel = refillPanel;
-    //        modPanel.SetActive(false);
-    //        refillPanel.SetActive(true);
-    //        NextButton.GetComponentInChildren<TextMeshProUGUI>().text = "Mods \nPage";
-    //    }
-    //}
 
     public void closeJukebox()
     {
@@ -471,7 +494,7 @@ public class UITest : MonoBehaviour
     }
     //This method gets called when a player shoots a bullet, called from the PlayerControllerScript
 
-    public void UpdateAmmoUI()
+    public void UpdateAmmoUI(bool upgradedAmmo)
     {
         /*
             * Test method for updating the ammo counter UI;
@@ -483,59 +506,68 @@ public class UITest : MonoBehaviour
             * If the player is out of ammo, 
             * The curStateText UI lets them know they've run out of ammo
         */
-
-        //IF JUKEBOX IS CLOSED OR PLAYER DIDN'T GET AMMO REFILL
-        if(!jukeboxOpen)
+        if(upgradedAmmo == true)
         {
-            //extraBullets = (int)playerRef.maxAmmo - 6;
-            //extraAmmoUI.text = "+" + extraBullets.ToString();
-            if (curBullets > 0)
+            Debug.Log("aoksERHFADSFOICHASDOI8HDSAFOI8DSAH");
+            for (int i = 0; i < 6; i++)
             {
-                if(curBullets > 6)
-                {
-                    extraBullets--;
-                    //extraAmmoUI.text = "+" + extraBullets.ToString();
-                    curBullets--;
-                }
+                Bullets[i].GetComponentInChildren<Image>().enabled = true;
+            }
+            upgradedAmmo = false;
+        }
 
-                else if (curBullets <= 6)
+        if(upgradedAmmo == false)
+        {
+            if (!jukeboxOpen)
+            {
+                //extraBullets = (int)playerRef.maxAmmo - 6;
+                //extraAmmoUI.text = "+" + extraBullets.ToString();
+                if (curBullets > 0)
                 {
-                    //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
-
-                    ammoAnimator.SetTrigger("RotateBullet");
-                    //For each child in the Bullets GameObject,
-                    //Hide the bottom-most element when a bullet is shot
-                    Bullets[curBullets -1].GetComponentInChildren<Image>().enabled = false;
-                    curBullets--;
-                    if (curBullets <= 0)
+                    if (curBullets > 6)
                     {
-                        Debug.Log(curBullets);
-                        Debug.Log("Out of Ammo");
-                        curStateText.SetText("Out of Ammo");
-                        if (maxBullets > 2)
-                        {
-                            rIcon.SetActive(true);
-                        }
+                        extraBullets--;
+                        //extraAmmoUI.text = "+" + extraBullets.ToString();
+                        curBullets--;
+                    }
+                    else if (curBullets <= 6)
+                    {
+                        //PLAY ANIMATION TO ROTATE AMMO CYLINDER BY 60 DEGREES//
 
-                        else if (maxBullets <= 2)
+                        ammoAnimator.SetTrigger("RotateBullet");
+                        //For each child in the Bullets GameObject,
+                        //Hide the bottom-most element when a bullet is shot
+                        Bullets[curBullets - 1].GetComponentInChildren<Image>().enabled = false;
+                        curBullets--;
+                        if (curBullets <= 0)
                         {
-                            rIcon.SetActive(false);
-                        }
+                            Debug.Log(curBullets);
+                            Debug.Log("Out of Ammo");
+                            curStateText.SetText("Out of Ammo");
+                            if (maxBullets > 2)
+                            {
+                                rIcon.SetActive(true);
+                            }
 
+                            else if (maxBullets <= 2)
+                            {
+                                rIcon.SetActive(false);
+                            }
+                        }
                     }
                 }
-
-
             }
-            //Debug.Log(curBullets);
+        
         }
 
     }
-    //This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
-    //Or when they've run out of ammo in a single cylinder.
-    //Reload the ammo cylinder, reducing the max bullets they can hold by 2.
-    //1st Reload = 4 Max Bullets, 2nd Reload = 2 Max Bullets
-    //Add/subtract the Bullet sprites accordingly
+    /*
+    /This method gets called from the PlayerController script, when the player Right-Clicks with their weapon,
+    *Or when they've run out of ammo in a single cylinder.
+    *Reload the ammo cylinder, reducing the max bullets they can hold by 2.
+    *1st Reload = 4 Max Bullets, 2nd Reload = 2 Max Bullets
+    *Add/subtract the Bullet sprites accordingly
+    */
     public void Reload()
     {
         //RELOAD ANIMATION PLAYS//
@@ -594,7 +626,6 @@ public class UITest : MonoBehaviour
     }
 
     //TEST METHODS USED FOR THE BUTTONS ON THE PAUSE PANEL DURING A GAME OVER/PAUSE//
-
     //This method gets called when the player takes damage, from Tina's PlayerController script//
     //The player takes X damage, where X is based on the value when the method gets called//
 
@@ -618,16 +649,14 @@ public class UITest : MonoBehaviour
         {
             splatterImage.color = new Color(1, 1, 1, 1);
         }
-        //curHealth = playerRef.health;
-        //healthSliderValue = curHealth;
-        //healthSlider.value = healthSliderValue;
-
-
     }
 
     public void StartSplatterCoroutine()
     {
-        StartCoroutine(FadeSplatterImage());
+        if(gameOver == false && paused == false)
+        {
+            StartCoroutine(FadeSplatterImage());
+        }
     }
 
     //REFERENCE FOR FADING OUT SPLATTER IMAGE USING COROUTINE
@@ -656,15 +685,12 @@ public class UITest : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
-
-        //REPLACE THIS W/ TRIGGERING DEATH ANIMATION LATER (Once implemented)
         playerRef.enabled = false;
 
         //Activate the Game Over Panel during a Game Over 
         gameOverPanel.SetActive(true);
-        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
-        ////Freeze the game by setting timescale to 1 (temporary) 
-        //Time.timeScale = 0f;
+        eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject);
+        StaticGameClass.pause = true;
     }
     //Reloads the current scene the player is on 
     public void RestartGame()
@@ -687,22 +713,28 @@ public class UITest : MonoBehaviour
     public void OpenQuitPanel()
     {
         quitPanel.SetActive(true);
+        StaticGameClass.pause = true;
         pausePanel.SetActive(false);
         quitAnimator.SetTrigger("Quitting");
         GetComponent<AudioSource>().PlayOneShot(quitConfirm);
         eventSystem.SetSelectedGameObject(quitPanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject); //QuitButton is child of the QuitConfirmPanel object
-        //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Quit");
-
     }
 
     //Closes the Quit Confirmation Panel to allow players to go back to the regular pause menu 
     public void CloseQuitPanel()
     {
         quitPanel.SetActive(false);
-        pausePanel.SetActive(true);
+        if (pausePanel.activeSelf == false && gameOverPanel.activeSelf == false)
+        {
+            pausePanel.SetActive(true);
+            eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        }
+
+        else if (gameOverPanel.activeSelf == true)
+        {
+            eventSystem.SetSelectedGameObject(gameOverPanel.transform.GetChild(1).gameObject.transform.GetChild(1).gameObject);
+        }
         GetComponent<AudioSource>().PlayOneShot(quitCancel);
-        eventSystem.SetSelectedGameObject(pausePanel.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject);
-        //cursor.GetComponent<MoveCursor>().SwitchCursorAnimation("Pause");
     }
 
     //Called on the Quit button of the Pause menu,
@@ -711,6 +743,4 @@ public class UITest : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 }

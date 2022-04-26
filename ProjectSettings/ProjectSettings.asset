@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 22
+<<<<<<< HEAD
   productGUID: 2ce3eacdd6bc076499847617e3794d1d
+=======
+  productGUID: a662a08de87a09b449b03a333d2e6c20
+>>>>>>> MainBranch
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -47,7 +51,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 1
+  m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 0
   numberOfMipsStripped: 0
@@ -128,7 +132,12 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
+<<<<<<< HEAD
   preloadedAssets: []
+=======
+  preloadedAssets:
+  - {fileID: 11400000, guid: 821bf03adabca7b4fb0adc8a9182a738, type: 2}
+>>>>>>> MainBranch
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -145,7 +154,12 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
+<<<<<<< HEAD
   applicationIdentifier: {}
+=======
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.AdvancedWorkshopFPSGame
+>>>>>>> MainBranch
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -271,15 +285,7 @@ PlayerSettings:
     Android: 1
     iPhone: 1
     tvOS: 1
-  m_BuildTargetGroupLightmapEncodingQuality:
-  - m_BuildTarget: Standalone
-    m_EncodingQuality: 2
-  - m_BuildTarget: Android
-    m_EncodingQuality: 2
-  - m_BuildTarget: Lumin
-    m_EncodingQuality: 2
-  - m_BuildTarget: Windows Store Apps
-    m_EncodingQuality: 2
+  m_BuildTargetGroupLightmapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding: []
   playModeTestRunnerEnabled: 0
@@ -546,7 +552,11 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: AdvancedWorkshopFPSGame
+<<<<<<< HEAD
   metroPackageVersion: 
+=======
+  metroPackageVersion: 1.0.0.0
+>>>>>>> MainBranch
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -554,7 +564,11 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: AdvancedWorkshopFPSGame
   wsaImages: {}
+<<<<<<< HEAD
   metroTileShortName: 
+=======
+  metroTileShortName: AdvancedWorkshopFPSGame
+>>>>>>> MainBranch
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

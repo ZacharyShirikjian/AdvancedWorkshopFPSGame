@@ -8,8 +8,8 @@ using TMPro;
 public class SettingsSlider : MonoBehaviour
 {
     //SFX VOLUME SLIDER
-    public Slider volume_S;
-    public TMPro.TMP_Text volumeNum;
+    //public Slider volume_S;
+    //public TMPro.TMP_Text volumeNum;
 
     //SFX VOLUME SLIDER
     public Slider musicVolume_S;
@@ -22,26 +22,26 @@ public class SettingsSlider : MonoBehaviour
     public GameObject Canvas;
 
     [SerializeField] private GameObject musicManager;
-    [SerializeField] private GameObject sfxManager;
+    //[SerializeField] private GameObject sfxManager;
 
     private void Awake()
     {
-        volume_S.value = Settings.volume;
+        //volume_S.value = Settings.volume;
         musicVolume_S.value = Settings.musicVolume;
-        UpdateSFXVolume();
+        //UpdateSFXVolume();
         UpdateMusicVolume();
     }
 
-    public void UpdateSFXVolume()
-    {
-        Settings.ChangeVolume((int)volume_S.value);
-        volume_S.value = Settings.volume;
-        volumeNum.text = volume_S.value.ToString();
-        sfxManager.GetComponent<AudioSource>().volume = ((float)Settings.volume / 100);
-        //AudioListener.volume = Settings.volume;
-        //Canvas.GetComponent<AudioSource>().volume = ((float) Settings.volume / 100);
-        //Debug.Log(AudioListener.volume);
-    }
+    //public void UpdateSFXVolume()
+    //{
+    //    Settings.ChangeVolume((int)volume_S.value);
+    //    volume_S.value = Settings.volume;
+    //    volumeNum.text = volume_S.value.ToString();
+    //    sfxManager.GetComponent<AudioSource>().volume = ((float)Settings.volume / 100);
+    //    //AudioListener.volume = Settings.volume;
+    //    //Canvas.GetComponent<AudioSource>().volume = ((float) Settings.volume / 100);
+    //    //Debug.Log(AudioListener.volume);
+    //}
 
     public void UpdateMusicVolume()
     {

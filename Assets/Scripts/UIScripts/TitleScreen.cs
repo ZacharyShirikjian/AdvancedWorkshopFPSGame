@@ -19,7 +19,7 @@ public class TitleScreen : MonoBehaviour
     //Reference to music GameObject
     [SerializeField] private GameObject musicManager;
     //Reference to music GameObject
-    [SerializeField] private GameObject sfxManager;
+    //[SerializeField] private GameObject sfxManager;
 
     //Controls controls;
     //Controls.MenusActions menu;
@@ -96,7 +96,7 @@ public class TitleScreen : MonoBehaviour
 
         //Set volume of the Canvas AudioSource to be = game volume 
         musicManager.GetComponent<AudioSource>().volume = Settings.musicVolume;
-        sfxManager.GetComponent<AudioSource>().volume = Settings.volume;
+        //sfxManager.GetComponent<AudioSource>().volume = Settings.volume;
         musicManager.GetComponent<AudioManager>().SwitchSong("Title");
     }
 

@@ -6,7 +6,7 @@ using TMPro;
 
 public class SwitchTitleUI : MonoBehaviour
 {
-    [SerializeField] private Image uiImage;
+    private Image uiImage;
     [SerializeField] private Sprite keyboardImage;
     [SerializeField] private Sprite controllerImage;
 
@@ -14,6 +14,7 @@ public class SwitchTitleUI : MonoBehaviour
     void Start()
     {
         ChangeInputImage();
+        uiImage = GetComponent<Image>();
     }
 
     void Update()

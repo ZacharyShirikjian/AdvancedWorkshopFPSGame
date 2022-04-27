@@ -24,7 +24,6 @@ public abstract class Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Box triggered");
         if (!triggered)
         {
             if (other.CompareTag("Player"))

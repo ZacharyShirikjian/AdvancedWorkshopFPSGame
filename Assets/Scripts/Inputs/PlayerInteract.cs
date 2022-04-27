@@ -41,12 +41,13 @@ public class PlayerInteract : MonoBehaviour
         //FOR OTHER INTERACTABLES, ETC
         if(canInteract && currentInteractable != null)
         {
-            Debug.Log("[OBJECT]");
+            Debug.Log("[DOOR]");
             canInteract = false;
             interactableScript.interactedBefore = true;
             interactableScript.enabled = true;
-            //interactableScript.doorOpen = true;
+            interactableScript.doorOpen = true;
             uiRef.UpdateInteractPromptUI("");
+            Invoke("CloseDoorAfterDelay", 5f);
             //TO DO: call the specific interactable script to do specific action (eg climb, heal, etc)
         }
 
@@ -63,6 +64,12 @@ public class PlayerInteract : MonoBehaviour
 
         }
     }
+
+    public void CloseDoorAfterDelay()
+    {
+        interactableScript.doorOpen = false;
+    }
+
     public void OpenJukeboxAfterDelay()
     {
         //cameraScript.enabled = false;

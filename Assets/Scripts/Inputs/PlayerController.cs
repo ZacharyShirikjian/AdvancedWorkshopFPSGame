@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
         zoomSenseX = defaultSenseX / 0.5f;
         zoomSenseY = defaultSenseY / 0.5f;
-        audioSource = GameObject.Find("SFXManager").GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5773136341004895152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.519, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5773136341457243892}
@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 5773136341053236778}
   - component: {fileID: 5773136341053236776}
   - component: {fileID: 7553509031866975052}
-  - component: {fileID: 321281292521997260}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -91,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5773136341053236774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.124, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5773136342380084927}
@@ -183,6 +182,8 @@ MonoBehaviour:
   coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
   animator: {fileID: 0}
   journeyTime: 3
+  enemyHit: {fileID: 8300000, guid: 5a9ab05e8d05d6d4ea3f1d51f674a552, type: 3}
+  enemyDeath: {fileID: 8300000, guid: 1881996b629aa6943a601eec5d4805fd, type: 3}
 --- !u!54 &5773136341053236776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,23 +217,7 @@ MonoBehaviour:
   poison: 0
   player: {fileID: 0}
   playCon: {fileID: 0}
---- !u!114 &321281292521997260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5773136341053236774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9638f67d84002ec49af1589f10aa0719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 0
-  dmg: 0
-  poison: 0
-  player: {fileID: 0}
-  playCon: {fileID: 0}
+  uiScript: {fileID: 0}
 --- !u!1 &5773136341211962574
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,8 +246,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5773136341211962574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -3.66, y: 0.68, z: -5.01}
+  m_LocalScale: {x: 8.985, y: 3.2016, z: 2}
   m_Children: []
   m_Father: {fileID: 5773136341457243892}
   m_RootOrder: 3

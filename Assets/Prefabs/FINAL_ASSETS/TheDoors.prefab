@@ -110,10 +110,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactedBefore: 0
+  doorOpen: 0
   pointA: {fileID: 734594811}
   pointB: {fileID: 2064027223}
   player: {fileID: 0}
   actionPrompt: 
+  blackImage: {fileID: 0}
+  openDoor: {fileID: 8300000, guid: 2a0d6f3478737cc49a2a21cbdd8d6044, type: 3}
+  closeDoor: {fileID: 8300000, guid: 1c1209793da878944aed14736547f3fc, type: 3}
 --- !u!1001 &3577069420825615591
 PrefabInstance:
   m_ObjectHideFlags: 0

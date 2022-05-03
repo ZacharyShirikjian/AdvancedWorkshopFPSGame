@@ -133,13 +133,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  playerController: {fileID: 0}
+  playerController: {fileID: 6239929424462989363, guid: 57a4beaa6c6a98149bf35f41b6e4d826, type: 3}
   spitObject: {fileID: 5479931167147619679}
   spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
   tracking: 0
+  active: 0
   health: 2
   coin: {fileID: 0}
+  animator: {fileID: 0}
+  journeyTime: 3
+  enemyHit: {fileID: 0}
+  enemyDeath: {fileID: 0}
 --- !u!1 &5479931167147619678
 GameObject:
   m_ObjectHideFlags: 0

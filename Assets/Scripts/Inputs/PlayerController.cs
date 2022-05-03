@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip playerDead;
     private AudioSource audioSource;
 
+    public GameObject deleteLater;
 
     public void Awake()
     {
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour
         zoomSenseX = defaultSenseX / 0.5f;
         zoomSenseY = defaultSenseY / 0.5f;
         audioSource = GetComponent<AudioSource>();
+        Debug.Log(playerCam.transform.position);
     }
 
 
@@ -162,28 +164,35 @@ public class PlayerController : MonoBehaviour
             {
                 //Debug.Log("Crouch activated");
 
-                controller.height = crouchHeight;
+                //controller.height = crouchHeight;
 
-                crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
+                //crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
 
-                playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
+                //playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
 
-                gunCrouching = new Vector3(arms.transform.position.x, gunCrouchHeight, arms.transform.position.z);
+                //gunCrouching = new Vector3(arms.transform.position.x, gunCrouchHeight, arms.transform.position.z);
 
-                arms.transform.position = Vector3.Lerp(arms.transform.position, gunCrouching, Time.deltaTime * smooth);
+                //arms.transform.position = Vector3.Lerp(arms.transform.position, gunCrouching, Time.deltaTime * smooth);
+
+                playerCam.transform.position = deleteLater.transform.position;
+                transform.position = gunStanding;
 
             }
             else if (!crouch)
             {
                 controller.height = standHeight;
 
-                standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
+                //standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
 
-                playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
+                //TEMP METHOD FOR TESTING PLAYER IN FINALLEVEL SCENE, WILL DELETE LATER//
 
-                gunStanding = new Vector3(arms.transform.position.x, gunStandHeight, arms.transform.position.z);
+                playerCam.transform.position = deleteLater.transform.position;
+                transform.position = gunStanding;
+                //playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
 
-                arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
+                //gunStanding = new Vector3(arms.transform.position.x, gunStandHeight, arms.transform.position.z);
+
+               // arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
 
             }
 

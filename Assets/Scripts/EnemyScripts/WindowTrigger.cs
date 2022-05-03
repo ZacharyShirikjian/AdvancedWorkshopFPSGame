@@ -15,7 +15,7 @@ public class WindowTrigger : Trigger
     [SerializeField] Vector3 upRelative;
     [SerializeField] Vector3 downRelative;
 
-    public float journeyTime = 3.0f;
+    public float journeyTime = 0.5f;
     private float startTime;
 
     // Start is called before the first frame update

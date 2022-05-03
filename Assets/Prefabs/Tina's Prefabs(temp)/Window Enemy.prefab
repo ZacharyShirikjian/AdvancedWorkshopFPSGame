@@ -183,6 +183,8 @@ MonoBehaviour:
   coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
   animator: {fileID: 0}
   journeyTime: 3
+  enemyHit: {fileID: 0}
+  enemyDeath: {fileID: 0}
 --- !u!54 &5773136341053236776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -216,6 +218,7 @@ MonoBehaviour:
   poison: 0
   player: {fileID: 0}
   playCon: {fileID: 0}
+  uiScript: {fileID: 0}
 --- !u!114 &321281292521997260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +236,7 @@ MonoBehaviour:
   poison: 0
   player: {fileID: 0}
   playCon: {fileID: 0}
+  uiScript: {fileID: 0}
 --- !u!1 &5773136341211962574
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +331,7 @@ MonoBehaviour:
   center: {x: 0, y: 0, z: 0}
   upRelative: {x: 0, y: 0, z: 0}
   downRelative: {x: 0, y: 0, z: 0}
-  journeyTime: 3
+  journeyTime: 0.5
 --- !u!1 &5773136341457243893
 GameObject:
   m_ObjectHideFlags: 0

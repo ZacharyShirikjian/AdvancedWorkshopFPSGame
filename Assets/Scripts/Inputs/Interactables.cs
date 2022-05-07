@@ -12,13 +12,14 @@ public class Interactables : MonoBehaviour
     public GameObject player;
     public GameObject door;
     public Camera playerCam;
+    public CharacterController charController;
 
     public Animator pAnimator;
     public Animator d1Animator;
     public Animator d2Animator;
 
     public Vector3 startPoint;
-    public GameObject finishPoint;
+    public Vector3 finishPoint;
 
     public string actionPrompt;
 
@@ -41,8 +42,9 @@ public class Interactables : MonoBehaviour
         interactedBefore = false;
         player = GameObject.FindGameObjectWithTag("Player");
         door = GameObject.FindGameObjectWithTag("Door");
-        finishPoint = door.transform.Find("finishPoint").gameObject;
+        finishPoint = door.transform.Find("finishPoint").gameObject.transform.position;
         playerCam = player.GetComponentInChildren<Camera>();
+        charController = player.GetComponent<CharacterController>();
         source = GetComponent<AudioSource>();
         pAnimator = player.GetComponentInChildren<Animator>();
         d1Animator = door.transform.Find("Door1").GetComponent<Animator>();
@@ -124,13 +126,14 @@ public class Interactables : MonoBehaviour
         float time = 0;
         while(time < traverse)
         {
-            playerCam.transform.position = Vector3.Lerp(startPoint, finishPoint.transform.position, time / traverse);
+            playerCam.transform.position = Vector3.Lerp(startPoint, finishPoint, time / traverse);
             time += Time.deltaTime;
             yield return null;
         }
-        //yield return new WaitForSeconds(6.0f);
 
-        player.transform.position = finishPoint.transform.position;
+        charController.enabled = false;
+        player.transform.position = finishPoint;
+        charController.enabled = true;
 
         StaticGameClass.pause = false;
     }

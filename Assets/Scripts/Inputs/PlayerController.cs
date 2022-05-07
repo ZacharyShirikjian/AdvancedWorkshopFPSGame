@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public Camera playerCam;                                //holds main camera(playerCamera)
     public float defaultFOV = 90;
-    public float defaultSenseX = 5f;
-    public float defaultSenseY = 0.025f;
+    public float defaultSenseX = 4f;
+    public float defaultSenseY = 0.005f;
     public float zoomSenseX;
     public float zoomSenseY;
     public float zoomPercent = 1.5f;
@@ -99,7 +99,8 @@ public class PlayerController : MonoBehaviour
             mouseLook.sensitivityY = 3;
         }
 
-        controller.height = standHeight;
+        //controller.height = standHeight;
+        standHeight = controller.height;
         crouchHeight = standHeight - crouchPercent;
 
         gunStandHeight = arms.transform.position.y;

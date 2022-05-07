@@ -10,10 +10,21 @@ public class Interactables : MonoBehaviour
     public bool doorOpen;
 
     public GameObject player;
+    public GameObject door;
+    public Camera playerCam;
 
-    public Animator animator;
+    public Animator pAnimator;
+    public Animator d1Animator;
+    public Animator d2Animator;
+
+    public Vector3 startPoint;
+    public GameObject finishPoint;
 
     public string actionPrompt;
+
+    public float smooth = 5.0f;         //value for smooth object transform during crouch
+    public float traverse = 6.0f;
+
 
     //REFERENCE TO DOOR//
     [SerializeField] private Image blackImage;
@@ -29,8 +40,14 @@ public class Interactables : MonoBehaviour
         actionPrompt = "Open Door";
         interactedBefore = false;
         player = GameObject.FindGameObjectWithTag("Player");
+        door = GameObject.FindGameObjectWithTag("Door");
+        finishPoint = door.transform.Find("finishPoint").gameObject;
+        playerCam = player.GetComponentInChildren<Camera>();
         source = GetComponent<AudioSource>();
-        animator = player.GetComponentInChildren<Animator>();
+        pAnimator = player.GetComponentInChildren<Animator>();
+        d1Animator = door.transform.Find("Door1").GetComponent<Animator>();
+        d2Animator = door.transform.Find("Door2").GetComponent<Animator>();
+
     }
 
 
@@ -97,10 +114,23 @@ public class Interactables : MonoBehaviour
     {
         StaticGameClass.pause = true;
 
+        startPoint = playerCam.transform.position;
 
         yield return new WaitForSeconds(0.5f);
-        animator.SetTrigger("OpenTheDoor");
-        yield return new WaitForSeconds(6.0f);
+        pAnimator.SetTrigger("OpenTheDoor");
+        d1Animator.SetTrigger("OpenTheDoor");
+        d2Animator.SetTrigger("OpenTheDoor");
+
+        float time = 0;
+        while(time < traverse)
+        {
+            playerCam.transform.position = Vector3.Lerp(startPoint, finishPoint.transform.position, time / traverse);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        //yield return new WaitForSeconds(6.0f);
+
+        player.transform.position = finishPoint.transform.position;
 
         StaticGameClass.pause = false;
     }

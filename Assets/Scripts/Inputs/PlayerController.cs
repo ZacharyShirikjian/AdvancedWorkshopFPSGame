@@ -11,14 +11,14 @@ public class PlayerController : MonoBehaviour
 
     public Camera playerCam;                                //holds main camera(playerCamera)
     public float defaultFOV = 90;
-    public float defaultSenseX = 10f;
-    public float defaultSenseY = 0.05f;
+    public float defaultSenseX = 5f;
+    public float defaultSenseY = 0.025f;
     public float zoomSenseX;
     public float zoomSenseY;
     public float zoomPercent = 1.5f;
 
     [SerializeField] CharacterController controller;        //pulls character controller component from player
-    [SerializeField] float speed = 11f;                     //speed variable for character movement
+    [SerializeField] float speed = 5f;                     //speed variable for character movement
     Vector2 inputVector;
 
     //public bool isGrounded; //holds variable for if player is collided on ground object
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public float crouchHeight;   //crouchheight for character
     public float standHeight;    //standheight for character
     public float smooth = 5.0f;         //value for smooth object transform during crouch
-    public float crouchPercent = 0.5f;         //holds value to transform positions on crouch
+    public float crouchPercent = 1.0f;         //holds value to transform positions on crouch
 
     //[SerializeField] float gravity = -30f;
     //Vector3 verticalVelocity = Vector3.zero;
@@ -164,35 +164,35 @@ public class PlayerController : MonoBehaviour
             {
                 //Debug.Log("Crouch activated");
 
-                //controller.height = crouchHeight;
+                controller.height = crouchHeight;
 
-                //crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
+                crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
 
-                //playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
+                playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, crouchPosition, Time.deltaTime * smooth);
 
-                //gunCrouching = new Vector3(arms.transform.position.x, gunCrouchHeight, arms.transform.position.z);
+                gunCrouching = new Vector3(arms.transform.position.x, gunCrouchHeight, arms.transform.position.z);
 
-                //arms.transform.position = Vector3.Lerp(arms.transform.position, gunCrouching, Time.deltaTime * smooth);
+                arms.transform.position = Vector3.Lerp(arms.transform.position, gunCrouching, Time.deltaTime * smooth);
 
-                playerCam.transform.position = deleteLater.transform.position;
-                transform.position = gunStanding;
+                //playerCam.transform.position = deleteLater.transform.position;
+                //transform.position = gunStanding;
 
             }
             else if (!crouch)
             {
                 controller.height = standHeight;
 
-                //standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
+                standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
 
                 //TEMP METHOD FOR TESTING PLAYER IN FINALLEVEL SCENE, WILL DELETE LATER//
 
-                playerCam.transform.position = deleteLater.transform.position;
-                transform.position = gunStanding;
-                //playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
+                //playerCam.transform.position = deleteLater.transform.position;
+                //transform.position = gunStanding;
+                playerCam.transform.position = Vector3.Lerp(playerCam.transform.position, standPosition, Time.deltaTime * smooth);
 
-                //gunStanding = new Vector3(arms.transform.position.x, gunStandHeight, arms.transform.position.z);
+                gunStanding = new Vector3(arms.transform.position.x, gunStandHeight, arms.transform.position.z);
 
-               // arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
+                arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
 
             }
 

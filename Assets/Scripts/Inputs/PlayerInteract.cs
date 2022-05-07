@@ -46,7 +46,7 @@ public class PlayerInteract : MonoBehaviour
             interactableScript.interactedBefore = true;
             interactableScript.enabled = true;
             interactableScript.doorOpen = true;
-            interactableScript.StartFadeCoroutine();
+            //interactableScript.StartFadeCoroutine();
             uiRef.UpdateInteractPromptUI("");
             Invoke("CloseDoorAfterDelay", 5f);
             //TO DO: call the specific interactable script to do specific action (eg climb, heal, etc)

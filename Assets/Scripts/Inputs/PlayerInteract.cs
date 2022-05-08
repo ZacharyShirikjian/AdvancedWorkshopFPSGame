@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
+    //for audio fading in
+    public bool alreadyPlaying = false;
+
     public GameObject currentInteractable = null;
     public Interactables interactableScript = null;
     public GameObject curJukebox = null;
@@ -15,6 +18,10 @@ public class PlayerInteract : MonoBehaviour
     //Reference to Camera's Script
     [SerializeField] private CameraLerpMovement cameraScript;
 
+    //REFERENCE TO COMBAT TRACK
+    [SerializeField] private AudioClip combatTrack;
+    [SerializeField] private AudioClip exploreTrack;
+    [SerializeField] private AudioClip combatIntro;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +107,8 @@ public class PlayerInteract : MonoBehaviour
         {
             Debug.Log("FADING COMBAT IN");
             AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
+            otherAudio.PlayOneShot(combatIntro);
+            otherAudio.clip = combatTrack;
             StartCoroutine(AudioTools.FadeInToVol(otherAudio, 2.0f, 1.0f));
             otherAudio.Play();
 
@@ -174,12 +183,16 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Combat" && uiRef.numEnemies <= 0)
+        if(other.gameObject.tag == "Combat" && uiRef.numEnemies <= 0 && alreadyPlaying == false)
         {
-            Debug.Log("FADING BACK TO COMBAT");
+            Debug.Log("FADING BACK TO EXPLORATION TRACK");
             AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
 
-            StartCoroutine(AudioTools.FadeOut(otherAudio, 2.0f));
+            //StartCoroutine(AudioTools.FadeOut(otherAudio, 2.0f));
+            otherAudio.clip = exploreTrack;
+            StartCoroutine(AudioTools.FadeIn(otherAudio, 2.0f));
+            otherAudio.Play();
+            alreadyPlaying = true;
         }
     }
     //If player leaves trigger zone of interactable object
@@ -187,7 +200,13 @@ public class PlayerInteract : MonoBehaviour
     //And update that text to be blank
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Combat" || other.gameObject.tag == "Exploration")
+        if (other.gameObject.tag == "Combat")
+        {
+            Debug.Log("FADING COMBAT IN");
+            alreadyPlaying = false;
+        }
+
+        if (other.gameObject.tag == "Exploration")
         {
             Debug.Log("FADING AUDIO OUT");
             AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();

@@ -87,12 +87,22 @@ public class PlayerInteract : MonoBehaviour
     //RE USE SAME METHOD FOR INTERACTING W/ JUKEBOXES//
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Fade"))
+        if(other.gameObject.tag == "Exploration")
         {
             Debug.Log("FADING AUDIO IN");
             AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
-
             StartCoroutine(AudioTools.FadeInToVol(otherAudio, 2.0f, 1.0f));
+            otherAudio.Play();
+        }
+
+        //ADD COMBAT TRIGGER ONCE NUM ENEMIES VARIABLE IS CREATED//
+        if (other.gameObject.tag == "Combat" && uiRef.numEnemies > 0) 
+        {
+            Debug.Log("FADING COMBAT IN");
+            AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
+            StartCoroutine(AudioTools.FadeInToVol(otherAudio, 2.0f, 1.0f));
+            otherAudio.Play();
+
         }
         if (other.gameObject.CompareTag("Coin"))
         {
@@ -162,12 +172,22 @@ public class PlayerInteract : MonoBehaviour
 
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "Combat" && uiRef.numEnemies <= 0)
+        {
+            Debug.Log("FADING BACK TO COMBAT");
+            AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
+
+            StartCoroutine(AudioTools.FadeOut(otherAudio, 2.0f));
+        }
+    }
     //If player leaves trigger zone of interactable object
     //Call UITest's InteractPrompt method,
     //And update that text to be blank
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Fade"))
+        if (other.gameObject.tag == "Combat" || other.gameObject.tag == "Exploration")
         {
             Debug.Log("FADING AUDIO OUT");
             AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();

@@ -13,7 +13,7 @@ public class AudioPlayback : MonoBehaviour
     }
 
    
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter(Collider collision)
 	{
         if (myAudioSource.volume == 0.0f)
         {
@@ -24,5 +24,10 @@ public class AudioPlayback : MonoBehaviour
             myAudioSource.volume = 0.0f;
         }
 
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        myAudioSource.volume = 0.0f;
     }
 }

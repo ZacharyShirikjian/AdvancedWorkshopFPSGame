@@ -87,6 +87,13 @@ public class PlayerInteract : MonoBehaviour
     //RE USE SAME METHOD FOR INTERACTING W/ JUKEBOXES//
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.CompareTag("Fade"))
+        {
+            Debug.Log("FADING AUDIO IN");
+            AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
+
+            StartCoroutine(AudioTools.FadeInToVol(otherAudio, 2.0f, 1.0f));
+        }
         if (other.gameObject.CompareTag("Coin"))
         {
             Debug.Log("COIN PICKUP");
@@ -160,6 +167,14 @@ public class PlayerInteract : MonoBehaviour
     //And update that text to be blank
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Fade"))
+        {
+            Debug.Log("FADING AUDIO OUT");
+            AudioSource otherAudio = other.gameObject.GetComponent<AudioSource>();
+
+            StartCoroutine(AudioTools.FadeOut(otherAudio, 2.0f));
+        }
+
         if (other.CompareTag("Door"))
         {
             canInteract = false;

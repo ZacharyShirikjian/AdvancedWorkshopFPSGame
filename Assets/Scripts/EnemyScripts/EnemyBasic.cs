@@ -29,6 +29,9 @@ public class EnemyBasic : MonoBehaviour
     [SerializeField] private AudioClip enemyDeath; 
      private AudioSource source;
 
+    //REFERENCE TO UI SCRIPT//
+    private UITest uiRef;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,7 @@ public class EnemyBasic : MonoBehaviour
         animator = GetComponent<Animator>();
         tracking = false;
         active = false;
+        uiRef = GameObject.Find("Canvas").GetComponent<UITest>();
     }
 
     // Update is called once per frame
@@ -82,6 +86,7 @@ public class EnemyBasic : MonoBehaviour
             AudioSource.PlayClipAtPoint(enemyDeath, gameObject.transform.position);
             spitting = false;
             Instantiate(coin, transform.position, transform.rotation);
+            uiRef.numEnemies--;
             Destroy(gameObject);
             StaticGameClass.LessActiveEnemies();
         }

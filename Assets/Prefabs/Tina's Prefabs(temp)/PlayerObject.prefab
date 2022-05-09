@@ -264,13 +264,13 @@ MonoBehaviour:
   maxHealth: 100
   playerCam: {fileID: 6239929425235843974}
   defaultFOV: 90
-  defaultSenseX: 10
-  defaultSenseY: 0.05
+  defaultSenseX: 5
+  defaultSenseY: 0.025
   zoomSenseX: 0
   zoomSenseY: 0
   zoomPercent: 1.5
   controller: {fileID: 6239929424462989360}
-  speed: 11
+  speed: 5
   zoom: 0
   shoot: 0
   crouch: 0
@@ -296,6 +296,7 @@ MonoBehaviour:
   reloadClip: {fileID: 0}
   takeDamage: {fileID: 0}
   playerDead: {fileID: 0}
+  deleteLater: {fileID: 0}
 --- !u!54 &1059137810
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -453,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6239929425235843972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6239929424462989362}

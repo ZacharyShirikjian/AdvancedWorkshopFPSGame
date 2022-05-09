@@ -169,7 +169,7 @@ public class UITest : MonoBehaviour
     //REF TO AUDIOSOURCE
     private AudioSource canvasSource;
 
-    private GameObject musicManager;
+    //private GameObject musicManager;
     private GameObject sfxManager;
 
     //HOLDS ALL POSSIBLE STATES OF CONTROLLER
@@ -185,6 +185,9 @@ public class UITest : MonoBehaviour
     //public GameObject ButtonParent;
     public GameObject[] Buttons = new GameObject[5];
 
+
+    //TEMP VARIABLE HOLDING # OF ENEMIES IN A LEVEL, INCREASES WHEN PLAYER ENTERS COMBAT TRIGGER COLLIDER
+    public int numEnemies = 0;
     //Set the instance to be this class
     private void Awake()
     {
@@ -239,8 +242,8 @@ public class UITest : MonoBehaviour
         //Debug.Log(AudioListener.volume);
 
         //sfxManager = GameObject.Find("SFXManager");
-        musicManager = GameObject.Find("MusicManager");
-        musicManager.GetComponent<AudioManager>().SwitchSong("Gameplay");
+        //musicManager = GameObject.Find("MusicManager");
+        //musicManager.GetComponent<AudioManager>().SwitchSong("Gameplay");
         //canvasSource.volume = Settings.volume;
         Debug.Log(Settings.volume);
         //musicManager.GetComponent<AudioSource>().volume = Settings.musicVolume;

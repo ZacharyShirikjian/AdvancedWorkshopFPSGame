@@ -26,7 +26,7 @@ public class EnemyBasic : MonoBehaviour
 
     public float journeyTime = 3.0f;
     [SerializeField] private AudioClip enemyHit;
-    [SerializeField] private AudioClip enemyDeath; 
+    public AudioClip[] enemyDeathSounds = new AudioClip[4];
      private AudioSource source;
 
     //REFERENCE TO UI SCRIPT//
@@ -79,17 +79,24 @@ public class EnemyBasic : MonoBehaviour
         if (health > 0)
         {
             health -= dmg;
-            AudioSource.PlayClipAtPoint(enemyHit, gameObject.transform.position);
+            source.PlayOneShot(enemyHit);
         }
         if (health <= 0)
         {
-            AudioSource.PlayClipAtPoint(enemyDeath, gameObject.transform.position);
+            source.clip = enemyDeathSounds[Random.Range(0, enemyDeathSounds.Length)]; //play random clip from the list of death sounds
+            AudioSource.PlayClipAtPoint(source.clip, gameObject.transform.position);
             spitting = false;
             Instantiate(coin, transform.position, transform.rotation);
             uiRef.numEnemies--;
-            Destroy(gameObject);
-            StaticGameClass.LessActiveEnemies();
+            Invoke("KillEnemy", 0.75f);
+
         }
+    }
+
+    public void KillEnemy()
+    {
+        Destroy(gameObject);
+        StaticGameClass.LessActiveEnemies();
     }
 
 

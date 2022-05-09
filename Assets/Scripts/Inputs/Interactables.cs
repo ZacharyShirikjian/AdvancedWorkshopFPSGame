@@ -23,7 +23,6 @@ public class Interactables : MonoBehaviour
     [SerializeField] private AudioClip openDoor;
     [SerializeField] private AudioClip closeDoor;
 
-    public Transform pointA;
     public Transform pointB;
     // Start is called before the first frame update
     void Start()
@@ -34,6 +33,7 @@ public class Interactables : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         source = GetComponent<AudioSource>();
         animator = player.GetComponentInChildren<Animator>();
+        blackImage.color = new Color(1, 1, 1, 0); //reset the alpha in the beginning 
     }
 
 
@@ -48,8 +48,8 @@ public class Interactables : MonoBehaviour
         if (gameObject.tag == "Door" && doorOpen == true)
         {
             Debug.Log("FADING IN.....");
-            StartCoroutine(FadeToBlack(1f));
-            StartCoroutine(FadeIn(5f));
+            StartCoroutine(FadeToBlack(0.25f));
+            StartCoroutine(FadeIn(4f));
 
         }
     }
@@ -57,22 +57,23 @@ public class Interactables : MonoBehaviour
     ////Idea for delay: takatok's post on https://forum.unity.com/threads/invoke-with-a-coroutine.439046/
     public IEnumerator FadeToBlack(float delay = 0.0f)
     {
-        if(delay != 0)
-        {
-            yield return new WaitForSeconds(delay);
 
-        float fadeTime = 2.0f;
+        //animator.SetTrigger("OpenTheDoor");
+        if (delay != 0)
+        {
+            player.GetComponent<PlayerController>().canMove = false;
+            yield return new WaitForSeconds(delay);
+            float fadeTime = 1.0f;
             Debug.Log("FADE IN SOFAOUFDSAFOSHNFO");
+            //animator.SetTrigger("Idle");
             source.PlayOneShot(openDoor);
-            for (float i = 0; i < 1.0f; i += Time.deltaTime / fadeTime)
+            for (float i = 0; i < 1.01f; i += Time.deltaTime / fadeTime)
             {
                 //i = opacity, slowly decrease opacity over time for 1 second
                 Color alphaColor = new Color(1, 1, 1, i);
                 blackImage.color = alphaColor;
                 yield return null;
             }
-
-           player.transform.position = pointA.transform.position;
         }
 
     }
@@ -83,9 +84,10 @@ public class Interactables : MonoBehaviour
       if (delay != 0)
         {
             yield return new WaitForSeconds(delay);
-            float fadeTime = 2.0f;
-       Debug.Log("FADE OUT OAWEFOSNFDSOF");
+            float fadeTime = 1.0f;
+            Debug.Log("FADE OUT OAWEFOSNFDSOF");
             source.PlayOneShot(closeDoor);
+            player.transform.position = pointB.transform.position;
             for (float i = 1; i > 0f; i -= Time.deltaTime / fadeTime)
             {
                 //i = opacity, slowly decrease opacity over time for 1 second
@@ -93,7 +95,7 @@ public class Interactables : MonoBehaviour
                 blackImage.color = alphaColor;
                 yield return null;
             }
-           player.transform.position = pointB.transform.position;
+            player.GetComponent<PlayerController>().canMove = true;
         }
 
     }

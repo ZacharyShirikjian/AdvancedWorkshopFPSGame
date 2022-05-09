@@ -31,15 +31,6 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        ////CHANGE TO NEW INPUT SYSTEM
-        //if (Input.GetKeyDown(KeyCode.Space) && currentInteractable && canInteract == true)
-        //{
-        //    canInteract = false;
-        //    interactableScript.interactedBefore = true;
-        //    //currentInteractable.GetComponent<TestInteractableScript>().enabled = true;
-        //    uiRef.UpdateInteractPromptUI("");
-        //}
     }
 
     //CALLED W/ INPUT MANAGER TO INTERACT OR BRING UP JUKEBOX MENU/

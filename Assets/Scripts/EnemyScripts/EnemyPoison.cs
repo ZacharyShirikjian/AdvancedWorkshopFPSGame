@@ -21,7 +21,7 @@ public class EnemyPoison : MonoBehaviour
     {
 
         radius = 15.0f;
-        dmg = 2;
+        dmg = 6;
 
         poison = false;
 

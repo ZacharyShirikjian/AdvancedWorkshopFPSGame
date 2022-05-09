@@ -99,8 +99,8 @@ public class PlayerController : MonoBehaviour
             mouseLook.sensitivityY = 3;
         }
 
-        controller.height = standHeight;
-        crouchHeight = standHeight - crouchPercent;
+        //controller.height = standHeight;
+        //crouchHeight = standHeight - crouchPercent;
 
         gunStandHeight = arms.transform.position.y;
         gunCrouchHeight = gunStandHeight - crouchPercent;
@@ -159,12 +159,12 @@ public class PlayerController : MonoBehaviour
                 uiRef.UpdateAmmoUI(false);
 
             }
-
+            /*
             if (crouch)
             {
                 //Debug.Log("Crouch activated");
 
-                controller.height = crouchHeight;
+                //controller.height = crouchHeight;
 
                 crouchPosition = new Vector3(transform.localPosition.x, crouchHeight, transform.localPosition.z);
 
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!crouch)
             {
-                controller.height = standHeight;
+                //controller.height = standHeight;
 
                 standPosition = new Vector3(transform.localPosition.x, standHeight, transform.localPosition.z);
 
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
                 arms.transform.position = Vector3.Lerp(arms.transform.position, gunStanding, Time.deltaTime * smooth);
 
             }
-
+            */
             //reload ammo to maxAmmo for gun
             if (reload)
             {

@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7654067857189507692}
   - component: {fileID: 4110034611572076852}
-  - component: {fileID: 3627980405320505794}
+  - component: {fileID: 2409214113813888491}
   m_Layer: 0
   m_Name: Cylinder.004
   m_TagString: Untagged
@@ -121,8 +121,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864419380069733837}
   m_Mesh: {fileID: 6255687079079774844, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &3627980405320505794
-MeshRenderer:
+--- !u!137 &2409214113813888491
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,7 +135,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -161,7 +161,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 6255687079079774844, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.05189245, y: 0.14286652, z: 0.0009451043}
+    m_Extent: {x: 0.039308418, y: 0.07882861, z: 0.00930739}
+  m_DirtyAABB: 0
 --- !u!1 &2105419518222612185
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +277,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2210533521295019238}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_Children:
@@ -299,7 +310,7 @@ Transform:
   - {fileID: 6674366529283930042}
   m_Father: {fileID: 7364094249303863156}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &2402507845237914765
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5693189315506033622}
   - component: {fileID: 5545695490933823319}
-  - component: {fileID: 743465024144104934}
+  - component: {fileID: 8627381495223669065}
   m_Layer: 0
   m_Name: Cylinder.006
   m_TagString: Untagged
@@ -502,8 +513,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2810553905685895583}
   m_Mesh: {fileID: -125435165217083709, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &743465024144104934
-MeshRenderer:
+--- !u!137 &8627381495223669065
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -516,7 +527,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -542,7 +553,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -125435165217083709, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.16521735, y: 0.016812745, z: -0.001558797}
+    m_Extent: {x: 0.061052296, y: 0.028068844, z: 0.010089915}
+  m_DirtyAABB: 0
 --- !u!1 &2852430526279461235
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6944965482218479338}
   - component: {fileID: 7190431373998131317}
-  - component: {fileID: 799761559083162145}
+  - component: {fileID: 662942966857033409}
   m_Layer: 0
   m_Name: Cylinder.011
   m_TagString: Untagged
@@ -664,8 +686,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159237691101230211}
   m_Mesh: {fileID: -7994650926060863905, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &799761559083162145
-MeshRenderer:
+--- !u!137 &662942966857033409
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -678,7 +700,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -704,7 +726,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -7994650926060863905, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.27663016, y: 0.014172073, z: 0.0050543128}
+    m_Extent: {x: 0.06138438, y: 0.023847956, z: 0.007083399}
+  m_DirtyAABB: 0
 --- !u!1 &3389680197089917333
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4351706944250013211}
   - component: {fileID: 7914718203464289612}
-  - component: {fileID: 9108812240341691724}
+  - component: {fileID: 6933217056477488563}
   m_Layer: 0
   m_Name: Cylinder.002
   m_TagString: Untagged
@@ -826,8 +859,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3522658828142794401}
   m_Mesh: {fileID: 8691780276856062721, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &9108812240341691724
-MeshRenderer:
+--- !u!137 &6933217056477488563
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -840,7 +873,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -866,7 +899,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 8691780276856062721, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.0019433703, y: 0.0008637025, z: -0.00015565334}
+    m_Extent: {x: 0.017541457, y: 0.01438994, z: 0.010165526}
+  m_DirtyAABB: 0
 --- !u!1 &3796657998065187752
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7945729289615436626}
   - component: {fileID: 5866741733355055317}
-  - component: {fileID: 8218034377977574303}
+  - component: {fileID: 3846611812673593074}
   m_Layer: 0
   m_Name: Cylinder.005
   m_TagString: Untagged
@@ -907,8 +951,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3796657998065187752}
   m_Mesh: {fileID: 3390558720134950976, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &8218034377977574303
-MeshRenderer:
+--- !u!137 &3846611812673593074
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -921,7 +965,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -947,7 +991,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3390558720134950976, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.15299882, y: -0.079905346, z: 0.0005288967}
+    m_Extent: {x: 0.07097156, y: 0.042879518, z: 0.009669261}
+  m_DirtyAABB: 0
 --- !u!1 &4516492416900105851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3828824068869486911}
   - component: {fileID: 5359544518445524160}
-  - component: {fileID: 3019253550133576178}
+  - component: {fileID: 3767649101057025475}
   m_Layer: 0
   m_Name: Cylinder.012
   m_TagString: Untagged
@@ -1528,8 +1583,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5035553368757262506}
   m_Mesh: {fileID: -5308210633308118684, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &3019253550133576178
-MeshRenderer:
+--- !u!137 &3767649101057025475
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1542,7 +1597,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -1568,7 +1623,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -5308210633308118684, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.23609316, y: -0.042584766, z: 0.0028374512}
+    m_Extent: {x: 0.07067419, y: 0.026304428, z: 0.010089512}
+  m_DirtyAABB: 0
 --- !u!1 &5191833021409695889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,7 +1645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4702428322127922553}
   - component: {fileID: 7756101304236710370}
-  - component: {fileID: 7074612796293558404}
+  - component: {fileID: 1733191536992587092}
   m_Layer: 0
   m_Name: Cylinder.007
   m_TagString: Untagged
@@ -1609,8 +1675,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5191833021409695889}
   m_Mesh: {fileID: 3163171260390484736, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &7074612796293558404
-MeshRenderer:
+--- !u!137 &1733191536992587092
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1623,7 +1689,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -1649,7 +1715,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3163171260390484736, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.18124619, y: 0.10736676, z: 0.000040920917}
+    m_Extent: {x: 0.05054097, y: 0.047741823, z: 0.0098622795}
+  m_DirtyAABB: 0
 --- !u!1 &5373235220536349587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +2034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2423404876634333769}
   - component: {fileID: 5729538605455389545}
-  - component: {fileID: 8726378532838301783}
+  - component: {fileID: 6587937980591076478}
   m_Layer: 0
   m_Name: Cylinder.010
   m_TagString: Untagged
@@ -1987,8 +2064,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6531957495521010316}
   m_Mesh: {fileID: -5731547941117289742, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &8726378532838301783
-MeshRenderer:
+--- !u!137 &6587937980591076478
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2001,7 +2078,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -2027,7 +2104,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -5731547941117289742, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.24055739, y: 0.14012635, z: 0.0046855872}
+    m_Extent: {x: 0.06523676, y: 0.046515234, z: 0.008521565}
+  m_DirtyAABB: 0
 --- !u!1 &7183513443617582625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,7 +2207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5760038104409006950}
   - component: {fileID: 3128751729703805350}
-  - component: {fileID: 8092385887207151885}
+  - component: {fileID: 8947273711650612501}
   m_Layer: 0
   m_Name: Cylinder.001
   m_TagString: Untagged
@@ -2149,8 +2237,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7226940970680668292}
   m_Mesh: {fileID: -7387706064836869012, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &8092385887207151885
-MeshRenderer:
+--- !u!137 &8947273711650612501
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2163,7 +2251,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -2189,7 +2277,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -7387706064836869012, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.07350445, y: -0.08998065, z: 0.0014814325}
+    m_Extent: {x: 0.03418682, y: 0.061531853, z: 0.010270318}
+  m_DirtyAABB: 0
 --- !u!1 &7364094247568625106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2380,7 +2479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7364094249225438923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.85, z: 0}
+  m_LocalPosition: {x: -0.02, y: 1.741, z: 0.296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7364094249303863156}
@@ -2802,7 +2901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6687449293638089331}
   - component: {fileID: 5812970701392479530}
-  - component: {fileID: 2143935566958303758}
+  - component: {fileID: 1434825015440839372}
   m_Layer: 0
   m_Name: Cylinder.003
   m_TagString: Untagged
@@ -2832,8 +2931,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7697534403301791393}
   m_Mesh: {fileID: 6239881831769578202, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &2143935566958303758
-MeshRenderer:
+--- !u!137 &1434825015440839372
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2846,7 +2945,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -2872,7 +2971,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 6239881831769578202, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: -0.008472018, y: 0.1021976, z: 0.0009822878}
+    m_Extent: {x: 0.026478808, y: 0.04843676, z: 0.010519596}
+  m_DirtyAABB: 0
 --- !u!1 &8244871490463849967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,7 +2993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2601288339502858429}
   - component: {fileID: 2762534618836365835}
-  - component: {fileID: 4603874422612300969}
+  - component: {fileID: 43954825812821828}
   m_Layer: 0
   m_Name: Cylinder.009
   m_TagString: Untagged
@@ -2913,8 +3023,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8244871490463849967}
   m_Mesh: {fileID: 3525479140033381557, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
---- !u!23 &4603874422612300969
-MeshRenderer:
+--- !u!137 &43954825812821828
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2927,7 +3037,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 3
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
@@ -2953,4 +3063,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3525479140033381557, guid: 9211ee93a76d4d24891622fd630c0349, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.12854823, y: 0.16049433, z: 0.0012390604}
+    m_Extent: {x: 0.05449242, y: 0.0557672, z: 0.010127376}
+  m_DirtyAABB: 0

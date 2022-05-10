@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0aaafc0c17807654ba2f3c94c2aaa09e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,7 +114,6 @@ MonoBehaviour:
   toScale: {x: 0, y: 0, z: 0}
   scaleUp: 1.5
   speed: 20
-  uiScript: {fileID: 0}
 --- !u!54 &-4963502049853738146
 Rigidbody:
   m_ObjectHideFlags: 0

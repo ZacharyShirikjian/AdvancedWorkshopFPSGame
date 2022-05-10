@@ -7,8 +7,8 @@ public class EnemyBasic : MonoBehaviour
 {
 
     private Vector3 spawnPoint;
-    public GameObject player;
-    public PlayerController playerController;
+    private GameObject player;
+    private PlayerController playerController;
 
     private NavMeshAgent agent;
 

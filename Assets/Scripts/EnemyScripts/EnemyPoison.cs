@@ -10,11 +10,11 @@ public class EnemyPoison : MonoBehaviour
     public int dmg;
     public bool poison;
 
-    public GameObject player;
-    public PlayerController playCon;
+    private GameObject player;
+    private PlayerController playCon;
 
     //REFERENCE TO UI SCRIPT TO GET SPLATTER TO WORK
-    [SerializeField] private UITest uiScript;
+    private UITest uiScript;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class EnemyPoison : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playCon = player.GetComponent<PlayerController>();
-
+        uiScript = GameObject.Find("Canvas").GetComponent<UITest>();
         InvokeRepeating("Poison", 0, 2.0f);
     }
 

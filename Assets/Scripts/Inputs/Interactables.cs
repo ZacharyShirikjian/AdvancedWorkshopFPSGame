@@ -11,12 +11,12 @@ public class Interactables : MonoBehaviour
 
     public GameObject player;
     public GameObject door;
-    public Camera playerCam;
-    public CharacterController charController;
+    //public Camera playerCam;
+    //public CharacterController charController;
 
-    public Animator pAnimator;
-    public Animator d1Animator;
-    public Animator d2Animator;
+    //public Animator pAnimator;
+    //public Animator d1Animator;
+    //public Animator d2Animator;
 
     public Vector3 startPoint;
     public Vector3 finishPoint;
@@ -35,7 +35,7 @@ public class Interactables : MonoBehaviour
     [SerializeField] private AudioClip openDoor;
     [SerializeField] private AudioClip closeDoor;
 
-    public Transform pointB;
+    private trainCarsScr trainCarsScript; 
     // Start is called before the first frame update
     void Start()
     {
@@ -45,15 +45,16 @@ public class Interactables : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         door = GameObject.FindGameObjectWithTag("Door");
         finishPoint = door.transform.Find("finishPoint").gameObject.transform.position;
-        playerCam = player.GetComponentInChildren<Camera>();
-        charController = player.GetComponent<CharacterController>();
+        trainCarsScript = GameObject.Find("TrainStart").GetComponent<trainCarsScr>();
+        //playerCam = player.GetComponentInChildren<Camera>();
+        //charController = player.GetComponent<CharacterController>();
         source = GetComponent<AudioSource>();
         //animator = player.GetComponentInChildren<Animator>();
         blackImage.color = new Color(1, 1, 1, 0); //reset the alpha in the beginning 
 
-        pAnimator = player.GetComponentInChildren<Animator>();
-        d1Animator = door.transform.Find("Door1").GetComponent<Animator>();
-        d2Animator = door.transform.Find("Door2").GetComponent<Animator>();
+        //pAnimator = player.GetComponentInChildren<Animator>();
+        //d1Animator = door.transform.Find("Door1").GetComponent<Animator>();
+        //d2Animator = door.transform.Find("Door2").GetComponent<Animator>();
 
     }
 
@@ -108,7 +109,8 @@ public class Interactables : MonoBehaviour
             float fadeTime = 1.0f;
             Debug.Log("FADE OUT OAWEFOSNFDSOF");
             source.PlayOneShot(closeDoor);
-            player.transform.position = pointB.transform.position;
+            trainCarsScript.NextLevel();
+            player.transform.position = finishPoint;
             for (float i = 1; i > 0f; i -= Time.deltaTime / fadeTime)
             {
                 //i = opacity, slowly decrease opacity over time for 1 second
@@ -121,6 +123,7 @@ public class Interactables : MonoBehaviour
 
     }
 
+    /*
     IEnumerator OpenDoor()
     {
         StaticGameClass.pause = true;
@@ -146,6 +149,6 @@ public class Interactables : MonoBehaviour
 
         StaticGameClass.pause = false;
     }
-
+    */
 
 }

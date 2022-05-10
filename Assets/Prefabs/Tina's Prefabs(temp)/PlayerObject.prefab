@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e5030cf634bab4cae64ab9f579e313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyPlaying: 0
   currentInteractable: {fileID: 0}
   interactableScript: {fileID: 0}
   curJukebox: {fileID: 0}
@@ -64,6 +65,9 @@ MonoBehaviour:
   canInteract: 0
   uiRef: {fileID: 0}
   cameraScript: {fileID: 0}
+  combatTrack: {fileID: 0}
+  exploreTrack: {fileID: 0}
+  combatIntro: {fileID: 0}
 --- !u!1 &3691993270690102315
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e5030cf634bab4cae64ab9f579e313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyPlaying: 0
   currentInteractable: {fileID: 0}
   interactableScript: {fileID: 0}
   curJukebox: {fileID: 0}
@@ -128,6 +133,9 @@ MonoBehaviour:
   canInteract: 0
   uiRef: {fileID: 0}
   cameraScript: {fileID: 0}
+  combatTrack: {fileID: 0}
+  exploreTrack: {fileID: 0}
+  combatIntro: {fileID: 0}
 --- !u!1 &6067482979446111368
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6067482979446111368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.02, y: 2.256, z: 2.721}
+  m_LocalPosition: {x: 1.02, y: 2.256, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6239929424462989362}
@@ -243,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c1b152655e264d97b10703f0b8a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivityX: 20
+  sensitivityX: 18
   sensitivityY: 0.2
   playerCamera: {fileID: 6239929425235843969}
   xClamp: 85
@@ -276,14 +284,15 @@ MonoBehaviour:
   crouch: 0
   reload: 0
   playerDeath: 0
+  canMove: 1
   standPosition: {x: 0, y: 0, z: 0}
   crouchPosition: {x: 0, y: 0, z: 0}
   gunStanding: {x: 0, y: 0, z: 0}
   gunCrouching: {x: 0, y: 0, z: 0}
   gunCrouchHeight: 0
   gunStandHeight: 0
-  crouchHeight: 1.5
-  standHeight: 3
+  crouchHeight: 4.3
+  standHeight: 5.8
   smooth: 5
   crouchPercent: 0.5
   rayShoot: {fileID: 0}
@@ -292,10 +301,10 @@ MonoBehaviour:
   maxAmmo: 0
   arms: {fileID: 7658590564969849212}
   animator: {fileID: 0}
-  shootGun: {fileID: 0}
-  reloadClip: {fileID: 0}
-  takeDamage: {fileID: 0}
-  playerDead: {fileID: 0}
+  shootGun: {fileID: 8300000, guid: ccd605d11aea6f943867520eff03c815, type: 3}
+  reloadClip: {fileID: 8300000, guid: 13650c52bcfa31f4d94f8b0cbf380e69, type: 3}
+  takeDamage: {fileID: 8300000, guid: 2bb511a828d0ca949b2098ea4c6026fe, type: 3}
+  playerDead: {fileID: 8300000, guid: 59ae64fd548afaa43a94c3821f4d66dc, type: 3}
   deleteLater: {fileID: 0}
 --- !u!54 &1059137810
 Rigidbody:
@@ -454,7 +463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6239929425235843972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6239929424462989362}
@@ -668,7 +677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7850253244893199106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 2.82}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 2}
   m_Children: []
   m_Father: {fileID: 6239929424462989362}
@@ -707,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e361894d2049954ba98bda6e69de6b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.09
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6e361894d2049954ba98bda6e69de6b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -741,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arms
       objectReference: {fileID: 0}
+    - target: {fileID: 7585644892987223013, guid: 6e361894d2049954ba98bda6e69de6b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 548387b452133c6478b9f9f11ecf6e23, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e361894d2049954ba98bda6e69de6b9, type: 3}
 --- !u!1 &7658590564969849212 stripped

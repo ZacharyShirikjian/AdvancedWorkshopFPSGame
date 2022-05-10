@@ -2624,15 +2624,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591d1211531e49e4e95c8bd47d9036f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerController: {fileID: 0}
   spitObject: {fileID: 7364094249225438922}
   spitPrefab: {fileID: 1704107403229808040, guid: ea38949ebd6dcce41a3b871bd3f51b69, type: 3}
   spitting: 0
   tracking: 0
   active: 0
   health: 2
-  coin: {fileID: 2565534246143132431, guid: 8ecffcceb1078654f9399f657515de1e, type: 3}
+  coin: {fileID: 8528332980448067608, guid: ac16bee9384fe1544ae7a061c7853187, type: 3}
   animator: {fileID: 0}
   journeyTime: 3
   enemyHit: {fileID: 8300000, guid: 5a9ab05e8d05d6d4ea3f1d51f674a552, type: 3}
@@ -2687,9 +2685,6 @@ MonoBehaviour:
   radius: 2
   dmg: 6
   poison: 0
-  player: {fileID: 0}
-  playCon: {fileID: 0}
-  uiScript: {fileID: 0}
 --- !u!82 &2001319815
 AudioSource:
   m_ObjectHideFlags: 0

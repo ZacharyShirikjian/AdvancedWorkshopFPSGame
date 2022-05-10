@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3327973190622676179}
   - component: {fileID: 1837625230916946806}
   - component: {fileID: 4495851509137375164}
-  - component: {fileID: 3597318873986157655}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Untagged
@@ -26,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2694425058195463785}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21, y: 10.234106, z: 2}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,8 +59,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1444460858095362738, guid: 4049065e6adfb7f4fa2923d306031b23, type: 3}
-  - {fileID: -1174590585716407870, guid: 4049065e6adfb7f4fa2923d306031b23, type: 3}
+  - {fileID: 2100000, guid: 495eba646a1a9ac4dbe664582698d225, type: 2}
+  - {fileID: 2100000, guid: 8151719e7236ff142a95c9842690c916, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,17 +82,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3597318873986157655
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2694425058195463785}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 9216986893841661389, guid: 4049065e6adfb7f4fa2923d306031b23, type: 3}

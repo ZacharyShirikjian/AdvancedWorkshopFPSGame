@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool crouch;     //holds bool for crouch
     public bool reload;     //holds bool for reload state
     public bool playerDeath;    //holds bool for player death state
+    public bool canMove = true;
 
 
     public Vector3 standPosition;       //holds stand position
@@ -224,9 +225,13 @@ public class PlayerController : MonoBehaviour
 
             }
 
+            if(canMove)
+            {
+                Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;
+                controller.Move(horzVel * Time.deltaTime);
+            }
             //wasd movement
-            Vector3 horzVel = (transform.right * inputVector.x + transform.forward * inputVector.y) * speed;
-            controller.Move(horzVel * Time.deltaTime);
+
 
             //verticalVelocity.y += gravity * Time.deltaTime;
             //controller.Move(verticalVelocity * Time.deltaTime);

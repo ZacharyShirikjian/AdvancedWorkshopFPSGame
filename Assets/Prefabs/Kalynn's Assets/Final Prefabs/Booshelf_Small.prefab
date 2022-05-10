@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 8515413254870412253}
   - component: {fileID: 587256580976003292}
   - component: {fileID: 4017731482640435400}
-  - component: {fileID: 2434694585765300292}
   m_Layer: 0
   m_Name: pCube508
   m_TagString: Untagged
@@ -119,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3666715412601019771}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12}
+  m_LocalPosition: {x: 1.9542174, y: -2.298277, z: 4.042452}
   m_LocalScale: {x: 0.0050373715, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 7153301243239721127}
@@ -152,8 +151,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1444460858095362738, guid: d7759c22632d4024fa754cde49d53f1e, type: 3}
-  - {fileID: -7127551656012209352, guid: d7759c22632d4024fa754cde49d53f1e, type: 3}
+  - {fileID: 2100000, guid: 7029c6b9142a58048bfaf8dee243719c, type: 2}
+  - {fileID: 2100000, guid: bbc44bc7d62354b409fbdbc0103b266b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -175,20 +174,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2434694585765300292
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3666715412601019771}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2716917285912712099, guid: d7759c22632d4024fa754cde49d53f1e, type: 3}
 --- !u!1 &4273733857443031096
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7498054915690443293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 16.045782, y: 12.298277, z: -7.042452}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8500547409838068155}

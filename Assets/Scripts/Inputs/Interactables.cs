@@ -48,7 +48,7 @@ public class Interactables : MonoBehaviour
         playerCam = player.GetComponentInChildren<Camera>();
         charController = player.GetComponent<CharacterController>();
         source = GetComponent<AudioSource>();
-        animator = player.GetComponentInChildren<Animator>();
+        //animator = player.GetComponentInChildren<Animator>();
         blackImage.color = new Color(1, 1, 1, 0); //reset the alpha in the beginning 
 
         pAnimator = player.GetComponentInChildren<Animator>();

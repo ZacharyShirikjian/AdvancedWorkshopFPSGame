@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7420860390649720589}
   - component: {fileID: 1798828199871810572}
   - component: {fileID: 2815096624469675032}
-  - component: {fileID: 7318632262968195821}
   m_Layer: 0
   m_Name: pCube508
   m_TagString: Untagged
@@ -58,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2464076157323958699}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.27351, y: -2.7220821, z: 7.6405516}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 8328637425650543735}
@@ -91,8 +90,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1444460858095362738, guid: 2f4b8bbd26d4f49409d9ff0c156a20df, type: 3}
-  - {fileID: -7127551656012209352, guid: 2f4b8bbd26d4f49409d9ff0c156a20df, type: 3}
+  - {fileID: 2100000, guid: 8e6d364ccce728e438c8c03a0c6ebb28, type: 2}
+  - {fileID: 2100000, guid: ed7a3a5cea2fd094ea9c20fb4762f876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,20 +113,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7318632262968195821
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2464076157323958699}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2716917285912712099, guid: 2f4b8bbd26d4f49409d9ff0c156a20df, type: 3}
 --- !u!1 &3143433671172091112
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8709560563889141453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 12.27351, y: 12.722082, z: -7.6405516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7289323236482258283}
